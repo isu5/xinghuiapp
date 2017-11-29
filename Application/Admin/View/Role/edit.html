@@ -1,0 +1,155 @@
+
+<layout name="layout" />
+
+<article class="page-container">
+	<form action="" method="post" class="form form-horizontal" id="form-admin-role-add">
+		<input type="hidden" name="id" value="{$data.id}">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>角色名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.role_name}" placeholder="" id="roleName" name="role_name" datatype="*4-16" nullmsg="用户账户不能为空">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">备注：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.remark}" placeholder="" id="" name="remark">
+			</div>
+		</div>
+			<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">是否显示：</label>
+			
+			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
+				<div class="radio-box">
+					<input type="radio" id="sex-1" name="status" value="1" <if condition="$data.status eq 1">checked="checked"</if>>
+						<label for="sex-1">显示</label>
+				</div>
+				<div class="radio-box">
+					<input type="radio" id="sex-2" name="status" value="0" <if condition="$data.status eq 0">checked="checked"</if>>
+						<label for="sex-2">隐藏</label>
+				</div>
+			</div>
+			
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">网站角色：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<volist name="priData" id="v" >
+				<?php
+				// 判断当前选中的权限
+				if(strpos(','.$pr.',', ','.$v['id'].',') !== FALSE){
+					$check = 'checked="checked"';
+					}else{ 
+						$check = '';
+					}
+				?>
+				<dl class="permission-list">
+					<dt>
+						<label>
+							<input type="checkbox" value="{$v.id}" {$check}  name="pri_id[]" id="user-Character-0">
+							{$v['pri_name']}</label>
+					</dt>
+					<notempty name="v.children">
+					<dd>
+					<volist name="v.children" id="v2">
+					<?php
+					// 判断当前选中的权限
+					if(strpos(','.$pr.',', ','.$v2['id'].',') !== FALSE){
+						$check = 'checked="checked"';
+						}else{ 
+							$check = '';
+						}
+					?>
+						<dl class="cl permission-list2">
+							<dt>
+								<label class="">
+									<input type="checkbox" value="{$v2.id}"  {$check} name="pri_id[]" id="user-Character-0-0">
+									{$v2['pri_name']}</label>
+							</dt>
+							
+							<dd>
+								<volist name="v2.children" id="v3">
+								<?php
+								// 判断当前选中的权限
+								if(strpos(','.$pr.',', ','.$v3['id'].',') !== FALSE){
+									$check = 'checked="checked"';
+									}else{ 
+										$check = '';
+									}
+								?>
+								<label class="">
+									<input type="checkbox" value="{$v3.id}"  {$check} name="pri_id[]" id="user-Character-0-0-0">
+									{$v3['pri_name']}</label>
+								</volist>
+							</dd>
+							
+						</dl>
+						</volist>
+					</dd>
+					</notempty>
+				</dl>
+				</volist>
+			</div>
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+			</div>
+		</div>
+	</form>
+</article>
+
+
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+$(function(){
+	$(".permission-list dt input:checkbox").click(function(){
+		$(this).closest("dl").find("dd input:checkbox").prop("checked",$(this).prop("checked"));
+	});
+	$(".permission-list2 dd input:checkbox").click(function(){
+		var l =$(this).parent().parent().find("input:checked").length;
+		var l2=$(this).parents(".permission-list").find(".permission-list2 dd").find("input:checked").length;
+		if($(this).prop("checked")){
+			$(this).closest("dl").find("dt input:checkbox").prop("checked",true);
+			$(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked",true);
+		}
+		else{
+			if(l==0){
+				$(this).closest("dl").find("dt input:checkbox").prop("checked",false);
+			}
+			if(l2==0){
+				$(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked",false);
+			}
+		}
+	});
+	
+	$("#form-admin-role-add").validate({
+		rules:{
+			role_name:{
+				required:true,
+			},
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+			$.post("{:U('Role/edit')}", 
+				$(form).serialize(), function(data){
+					if(data==1){
+                        //添加数据成功，关闭弹出窗之前，刷新列表页面的数据
+						layer.msg('修改成功', { icon: 1, time: 2000 ,shade: 0.5},function(){
+						parent.window.location.href= "{:U('Role/index')}";
+						var index = parent.layer.getFrameIndex(window.name);
+						parent.layer.close(index);
+						});
+                        
+                    }else{
+                        layer.msg('修改失败', {icon: 2, time: 2000,shade: 0.5 });
+                    }
+				});
+		}
+	});
+});
+</script>
+<!--/请在上方写此页面业务相关的脚本-->

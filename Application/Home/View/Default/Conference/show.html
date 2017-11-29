@@ -1,0 +1,212 @@
+<layout name="layout" />
+
+
+<div class="page-content">
+		
+		<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+		
+		<!-- END STYLE CUSTOMIZER -->
+		<!-- BEGIN PAGE HEADER-->
+		<h3 class="page-title">
+		会议管理
+		</h3>
+		<div class="page-bar">
+			<ul class="page-breadcrumb">
+				<li>
+					<i class="fa fa-home"></i>
+					<a href="#">首页</a>
+					<i class="fa fa-angle-right"></i>
+				</li>
+				<li>
+					会议管理
+				
+				</li>
+				
+			</ul>
+			
+		</div>
+			
+			<!--中间部分-->
+			<!-- BEGIN PAGE CONTENT-->
+	 <div class="tabbable-custom tabbable-full-width">
+				<ul class="nav nav-tabs">
+					<li class="active">
+						<a href="JavaScript:;" ><i class="fa fa-tags"></i>会议管理</a>
+					</li>
+					
+				</ul>
+				
+				 
+			<div class="portlet-body form" >
+					<div class="form-body">
+					<div class="form-horizontal">
+						<div class="form-group">
+							<label class="col-md-3 control-label">会议标题</label>
+							<div class="col-md-5">
+								<p class="form-control-static">{$data.title}</p>
+								
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">会议类型</label>
+							<div class="col-md-9">
+								<p class="form-control-static">{$data.catename}</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">举办公司</label>
+							<div class="col-md-9">
+								<p class="form-control-static">{$data.companyname}</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">起始时间</label>
+							<div class="col-md-9">
+								<p class="form-control-static">{$data.ctime}至{$data.etime}</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">报名截止</label>
+							<div class="col-md-9">
+								<p class="form-control-static">{$data.qtime}</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">举办地址</label>
+							<div class="col-md-9">
+								<p class="form-control-static">{$data.address}{$data.xxaddress}</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">联系人</label>
+							<div class="col-md-9">
+								<p class="form-control-static">
+									{$data.contact}
+								</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">联系人电话</label>
+							<div class="col-md-9">
+								<p class="form-control-static">
+									{$data.phone}
+								</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">是否需要审核参会人员</label>
+							<div class="col-md-9">
+								<p class="form-control-static">
+									<eq name="data.is_user" value="1">
+										<span class="label label-success radius" >是</span><else/>
+										<span class="label label-default radius" >否</span>
+									</eq>
+								</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">下载资料</label>
+							<div class="col-md-9">
+								<p class="form-control-static">
+								
+								
+								<?php
+									$vo = readjson($data['downfile']);
+									/* foreach($vo as $k => $v){
+										$str = "<a href='$v'>";
+										$str .=$data['title'];
+										$str .= "</a>";
+										echo $str;
+									} */
+									for($i=0;$i<count($vo);$i++){
+										$str = "<a href='$vo[$i]'>";
+										$str .= $data['title']. '文件下载<br/>';
+										$str .= "</a>";
+										echo $str;
+									}
+								?>
+								</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">二维码</label>
+							<div class="col-md-9">
+								<p class="form-control-static">
+									
+									<img src="{:U('Conference/dicaoliao',array('id'=>$data['id']))}" width="200px" />
+								</p>
+							</div>
+						</div>
+					</div>
+				
+				</div>
+		
+	<!-- END PAGE CONTENT-->
+	<!--中间部分-->
+  
+		</div>
+	</div>
+	<!-- END CONTENT -->
+	
+</div>
+<include file="Public/footer" />
+<script>
+      //图片上传预览    IE是用了滤镜。
+        function previewImage(file)
+        {
+          var MAXWIDTH  = 200; 
+          var MAXHEIGHT = 100;
+          var div = document.getElementById('preview');
+          if (file.files && file.files[0])
+          {
+              div.innerHTML ='<img id=imghead class="img-circle" onclick=$("#previewImg").click()> ';
+              var img = document.getElementById('imghead');
+              img.onload = function(){
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width  =  rect.width;
+                img.height =  rect.height;
+//                 img.style.marginLeft = rect.left+'px';
+                img.style.marginTop = rect.top+'px';
+              }
+              var reader = new FileReader();
+              reader.onload = function(evt){img.src = evt.target.result;}
+              reader.readAsDataURL(file.files[0]);
+          }
+          else //兼容IE
+          {
+            var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+            file.select();
+            var src = document.selection.createRange().text;
+            div.innerHTML = '<img id=imghead>';
+            var img = document.getElementById('imghead');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+            div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+          }
+        }
+        function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+            var param = {top:0, left:0, width:width, height:height};
+            if( width>maxWidth || height>maxHeight ){
+                rateWidth = width / maxWidth;
+                rateHeight = height / maxHeight;
+                
+                if( rateWidth > rateHeight ){
+                    param.width =  maxWidth;
+                    param.height = Math.round(height / rateWidth);
+                }else{
+                    param.width = Math.round(width / rateHeight);
+                    param.height = maxHeight;
+                }
+            }
+            param.left = Math.round((maxWidth - param.width) / 2);
+            param.top = Math.round((maxHeight - param.height) / 2);
+            return param;
+        }
+
+</script>	
+
+	
+	
+	
+	

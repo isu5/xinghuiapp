@@ -1,0 +1,150 @@
+<layout name="layout" />
+
+
+<link rel="stylesheet" type="text/css" href="__HOME_CSS__/amazeui.min.css" />
+<link rel="stylesheet" type="text/css" href="__HOME_CSS__/amazeui.address.css" />
+
+<div class="page-content">
+			
+	<h3 class="page-title">
+	企业资料
+	</h3>
+	<div class="page-bar">
+		<ul class="page-breadcrumb">
+			<li>
+				<i class="fa fa-home"></i>
+				<a href="#">首页</a>
+				<i class="fa fa-angle-right"></i>
+			</li>
+			<li>
+				企业资料
+			
+			</li>
+			
+		</ul>
+		
+	</div>
+			
+			<!--中间部分-->
+			<!-- BEGIN PAGE CONTENT-->
+ <div class="tabbable-custom tabbable-full-width">
+			<ul class="nav nav-tabs">
+				<li class="">
+					<a href="{:U('User/info')}" ><i class="fa fa-tags"></i>基本资料</a>
+				</li>
+				<li  class="   ">
+					<a href="{:U('User/password')}"><i class="fa fa-tag"></i> 修改密码 </a>
+				</li>
+				<!-- <li  class="   ">
+					<a href="{:U('User/oauth')}"><i class="fa fa-tag"></i> 账号绑定 </a>
+				</li> -->
+				<li  class="active ">
+					<a href="{:U('User/details')}"><i class="fa fa-bell"></i> 详情 </a>
+				</li>
+			</ul>
+			
+			 
+		<div class="portlet-body form" >
+		 
+	
+			<form class="form-horizontal"  action="__SELF__" method="post" id="form">
+				<div class="form-body">
+					
+					<div class="form-group">
+						<label class="col-md-3 control-label">公司名称</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control"   name="companyname" disabled value="{$data.companyname}">
+							<small style="color:red">审核认证后，公司名称不可编辑</small>
+						</div>
+						
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">职务</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control"  name="position" placeholder="公司职务" value="{$data.position}">
+							
+						</div>
+					</div>
+					<div class="form-group" >
+						<label class="col-md-3 control-label">公司官网</label>
+						<div class="col-md-9">
+							<input type="text" name="website"  class="form-control" placeholder="公司官网" required="" value="{$data.website}">
+							
+						</div>
+						
+					</div>
+					<div class="form-group" >
+						<label class="col-md-3 control-label">公司地址</label>
+						<div class="col-md-9" id="address2">
+							<input readonly type="text" name="address" class="am-form-field am-radius" placeholder="请选择地址" required="" value="{$data.address}">
+							
+						</div>
+						
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">详细地址</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control"   name="area" placeholder="请填写详细地址" value="{$data.area}">
+							
+						</div>
+						
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">公司简介</label>
+						<div class="col-md-8">
+							<textarea type="text" class="form-control" style="height:260px"   name="profile">{$data.profile}</textarea>
+						
+						</div>
+						
+					</div>
+
+					<div class="form-actions">
+						<div class="row">
+							<div class="col-md-offset-3 col-md-9">
+								<button type="submit" class="btn green" id="save">保存数据</button>
+								<button type="reset" class="btn default">恢复默认</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			
+
+		</div>
+	</div>
+
+<!--中间部分-->
+
+</div>		
+
+		
+<include file="Public/footer" />
+<script src="__HOME_JS__/amazeui.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__HOME_JS__/iscroll.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__HOME_JS__/address.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+	$(function() {
+		document.addEventListener('touchmove', function (e) {
+			e.preventDefault();
+		}, false);
+
+		//城市多级联动
+		$("#address2").address({
+			prov: "北京石",
+			city: "北京市",
+			district: "景山区",
+			scrollToCenter: true,
+			footer: true,
+			
+		});
+
+
+	});
+
+</script>
+
+	
+	
+	
+	

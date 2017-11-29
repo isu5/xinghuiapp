@@ -1,0 +1,293 @@
+<layout name="layout" />
+
+<webuploadercss />
+<link rel="stylesheet" type="text/css" href="__HOME_CSS__/amazeui.min.css"/>
+<link rel="stylesheet" type="text/css" href="__HOME_CSS__/amazeui.address.css" />
+
+
+<div class="page-content">
+	<h3 class="page-title">添加合作伙伴</h3>
+	<div class="page-bar">
+		<ul class="page-breadcrumb">
+			<li>
+				<i class="fa fa-home"></i>
+				<a href="#">首页</a>
+				<i class="fa fa-angle-right"></i>
+			</li>
+			<li>
+				添加合作伙伴					
+			</li>
+			
+		</ul>
+		
+	</div>
+	<!--中间部分-->
+		<!-- BEGIN PAGE CONTENT-->
+	<div class="tabbable-custom tabbable-full-width">
+		<table width="100%" border="0" style="margin-bottom:20px;">
+			<tr>
+				<td>
+					<div class="topbtn"  style="margin-top:10px; clear:both">
+						<!-- <div  style="float:left" >
+							 
+						</div>   -->
+						<div style="float:right; width:370px">
+						<form class="form-horizontal" method="get" id="search_id">
+							<input  type="text" class="form-control" name="companyname" style="width:255px; float:left"/>
+							 
+							<button type="button"  class="btn green" onclick="setPage()" style="float:right; width:100px;">
+								<i class="fa fa-search"></i> 搜索添加
+							</button>
+						</form>
+						</div>
+						 
+					</div>
+				</td>
+			</tr>
+			
+			</table> 
+			<table class="table" style="margin-bottom:20px;">
+				<tr hidden id="sel_menu2">
+					<th width="50">ID</th>
+					<th>企业名称</th>
+					<th>电话</th>
+					<th>邮箱</th>
+					<th>添加到表单</th>
+					
+				</tr>
+				<tbody id="sel_menu3"></tbody>
+				
+					
+			</table>
+			<div hidden id="sel_menu4"></div>
+		<div class="portlet-body form" >
+		 
+			<form class="form-horizontal" action="" method="post" id="myform" enctype='multipart/form-data'>
+				<input type="hidden" name="conf_id" value="<?php echo I('get.id')?>"/>
+				<div class="form-body">
+					<div class="form-group">
+						<label class="col-md-3 control-label">邮箱</label>
+						<div class="col-md-5">
+							<input type="text" class="form-control"  name="email" id="email" value="" datatype="e" nullmsg="请输入邮箱" errormsg="请输入输入正确的邮箱">
+							
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">电话</label>
+						<div class="col-md-5">
+							<input type="text" class="form-control"  name="phone" id="phone" value="" datatype="m|s11-12" nullmsg="请输入电话" errormsg="请输入输入正确的电话">
+							
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">logo</label>
+						<div class="col-md-5">
+							<img id="imghead" src="" hidden width="100" />
+							<input name="logo" value="" type="hidden" />
+							<div id="webupload_logo">
+							
+							<webuploaderavatar name="logo" url="{:U('Attachment/ajax_upload')}" word="或将照片拖到这里，最多可选1张"/> 
+							
+							</div>
+							
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">公司名称</label>
+						<div class="col-md-5">
+							<input type="text" class="form-control"  name="companyname" id="companyname" value="" >
+							
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">公司地址</label>
+						<div class="col-md-5" id="address2">
+							<input readonly type="text" name="address" id="address" class="am-form-field am-radius" placeholder="请选择地址" required="" value="北京北京市石景山区">
+								
+						</div>
+						
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">详细地址</label>
+						<div class="col-md-5">
+							<input type="text" class="form-control"  name="area" id="area" value="" >
+							
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">官网地址</label>
+						<div class="col-md-5">
+							<input type="text" class="form-control"  name="website" id="website" value="" >
+							
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">公司简介</label>
+						<div class="col-md-5">
+							<textarea type="text" class="form-control" name="profile" id="profile" value=""></textarea>
+						</div>
+					</div>
+				</div>	
+				<div class="form-actions">
+					<div class="row">
+						<div class="col-md-offset-3 col-md-9">
+							<button type="submit" class="btn green" id="save">保存数据</button>
+							<button type="reset" class="btn default">恢复默认</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	<!-- END PAGE CONTENT-->
+	<!--中间部分-->
+
+	</div>
+</div>
+
+<include file="Public/footer" />
+<script type="text/javascript">	
+
+$(function() {     
+	 
+	$("#myform").Validform({
+		tiptype:4,
+		showAllError:true,
+		ajaxPost:true,
+		callback:function(params){ 
+			if(params.status == 1){ 
+				layer.msg(params.info, { icon: 1, time: 3000 ,shade: 0.5},function(){
+				
+					window.location.href= "{:U('Userpartners/index')}";
+				});
+			} else if(params.status == 0){ 
+				layer.msg(params.info, { icon: 2, time: 3000 ,shade: 0.5},function(){
+					window.location.href= "{:U('Userpartners/index')}";
+						
+				});
+			} else if(params.status == 3){ 
+					layer.confirm(params.info, { btn: ['确定','取消']},function(){
+					window.location.href= "{:U('Userpartners/add',array('id'=>I('get.id')))}";
+					
+				});
+			}  else {
+				layer.confirm(params.info, { btn: ['确定','取消']},function(){
+					window.location.href= "{:U('Userpartners/add',array('id'=>I('get.id')))}";
+					
+				});
+				
+			}
+		} 
+	});
+	
+});	
+</script>
+	
+<script>
+$(function(){
+	//去掉回车提交动作
+	$(document).keydown(function(event){
+	  switch(event.keyCode){
+		 case 13:return false; 
+		 }
+	});
+	
+});
+
+//传入分页，点击搜索用户信息
+	function setPage(pageNum){
+		var companyname = $("input[name='companyname']").val();
+		var pageNum = pageNum?pageNum:1;
+		$.ajax({
+			type: "get",
+			url:"{:U('Userpartners/searchUser')}",
+			data:{companyname:companyname,page:pageNum},  //搜索企业名称，传入分页
+			dataType:'json',
+			error: function(request) {
+				alert("没有搜索到任何信息");
+			},
+			success: function(data) {
+				var str = "<tr>";
+				for(var i in data.data){
+					str += "<td id='userid"+data.data[i].id+"'>"+data.data[i].id+"</td>";
+					str += "<td id='usercompanyname"+data.data[i].id+"'>"+data.data[i].companyname+"</td>";
+					str += "<td id='userphone"+data.data[i].id+"'>"+data.data[i].phone+"</td>";
+					str += "<td id='useremail"+data.data[i].id+"'>"+data.data[i].email+"</td>";
+					str += "<td id='userlogo"+data.data[i].id+"' hidden>"+data.data[i].logo+"</td>";
+					str += "<td id='useraddress"+data.data[i].id+"' hidden>"+data.data[i].address+"</td>";
+					str += "<td id='userarea"+data.data[i].id+"' hidden>"+data.data[i].area+"</td>";
+					str += "<td id='userwebsite"+data.data[i].id+"' hidden>"+data.data[i].website+"</td>";
+					str += "<td id='userprofile"+data.data[i].id+"' hidden>"+data.data[i].profile+"</td>";
+					str += "<td><button class='btn btn-primary' onclick='addinput("+data.data[i].id+")'>"+'添加'+"</button></td>";
+					str += "</tr>";
+					
+				}
+				
+				$('#sel_menu2').show();
+				$('#sel_menu3').html(str);
+				$('#sel_menu4').show().html(data.page);
+				
+			}
+		});
+	
+	}
+	
+
+	//获取添加的数据到表单中
+   function addinput(id){
+		var usercompanyname = $('#usercompanyname'+id).text();
+		var userphone = $('#userphone'+id).text();
+		var useremail = $('#useremail'+id).text();
+		var userlogo = $('#userlogo'+id).text();
+		var useraddress = $('#useraddress'+id).text();
+		var userarea = $('#userarea'+id).text();
+		var userwebsite = $('#userwebsite'+id).text();
+		var userprofile = $('#userprofile'+id).text();
+		
+		$("#companyname").attr('value',usercompanyname);
+		$("#phone").attr('value',userphone);
+		$("#email").attr('value',useremail);
+		$("#address").attr('value',useraddress);
+		$("#area").attr('value',userarea);
+		$("#website").attr('value',userwebsite);
+		$("#profile").attr('value',userprofile);
+		
+		$("#imghead").attr({'src':userlogo}).show();
+		$("input[name=logo]").attr({'value':userlogo});
+		//清除上传插件
+		$("#webupload_logo").empty();
+		//alert(usercompanyname);
+	}
+
+</script>
+
+
+<webuploaderjs />
+<script src="__HOME_JS__/amazeui.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__HOME_JS__/iscroll.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__HOME_JS__/address.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+	$(function() {
+		document.addEventListener('touchmove', function (e) {
+			e.preventDefault();
+		}, false);
+
+		//城市多级联动
+		$("#address2").address({
+			prov: "北京石",
+			city: "北京市",
+			district: "景山区",
+			scrollToCenter: true,
+			footer: true,
+			
+		});
+
+
+});
+
+</script>
+	
+	
+	
+	

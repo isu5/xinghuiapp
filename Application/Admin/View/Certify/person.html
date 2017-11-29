@@ -1,0 +1,158 @@
+<layout name="layout" />
+
+<nav class="breadcrumb">
+	<i class="Hui-iconfont">&#xe67f;</i> 首页
+	 <span class="c-gray en">&gt;</span> 认证管理
+	 <span class="c-gray en">&gt;</span> 个人认证
+	 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
+	 <i class="Hui-iconfont">&#xe68f;</i>
+	 </a>
+ </nav>
+<div class="page-container">
+	<div class="text-c"> 
+	<form class="Huiform" method="get" action="__ACTION__" >
+		<input type="text" class="input-text" style="width:250px" placeholder="输入会员名称、电话、邮箱" id="" name="username" value="<?php echo I('get.username')?>">
+		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
+	</form>
+	</div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> </div>
+	<div class="mt-20">
+	<table class="table table-border table-bordered table-hover table-bg table-sort">
+		<thead>
+			<tr class="text-c">
+				
+				<th width="25">ID</th>
+				<th width="45">用户名</th>
+				<th width="35">姓名</th>
+				<th width="40">身份证号</th>
+				<th width="90">身份证正面</th>
+				<th width="150">身份证反面</th>
+				<th width="130">认证时间</th>
+				<th width="70">状态</th>
+				<th width="100">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+		<volist name="data" id="v">
+			<tr class="text-c">
+				
+				<td>{$v.id}</td>
+				<td>{$v.username}</td>
+				<td>{$v.realname}</td>
+				<td>{$v.idcard}</td>
+				<td class="text-l">
+				 {:showImg($v['front'],100,front.$v['id'])} <a onmouseover="f_img_preview('front{$v.id}',this.src)">预览</a>
+				</td>
+				<td class="text-l">
+				 {:showImg($v['back'],100,back.$v['id'])} <a onmouseover="f_img_preview('back{$v.id}',this.src)">预览</a>
+				
+				</td>
+				<td>{$v.certtime|date="Y-m-d H:i",###}</td>
+				<td class="td-status">
+					<eq name="v.is_cert" value="1">
+						<span class="label label-success radius" >已审核</span>
+					</eq>
+				
+				</td>
+				<td class="td-manage">
+				<a title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+			</tr>
+		</volist>
+		</tbody>
+	</table>
+	{$page}
+	</div>
+</div>
+<script type="text/javascript" src="__COMMON_JS__/app_common.js"></script> 
+<script type="text/javascript">
+$(function(){
+	$('.table-sort').dataTable({
+		"aaSorting": [[ 1, "desc" ]],//默认第几个排序
+		"bStateSave": true,//状态保存
+		"aoColumnDefs": [
+		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+		  {"orderable":false,"aTargets":[0,8,9]}// 制定列不参与排序
+		]
+	});
+	$('.table-sort tbody').on( 'click', 'tr', function () {
+		if ( $(this).hasClass('selected') ) {
+			$(this).removeClass('selected');
+		}
+		else {
+			table.$('tr.selected').removeClass('selected');
+			$(this).addClass('selected');
+		}
+	});
+});
+/*用户-添加*/
+function member_add(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+/*用户-查看*/
+function member_show(title,url,id,w,h){
+	layer_show(title,url,w,h);
+}
+/*用户-停用*/
+function member_stop(obj,id){
+	layer.confirm('确认不予通过吗？',{
+		icon: 3,
+		title: '提示信息',
+		btn: ['是的','取消'], //按钮
+		shade: [0.4, '#393D49']
+	},function(){
+		$.get("{:U('Certify/stop')}", { "id": id },function(data){
+			if (data == 1) {
+
+				layer.msg('未通过!',{icon: 5,time:1000},function(index){
+
+					$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="admin_start(this,id)" href="javascript:;" title="审核"><i class="Hui-iconfont">&#xe603;</i></a>');
+					$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">未通过</span>');
+					$(obj).remove();
+					location.reload();
+				}, "json");	
+			}else if (data == 2) {
+				layer.msg('原超级管理员不允许禁用！',{icon:2,time:1000});
+			};
+		})
+		
+	})
+}
+
+/*用户-启用*/
+function member_start(obj,id){
+	layer.confirm('确认给予审核通过吗？',{
+		icon: 3,
+		title: '提示信息',
+		btn: ['是的','取消'], //按钮
+		shade: [0.4, '#393D49']
+	},function(){
+		$.get("{:U('Certify/start')}", { "id": id },function(data){
+			if (data == 1) {
+				layer.msg('已审核!',{icon: 6,time:1000},function(index){
+					$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="admin_stop(this,id)" href="javascript:;" title="未通过"><i class="Hui-iconfont">&#xe6de;</i></a>');
+					$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已审核</span>');
+					$(obj).remove();
+					location.reload();
+
+					
+				}, "json");
+			}
+		})
+	});
+}
+/*用户-编辑*/
+function member_edit(title,url,id,w,h){
+	layer_show(title,url,w,h);
+}
+/*密码-修改*/
+function change_password(title,url,id,w,h){
+	layer_show(title,url,w,h);	
+}
+/*用户-删除*/
+function member_del(obj,id){
+	layer.confirm('确认要删除吗？',function(index){
+		$(obj).parents("tr").remove();
+		layer.msg('已删除!',{icon:1,time:1000});
+	});
+}
+</script> 

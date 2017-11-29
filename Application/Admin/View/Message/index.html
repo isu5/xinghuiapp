@@ -1,0 +1,113 @@
+<layout name="layout" />
+
+<nav class="breadcrumb">
+	<i class="Hui-iconfont">&#xe67f;</i> 首页
+	 <span class="c-gray en">&gt;</span> APP管理
+	 <span class="c-gray en">&gt;</span> 留言管理
+	 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
+	 <i class="Hui-iconfont">&#xe68f;</i>
+	 </a>
+ </nav>
+<div class="page-container">
+	<!-- <div class="text-c"> 
+	<form class="Huiform" method="get" action="__ACTION__" >
+		<input type="text" class="input-text" style="width:250px" placeholder="输入标题" id="" name="username" value="<?php echo I('get.username')?>">
+		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜标题</button>
+	</form>
+	</div> -->
+	<!-- 
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"> <a href="javascript:;" onclick="member_add('添加推送','{:U('Jgpush/add')}','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加推送</a></span> </div>
+	 -->
+	 <div class="mt-20">
+	<table class="table table-border table-bordered table-hover table-bg table-sort">
+		<thead>
+			<tr class="text-c">
+				<th width="25">ID</th>
+				<th width="120">留言人</th>
+				<th width="120">留言人电话</th>
+				<th width="200">留言内容</th>
+				<th width="80">推送时间</th>
+				<th width="80">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+		<volist name="data" id="v">
+			<tr class="text-c">
+				<td>{$v.id}</td>
+				<td>{$v.username}</td>
+				<td>{$v.phone}</td>
+				<td>{$v.content}</td>
+				
+				<td>{$v.addtime|date="Y-m-d H:i",###}</td>
+				<td class="td-manage">
+					
+				
+				<a title="删除" href="javascript:;" onclick="member_del(this,'{$v['id']}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+			</tr>
+		</volist>
+		</tbody>
+	</table>
+	{$page}
+	</div>
+</div>
+<script type="text/javascript" src="__COMMON_JS__/app_common.js"></script> 
+<script type="text/javascript">
+$(function(){
+	$('.table-sort').dataTable({
+		"aaSorting": [[ 1, "desc" ]],//默认第几个排序
+		"bStateSave": true,//状态保存
+		"aoColumnDefs": [
+		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+		  {"orderable":false,"aTargets":[0,8,9]}// 制定列不参与排序
+		]
+	});
+	$('.table-sort tbody').on( 'click', 'tr', function () {
+		if ( $(this).hasClass('selected') ) {
+			$(this).removeClass('selected');
+		}
+		else {
+			table.$('tr.selected').removeClass('selected');
+			$(this).addClass('selected');
+		}
+	});
+});
+/*用户-添加*/
+function member_add(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+/*用户-查看*/
+function member_show(title,url,id,w,h){
+	layer_show(title,url,w,h);
+}
+
+/*用户-编辑*/
+function member_edit(title,url,id,w,h){
+	layer_show(title,url,w,h);
+}
+/*密码-修改*/
+function change_password(title,url,id,w,h){
+	layer_show(title,url,w,h);	
+}
+/*用户-删除*/
+function member_del(obj,id){
+	layer.confirm('确认要删除吗？',{
+		icon: 3,
+		title: '提示信息',
+		btn: ['是的','取消'], //按钮
+		shade: [0.4, '#393D49']
+	},function(){
+		//此处请求后台程序，下方是成功后的前台处理……
+		$.get("{:U('Message/delete')}", { "id": id },function(data){
+			if(data==1){
+				layer.msg('删除成功', { icon: 1, time: 2000 ,shade: 0.5},function(index){
+					$(obj).parents("tr").remove();
+				});
+			}else{
+				layer.msg('删除失败', {icon: 2, time: 2000,shade: 0.5 }); 
+			}
+			 
+		}, "json");
+		
+	});
+}
+</script> 

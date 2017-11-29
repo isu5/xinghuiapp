@@ -1,0 +1,327 @@
+<div class="page-sidebar navbar-collapse collapse">
+	<!-- BEGIN SIDEBAR MENU -->
+	<!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+	<!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+	<!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+	<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+	<!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+	<!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+	<ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+		<!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+		
+		<!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+		<li class="sidebar-search-wrapper">
+
+		</li>
+		<li class="start current  ">
+			<a href="{:U('User/index')}">
+			<i class="icon-home"></i>
+			<span class="title">会员中心</span>
+			
+			</a>
+		<li class="">
+			<a href="{:U('User/info')}">
+			<i class="fa fa-magic"></i>
+			<span class="title">基本资料</span>
+			
+			</a>
+		</li>
+		
+		
+		<switch name="info[0]['is_cert']">
+		<case value="3">
+		<li class="">
+			<a href="javascript:;">
+			<i class="fa fa-file-text-o"></i>
+			<span class="title">会议管理</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub-menu">
+				<li class="current " >
+					<a href="{:U('Certify/message')}">
+					<i class="fa fa-tags"></i>
+					已发布会议</a>
+				</li>
+				<li class="current" >
+					<a href="{:U('Certify/message')}">
+					<i class="fa fa-trophy"></i>
+					已参加会议</a>
+				</li>
+				<li  class="current">
+					<a href="{:U('Certify/message')}">
+					<i class="fa fa-tag"></i>
+					待审核会议</a>
+				</li>
+			
+				
+			 
+			</ul>
+		</li>	
+		<li class=" ">
+			<a href="{:U('Certify/message')}">
+			<i class="fa fa-magic"></i>
+			<span class="title">新建会议</span>
+			
+			</a>
+		</li>
+		</case>
+		<case value="2">
+		<li class=" ">
+			<a href="{:U('Download/index')}">
+			<i class="fa fa-magic"></i>
+			<span class="title">企业资料</span>
+			
+			</a>
+		</li>
+		<li class=" ">
+			<a href="{:U('Product/index')}">
+			<i class="fa fa-magic"></i>
+			<span class="title">企业产品</span>
+			
+			</a>
+		</li>
+		<li class="start ">
+			<a href="{:U('Companybull/index')}">
+			<i class="fa fa-magic"></i>
+			<span class="title">企业公告</span>
+			
+			</a>
+		</li>
+		<li class="">
+			<a href="javascript:;">
+			<i class="fa fa-file-text-o"></i>
+			<span class="title">会议管理</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub-menu">
+				<li class="current " >
+					<a href="{:U('Conference/index')}">
+					<i class="fa fa-tags"></i>
+					已发布会议</a>
+				</li>
+				<li  class="current">
+					<a href="{:U('Conference/myaudit')}">
+					<i class="fa fa-tag"></i>
+					待审核会议</a>
+				</li>
+			
+				
+			 
+			</ul>
+		</li>	
+		<li class="">
+			
+			<a href="{:U('Confpic/index')}">
+			<i class="fa fa-tags"></i>
+			<span class="title">会议图片列表</span>
+			</a>
+			
+		</li>	
+		<li class="">
+			<a href="{:U('Confbull/index')}">
+			<i class="fa fa-tags"></i>
+			<span class="title">会议公告列表</span>
+			</a>
+		</li>
+		<li class="">
+			<a href="{:U('Userpartners/index')}">
+			<i class="fa fa-tags"></i>
+			<span class="title">会议合作伙伴列表</span>
+			</a>
+		</li>		
+		<li class="start ">
+			<a href="{:U('Conference/add')}">
+			<i class="fa fa-magic"></i>
+			<span class="title">新建会议</span>
+			
+			</a>
+		</li>
+		<li class="">
+			<a href="javascript:;">
+			<i class="fa fa-file-text-o"></i>
+			<span class="title">二级账户管理</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub-menu">
+				<li>
+					<a href="{:U('User/addAccount')}">
+					<i class="fa fa-magic"></i>
+					<span class="title">添加二级账户</span>
+					
+					</a>
+				</li>	
+				<li class="current" >
+					<a href="{:U('User/accountList')}">
+					<i class="fa fa-file-powerpoint-o"></i>
+					二级账户列表</a>
+				</li>
+			
+			</ul>
+		</li>
+			
+		</case>
+		<case value="1">
+		<li class=" ">
+			<a href="{:U('Download/index')}">
+			<i class="fa fa-magic"></i>
+			<span class="title">企业资料</span>
+			
+			</a>
+		</li>
+		<li class=" ">
+			<a href="{:U('Product/index')}">
+			<i class="fa fa-magic"></i>
+			<span class="title">企业产品</span>
+			
+			</a>
+		</li>
+		<li class="start ">
+			<a href="{:U('Companybull/index')}">
+			<i class="fa fa-magic"></i>
+			<span class="title">企业公告</span>
+			
+			</a>
+		</li>
+		<li class="">
+			<a href="javascript:;">
+			<i class="fa fa-file-text-o"></i>
+			<span class="title">会议管理</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub-menu">
+				
+				<li class="current" >
+					<a href="{:U('Conference/myaudit',array('status'=>3))}">
+					<i class="fa fa-trophy"></i>
+					已参加会议</a>
+				</li>
+				
+			</ul>
+		</li>
+		</case>	
+		<default />
+		<li class="">
+			<a href="javascript:;">
+			<i class="fa fa-file-text-o"></i>
+			<span class="title">会议管理</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub-menu">
+				<li class="current " >
+					<a href="{:U('Conference/index')}">
+					<i class="fa fa-tags"></i>
+					已发布会议</a>
+				</li>
+				
+				<li  class="current">
+					<a href="{:U('Conference/myaudit',array('status'=>3))}">
+					<i class="fa fa-tag"></i>
+					待审核会议</a>
+				</li>
+			
+				
+			 
+			</ul>
+		</li>	
+		<li class=" ">
+			<a href="{:U('Conference/add')}">
+			<i class="fa fa-magic"></i>
+			<span class="title">新建会议</span>
+			
+			</a>
+		</li>
+		
+		</switch>
+			
+			
+		<li class="">
+			<a href="javascript:;">
+			<i class="fa fa-file-text-o"></i>
+			<span class="title">认证管理</span>
+			<span class="arrow "></span>
+			</a>
+			<!--是否认证--->
+			
+			<switch name="info[0]['is_cert']">
+				<case value="3">
+					<ul class="sub-menu">
+						<li class="current" >
+							<a href="{:U('Certify/message')}">
+							<i class="fa fa-file-powerpoint-o"></i>
+							认证审核中</a>
+						</li>
+						
+					</ul>
+				</case>
+			<case value="2">
+				<ul class="sub-menu">
+					<li class="current" >
+						<a href="{:U('Certify/index')}">
+						<i class="fa fa-file-powerpoint-o"></i>
+						我的认证</a>
+					</li>
+					
+				</ul>
+			</case>
+			<case value="1">
+				<ul class="sub-menu">
+					<li class="current" >
+						<a href="{:U('Certify/person')}">
+						<i class="fa fa-file-powerpoint-o"></i>
+						我的认证</a>
+					</li>
+					
+				</ul>
+			</case>
+			<default />
+				<ul class="sub-menu">
+					<li class="current" >
+						<a href="{:U('Certify/person')}">
+						<i class="fa fa-file-powerpoint-o"></i>
+						个人实名认证</a>
+					</li>
+					<li class="current" >
+						<a href="{:U('Certify/index')}">
+						<i class="fa fa-file-powerpoint-o"></i>
+						企业认证</a>
+					</li>
+				</ul>
+			</switch>
+		</li>
+			
+		
+		<!-- <li class="">
+			<a href="javascript:;">
+			<i class="fa fa-flask"></i>
+			<span class="title">统计</span>
+			
+			</a>
+		</li> -->
+		<li class="">
+			<a href="javascript:;">
+			<i class="fa fa-gear "></i>
+			<span class="title">通用设置</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub-menu">
+				<li  class="current">
+					<a href="{:U('User/password')}">
+					<i class="fa fa-gears "></i>
+					修改密码</a>
+				</li>
+				
+				<li  class="current">
+					<a href="{:U('Login/logout')}">
+					<i class="icon-key"></i>
+					退出</a>
+				</li>
+			</ul>
+		
+		
+		</li>
+		
+		
+	</ul>
+	
+	<!-- END SIDEBAR MENU -->
+</div>

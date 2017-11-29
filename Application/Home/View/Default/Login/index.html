@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- Head BEGIN -->
+<head>
+    <meta charset="utf-8">
+    <title>用户登录-幸会</title>
+    <meta content="幸会" name="description">
+    <meta content="幸会" name="keywords">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!-- Global styles START -->
+<link href="__HOME_CSS__/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="__HOME_CSS__/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!-- Global styles END -->
+<!-- form-start -->
+<link href="__HOME_CSS__/uniform.default.css" rel="stylesheet" type="text/css">
+<link href="__HOME_CSS__/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+<!-- form-end -->
+<!-- Theme styles START -->
+<link href="__HOME_CSS__/components.css" rel="stylesheet" type="text/css" />
+<link href="__HOME_CSS__/style.css" rel="stylesheet" type="text/css" />
+<!-- metronic revo slider styles -->
+<link href="__HOME_CSS__/custom.css" rel="stylesheet" type="text/css" />
+<script src="__HOME_JS__/jquery.min.js" type="text/javascript"></script>
+<script src="__HOME_JS__/form.validate.js" type="text/javascript"></script>
+<!-- Theme styles END -->
+<link rel="icon" href="http://static.pedaily.cn/app/newseed/favicon.ico" mce_href="http://static.pedaily.cn/app/newseed/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://static.pedaily.cn/app/newseed/favicon.ico" mce_href="http://static.pedaily.cn/app/newseed/favicon.ico" type="image/x-icon"/>
+<meta name="apple-mobile-web-app-title" content="幸会">
+<link rel="apple-touch-icon" href="http://static.pedaily.cn/app/newseed/touch-icon-iphone.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="http://static.pedaily.cn/app/newseed/touch-icon-ipad.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="http://static.pedaily.cn/app/newseed/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="http://static.pedaily.cn/app/newseed/touch-icon-ipad-retina.png" />
+
+</head>
+<!-- Head END -->
+<!-- Body BEGIN -->
+<body class="corporate mutual">
+<div class="login">
+    <div class="login-top">
+        <a href="{$Think.CONFIG.WEB_URL}">
+            <img src="__XHAPP__/images/xhui_logo.png" alt="幸会">
+        </a>
+        <p class="title">登录</p>
+        <p class="slogan">幸会！您的专用会议APP！</p>
+    </div>
+   
+        <form class="form-horizontal login-form" id="form_login" action="__SELF__" role="form" novalidate="novalidate">
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <input name="username" id="username" class="form-control required" data-rules="required:true$minlength:2$maxlength:50" data-errors="required:账号不能为空$minlength:请输入正确的账户名$maxlength:请输入正确的账户名" type="text" autocomplete="off" placeholder="邮箱/手机号/昵称">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <input type="password" data-rules="required:true$rangelength:[6,20]" data-errors="required:密码不能为空$rangelength:密码长度6~20位" id="loginpass" class="form-control required" placeholder="密码">
+                    <input type="hidden" id="password" name="password" value="">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-6">
+                    <input type="text" data-rules="required:true$checkValidcode:true" data-errors="required:请输入验证码$checkValidcode:输入验证码有误" id="vcode" name="vcode" class="form-control required" placeholder="验证码">
+                </div>
+                <div class="col-sm-4 vcode" id="regvcode">
+                    <img alt="验证码，点击刷新" title="验证码，点击刷新" src="{:U('Admin/Verify/index')}" id="loginvcodeimg" style="cursor: pointer;">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <input type="button" class="btn red btn-xlarge btn-block submit" value="立即登录">
+                    <div class="form-error" id="login_error"></div>
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="remember" id="remember" checked="">自动登录
+                        <a href="{:U('Login/RecoveryPwd')}" target="_blank" class="font-blue">忘记密码</a>
+                    </label>
+                    <a href="" class="pull-right sigup">立即注册</a>
+                </div>
+            </div>
+
+
+
+    </form>
+	 <!-- 
+    <div class="login-options">
+        <span class="pull-left">其它方式登录：</span>
+        <ul class="social-icons">
+           <li>
+               <a class="social-icon-color qq" href="javascript:void(0);" onclick="pengyoulogin();" title="使用QQ帐号登录"></a>
+           </li> -->
+            <li><!--{:U('Login/oauth_login',array('type'=>'sina'))}---->
+                <a class="social-icon-color weibo" href="javascript:void(0);"  title="使用新浪微博帐号登录"></a>
+            </li>
+            <!-- <li>
+                <a class="social-icon-color tqq" href="javascript:void(0);" onclick="qqlogin();" title="使用腾讯微博帐号登录"></a>
+            </li>
+            <li>
+                <a class="social-icon-color renren" href="javascript:void(0);" onclick="renrenlogin();" title="使用人人网帐号登录"></a>
+            </li> 
+            <li>
+                <a class="social-icon-color weixin" href="javascript:void(0);" title="使用微信帐号登录"></a>
+            </li>
+        </ul>
+    </div>-->
+</div>
+<footer>
+    <p class="login-bottom">
+       Copyright &copy;2013-2017 {$Think.CONFIG.APP_COMPANY}  All rights reserved. {$Think.CONFIG.WEB_ICP_NUMBER}　　
+    </p>
+</footer>
+<script src="__HOME_JS__/bootstrap.min.js" type="text/javascript"></script>
+<script src="__HOME_JS__/back-to-top.js" type="text/javascript"></script>
+<script src="__HOME_JS__/sha1.js" type="text/javascript"></script>
+<script src="__HOME_JS__/command.js" type="text/javascript"></script>
+<script src="__HOME_JS__/form-wizard.js" type="text/javascript"></script>
+<script src="__HOME_JS__/dictionary.js" type="text/javascript"></script>
+<script src="__HOME_JS__/jquery.validate.min.js" type="text/javascript"></script>
+<script src="__HOME_JS__/metronic.js" type="text/javascript"></script>
+<script src="__HOME_JS__/common.js" type="text/javascript"></script>
+<script src="__HOME_JS__/additional-methods.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="__ADMIN_LIB__/layer/2.1/layer.js"></script>
+<!-- END CORE PLUGINS -->
+<!--form-->
+
+<!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+<!-- slvcider for products -->
+
+    <script>
+        $(function () {
+            $('#form_login').fromvalidate({
+                btnmsg: '正在登录，请稍候...',
+               
+                beforesubmit: function () {
+                    $('#form_login #password').val(hex_sha1($('#form_login #loginpass').val()));
+                    return true;
+                },
+                aftersubmit: function (data) {
+
+                    if(data.code == 1){
+                        layer.msg('登录成功！', {icon: 1, time: 2000,shade: 0.5 },function(){
+                            window.location.href= "{:U('User/index')}";
+                        });
+                     }else if(data.code == 4){
+							layer.msg('您登录的账号是二级账户，如需操作权限请登录主账号操作', {icon: 2, time: 3000,shade: 0.5 },function(){
+                            location.reload();
+                         });
+                     
+                     }else if(data.code == 3){
+                        layer.msg('必须验证邮箱之后才能登录！', {icon: 2, time: 3000,shade: 0.5 },function(){
+                            location.reload();
+                         });
+                     
+                     }else{
+					 
+                        layer.msg('账号或者密码错误！', {icon: 2, time: 3000,shade: 0.5 },function(){
+                            location.reload();
+                         });
+                    }
+
+                   
+                }
+            });
+            $('#form_login #loginvcodeimg').click(function () { 
+                this.src = "{:U('Admin/Verify/index')}?t=" + new Date().getTime(); 
+            });
+            //$('#form_login #loginvcodeimg').click();
+           
+            $('.sigup').attr('href', '{:U('Register/index')}' + window.location.search);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<layout name="layout" />
+<title>附件管理 - APP管理后台 - 北京同舟鸿图文化创意有限公司</title>
+
+
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 内容管理 <span class="c-gray en">&gt;</span> 附件管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+  <div> 
+		<form action="" method="get">
+		 <input type="hidden" value="admin" name="m">
+		 <input type="hidden" value="admin_log" name="c">
+		 <input type="hidden" value="search_log" name="a">
+		 上传者：<input type="text" name="username" placeholder="上传者" style="width:150px" class="input-text">
+		 <button name="dosubmit" class="btn btn-success" type="submit" value="1"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+		 </form>	
+  </div>
+  <div class="cl pd-5 bg-1 bk-gray mt-20"> 
+	  <span class="l">
+	  <a href="javascript:;" onclick="yzm_dels('id')" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>  
+	  </span> 
+	  <span class="r">共有数据：<strong><?php echo $total?></strong> 条</span> 
+  </div>
+  <form method="post" action="" id="myform">
+  <table class="table table-border table-bordered table-bg table-hover">
+    <thead>
+      <tr class="text-c">
+		<th width="25"><input type="checkbox"></th>
+		<th>ID</th>
+		<th>模块名称</th>
+		<th>附件预览</th>
+		<th>附件名称</th>
+		<th>附件大小</th>
+		<th>上传时间</th>
+		<th>上传者</th>
+		<th>上传者IP</th>
+		<th>管理操作</th>
+      </tr>
+    </thead>
+    <tbody>
+		
+		  <tr class="text-c">
+			
+		  </tr>		
+		
+    </tbody>
+  </table>
+  </form>
+  <div id="page">
+  </div>
+</div>
+
+<script type="text/javascript" src="__ADMIN_LIB__/laydate/1.1/laydate.js"></script>
+<script type="text/javascript">
+var start = {
+	elem: '#start',
+	format: 'YYYY-MM-DD hh:mm:ss',
+	min: '1999-01-01', //设定最小日期
+	max: '2099-01-01', //最大日期
+	istime: true,
+	istoday: false,
+	choose: function(datas){
+		 end.min = datas; //开始日选好后，重置结束日的最小日期
+		 end.start = datas //将结束日的初始值设定为开始日
+	}
+};
+
+var end = {
+	elem: '#end',
+	format: 'YYYY-MM-DD hh:mm:ss',
+	min: '1999-01-01',
+	max: '2099-01-01',
+	istime: true,
+	istoday: false,
+	choose: function(datas){
+		start.max = datas; //结束日选好后，充值开始日的最大日期
+	}
+};
+laydate(start);
+laydate(end);
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$Think.CONFIG.WEB_NAME}</title>
+	<meta name="description" content="{$Think.CONFIG.WEB_DESCRIPTION}" />
+	<meta name="keywords" content="{$Think.CONFIG.WEB_KEYWORDS}" />
+    <!-- zui
+    <link href="__ZUI__/css/zui.min.css" rel="stylesheet">
+    <link href="__HOME_CSS__/index.css" rel="stylesheet" type="text/css" />
+	 -->
+	<link rel="stylesheet" href="__HOMEAPP__/css/gb.css"/>
+	<link rel="stylesheet" href="__HOMEAPP__/css/style.css"/>
+	<link rel="stylesheet" href="__HOMEAPP__/css/pIndex.css"/>
+	<link rel="stylesheet" href="__HOMEAPP__/css/reset.css"/>
+	<!--[if lt IE 9]>
+	  <script src="__ZUI__/lib/ieonly/html5shiv.js"></script>
+	  <script src="__ZUI__/lib/ieonly/respond.js"></script>
+	  <script src="__ZUI__/lib/ieonly/excanvas.js"></script>
+	<![endif]-->
+  </head>
+  <body class="yyjb-body">
+    <div class="container">
+		<!-- 头部 -->
+	<div class="head-c">
+		<div class="wrap">
+			<h1>
+			<a href="/">
+				<img src="/Public/Home/images/logo.png" width="444">
+			</a>
+			</h1>				
+			<p class="head-c-txt">
+				<a class="js-btn-login" href="{:U('Login/index')}"><i class="ico ico-login"></i>登录</a>
+				<a href="{:U('Register/index')}" target="_blank"><i class="ico ico-reg"></i>注册</a> 
+										
+				<!-- <a href="/hjb/page/helper/about" target="_blank"><i class="ico ico-help2"></i>帮助中心</a> -->
+			</p>
+		</div>
+	</div>
+	
+		<!-- main start -->
+	<div class="yyjb-main clearfix">
+		<div class="txt-tzht">
+			
+		</div>
+	
+		<div class="yyjb-main-inner">
+			
+			<div class="txt-tzht-jgpush">
+				关注提醒，同时推送
+				<p>温馨提醒，绝不错过一场会议</p>
+			</div>
+			<p class="txt-yyjb-dl" style="color:#fff">
+				下载幸会APP马上参加会议
+			</p>
+			<div class="yyjb-dl clearfix">
+				<div class="yyjb-sm">
+					<div class="yyjb-sm-pic"></div>
+					<p>扫描二维码下载</p>
+				</div>
+				<div class="yyjb-ld-r">
+					<p>&nbsp;</p>
+					<!-- <p>免费发送至手机</p>
+					<div class="yyjb-form">
+					<input type="text" class="txt-phone" placeholder="请输入手机号" />
+					<input type="submit" class="btn-send-app btn-org2 j-btn-send-app" value="发送" />
+					</div> -->
+					<div class="other-dl">
+					<p>点击下载到电脑</p>
+					<div class="btns-yyjb-dl clearfix">
+					<a href="#" title="敬请期待。。" target="_blank">iPhone</a>
+					<a href="xinghuiapp.apk" target="_blank" class="btn-yyjb-android" title="幸会app安卓版">Android</a>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 脚部 -->
+<div class="foot-c">
+	<p class="f-links">
+		<a href="#" target="_blank">关于幸会</a>|
+		<a href="#" target="_blank">联系幸会</a>|
+		<a href="#" target="_blank">客服中心</a>
+	</p>
+	<p> {$Think.CONFIG.APP_COMPANY}  &copy; 2013-2017   All rights reserved. {$Think.CONFIG.WEB_ICP_NUMBER} </p>
+</div>
+	
+	
+	
+
+    <!-- 在此处编码你的创意 -->
+
+    <!-- jQuery (ZUI中的Javascript组件依赖于jQuery) -->
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <!-- ZUI Javascript组件 -->
+    <script src="__ZUI__/js/zui.min.js"></script>
+  </body>
+</html>

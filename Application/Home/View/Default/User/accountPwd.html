@@ -1,0 +1,123 @@
+<layout name="layout" />
+
+
+	<div class="page-content">
+			
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			
+			<!-- END STYLE CUSTOMIZER -->
+			<!-- BEGIN PAGE HEADER-->
+			<h3 class="page-title">
+			二级账户管理
+			</h3>
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li>
+						<i class="fa fa-home"></i>
+						<a href="#">首页</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						二级账户管理
+					
+					</li>
+					
+				</ul>
+				
+			</div>
+			
+			<!--中间部分-->
+			<!-- BEGIN PAGE CONTENT-->
+			 <div class="tabbable-custom tabbable-full-width">
+						<ul class="nav nav-tabs">
+							<li class="active">
+								<a href="JavaScript:;" ><i class="fa fa-tags"></i>添加二级账户</a>
+							</li>
+							
+						</ul>
+						
+	                     
+                	<div class="portlet-body form" >
+                     
+						<form class="form-horizontal"   action="" method="post" id="myform" enctype='multipart/form-data'>
+							<div class="form-body">
+								
+								<div class="form-group">
+								<input  type="hidden" name="level" value="2" />
+									<label class="col-md-3 control-label">账户</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control"  name="username" value="{$data.username}" disabled >
+										
+									</div>
+								</div>
+								<div class="form-group">
+								<input  type="hidden" name="level" value="2" />
+									<label class="col-md-3 control-label">用户备注</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control"  name="remark" value="{$data.remark}"  >
+										
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">密码</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control"  name="password" value="" datatype="s8-30" nullmsg="请输入二级账户密码" errormsg="请输入正确的二级账户用户名，字符在8-30个之间">
+										
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">确认密码</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control"  name="password2" value="" datatype="s8-30" recheck="password" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！">
+										
+									</div>
+								</div>
+							</div>	
+							<div class="form-actions">
+								<div class="row">
+									<div class="col-md-offset-3 col-md-9">
+										<button type="submit" class="btn green" id="save">保存数据</button>
+										<button type="reset" class="btn default">恢复默认</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				
+			<!-- END PAGE CONTENT-->
+            <!--中间部分-->
+          
+		</div>
+	</div>
+	<!-- END CONTENT -->
+	
+</div>
+<script type="text/javascript">
+$(function() {     
+
+	$("#myform").Validform({
+		tiptype:4,
+		ajaxPost:true,
+		
+		callback:function(data){ 
+			if(data.status == 1){ 
+				layer.msg(data.info, { icon: 1, time: 3000 ,shade: 0.5},function(){
+					window.location.href= "{:U('User/accountList')}";
+						
+				});
+			} else {
+				layer.msg('填写密码不能与原密码相同', {icon: 2, time: 3000,shade: 0.5 });
+				window.location.reload();
+			}
+		} 
+	});
+	
+})		
+</script>
+<include file="Public/footer" />
+
+
+	
+	
+	
+	

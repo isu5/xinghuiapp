@@ -1,0 +1,132 @@
+<layout name="layout" />
+
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>App管理 <span class="c-gray en">&gt;</span> 引导页列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"> <a href="javascript:;" onclick="bull_add('添加引导页图片','{:U('App/add')}','','510')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加引导页图片</a></span></div>
+	<div class="mt-20">
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+			<thead>
+				<tr class="text-c">
+					<th width="25"><input type="checkbox" name="" value=""></th>
+					<th width="80">ID</th>
+					<th width="80">链接</th>
+					<th width="80">图片</th>
+					<th width="120">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+			<volist name="data" id="v">
+				<tr class="text-c">
+					<td><input type="checkbox" value="" name=""></td>
+					<td>{$v.id}</td>
+					<td class="text-l">
+					<!-- <u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','{:U('Bulletin/index')}','{$v.id}')" title="查看">{$v.title}</u> -->
+					{$v.app_url}
+					</td>
+					<td>{:showImg($v['app_pic'],100)}</td>
+					
+					<td class="f-14 td-manage">
+					<a style="text-decoration:none" class="ml-5" onClick="article_edit('广告编辑','{:U('App/edit',array('id'=>$v['id']))}','{$v.id}')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+					<a style="text-decoration:none" class="ml-5" onClick="article_del(this,'{$v.id}')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+				</tr>
+			</volist>
+			</tbody>
+		</table>
+	</div>
+	{$page}
+</div>
+
+<script type="text/javascript">
+
+/*资讯-添加*/
+
+function bull_add(title,url,w,h){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+/*资讯-编辑*/
+function article_edit(title,url,id,w,h){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+/*资讯-删除*/
+function article_del(obj,id){
+	layer.confirm('确认要删除吗？',{
+		icon: 3,
+		title: '提示信息',
+		btn: ['是的','取消'], //按钮
+		shade: [0.4, '#393D49']
+	},function(){
+		//此处请求后台程序，下方是成功后的前台处理……
+		$.get("{:U('Advert/delete')}", { "id": id },function(data){
+			if(data==1){
+				layer.msg('删除成功', { icon: 1, time: 2000 ,shade: 0.5},function(index){
+					$(obj).parents("tr").remove();
+				});
+			}else{
+				layer.msg('删除失败', {icon: 2, time: 2000,shade: 0.5 }); 
+			}
+			 
+		}, "json");
+		
+	});
+}
+
+/*资讯-下架*/
+function article_stop(obj,id){
+	layer.confirm('确认要下架吗？',{
+		icon: 3,
+		title: '提示信息',
+		btn: ['是的','取消'], //按钮
+		shade: [0.4, '#393D49']
+	},function(){
+		$.get("{:U('Advert/stop')}", { "id": id },function(data){
+			if (data == 1) {
+
+				layer.msg('已下架!',{icon: 5,time:1000},function(index){
+
+					$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_start(this,id)" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
+					$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已下架</span>');
+					$(obj).remove();
+					location.reload();
+				}, "json");	
+			}
+		})
+		
+	})
+}
+
+/*资讯-发布*/
+function article_start(obj,id){
+	layer.confirm('确认要发布吗？',{
+		icon: 3,
+		title: '提示信息',
+		btn: ['是的','取消'], //按钮
+		shade: [0.4, '#393D49']
+	},function(){
+		$.get("{:U('Advert/start')}", { "id": id },function(data){
+			if (data == 1) {
+				layer.msg('已发布!',{icon: 6,time:1000},function(index){
+					$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_stop(this,id)" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
+					$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
+					$(obj).remove();
+					location.reload();
+
+					
+				}, "json");
+			}
+		})
+	});
+}
+
+</script> 
+

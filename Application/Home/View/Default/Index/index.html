@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>{$Think.CONFIG.WEB_NAME}</title>
+	<meta name="description" content="{$Think.CONFIG.WEB_DESCRIPTION}" />
+	<meta name="keywords" content="{$Think.CONFIG.WEB_KEYWORDS}" />
+	<link rel="stylesheet" type="text/css" href="__XHAPP__/css/swiper.min.css"/>
+	<link rel="stylesheet" type="text/css" href="__XHAPP__/css/jquery.fullpage.css"/>
+	<link rel="stylesheet" type="text/css" href="__XHAPP__/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="__XHAPP__/css/iconfont.css"/>
+	<link rel="stylesheet" type="text/css" href="__XHAPP__/css/public.css"/>
+	<link rel="stylesheet" type="text/css" href="__XHAPP__/css/download.css"/>
+	<link rel="stylesheet" type="text/css" href="__XHAPP__/css/headfoot.css"/>
+	<script type="text/javascript" src="__XHAPP__/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="__XHAPP__/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="__XHAPP__/js/swiper.min.js"></script>
+	<script type="text/javascript" src="__XHAPP__/js/jquery.fullpage.min.js"></script>
+	
+	<style>
+	    body {
+	        background: #eee;
+	        font-family: Helvetica Neue, Helvetica, Arial, sans-serif; 
+	        font-size: 14px; color:#000;
+	        margin: 0; padding: 0;
+	    }
+	    .swiper-container {
+	        width: 100%; height: 100%;
+	    }
+	    .swiper-slide {
+	        text-align: center; font-size: 18px; background: #fff;
+	
+	        /* Center slide text vertically */
+	        display: -webkit-box;  display: -ms-flexbox; display: -webkit-flex;
+	        display: flex; -webkit-box-pack: center; -ms-flex-pack: center;
+	        -webkit-justify-content: center;  justify-content: center;
+	        -webkit-box-align: center; -ms-flex-align: center;
+	        -webkit-align-items: center; align-items: center;
+	    }
+	</style>
+	
+<script>
+	$(function(){
+	    $('#con').fullpage({
+	        navigation:false,
+			menu:false,
+			scrollOverflow:false,
+			//paddingBottom: '1500px',
+	    });	
+	    $(window).resize(function(){
+	        autoScrolling();
+	    });
+	    function autoScrolling(){
+	        var $ww = $(window).width();
+	        if($ww < 990){
+	            $.fn.fullpage.setAutoScrolling(false);
+	        } else {
+	            $.fn.fullpage.setAutoScrolling(true);
+	        }
+	    }
+	    autoScrolling();
+	});
+</script>
+</head>
+<body>
+	<div class="container-fluid warp">
+		<div class="fixedpop" style="display:none ;"></div>
+		<div class="row section2 bannerBox" id="warpTop">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 fixed" id="header">			
+				<div class="col-xs-5 col-sm-4 col-md-2 col-lg-2 logoBox">
+					<div class="col-xs-12">
+						<a href="/">
+							<div class="logo"><h1>幸会，一体化数字营销云平台_活动管理、会议APP和数字营销服务</h1></div>
+						</a>
+					</div>
+				</div>
+				<div class="col-xs-7 col-sm-8 col-md-10 col-lg-1 menu">
+					<i class="icon iconfont">&#xe618;</i><div></div>
+				</div>
+				<div class="col-xs-9 col-sm-6 col-md-10 col-lg-10 col-xs-offset-3 col-sm-offset-6 col-md-offset-0 col-lg-offset-1" id="nav">
+					<ul>
+						<li class="col-xs-12 col-sm-12 col-md-2 col-lg-1">
+							<a href="#">产品</a><i class="icon iconfont">&#xe631;</i>
+							<!-- <dl>
+								<dd><a href="#">幸会云</a></dd>
+								<dd><a href="#" target="_blank">营销云</a></dd>
+								<dd><a href="#">下载</a></dd>
+							</dl> -->
+						</li>
+						<li class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+							<a href="#">解决方案</a><i class="icon iconfont">&#xe631;</i>
+							<!-- <dl>
+								<dd><a href="#">智慧会展解决方案</a></dd>
+								<dd><a href="#">经销商大会解决方案</a></dd>
+								<dd><a href="#">公司年会解决方案</a></dd>
+								<dd><a href="#">党建会议解决方案</a></dd>
+								<dd><a href="#">移动会议解决方案</a></dd>
+							</dl> -->
+						</li>
+						<li class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+							<a href="#">成功案例</a><i class="icon iconfont">&#xe631;</i>
+						</li>
+						<li class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+							<a href="#">合作伙伴</a><i class="icon iconfont">&#xe631;</i>
+						</li>
+						<li class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+							<a href="##">关于幸会</a><i class="icon iconfont">&#xe631;</i>
+						</li>
+						<li class="col-xs-12 col-sm-12 col-md-2 col-lg-2" id="regLogBtn">
+							<div class="col-xs-4 col-sm-4 col-md-6 col-lg-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-0 active"><a href="{:U('Login/index')}" target="_blank">登录</a></div>
+							<div class="col-xs-4 col-sm-4 col-md-6 col-lg-6 col-xs-offset-2 col-sm-offset-2 col-md-offset-0"><a href="{:U('Register/index')}" target="_blank">注册</a></div>
+						</li>
+					</ul>
+				</div><!--nav-->				
+			</div><!--header-->
+		</div><!--warpTop-->
+		
+		
+		<div class="row section2" id="con">			
+			<div class="section" id="page1">
+				<div class="pagebox">
+					<img src="__XHAPP__/images/downbg1.jpg" class="pageboxBg"/>
+					<div class="pageItem">
+						<div class="pageItemLt"><img src="__XHAPP__/images/1_01.png"/></div>
+						<div class="pageItemRt">
+							<p class="title">幸会APP<br><img src="__XHAPP__/images/zi1.png"/></p>
+							<div>
+								<a href="__APP__/xinghuiapp.apk" target="_blank" class="andriodBnt"><img src="__XHAPP__/images/andriod.png"/></a><br>
+								<a href="#" title="ios版本,敬请期待。。" class="iosBnt">
+								<img src="__XHAPP__/images/ios.png"/>
+								</a>
+							</div>
+							<div class="QRcode">
+								<img src="__XHAPP__/images/erweima.png"/>
+							</div>
+						</div>
+					</div>
+				</div>
+		    </div>
+		   
+			<!-- <div class="section" id="page2">
+		    		<div class="pagebox">
+					<img src="__XHAPP__/images/downbg2.jpg" class="pageboxBg"/>
+					<div class="pageItem">
+						<div class="pageItemLt" style="float: right;"><img src="__XHAPP__/images/2_02.png"/></div>
+						<div class="pageItemRt" style="float: left;">
+							<p class="title">幸会云<br><img src="__XHAPP__/images/zi2.png"/></p>
+							<div>
+								<a href="http://d.ehui.net/ecloud/ecloud.apk" target="_blank" class="andriodBnt"><img src="__XHAPP__/images/andriod.png"/></a><br>
+								<a href="https://itunes.apple.com/cn/app/events-cloud/id931231592?mt=8" target="_blank" class="iosBnt"><img src="__XHAPP__/images/ios.png"/></a>
+							</div>
+							<div class="QRcode">
+								<img src="__XHAPP__/images/ma_2.png"/>
+							</div>
+						</div>
+					</div>
+				</div>
+		    </div>
+		    
+		    <div class="section" id="page3">
+		    		<div class="pagebox">
+					<img src="__XHAPP__/images/downbg3.jpg" class="pageboxBg"/>
+					<div class="pageItem">
+						<div class="pageItemLt">
+							<div class="shouji">
+								<img src="__XHAPP__/images/shouji.png"/>
+							</div>
+							
+							<div class="shoujImg">
+								
+								<div class="swiper-container">
+							        <div class="swiper-wrapper">
+							            <div class="swiper-slide"><img src="__XHAPP__/images/31.png"/></div>
+							            <div class="swiper-slide"><img src="__XHAPP__/images/32.png"/></div>
+							            <div class="swiper-slide"><img src="__XHAPP__/images/33.png"/></div>
+							        </div>
+							        <!--<div class="swiper-pagination"></div>
+							    </div>
+								
+							</div><!--shoujImg
+							
+							<script type="text/javascript">
+							    var swiper = new Swiper('.shoujImg .swiper-container', {
+							        pagination: '.shoujImg .swiper-pagination',
+							        paginationClickable: true,
+							        autoplay : 3500,
+							        speed:800,
+							        effect : 'fade',
+							        autoplayDisableOnInteraction : false
+							    });
+						   </script>
+							
+						</div>
+						<div class="pageItemRt">
+							<p class="title">活动吧<br><img src="__XHAPP__/images/zi3.png"/></p>
+							<div>
+								<a href="http://ehui.net/apps/hdb/e.apk" target="_blank" class="andriodBnt"><img src="__XHAPP__/images/andriod.png"/></a><br>
+								<a href="https://itunes.apple.com/cn/app/huo-dong-ba/id575433833?mt=8" target="_blank" class="iosBnt"><img src="__XHAPP__/images/ios.png"/></a>
+							</div>
+							<div class="QRcode">
+								<img src="__XHAPP__/images/ma_3.png"/>
+							</div>
+						</div>
+					</div>
+				</div> -->
+		    </div>		   
+		</div>
+		
+		<!-- 手机 -->
+		<div class="phdown">
+			<div class="mobile mob1">
+				<h1>幸会APP<br><i>让活动管理更简单</i></h1>
+				<div class="mobileImg">
+					<img src="__XHAPP__/images/1_01.png"/>
+				</div>
+				<div class="bnt">
+					<a href="{:U('Index/xhuiApp')}"><img src="__XHAPP__/images/m_ios.png"/></a>
+					<a href="{:U('Index/xhuiApp')}"><img src="__XHAPP__/images/m_andriod.png"/></a>
+				</div>
+			</div>
+			<!-- <div class="mobile mob2">
+				<h1>幸会云<br><i>一站式数字化云平台</i></h1>
+				<div class="mobileImg">
+					<img src="__XHAPP__/images/mob2.png"/>
+				</div>
+				<div class="bnt">
+					<a><img src="__XHAPP__/images/m_ios.png"/></a>
+					<a><img src="__XHAPP__/images/m_andriod.png"/></a>
+				</div>
+			</div>
+			<div class="mobile mob3">
+				<h1>活动吧<br><i>活动，让生活更精彩</i></h1>
+				<div class="mobileImg">
+					<img src="__XHAPP__/images/mob3.png"/>
+				</div>
+				<div class="bnt">
+					<a><img src="__XHAPP__/images/m_ios.png"/></a>
+					<a><img src="__XHAPP__/images/m_andriod.png"/></a>
+				</div>
+			</div> -->
+		</div>
+
+		<!--底部-->
+		<!--<div class="row section2" id="footer">
+			<div class="footerBox">
+				<div class="footabout">
+					<div class="col-md-3 col-lg-3">
+						<dl>
+							<dt>产品<br><span>PRODUCT</span></dt>
+							<dd><a href="product.html">会议云</a></dd>
+							<dd><a href="https://www.ehui.net/emapp/" target="_blank">幸会管家</a></dd>
+							<dd><a>下载</a></dd>
+						</dl>
+					</div>
+					<div class="col-md-3 col-lg-3">
+						<dl>
+							<dt>解决方案<br><span>SOLUTION</span></dt>
+							<dd><a href="#">智慧会展</a></dd>
+							<dd><a href="#">经销商大会</a></dd>
+							<dd><a href="#">党建会议</a></dd>
+							<dd><a href="#">公司年会</a></dd>
+							<dd><a href="#">移动会议</a></dd>
+						</dl>
+					</div>
+					<div class="col-md-3 col-lg-3">
+						<div class="col-md-3 col-lg-3"></div>
+						<div class="col-md-9 col-lg-9">
+							<dl>
+								<dt>案例<br><span>CASE</span></dt>
+								<dd><a href="case.html">行业案例</a></dd>
+								<dd><a href="case.html">知名客户</a></dd>
+								<dd><a href="partner.html">合作伙伴</a></dd>
+							</dl>
+						</div>
+					</div>
+					<div class="col-md-3 col-lg-3" style="padding-right: 0px;">
+						<div class="col-md-7 col-lg-7"></div>
+						<div class="col-md-5 col-lg-5 text-left" style="padding-right: 0px;">
+							<dl>
+								<dt>公司<br><span>COMPANY</span></dt>
+								<dd><a href="about.html">关于幸会</a></dd>
+								<dd><a href="about.html">加入我们</a></dd>
+								<dd><a href="about.html">联系我们</a></dd>
+								<dd><a>投资人</a></dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+				
+				<div class="footerbottom col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<p>&copy;2016 幸会APP, All Rights Reserved. </p>
+					<p>幸会APP 版权所有  </p>
+				</div>
+			</div>
+		</div>-->
+	</div>
+	
+<script type="text/javascript" src="__XHAPP__/js/indexjs.js"></script>
+<!--访问电脑域名是跳转到Index/xhuiapp
+<script type="text/javascript" src="__XHAPP__/js/uaredirect.js"></script>
+<script type="text/javascript">uaredirect("http://xh.2188.com.cn/Index/xhuiApp.html","http://xh.2188.com.cn");</script>
+ -->
+</body>
+</html>

@@ -1,0 +1,80 @@
+<layout name="layout" />
+<div class="page-container">
+	<form class="form form-horizontal" >
+	
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">幸会号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				{$data.serialno}
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">用户名：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				{$data.username}
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">logo：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				{:showImg($data['logo'],100)}
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">手机号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				{$data.phone}
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">邮箱：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				{$data.email}
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">公司名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				{$data.companyname}
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">官方网址：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				{$data.website}
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">职位：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				{$data.position}
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">地址：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				{$data.address}{$data.area}
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">企业简介：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				{$data.profile}
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">个性签名：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				{$data.signature}
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">二维码：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<img src="{$data.dimecode}" width="160px" />
+			</div>
+		</div>
+	</form>		
+		
+</div>

@@ -1,0 +1,130 @@
+<layout name="layout" />
+
+
+<div class="page-content">
+			
+	<h3 class="page-title">企业资料</h3>
+	<div class="page-bar">
+		<ul class="page-breadcrumb">
+			<li>
+				<i class="fa fa-home"></i>
+				<a href="index.php?r=manage/index/index">首页</a>
+				<i class="fa fa-angle-right"></i>
+			</li>
+			<li>
+				企业资料					
+			</li>
+			
+		</ul>
+		
+	</div>
+			<!--table-->
+    <div class="tabbable-custom tabbable-full-width">
+		
+						
+  		<div class="tab-content" >
+
+            <!--table-->
+          	<table width="100%" border="0" style="margin-bottom:20px;">
+			  <tr>
+			    <td>
+					<div class="topbtn"  style="margin-top:10px; clear:both">
+						<div  style="float:left" >
+							
+							<a href="{:U('Download/add')}" class="btn green ">
+							<i class="fa fa-plus"></i> 新建资料
+							</a>  
+						</div> 
+						<!-- <div style="float:right; width:330px">
+							<input  id="keywords" class="form-control"  type="text"  value="" style="width:256px; float:left"/>
+							<button type="submit"  class="btn green"   onclick="GoZhicms()" id="save" style="float:right; width:70px;">
+								<i class="fa fa-search"></i> 搜索
+							</button>
+						</div> -->
+						 
+					</div>
+				</td>
+			  </tr>
+			</table> 
+
+           
+            <div  class="portlet-body">
+
+				<table class="table table-striped  table-bordered table-hover"  >
+					<thead>
+					<tr>
+						<th style="width:25px;">id</th>
+						<th  style="width:250px;">资料标题</th>
+						<th>文件资料</th>
+						<th>添加时间</th>
+						<th  style="width:150px;">操作</th>
+					</tr>
+					</thead>
+					<tbody id="checked"> 
+						<empty name="data">
+						<div class="col-md-12 alert alert-danger">
+							暂没有数据
+						</div>
+						<else/>
+						<volist name="data" id="v" >
+						<tr>
+							<td>{$v.id}</td>
+							<td>{$v.title|msubstr=0,10}</td>
+							<td>
+								
+								<?php 
+									$file= readjson($v['downfile']);
+									$str = "<a href='$file[0]'>";
+									$str .= msubstr($v['title']);
+									$str .= "</a>";
+									echo $str;
+								?>
+							</td>
+                            <td class="center">
+								{$v.addtime|date='Y-m-d H:i',###}
+							</td>
+							
+							<td>
+								<!-- <div class="btn-group">
+									<button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+									操作 <i class="fa fa-angle-down"></i>
+									</button>
+									<ul class="dropdown-menu" role="menu">
+										
+										<li>
+											<a href="index.php?r=manage/Buy/editoritems&id=3&type=china ">
+											编辑 </a>
+										</li>
+																																								<li>
+											<a href="JavaScript:;"  onclick="ajaxget('index.php?r=manage/Buy/state&id=3&state=0')">
+											取消推荐 </a>
+										</li>			 
+									</ul>
+								</div> -->
+                                <button type="button" class="btn btn-danger" onClick="showalert('询问','你确定要删除 <strong></strong> 吗?','{:U('Download/delete',array(id=>$v['id']))}')" >删除</button>
+                            </td>
+						</tr>
+						</volist>
+						</empty> 
+					</tbody>
+				</table>
+			</div>
+			<div class="page">
+				<div class="col-md-12 pagination" style="margin: 0;">
+				<ul class="pagination pull-right" id="yw0">
+				
+					{$page}
+				</ul>
+				
+				<div style="clear: both;"></div>
+				</div>
+			<!--endtable-->
+				<div style="width:100%; height:80px;"></div>
+			</div>
+		</div>
+	<!-- END CONTENT -->
+	
+	</div>
+</div>
+
+<include file="Public/footer" />

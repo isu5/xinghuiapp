@@ -1,0 +1,95 @@
+ <layout name="layout" />
+
+<webuploadercss />
+  <div class="page-content">
+      
+      <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+      
+      <!-- END STYLE CUSTOMIZER -->
+      <!-- BEGIN PAGE HEADER-->
+      <h3 class="page-title">
+      会议图片管理
+      </h3>
+      <div class="page-bar">
+        <ul class="page-breadcrumb">
+          <li>
+            <i class="fa fa-home"></i>
+            <a href="#">首页</a>
+            <i class="fa fa-angle-right"></i>
+          </li>
+          <li>
+            会议图片管理
+          
+          </li>
+          
+        </ul>
+        
+      </div>
+      
+      <!--中间部分-->
+      <!-- BEGIN PAGE CONTENT-->
+       <div class="tabbable-custom tabbable-full-width">
+			<ul class="nav nav-tabs">
+				<li class="active">
+					<a href="JavaScript:;" ><i class="fa fa-tags"></i>会议图片管理</a>
+				</li>
+			</ul>
+			<div class="portlet-body form" >
+				<form class="form-horizontal " action="__SELF__" method="post" id="myform">
+					<input type="hidden" name="conf_id" value="<?php echo I('get.id');?>" />
+						  <div class="form-body">
+							<div class="form-group">
+								<label class="col-md-3 control-label">图片标题</label>
+								<div class="col-md-9">
+									<input type="text" class="form-control"  name="title"  placeholder="请输入产品标题" datatype="*" nullmsg="产品标题不能为空" errormsg="请输入产品标题"   value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">图片链接</label>
+								<div class="col-md-9">
+									<input type="text" class="form-control"  name="bullurl"  placeholder="请输入产品链接" datatype="url" nullmsg="请输入产品链接" errormsg="产品链接格式不对，请重新填写" value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">产品图片</label>
+								<div class="col-md-9">
+									<webuploaderavatar name="pic" url="{:U('Attachment/conf_upload')}" word="或将照片拖到这里，最多可选1张"/> 
+								</div>
+							</div>
+							
+						 </div>
+					<div class="form-actions">
+						<div class="row">
+							<div class="col-md-offset-3 col-md-9">
+								<button type="submit" class="btn green" id="save">保存数据</button>
+								<button type="reset" class="btn default">恢复默认</button>
+							</div>
+						</div>
+					</div>
+					</form>
+
+			</div>
+        
+      <!-- END PAGE CONTENT-->
+            <!--中间部分-->
+          
+    </div>
+  </div>
+  <script>
+ $(function() {     
+
+	$("#myform").Validform({
+		tiptype:4,
+		label:".label",
+		showAllError:true,		
+	});
+});
+	
+</script>
+<include file="Public/footer" />
+<webuploaderjs />
+
+  
+  
+  
+  

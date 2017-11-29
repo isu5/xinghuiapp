@@ -1,0 +1,128 @@
+<layout name="layout" />
+
+<nav class="breadcrumb">
+<i class="Hui-iconfont">&#xe67f;</i> 首页 
+<span class="c-gray en">&gt;</span> 会议管理 
+<span class="c-gray en">&gt;</span> 会议栏目列表 
+<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	<div class="text-c">
+		
+	</div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"> <a href="javascript:;" onclick="admin_add('添加栏目','{:U('Conference/add')}','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加栏目</a></span> </div>
+	<table class="table table-border table-bordered table-bg">
+		<thead>
+			
+			<tr class="text-c">
+				<th width="80">ID</th>
+				<th width="80">排序</th>
+				<th>栏目名称</th>
+				<th width="100">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+		<volist name="data" id="v">
+			<tr class="text-c">
+				
+				<td>{$v.id}</td>
+				<td>{$v.sort}</td>
+				<td class="text-l">{$v['_name']}{$v.catename}</td>
+				<td class="td-manage">
+				<a title="编辑" href="javascript:;" onclick="admin_edit('{$v.catename}','{:U('Conference/editCate',array('id'=>$v['id']))}','{$v.id}','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> 
+				<a title="删除" href="javascript:;" onclick="admin_del(this,'{$v.id}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+			</tr>
+		</volist>
+		</tbody>
+	</table>
+	{$page}
+</div>
+
+
+<script type="text/javascript">
+/*
+	参数解释：
+	title	标题
+	url		请求的url
+	id		需要操作的数据id
+	w		弹出层宽度（缺省调默认值）
+	h		弹出层高度（缺省调默认值）
+*/
+/*管理员-增加*/
+function admin_add(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+/*管理员-删除*/
+function admin_del(obj,id){
+	layer.confirm('确认要删除吗？',{
+		icon: 3,
+		title: '提示信息',
+		btn: ['是的','取消'], //按钮
+		shade: [0.4, '#393D49']
+	},function(){
+		//此处请求后台程序，下方是成功后的前台处理……
+		$.get("{:U('Conference/cateDelete')}", { "id": id },function(data){
+			if(data==1){
+				layer.msg('删除成功', { icon: 1, time: 2000 ,shade: 0.5},function(index){
+					$(obj).parents("tr").remove();
+				});
+			}else{
+				layer.msg('删除失败', {icon: 2, time: 2000,shade: 0.5 }); 
+			}
+			 
+		}, "json");
+		
+	});
+}
+/*管理员-编辑*/
+function admin_edit(title,url,id,w,h){
+	layer_show(title,url,w,h);
+}
+/*管理员-停用*/
+function admin_stop(obj,id){
+	layer.confirm('确认要禁用吗？',{
+		icon: 3,
+		title: '提示信息',
+		btn: ['是的','取消'], //按钮
+		shade: [0.4, '#393D49']
+	},function(){
+		$.get("{:U('Admin/stop')}", { "id": id },function(data){
+			if (data == 1) {
+
+				layer.msg('已禁用!',{icon: 5,time:1000},function(index){
+
+					$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="admin_start(this,id)" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
+					$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已禁用</span>');
+					$(obj).remove();
+					location.reload();
+				}, "json");	
+			}else if (data == 2) {
+				layer.msg('原超级管理员不允许禁用！',{icon:2,time:1000});
+			};
+		})
+		
+	})
+}
+
+/*资讯-发布*/
+function admin_start(obj,id){
+	layer.confirm('确认要启用吗？',{
+		icon: 3,
+		title: '提示信息',
+		btn: ['是的','取消'], //按钮
+		shade: [0.4, '#393D49']
+	},function(){
+		$.get("{:U('Admin/start')}", { "id": id },function(data){
+			if (data == 1) {
+				layer.msg('已启用!',{icon: 6,time:1000},function(index){
+					$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="admin_stop(this,id)" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
+					$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
+					$(obj).remove();
+					location.reload();
+
+					
+				}, "json");
+			}
+		})
+	});
+}
+</script>

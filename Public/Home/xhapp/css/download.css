@@ -1,0 +1,162 @@
+﻿.warp{
+	width: 100%; padding: 0; margin: 0px; background: #ffffff;
+}
+#warpTop.bannerBox{
+	width: 100%; height: 60px; margin: 0px; padding: 0px; display: inline-block;
+	position: absolute; top: 0; left: 0;
+	background: #ffffff; background-color:#ffffff; z-index: 9999;
+}
+
+.regBtn{
+	width: 100%; text-align: center; padding-top: 40px;
+}
+.regBtn a{
+	background: #00ccff; color: #ffffff; font-size: 20px; cursor: pointer;
+	border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;
+	display: inline-block; width: 220px; height: 50px; line-height: 50px;
+	 filter:alpha(opacity=100); -moz-opacity:1; -khtml-opacity: 1; opacity: 1;
+}
+
+@-moz-keyframes moveregBtn{
+	from {
+				filter:alpha(opacity=0); -moz-opacity:0; -khtml-opacity: 0; opacity: 0;
+				-moz-transform:rotate(360deg);
+				width: 0px;border-top-style: none;
+			}
+		to {
+				filter:alpha(opacity=100); -moz-opacity:1; -khtml-opacity: 1; opacity: 1;
+				-moz-transform:rotate(0deg);
+				width: 220px;
+			}
+}
+@-webkit-keyframes moveregBtn{
+	from {
+				filter:alpha(opacity=0); -moz-opacity:0; -khtml-opacity: 0; opacity: 0;
+				-webkit-transform:rotate(360deg);
+				width: 0px;
+			}
+		to {
+				filter:alpha(opacity=100); -moz-opacity:1; -khtml-opacity: 1; opacity: 1;
+				-webkit-transform:rotate(0deg);
+				width: 220px;
+			}
+}
+@keyframes moveregBtn{
+	from {
+				filter:alpha(opacity=0); -moz-opacity:0; -khtml-opacity: 0; opacity: 0;
+				transform:rotate(360deg);
+				width: 0px;
+			}
+		to {
+				filter:alpha(opacity=100); -moz-opacity:1; -khtml-opacity: 1; opacity: 1;
+				transform:rotate(0deg);
+				width: 220px;
+			}
+}
+/*.section2{max-width: 1200px; margin: auto;} */
+.pagebox{
+	width: 100%; height: 100%; z-index: 99; position: relative; 
+}
+.pagebox .pageboxBg{
+	/*display:block; height: 100%; width: 100%;*/
+}
+.pagebox .pageItem{
+	width: 910px; height: 568px;
+	position: absolute; top: 18%; left: 20%;
+}
+.pagebox .pageItem .pageItemLt{width: 280px; float: left; position: relative;}
+.pagebox .pageItemLt .shouji{width: 100%;}
+.pagebox .shouji img{width: 100%;}
+.pagebox .pageItemLt .shoujImg{
+	width: 249px; height: 440px; position: absolute; top: 65px; left: 15px;
+}
+.pagebox .pageItemLt .shoujImg img{
+	width: 100%; height: 100%;
+}
+
+.pagebox .pageItem .pageItemRt{width: 540px; float: right;}
+.pagebox .pageItemRt p.title{
+	font-size: 50px; color: #ffffff; line-height: 58px; padding: 105px 0px 40px 0px;
+}
+.pagebox .pageItemRt p.title img{
+	/*width: 90%;*/
+}
+.pagebox .pageItemRt div{
+	float: left; margin-right: 30px;
+}
+.pageItemRt .QRcode,
+.pageItemRt .QRcode img{
+	width: 148px;
+}
+.pagebox .pageItemRt div a,
+.pagebox .pageItemRt div a img{
+	display: inline-block; width: 222px;
+	/*margin-top: 10px;*/
+}
+.pagebox .pageItemRt div a.andriodBnt{
+	margin: 8px 0px 20px 0px;
+}
+#con{display: block;}
+/*－－－－－－－手机－－－－－－*/
+.phdown{
+	width: 100%; padding-top: 59px; display: none;
+}
+.phdown .mobile{width: 100%; display: inline-block;}
+.phdown .mobile h1{
+	font-size: 40px; color: #ffffff; text-align: center; margin: 70px 0px 50px 0px;
+}
+.phdown .mobile h1 i{
+	font-size: 30px; color: #d8d9d6; font-weight: 200; font-style: normal;
+}
+.phdown .mobile.mob1{
+	background: url(../images/downphbg1.jpg) 0 0 no-repeat;
+	background-size: 100% 100%;
+}
+.phdown .mobile.mob2{
+	background: url(../images/downphbg2.jpg) 0 0 no-repeat;
+	background-size: 100% 100%;
+}
+.phdown .mobile.mob3{
+	background: url(../images/downphbg3.jpg) 0 0 no-repeat;
+	background-size: 100% 100%;
+}
+.phdown .mobileImg{width: 100%; text-align: center;}
+.phdown .mobileImg img{width:240px;}
+.phdown .bnt{
+	width: 100%; padding: 0px 5%; display: inline-block; margin-top: 55px; margin-bottom: 70px;
+}
+.phdown .bnt a{
+	display: inline-block; width: 48%; margin: 0px 1%; float: left; text-align: center;
+}
+.phdown .bnt a img{width: 100%; max-width: 242px;}
+
+
+
+@media (max-width: 1199px){
+}
+@media (max-width: 1090px){
+}
+@media (max-width: 990px){
+	#con{display: none;}
+	.phdown{display: block;}
+}
+@media (max-width: 829px){
+}
+@media (max-width: 759px){		
+}
+@media (max-width: 767px){
+}
+@media (max-width: 700px){	
+}
+@media (max-width: 640px){
+}
+@media (max-width: 589px){
+}
+@media (max-width: 509px){
+}
+@media (max-width: 450px){	
+}
+@media (max-width: 349px){	
+	.regBtn{padding-top: 28px;}
+}
+

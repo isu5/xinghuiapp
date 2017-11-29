@@ -1,0 +1,324 @@
+<include file="Public/header" />
+
+<!--设置时间样式-->
+<link rel="stylesheet" type="text/css" href="__HOME_CSS__/amazeui.min.css"/>
+<link rel="stylesheet" type="text/css" href="__HOME_CSS__/amazeui.address.css" />
+<link rel="stylesheet" type="text/css" href="__HOME_CSS__/amazeui.datetimepicker.css"/>
+
+
+
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<!-- DOC: Apply "page-header-fixed-mobile" and "page-footer-fixed-mobile" class to body element to force fixed header or footer in mobile devices -->
+<!-- DOC: Apply "page-sidebar-closed" class to the body and "page-sidebar-menu-closed" class to the sidebar menu element to hide the sidebar by default -->
+<!-- DOC: Apply "page-sidebar-hide" class to the body to make the sidebar completely hidden on toggle -->
+<!-- DOC: Apply "page-sidebar-closed-hide-logo" class to the body element to make the logo hidden on sidebar toggle -->
+<!-- DOC: Apply "page-sidebar-hide" class to body element to completely hide the sidebar on sidebar toggle -->
+<!-- DOC: Apply "page-sidebar-fixed" class to have fixed sidebar -->
+<!-- DOC: Apply "page-footer-fixed" class to the body element to have fixed footer -->
+<!-- DOC: Apply "page-sidebar-reversed" class to put the sidebar on the right side -->
+<!-- DOC: Apply "page-full-width" class to the body element to have full width page without the sidebar menu -->
+<body class="page-header-fixed page-quick-sidebar-over-content ">
+<!-- BEGIN HEADER -->
+<div class="page-header navbar navbar-fixed-top">
+	<!-- BEGIN HEADER INNER -->
+	<div class="page-header-inner">
+		<!-- BEGIN LOGO -->
+		<div class="page-logo">
+			会员中心
+			<div class="menu-toggler sidebar-toggler  ">
+				<!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+                
+			</div>
+            
+		</div>
+		<!-- END LOGO -->
+		<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+		<a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+		</a>
+        
+		<!-- <a class="navbar-brand disabled" href="#" style="text-align:center;width: 150px; height:45px;background: #4E5966;">
+			&nbsp;&nbsp;&nbsp;<span style="color: #fff;">PC版管理</span>
+		</a>
+		
+		<a class="navbar-brand" href="#" style="text-align:center;width: 150px;height:45px;">
+			&nbsp;&nbsp;&nbsp;<span style="color: #fff;">APP管理</span>
+		</a> -->
+		<!-- END RESPONSIVE MENU TOGGLER -->
+		<!-- BEGIN TOP NAVIGATION MENU -->
+		<include file="Public/top" />
+		<!-- END TOP NAVIGATION MENU -->
+	</div>
+	<!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->
+<div class="clearfix">
+</div>
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+	<!-- BEGIN SIDEBAR -->
+	<div class="page-sidebar-wrapper">
+		<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+		<!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+		<include file="Public/menu" />
+		
+		
+		
+	</div>
+	<!-- END SIDEBAR -->
+	
+	<!--中部开始--->
+	
+	<script src="__HOME_JS__/echarts.min.js"></script>
+	<!-- BEGIN CONTENT -->
+	<div class="page-content-wrapper">
+		<div class="page-content">
+			
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			
+			<!-- END STYLE CUSTOMIZER -->
+			<!-- BEGIN PAGE HEADER-->
+			<h3 class="page-title">
+			新建会议
+			</h3>
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li>
+						<i class="fa fa-home"></i>
+						<a href="#">首页</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						新建会议
+					
+					</li>
+					
+				</ul>
+				
+			</div>
+			
+			<!--中间部分-->
+			<!-- BEGIN PAGE CONTENT-->
+			 <div class="tabbable-custom tabbable-full-width">
+				<div class="portlet-body form" >
+                     
+                
+					<form class="form-horizontal"   action="" method="post" id="form" enctype='multipart/form-data'>
+						<div class="form-body">
+							<div class="form-group">
+								<label class="col-md-3 control-label">会议标题</label>
+								<div class="col-md-5">
+									<input type="text" class="form-control"  name="username" value="{$data.username}">
+									
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-md-3 control-label">会议类型</label>
+								<div class="col-md-9">
+									<select class="form-control input-medium">
+										<option value="">请选择</option>
+										<option value="">信息技术</option>
+										<option value="">商业服务</option>
+										<option value="">金融保险</option>
+										<option value="">工程制造</option>
+										<option value="">交通运输</option>
+										<option value="">文化传媒</option>
+										<option value="">娱乐体育</option>
+										<option value="">公共事业</option>
+										<option value="">其他</option>
+									</select>
+								</div>
+								
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">举办公司</label>
+								<div class="col-md-5">
+									<input type="text" class="form-control"  name="companyname" value="">
+									
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">起始时间</label>
+								<div class="col-md-9">
+									<div class="am-input-group date form-datetime-lang">
+										  <input size="16" type="text" value="" class="am-form-field" name="ctime" readonly>
+										  <span class="am-input-group-label add-on"><i class="icon-th am-icon-calendar"></i></span>
+									</div>
+									
+								</div>
+								<div class="col-md-9">
+									<div class="am-input-group date form-datetime-lang">
+										  <input size="16" type="text" value="" class="am-form-field" name="etime" readonly>
+										  <span class="am-input-group-label add-on"><i class="icon-th am-icon-calendar"></i></span>
+									</div>
+									
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-3 control-label">签到时间</label>
+								<div class="col-md-5">
+									<div class="am-input-group date form-datetime-lang">
+										  <input size="16" type="text" value="" class="am-form-field" name="qtime" readonly>
+										  <span class="am-input-group-label add-on"><i class="icon-th am-icon-calendar"></i></span>
+									</div>
+									
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">举办地址</label>
+								<div class="col-md-5" id="address2">
+										<input readonly type="text" name="address" class="am-form-field am-radius" placeholder="请选择地址" required="" value="北京北京市石景山区">
+										
+									</div>
+							</div>
+						   <div class="form-group">
+								<label class="col-md-3 control-label">详细地址</label>
+								<div class="col-md-5">
+									<input type="text" class="form-control"  name="xxaddress" value="">
+									
+								</div>
+							</div>
+							<div class="form-group" id="picupload" rel='0'>
+								<label class="col-md-3 control-label">宣传图片</label>
+								<div class="col-md-9">
+
+									<input type="text" class="form-control" name="pic[]" id="uploadfile" onmouseover="app_img_preview('uploadfile', this.value)" >
+										<button type="button" class="btn btn-primary radius upload-btn "  onClick="javascript:app_upload_att('<?php echo U("Attachment/upload_box");?>')"  style="position:absolute; margin-left:335px; margin-top:-32px;">
+											<i class="fa fa-cloud-upload"></i> 上传图片
+										</button>
+										
+								</div>	
+								<button type="button" class="btn btn-primary radius upload-btn plus_pics" style="position:absolute; margin-left:120px;margin-top:1px; ">
+									<i class="fa fa-picture-o"></i>增加图片
+								</button>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-3 control-label">资料附件</label>
+								<div class="col-md-5">
+									<input type="file" class="form-control-static" name="downfile" value="">
+									
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">是否允许下载</label>
+								<div class="col-md-9">
+									<select class="form-control input-medium">
+										<option value="">允许下载</option>
+										<option value="">不允许</option>
+										
+									</select>
+								</div>
+							</div>
+							
+						<div class="form-actions">
+							<div class="row">
+								<div class="col-md-offset-3 col-md-9">
+									<button type="submit" class="btn green" id="save">保存数据</button>
+									<button type="reset" class="btn default">恢复默认</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+						
+			
+          
+			</div>
+			<!-- END PAGE CONTENT-->
+            <!--中间部分-->
+	</div>
+	<!-- END CONTENT -->
+	
+</div>
+		
+<!-- END CONTAINER -->
+
+<include file="Public/footer" />
+
+<script src="__HOME_JS__/amazeui.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__HOME_JS__/iscroll.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__HOME_JS__/address.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+	$(function() {
+		document.addEventListener('touchmove', function (e) {
+			e.preventDefault();
+		}, false);
+
+		//城市多级联动
+		$("#address2").address({
+			prov: "北京石",
+			city: "北京市",
+			district: "景山区",
+			scrollToCenter: true,
+			footer: true,
+			
+		});
+
+		//点击增加图片
+		$('.plus_pics').click(function(){
+		var obj = $(this).parents('#picupload').eq(0);
+
+			
+		var index = obj.parent().find('#picupload').attr('rel');
+		
+			index++;
+			
+		var html = '<div class="form-group" id="picupload" rel="'+index+'" >\
+						<label class="col-md-3 control-label">宣传图片</label>\
+						<div class="col-md-9">\
+							<input type="text" class="form-control" name="pic[]" id="uploadfile'+index+'" onmouseover="app_img_preview(\'uploadfile'+index+'\', this.value)" >\
+								<button type="button" class="btn btn-primary radius upload-btn "  onClick="javascript:app_upload_att(\'<?php echo U("Attachment/upload_box");?>\')"  style="position:absolute; margin-left:335px; margin-top:-32px;">\
+									<i class="fa fa-cloud-upload"></i> 上传图片\
+								</button>\
+						</div>\
+						<button type="button" class="btn btn-primary radius upload-btn min_pics" style="position:absolute; margin-left:120px;margin-top:1px; ">\
+							<i class="fa fa-picture-o"></i>减少图片\
+						</button>\
+					</div>';
+					//alert(html);
+        obj.parent().find('#picupload').after(html);
+	})
+	$('.min_pics').live('click',function(){
+		$(this).parents('div').eq(0).remove();
+	})
+
+
+
+	});
+
+</script>
+<!--设置时间js-->
+<script src="__HOME_JS__/amazeui.datetimepicker.min.js"></script>
+<script src="__HOME_JS__/amazeui.datetimepicker.zh-CN.js"></script>
+<script>
+(function($){
+  // 也可以在页面中引入 amazeui.datetimepicker.zh-CN.js
+  $.fn.datetimepicker.dates['zh-CN'] = {
+    days: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"],
+    daysShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+    daysMin:  ["日", "一", "二", "三", "四", "五", "六", "日"],
+    months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+    monthsShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+    today: "今日",
+    suffix: [],
+    meridiem: ["上午", "下午"]
+  };
+
+  $('.form-datetime-lang').datetimepicker({
+    language:  'zh-CN',
+    format: 'yyyy-mm-dd hh:ii'
+  });
+ 
+
+}(jQuery));
+</script>
+<script src="__COMMON_JS__/app_common.js"></script>
+
+	
+	
+	
+	

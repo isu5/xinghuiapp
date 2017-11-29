@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<LINK rel="Bookmark" href="/favicon.ico" >
+<LINK rel="Shortcut Icon" href="/favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__ADMIN_LIB__/html5.js"></script>
+<script type="text/javascript" src="__ADMIN_LIB__/respond.min.js"></script>
+<script type="text/javascript" src="__ADMIN_LIB__/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="__ADMIN_STATIC__/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__ADMIN_STATIC__/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__ADMIN_LIB__/Hui-iconfont/1.0.7/iconfont.css" />
+<link rel="stylesheet" href="__ADMIN_STATIC__/h-ui/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="__ADMIN_LIB__/icheck/icheck.css" />
+<link rel="stylesheet" type="text/css" href="__ADMIN_STATIC__/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__ADMIN_STATIC__/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<!--[if IE 7]>
+<link rel="stylesheet" href="__ADMIN_STATIC__/h-ui/css/font-awesome-ie7.min.css">
+<![endif]-->
+
+<meta name="keywords" content="北京同舟鸿图文化创意有限公司">
+<meta name="description" content="北京同舟鸿图文化创意有限公司">
+</head>
+<body>
+
+<link rel="stylesheet" href="__UP__/3.2.1/uploadify.css"/>
+
+<div class="page-container">
+	<div id="tab_system" class="HuiTab">
+		<div class="tabBar cl"><span>上传文件</span></div>
+		<div class="tabCon">
+			<span class="yzmcms_notice">类型:  <?php echo $type;?></span>
+			<span class="yzmcms_notice">单文件最大: <span class="c-red">5M</span> ，数量: <span class="c-red">3</span>个</span>
+			
+			<input id="file_upload" name="file_upload" type="file" multiple="true">
+			<div id="uploadlist" class="imagelist">
+				<ul>
+				</ul>
+			</div>
+		</div>
+
+		<div class="tabCon">
+			<div class="imagelist">
+				<ul>
+					
+				</ul>
+				<div class="clearfix"></div>
+				 <div id="page">
+				 
+				 </div>
+			</div>
+		</div>
+	</div>
+	<div class="bottom_button">
+		<input type="button" class="btn btn-primary radius" id="determine" value="&nbsp;&nbsp;确定&nbsp;&nbsp;">
+		<input type="button" class="btn btn-default radius" id="cancel" value="&nbsp;&nbsp;取消&nbsp;&nbsp;">
+	</div>
+</div>
+<div id="att_status" class="hidden"></div>
+<script type="text/javascript" src="__ADMIN_LIB__/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__ADMIN_LIB__/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__ADMIN_STATIC__/h-ui/js/H-ui.js"></script>
+<script type="text/javascript" src="__ADMIN_STATIC__/h-ui.admin/js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="__UP__/3.2.1/jquery.uploadify.min.js"></script>
+
+<script type="text/javascript">
+$(function(){
+	var sid = '{:session_id()}';
+	var uploadUrl = '{:U("Public/uploadFile")}';
+	$('#file_upload').uploadify({
+		width: 65,
+		height: 25,
+		uploadLimit : '3',
+		buttonText: '选择文件',
+		fileSizeLimit: '{$s}',
+		fileTypeExts : '{$type}',      //
+		swf      : '__UP__/3.2.1/uploadify.swf',  //核心flash文件
+		uploader : uploadUrl,
+		onFallback:function(){
+			layer.alert('您未安装FLASH控件，无法上传图片！请安装FLASH控件后再试。');
+		},
+		formData : { 
+			'session_id' : sid,
+			'type' : '{$t}',
+           
+        },
+		onUploadSuccess : function(file, data, response) {
+			alert(data);
+			data = $.parseJSON(data);
+			 if(data.status == 1){
+				var att_url = data.filetype == 'jpg' || data.filetype == 'png' || data.filetype == 'gif' || data.filetype == 'jpeg' ? data.msg : (data.filetype == 'zip' || data.filetype == 'rar' ? '__ADMIN_IMG__/ext/rar.png' : '__ADMIN_IMG__/ext/blank.png');;
+				var li='<li><a href="javascript:;" class="on" onclick="javascript:album_cancel(this)"><img src="'+att_url+'" path="'+data.msg+'"/><img src="__ADMIN_IMG__/checked.gif" class="checkd"></a></li>';
+				$("#uploadlist ul").prepend(li);
+				$('#att_status').append('|'+data.msg);
+			}else{
+				layer.alert(data.msg); 
+			} 
+			
+			
+			
+		}
+	});
+	
+	var index = parent.layer.getFrameIndex(window.name);
+	$('#determine').on('click', function(){
+		var att_status = $("#att_status").html();
+		if(att_status == ''){
+			layer.alert('你还没选择附件呢？'); 
+			return false;
+		}
+		att_status = att_status.substr(1);		
+		<?php
+		
+			if($t == 1) echo 'if(!isimg(att_status)){ layer.alert("选择的类型必须为图片类型!"); return false;}';
+		?>
+		<?php if($n == 1) { ?>
+		
+		parent.$("#{$pid}").val(att_status);
+		
+		
+		<?php }else{ ?>
+		
+		var string = '';
+		var strs= new Array(); 
+		strs = att_status.split("|");
+		for (i=0;i<strs.length;i++ ){ 
+			string += '<li>文件：<input type="text" name="<?php echo $pid;?>" value="'+strs[i]+'" id="<?php echo $pid;?>_'+i+'" onMouseOver="app_img_preview(\'<?php echo $pid;?>_'+i+'\', this.value)" class="input-text w_300"> 描述：<input type="text" name="<?php echo $pid;?>[alt][]" value="" class="input-text w_200"><a href="javascript:;" onclick="remove_li(this);">删除</a></li>';
+			alert(string);
+		} 
+		parent.$("#<?php echo $pid;?>").append(string);	
+		
+		<?php } ?>
+		parent.layer.close(index);
+	});
+	$('#cancel').on('click', function(){
+		parent.layer.close(index);
+	});
+	
+	$.Huitab("#tab_system .tabBar span","#tab_system .tabCon","current","click","<?php echo isset($_GET['tab']) ? intval($_GET['tab']) : '0'?>");
+});
+
+function album_cancel(obj){
+	var path = $(obj).children(".img_src").attr("path");
+	if($(obj).hasClass('on')){
+		$(obj).removeClass("on");
+		$(obj).children(".checkd").addClass("hidden");
+		var imgstr = $("#att_status").html();
+		var length = $("a[class='on']").children(".img_src").length;
+		var strs = '';
+		for(var i=0;i<length;i++){
+			strs += '|'+$("a[class='on']").children(".img_src").eq(i).attr('path');
+		}
+		$('#att_status').html(strs);
+		
+	}else{
+		var num = $('#att_status').html().split('|').length;
+		var file_upload_limit = 1;
+		if(num > file_upload_limit) {layer.alert('不能选择超过'+file_upload_limit+'个附件'); return false;}
+		$(obj).addClass("on");
+		$(obj).children(".checkd").removeClass("hidden");
+		$('#att_status').append('|'+path);
+	}
+}
+
+function isimg(url){
+	var sTemp;
+	var b = false;
+	var opt = "jpg|gif|png|jpeg";
+	var s=opt.toUpperCase().split("|");
+	for (var i=0;i<s.length ;i++ ){
+	sTemp = url.substr(url.length-s[i].length-1);
+	sTemp = sTemp.toUpperCase();
+	s[i] = "."+s[i];
+	if (s[i]==sTemp){
+		b = true;
+		break;
+	}
+	}
+	return b;
+}
+</script>
+
+</body>
+</html>

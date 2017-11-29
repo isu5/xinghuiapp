@@ -1,0 +1,153 @@
+body{font-family:'微软雅黑'}
+.page-logo{font-size:19px; color:#FFF; line-height:45px; }
+.topbtn{width:100%; height:auto; margin-top:-10px; margin-bottom:20px;}
+
+.form-horizontal .control-label{text-align:center}
+.col-md-9 { width:350px;}
+.col-md-3{width:125px;}
+.page{float:right; margin-right:-15px;}
+
+.logoimg{width:57px; height:30px; background:#FFF; border:1px solid #eaeaea}
+
+#sample_editable_1 tr td{vertical-align:middle;}
+
+  /*==========以下部分是Validform必须的===========*/
+    /*==========可以根据自己喜好适当修改（所用图标会在后面提供）===========*/
+  .Validform_checktip{
+    margin-left:8px;
+    line-height:20px;
+    height:20px;
+    overflow:hidden;
+    color:#DD4D3B;
+    font-size:12px;
+  }
+  .Validform_right{
+    color:#71b83d;
+    padding-left:20px;
+    background:url(/Public/Home/images/right.png) no-repeat left center;
+  }
+  .Validform_wrong{
+    color:#DD4D3B;
+    padding-left:20px;
+    white-space:nowrap;
+    background:url(/Public/Home/images/error.png) no-repeat left center;
+  }
+  .Validform_loading{
+    padding-left:20px;
+    background:url(/Public/Home/images/input-spinner.gif) no-repeat left center;
+  }
+  .Validform_error{
+    background-color:#ffe7e7;
+  }
+  #Validform_msg{color:#7d8289; font: 12px/1.5 tahoma, arial, \5b8b\4f53, sans-serif; width:280px; -webkit-box-shadow:2px 2px 3px #aaa; -moz-box-shadow:2px 2px 3px #aaa; background:#fff; position:absolute; top:0px; right:50px; z-index:99999; display:none;filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#999999');}
+  #Validform_msg .iframe{position:absolute; left:0px; top:-1px; z-index:-1;}
+  #Validform_msg .Validform_title{line-height:25px; height:25px; text-align:left; font-weight:bold; padding:0 8px; color:#fff; position:relative; background-color:#000;}
+  #Validform_msg a.Validform_close:link,#Validform_msg a.Validform_close:visited{line-height:22px; position:absolute; right:8px; top:0px; color:#fff; text-decoration:none;}
+  #Validform_msg a.Validform_close:hover{color:#cc0;}
+  #Validform_msg .Validform_info{padding:8px;border:1px solid #000; border-top:none; text-align:left;}
+  
+  /*******上传图片按钮美化**********/
+  .fileUploadImage {
+    position: relative;
+    display: inline-block;
+    background: #D0EEFF;
+    border: 1px solid #99D3F5;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: #1E88C7;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+.fileUploadImage input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.fileUploadImage:hover {
+    background: #AADFFD;
+    border-color: #78C3F3;
+    color: #004974;
+    text-decoration: none;
+}
+  
+/*********重置表格**********/
+.table{
+	margin-bottom:70px;
+}  
+ /****分页****/
+  #page{
+		height:40px;
+		padding:20px 0px;
+	}
+	#page a{
+		display:block;
+		float:left;
+		margin-right:10px;
+		padding:2px 12px;
+		height:24px;
+		border:1px #cccccc solid;
+		background:#fff;
+		text-decoration:none;
+		color:#808080;
+		font-size:12px;
+		line-height:24px;
+	}
+	#page a:hover{
+		color:#077ee3;
+		border:1px #077ee3 solid;
+	}
+	#page p.current{
+		border:none;
+		background:#077ee3;
+		color:#fff;
+	}
+	#page p{
+		float:left;
+		padding:2px 12px;
+		font-size:12px;
+		height:24px;
+		line-height:24px;
+		color:#bbb;
+		border:1px #ccc solid;
+		background:#fcfcfc;
+		margin-right:8px;
+
+	}
+	#page p.pageRemark{
+		border-style:none;
+		background:none;
+		margin-right:0px;
+		padding:4px 0px;
+		color:#666;
+	}
+	#page p.pageRemark b{
+		color:red;
+	}
+	#page p.pageEllipsis{
+		border-style:none;
+		background:none;
+		padding:4px 0px;
+		color:#808080;
+	}
+	.dates li {font-size: 14px;margin:20px 0}
+	.dates li span{float:right}
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  

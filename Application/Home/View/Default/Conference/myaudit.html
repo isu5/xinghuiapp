@@ -1,0 +1,128 @@
+<layout name="layout" />
+
+
+<div class="page-content">
+			
+	<h3 class="page-title">会议管理</h3>
+	<div class="page-bar">
+		<ul class="page-breadcrumb">
+			<li>
+				<i class="fa fa-home"></i>
+				<a href="#">首页</a>
+				<i class="fa fa-angle-right"></i>
+			</li>
+			<li>
+				会议管理					
+			</li>
+			
+		</ul>
+		
+	</div>
+			<!--table-->
+    <div class="tabbable-custom tabbable-full-width">
+  		<div class="tab-content" >
+
+            <!--table-->
+          	<table width="100%" border="0" style="margin-bottom:20px;">
+			  <tr>
+			    <td>
+					
+					<ul class="nav nav-tabs">
+						<li class="">
+							<a href="{:U('Conference/myaudit',array('status'=>3))}" ><i class="fa fa-tags"></i>待审核</a>
+						</li>
+						<li  class="   ">
+							<a href="{:U('Conference/myaudit',array('status'=>1))}"><i class="fa fa-tag"></i> 待参加 </a>
+						</li>
+						<li  class="   ">
+							<a href="{:U('Conference/myaudit',array('status'=>4))}"><i class="fa fa-tag"></i> 参会中 </a>
+						</li>
+						<li  class=" ">
+							<a href="{:U('Conference/myaudit',array('status'=>5))}"><i class="fa fa-bell"></i> 已结束 </a>
+						</li>
+					</ul>
+						<!--<div  style="float:left" >
+							<a href="{:U('Conference/add')}" class="btn green ">
+							<i class="fa fa-plus"></i> 新建会议
+							</a>  
+							 
+						</div> 
+						 <div style="float:right; width:330px">
+							<input  id="keywords" class="form-control"  type="text"  value="" style="width:256px; float:left"/>
+							<button type="submit"  class="btn green"   onclick="GoZhicms()" id="save" style="float:right; width:70px;">
+								<i class="fa fa-search"></i> 搜索
+							</button>
+						</div> -->
+						 
+					</div>
+				</td>
+			  </tr>
+			</table> 
+
+           
+            <div  class="portlet-body">
+				<table class="table table-striped  table-bordered table-hover"  >
+					<thead>
+					<tr>
+						<th >id</th>
+						<th>会议标题</th>
+						<th>举办公司</th>
+						<th>起始时间</th>
+						<th>签到时间</th>
+						<th>举办地址</th>
+						<th>是否审核参会人员</th>
+						
+					</tr>
+					</thead>
+					<tbody id="checked"> 
+						<empty name="data">
+						<div class="col-md-12 alert alert-danger">
+							暂没有数据
+						</div>
+						<else/>
+						
+						<volist name="data" id="v" >
+						<tr>
+							<td>{$v.id}</td>
+							<td>
+								{$v.title|msubstr=0,20}
+							
+							</td>
+                            <td class="center">{$v.companyname}</td>
+                            <td class="center">{$v.ctime|strtotime|date="Y-m-d H:i",###}至{$v.etime|strtotime|date="Y-m-d H:i",###}</td>
+                            <td class="center">{$v.qtime|strtotime|date="Y-m-d H:i",###}</td>
+                            <td class="center">{$v.address}{$v.xxaddress}</td>
+							<td>
+								<eq name="v.is_user" value="1">
+                                <span class="badge badge-roundless badge-primary">是</span>   <else/>
+								<span class="badge badge-roundless badge-danger">否</span>	
+								</eq>
+							</td>
+							
+						</tr>
+						</volist>
+						</empty> 
+					</tbody>
+				</table>
+			</div>
+			<div style="clear: both;"></div>
+			<div class="page">
+				<div class="col-md-12 pagination" style="margin: 0;">
+				<ul class="pagination pull-right" id="yw0">
+				
+					{$page}
+				</ul>
+				
+				<div style="clear: both;"></div>
+				</div>
+			<!--endtable-->
+				<div style="width:100%; height:80px;"></div>
+			</div>
+		</div>
+	<!-- END CONTENT -->
+	
+	</div>
+</div>
+
+
+<include file="Public/footer" />

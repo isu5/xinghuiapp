@@ -1,0 +1,18 @@
+<aside class="Hui-aside">
+	<input runat="server" id="divScrollValue" type="hidden" value="" />
+	<div class="menu_dropdown bk_2">
+		<volist name="btns" id="v">
+		<dl id="menu-admin">
+			<dt><i class="{$v.icon}"></i> {$v.pri_name}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+				<volist name="v.children" id="v1">
+					<li><a _href="{:U($v1['name_url'])}" data-title="{$v1.pri_name}" href="javascript:void(0)">{$v1.pri_name}</a></li>
+				</volist>
+				</ul>
+			</dd>
+		</dl>
+		</volist>
+		
+	</div>
+</aside>

@@ -1,0 +1,80 @@
+<!--底部js部分-->
+
+<!-- END FOOTER -->
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="__HOME_PLUG__/respond.min.js"></script>
+<script src="__HOME_PLUG__/excanvas.min.js"></script> 
+<![endif]-->
+
+
+<script src="__HOME_PLUG__/jquery-migrate.min.js" type="text/javascript"></script>
+<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="__HOME_PLUG__/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+<script src="__HOME_PLUG__/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="__HOME_PLUG__/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="__HOME_PLUG__/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="__HOME_PLUG__/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="__HOME_PLUG__/jquery.cokie.min.js" type="text/javascript"></script>
+<script src="__HOME_PLUG__/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<script src="__HOME_PLUG__/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="__HOME_PLUG__/bootbox/bootbox.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+
+
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="__HOME_JS__/metronic.js" type="text/javascript"></script>
+<script src="__HOME_CSS__/layout/scripts/layout.js" type="text/javascript"></script>
+<script src="__HOME_CSS__/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
+<script src="__HOME_JS__/ui-alert-dialog-api.js"></script>
+
+<script>
+jQuery(document).ready(function() { 
+  
+Metronic.init(); // init metronic core components
+Layout.init(); // init current layout
+QuickSidebar.init(); // init quick sidebar
+UIAlertDialogApi.init();
+  
+
+ 
+
+});	
+</script>
+
+
+<!-- END JAVASCRIPTS
+var urlstr = location.href;  
+      //alert(urlstr);  
+	var urlstatus=false;  
+	 $("#menu li a").each(function () {  
+			//-1 > true
+		if ((urlstr + '/').indexOf($(this).attr('href')) > -1&&$(this).attr('href')!='') { 
+		  $(this).parent().addClass('active open').next('.sub-menu').show();
+		  urlstatus = true;
+		} else {  
+		  $(this).parent().removeClass('active');  
+		}  
+	});  
+	if (!urlstatus) {$("#menu li a").eq(0).parent().addClass('active'); } 
+	
+	
+	
+ -->
+
+<!--底部js部分 /-->
+
+
+<script src="__HOME_JS__/layer/layer.js"></script>
+<script src="__HOME_JS__/ajaxfileupload.js"></script>
+<script src="__HOME_JS__/Validform_v5.3.2_min.js"></script>
+<script src="__HOME_JS__/index.js"></script>
+
+</body>
+<!-- END BODY -->
+</html>

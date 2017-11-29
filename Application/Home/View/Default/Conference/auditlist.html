@@ -1,0 +1,93 @@
+<layout name="layout" />
+
+<div class="page-content">
+	<div class="tabbable-custom tabbable-full-width">
+		<ul class="nav nav-tabs">
+			<li class="active">
+				<a href="javascript:;" ><i class="fa fa-tags"></i>参会人员审核</a>
+			</li>
+			
+		</ul>
+		<div  class="portlet-body">
+			<p class="col-md-12 text-center alert alert-danger">注：推送为直接推送给个人或者企业帐号信息，签到推送为保存后推送，把需要推送的信息先保存，参会人员
+			扫码签到后自动推送保存的信息。
+			</p>
+
+				<table class="table table-striped  table-bordered table-hover"  >
+					<thead>
+					<tr>
+						<th >id</th>
+						<th>logo</th>
+						<th>公司名称/昵称</th>
+						<th>联系电话</th>
+						<th  style="width:260px;">操作</th>
+					</tr>
+					</thead>
+					<tbody id="checked"> 
+						<empty name="data">
+							<div class="col-md-12 alert alert-danger">
+								暂没有数据
+							</div>
+						<else/>
+							<volist name="data" id="v" >
+							<tr>
+								<td>{$v.id}</td>
+								<td class="center">{:showImg($v['logo'],50)}</td>
+								<td class="center">{$v.companyname} / {$v.username}</td>
+								<td class="center">{$v.phone}</td>
+								<td>
+								
+								<if condition="$v['is_user'] eq 1">
+									<switch name="v.status" >
+										<case value="1">
+										
+										<button type="button" class="btn btn-red">您已同意</button>
+										<a href="{:U('Jgpushperson/gexingts',array('id'=>I('get.id'),'uid'=>$v['id']))}">
+											<button type="button" class="btn btn-danger">推送</button>
+										</a>
+										<a href="{:U('Signjgpush/signts',array('id'=>I('get.id'),'uid'=>$v['id']))}">
+											<button type="button" class="btn btn green">签到推送</button>
+										</a>
+										
+										</case>
+										<case value="2">
+										<button type="button" class="btn btn-green">您已拒绝</button>
+										</case>
+										
+										<case value="4">
+										<button type="button" class="btn btn-green">参会中</button>
+										<a href="{:U('Jgpushperson/gexingts',array('id'=>I('get.id'),'uid'=>$v['id']))}">
+											<button type="button" class="btn btn-danger">推送</button>
+										</a>
+										
+										</case>
+										<case value="5">
+										<button type="button" class="btn btn-green">已结束</button>
+										</case>
+										<default />
+										
+										<button type="button" class="btn btn-green" onClick="agreealert('询问','你确定要同意 <strong></strong> 吗?','{:U('Conference/agreed',array('id'=>I('get.id'),'uid'=>$v['id']))}')" >同意</button>
+										<button type="button" class="btn btn-danger" onClick="refusedalert('询问','你确定要拒绝 <strong></strong> 吗?','{:U('Conference/refused',array('id'=>I('get.id'),'uid'=>$v['id']))}')" >拒绝</button>
+										
+									</switch>	
+									<else/>
+										<a href="{:U('Jgpushperson/gexingts',array('id'=>I('get.id'),'uid'=>$v['id']))}">
+											<button type="button" class="btn btn-danger">推送</button>
+										</a>
+										<a href="{:U('Signjgpush/signts',array('id'=>I('get.id'),'uid'=>$v['id']))}">
+											<button type="button" class="btn btn green">签到推送</button>
+										</a>
+									
+								</if>									
+								</td>
+							</tr>
+							</volist>
+						</empty> 
+					</tbody>
+				</table>
+				{$page}
+			</div>
+	</div>
+
+</div>
+<include file="Public/footer" />

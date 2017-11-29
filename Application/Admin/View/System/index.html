@@ -1,0 +1,277 @@
+<layout name="layout" />
+
+<nav class="breadcrumb">
+	<i class="Hui-iconfont">&#xe67f;</i> 首页 
+	<span class="c-gray en">&gt;</span> 系统管理 
+	<span class="c-gray en">&gt;</span> 基本设置 
+	<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
+	<i class="Hui-iconfont">&#xe68f;</i>
+	</a>
+</nav>
+<div class="page-container">
+	<form class="form form-horizontal" action="__SELF__" method="post" id="form-system-add">
+		
+		<div id="tab-system" class="HuiTab">
+			<div class="tabBar cl">
+				<span>基本设置</span>
+				<span>邮件设置</span>
+				<span>评论设置</span>
+				<span>APP设置</span>
+				<span>其他设置</span>
+			</div>
+		
+			<div class="tabCon">
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>网站状态：</label>
+					<div class="mt-20 skin-minimal">
+						<div class="radio-box">
+							<input class="icheck"  id="radio-1" type="radio" name="WEB_STATUS" value="1" <if condition="$data.WEB_STATUS eq 1">checked="checked"</if> >
+							<label for="radio-1">开启</label>
+						</div>
+						<div class="radio-box">
+							<input class="icheck" type="radio" id="radio-1" name="WEB_STATUS" value="0" <if condition="$data.WEB_STATUS eq 0">checked="checked"</if> >
+							<label for="radio-1">关闭</label>
+						</div>
+					</div>
+					
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>网站关闭时提示文字：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<textarea class="textarea" id="website-description"  name="WEB_CLOSE_WORD" placeholder="空制在80个汉字，160个字符以内"  >{$data['WEB_CLOSE_WORD']}</textarea>
+						
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>网站url：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" id="website-url" placeholder="网站链接http://" value="{$data.WEB_URL}" class="input-text" name="WEB_URL">
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>网站名称：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" id="website-title" placeholder="控制在25个字、50个字节以内" class="input-text"  name="WEB_NAME" value="{$data['WEB_NAME']}">
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>关键词：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" id="website-Keywords" placeholder="5个左右,8汉字以内,用英文,隔开" name="WEB_KEYWORDS" class="input-text"  value="{$data['WEB_KEYWORDS']}">
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>描述：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<textarea class="textarea" id="website-description"  name="WEB_DESCRIPTION" placeholder="空制在80个汉字，160个字符以内"  >{$data['WEB_DESCRIPTION']}</textarea>
+						
+					</div>
+				</div>
+				
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>底部版权信息：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" id="website-copyright" placeholder="&copy; 2016-2017 " value="{$data['COPYRIGHT_WORD']}" class="input-text"  name="COPYRIGHT_WORD">
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">备案号：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" id="website-icp" placeholder="京ICP备00000000号" name="WEB_ICP_NUMBER" value="{$data['WEB_ICP_NUMBER']}" class="input-text" />
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">统计代码：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<textarea class="textarea"  name="WEB_STATISTICS" >{$data['WEB_STATISTICS']}</textarea>
+					</div>
+				</div>
+			</div>
+			
+			<div class="tabCon">
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">邮件发送模式：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						
+						<div class="radio-box">
+								<label for="sex-2">采用第三方SMTP服务</label>
+						</div>
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">SMTP服务器：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" id="" class="input-text" name="EMAIL_SMTP" value="{$data['EMAIL_SMTP']}">
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">邮箱帐号：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" class="input-text" id="emailName" name="EMAIL_USERNAME" value="{$data['EMAIL_USERNAME']}" >
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">邮箱密码：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="password" id="email-password" class="input-text" name="EMAIL_PASSWORD" value="{$data['EMAIL_PASSWORD']}" >
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">发件人名称：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" id="email-address" class="input-text" name="EMAIL_FROM_NAME" value="{$data['EMAIL_FROM_NAME']}" >
+					</div>
+				</div>
+			</div>
+			<div class="tabCon">
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">开启评论审核：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<span class="inputword">开启</span>
+						<input class="icheck" type="radio" name="COMMENT_REVIEW" value="1" <if condition="$data.COMMENT_REVIEW eq 1">checked="checked"</if> >
+						<span class="inputword">关闭</span>
+						<input class="icheck" type="radio" name="COMMENT_REVIEW" value="0" <if condition="$data.COMMENT_REVIEW eq 0">checked="checked"</if> >
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">发送被评论邮件：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<span class="inputword">开启</span>
+						<input class="icheck" type="radio" name="COMMENT_SEND_EMAIL" value="1" <if condition="$data.COMMENT_SEND_EMAIL eq 1">checked="checked"</if> >
+						<span class="inputword">关闭</span>
+						<input class="icheck" type="radio" name="COMMENT_SEND_EMAIL" value="0" <if condition="$data.COMMENT_SEND_EMAIL eq 0">checked="checked"</if>>
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">接收评论通知邮箱：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+					<input type="text" class="input-text" name="EMAIL_RECEIVE" value="{$data['EMAIL_RECEIVE']}" >
+						 
+					</div>
+				</div>
+				
+			</div>
+			<div class="tabCon">
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">APP版本：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" class="input-text" name="APP_VERSION" value="{$data['APP_VERSION']}" >
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">公司客户电话</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" class="input-text" name="APP_PHONE" value="{$data['APP_PHONE']}" >
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">APP描述</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						
+						<textarea class="textarea"  name="APP_INFO" >{$data['APP_INFO']}</textarea>
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">官网</label>
+					<div class="formControls col-xs-8 col-sm-9">
+					<input type="text" class="input-text" name="APP_URL" value="{$data['APP_URL']}" >
+						 
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">公司名称</label>
+					<div class="formControls col-xs-8 col-sm-9">
+					<input type="text" class="input-text" name="APP_COMPANY" value="{$data['APP_COMPANY']}" >
+						 
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">公司地址</label>
+					<div class="formControls col-xs-8 col-sm-9">
+					<input type="text" class="input-text" name="APP_ADDRESS" value="{$data['APP_ADDRESS']}" >
+						 
+					</div>
+				</div>
+				
+			</div>
+			<div class="tabCon">
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">二级账户数量</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" class="input-text" name="ACCOUNT_NUM" value="{$data['ACCOUNT_NUM']}" >
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">合作伙伴数量</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" class="input-text" name="PARTNERS_NUM" value="{$data['PARTNERS_NUM']}" >
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	$.Huitab("#tab-system .tabBar span","#tab-system .tabCon","current","click","0");
+	
+	$("#form-system-add").validate({
+		rules:{
+			url:{
+				required:true,
+				url:true
+			},
+			title:{
+				required:true,
+			},
+			maxTimes:{
+				required:true,
+			},
+			emailName:{
+				required:true,
+				email:true,
+			},
+			smtpIp:{
+				required:true,
+				ip:true
+			},
+			recipientName:{
+				required:true,
+				email:true,
+			},
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+			$.post("{:U('System/index')}",
+				$(form).serialize(), function(data){
+					if(data==1){
+                        //添加数据成功,刷新列表页面的数据
+						layer.msg('修改成功', { icon: 1, time: 2000 ,shade: 0.5},function(){
+						window.location.href="{:U('System/index')}";  //修改成功跳转
+						});
+					}else{
+						layer.msg('修改失败',{icon: 2,time: 2000},function(){
+							window.location.reload();
+						});
+					}
+				})
+		}
+	});
+});
+</script>
+<!--/请在上方写此页面业务相关的脚本-->

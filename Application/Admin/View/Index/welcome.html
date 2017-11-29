@@ -1,0 +1,134 @@
+﻿<layout name="layout" />
+
+<div class="page-container">
+	<p class="f-20 text-success">欢迎使用 </p>
+	<!-- [country] => 中国
+		    [province] => 北京
+		    [city] => 北京 -->	
+	<p>登录次数：<?php echo $_SESSION['login_count'];?></p>
+	<p>上次登录IP：
+	<?php
+		echo $_SESSION['last_login_ip'];
+	 	$arr = GetIpLookup($_SESSION['last_login_ip']); 
+	 	echo '参考地址：'.$arr['country'].'-'.$arr['province'].'-'.$arr['city'];
+
+	 ?>  
+	 上次登录时间：<?php echo date('Y-m-d H:i:s',$_SESSION['last_login_time'])?>
+		
+	 </p>
+	<!-- <table class="table table-border table-bordered table-bg">
+		<thead>
+			<tr>
+				<th colspan="7" scope="col">信息统计</th>
+			</tr>
+			<tr class="text-c">
+				<th>统计</th>
+				<th>资讯库</th>
+				<th>图片库</th>
+				<th>产品库</th>
+				<th>用户</th>
+				<th>管理员</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="text-c">
+				<td>总数</td>
+				<td>92</td>
+				<td>9</td>
+				<td>0</td>
+				<td>8</td>
+				<td>20</td>
+			</tr>
+			<tr class="text-c">
+				<td>今日</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+			</tr>
+			<tr class="text-c">
+				<td>昨日</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+			</tr>
+			<tr class="text-c">
+				<td>本周</td>
+				<td>2</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+			</tr>
+			<tr class="text-c">
+				<td>本月</td>
+				<td>2</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+			</tr>
+		</tbody>
+	</table> -->
+	<table class="table table-border table-bordered table-bg mt-20">
+		<thead>
+			<tr>
+				<th colspan="2" scope="col">系统信息</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td width="30%">WEB服务器</td>
+				<td><span id="lbServerName"><?php echo $_SERVER['SERVER_SOFTWARE'];?></span></td>
+			</tr>
+			<tr>
+				<td>PHP版本</td>
+				<td><?php echo PHP_VERSION;?></td>
+			</tr>
+			
+			<tr>
+				<td>服务器操作系统 </td>
+				<td><?php echo php_uname('s');?></td>
+			</tr>
+			<tr>
+				<td>REGISTER_GLOBALS</td>
+				<td><?php echo ini_get('register_globals') ? '<span style="color:red;">ON</span>' : 'OFF';?></td>
+			</tr>
+			<tr>
+				<td>MAGIC_QUOTES_GPC</td>
+				<td><?php echo MAGIC_QUOTES_GPC ? '<span style="color:red;">ON</span>' : 'OFF';?></td>
+			</tr>
+			<tr>
+				<td>最大上传限制 </td>
+				<td><?php echo ini_get('file_uploads') ? ini_get('upload_max_filesize') : 'Disabled';?></td>
+			</tr>
+			<tr>
+				<td>最大执行时间 </td>
+				<td><?php echo ini_get('max_execution_time').'秒';?></td>
+			</tr>
+			<tr>
+				<td>服务器时间 </td>
+				<td><?php echo date('Y-m-d H:i:s');?></td>
+			</tr>
+			<tr>
+				<td>服务器域名 </td>
+				<td><?php echo $_SERVER['HTTP_HOST'];?></td>
+			</tr>
+			<tr>
+				<td>服务器端口 </td>
+				<td><?php echo $_SERVER['SERVER_PORT'];?></td>
+			</tr>
+			<tr>
+				<td>脚本运行占用最大内存 </td>
+				<td><?php echo get_cfg_var('memory_limit') ? get_cfg_var('memory_limit') : '---';?></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+
+</body>
+</html>

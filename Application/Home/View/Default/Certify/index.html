@@ -1,0 +1,214 @@
+<layout name="layout" />
+
+<div class="page-content">
+
+	<h3 class="page-title">
+	认证管理
+	</h3>
+	<div class="page-bar">
+		<ul class="page-breadcrumb">
+			<li>
+				<i class="fa fa-home"></i>
+				<a href="#">首页</a>
+				<i class="fa fa-angle-right"></i>
+			</li>
+			<li>
+				认证管理
+			
+			</li>
+			
+		</ul>
+		
+	</div>
+
+<!--中间部分-->
+<!-- BEGIN PAGE CONTENT-->
+ <div class="tabbable-custom tabbable-full-width">
+		<switch name="info[0]['is_cert']">
+				<case value="3">
+				<ul class="nav nav-tabs">
+					<li class="active">
+						<a href="{:U('Certify/index')}" ><i class="fa fa-tags"></i>认证审核中</a>
+					</li>
+				</ul>
+			</case>
+			<case value="2">
+				<ul class="nav nav-tabs">
+					<li class="active">
+						<a href="{:U('Certify/index')}"><i class="fa fa-tag"></i> 企业认证 </a>
+					</li>
+				
+				</ul>
+			</case>
+			<default />
+				<ul class="nav nav-tabs">
+					<li class="">
+						<a href="{:U('Certify/person')}" ><i class="fa fa-tags"></i>个人认证</a>
+					</li>
+				
+					<li  class="active ">
+						<a href="{:U('Certify/index')}"><i class="fa fa-tag"></i> 企业认证 </a>
+					</li>
+					
+				</ul>
+			</switch>
+			
+			 
+		<div class="portlet-body form" >
+			<switch name="info[0]['is_cert']">
+				<case value="3">
+				   <p class="col-md-12 text-center alert alert-danger">已提交审核，需等待1-2个工作日！</p>
+				</case>
+				<case value="2">
+				  <p class="col-md-12 text-center alert alert-success"><i class="fa glyphicon glyphicon-ok"></i> 已企业认证！</p>
+					<form class="form-horizontal ">
+						 <div class="form-body">
+							<div class="form-group">
+								<label class="col-md-3 control-label">公司名称</label>
+								<div class="col-md-9">
+									<p class="form-control-static">{$cert.company}</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">证书号码</label>
+								<div class="col-md-9">
+									<p class="form-control-static">{$cert.certificate}</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">证书照片</label>
+								<div class="col-md-9">
+									<p class="form-control-static">
+									<!-- <img src="{$cert.certificateimg}" width="100" id="uploadfile" />  -->
+									{:showImg($cert['certificateimg'],100,uploadfile)}
+									<a onmouseover="f_img_preview('uploadfile',this.src)"><i class="glyphicon glyphicon-picture"></i>预览</a>
+									</p>
+								</div>
+							</div>
+							
+						 </div>
+					</form>
+					</case>
+				<default />
+				  <p class="col-md-12 text-center alert alert-danger">完成企业认证即可发布会议，请慎重填写！</p>
+			<form class="form-horizontal"   action="__SELF__" method="post" id="myform" enctype='multipart/form-data'>
+				<div class="form-body">
+					<div class="form-group">
+						<input type="hidden" name="type" value="2" />
+						<label class="col-md-3 control-label">公司名称</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control"  name="company"  placeholder="请输入与营业执照相符的公司名称" datatype="z4-32" nullmsg="请输入与营业执照相符的公司名称" errormsg="请填写4到32个中文字符"   value="">
+							
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">证书号码</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control"  name="certificate" placeholder="请输入营业执照号，15/18位数字或字母组成" datatype="s15-18" nullmsg="请输入营业执照号，15/18位数字或字母组成" errormsg="请填写15/18位数字或字母组成"   value="">
+							
+						</div>
+
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">证件照片</label>
+						<div class="col-md-9">
+							<div id="preview">
+							<img id="imghead" border="0" src="__HOME_IMG__/op-sample.png" width="160" height="100" onclick="$('#previewImg').click();">
+							</div>  
+						<a href="javascript:;" class="fileUploadImage" style="position:absolute; margin-left:200px; margin-top:-65px;">上传图片
+							<input type="file" name="certificateimg" class="btn btn-danger" onchange="previewImage(this)" style="" id="previewImg"  datatype="*" nullmsg="请上传企业证件图片" errormsg="请上传企业证件图片" >
+						</a>
+						</div>
+						
+					</div>
+					
+				<div class="form-actions">
+					<div class="row">
+						<div class="col-md-offset-3 col-md-9">
+							<button type="submit" class="btn green" id="save">保存数据</button>
+							<button type="reset" class="btn default">恢复默认</button>
+						</div>
+					</div>
+				</div>
+			</form>
+			</switch>
+		</div>
+	
+	<!-- END PAGE CONTENT-->
+	<!--中间部分-->
+
+	</div>
+</div>
+	<!-- END CONTENT -->
+	
+</div>
+<script>
+$(function(){
+	$("#myform").Validform({
+		tiptype:4,
+		datatype:{ //传入自定义datatype类型【方式二】;
+			"z4-32" : /^[\u4E00-\u9FA5\uf900-\ufa2d]{4,32}$/,
+		}
+	});
+})
+</script>
+<script src="__COMMON_JS__/app_common.js"></script>
+<include file="Public/footer" />
+<script>
+      //图片上传预览    IE是用了滤镜。
+        function previewImage(file)
+        {
+          var MAXWIDTH  = 200; 
+          var MAXHEIGHT = 100;
+          var div = document.getElementById('preview');
+          if (file.files && file.files[0])
+          {
+              div.innerHTML ='<img id=imghead onclick=$("#previewImg").click()>';
+              var img = document.getElementById('imghead');
+              img.onload = function(){
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width  =  rect.width;
+                img.height =  rect.height;
+//                 img.style.marginLeft = rect.left+'px';
+                img.style.marginTop = rect.top+'px';
+              }
+              var reader = new FileReader();
+              reader.onload = function(evt){img.src = evt.target.result;}
+              reader.readAsDataURL(file.files[0]);
+          }
+          else //兼容IE
+          {
+            var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+            file.select();
+            var src = document.selection.createRange().text;
+            div.innerHTML = '<img id=imghead>';
+            var img = document.getElementById('imghead');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+            div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+          }
+        }
+        function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+            var param = {top:0, left:0, width:width, height:height};
+            if( width>maxWidth || height>maxHeight ){
+                rateWidth = width / maxWidth;
+                rateHeight = height / maxHeight;
+                
+                if( rateWidth > rateHeight ){
+                    param.width =  maxWidth;
+                    param.height = Math.round(height / rateWidth);
+                }else{
+                    param.width = Math.round(width / rateHeight);
+                    param.height = maxHeight;
+                }
+            }
+            param.left = Math.round((maxWidth - param.width) / 2);
+            param.top = Math.round((maxHeight - param.height) / 2);
+            return param;
+        }
+
+</script>	
+	
+	
+	

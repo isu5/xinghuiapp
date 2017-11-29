@@ -1,0 +1,326 @@
+<layout name="layout" />
+
+<!--设置时间样式-->
+<webuploadercss />
+<link rel="stylesheet" type="text/css" href="__HOME_CSS__/amazeui.min.css"/>
+<link rel="stylesheet" type="text/css" href="__HOME_CSS__/amazeui.address.css" />
+<link rel="stylesheet" type="text/css" href="__HOME_CSS__/amazeui.datetimepicker.css"/>
+
+<div class="page-content">
+
+	<h3 class="page-title">
+	新建会议
+	</h3>
+	<div class="page-bar">
+		<ul class="page-breadcrumb">
+			<li>
+				<i class="fa fa-home"></i>
+				<a href="#">首页</a>
+				<i class="fa fa-angle-right"></i>
+			</li>
+			<li>
+				新建会议
+			
+			</li>
+			
+		</ul>
+		
+	</div>
+	
+	<!--中间部分-->
+	<!-- BEGIN PAGE CONTENT-->
+	 <div class="tabbable-custom tabbable-full-width">
+	 
+	 <!-----========================================================================-------------------->
+		<ul class="nav nav-tabs">
+			<!-- <li class="active">
+				<a href="javascript:;" ><i class="fa fa-tags"></i>基本信息</a>
+			</li>
+			<li class="">
+				<a href=""><i class="fa fa-tag"></i> 会议简介 </a>
+			</li>
+			<li  class="   ">
+				<a href=""><i class="fa fa-tag"></i> 参会嘉宾</a>
+			</li>
+			<li  class="">
+				<a href=""><i class="fa fa-bell"></i>会议日程 </a>
+			</li>
+			<li  class="">
+				<a href=""><i class="fa fa-bell"></i>参会指南</a>
+			</li> -->
+		</ul>
+		<div class="portlet-body form" >
+			 
+		
+			<form class="form-horizontal"   action="__SELF__" method="post" id="myform" >
+				<div class="form-body">
+					<div class="form-group">
+						<label class="col-md-3 control-label">会议标题</label>
+						<div class="col-md-5">
+							<input type="text" class="form-control"  name="title" datatype="*" nullmsg="请输入会议标题" errormsg="会议标题输入有误" value="">
+							
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-md-3 control-label">会议类型</label>
+						<div class="col-md-9">
+							<select class="form-control input-medium" name="cid">
+								<option value="">请选择</option>
+								<volist name="cate" id="v">
+									<if condition="$v.id eq 1">
+									<else />
+									<option value="{$v.id}">{$v['_name']}{$v['catename']}</option>
+									</if>
+								</volist>
+							</select>
+						</div>
+						
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">举办公司</label>
+						<div class="col-md-5">
+							<input type="text" class="form-control"  name="companyname" value="{$cert.company}">
+							
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">起始时间</label>
+						<div class="col-md-5">
+							<input size="16" type="text" value="" readonly class="form-datetime am-form-field" name="ctime" datatype="*" nullmsg="会议开始时间不能为空" errormsg="请选择会议开始时间">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label"></label>
+						<div class="col-md-5">
+							
+							  <input size="16" type="text" value="" readonly class="form-datetime am-form-field" name="etime"plugin="datetimepicker" datatype="*" nullmsg="会议结束时间不能为空" errormsg="请选择会议结束时间">
+							 
+						</div>
+						
+					</div>
+					<!-- <div class="form-group">
+						<label class="col-md-3 control-label">报名截止</label>
+						<div class="col-md-5">
+							<input size="16" type="text" value="" readonly class="form-datetime am-form-field" name="btime"plugin="datetimepicker" datatype="*" nullmsg="报名截止时间不能为空" errormsg="请选择报名截止时间">
+						</div>
+					</div> -->
+					<div class="form-group">
+						<label class="col-md-3 control-label">报名截止</label>
+						<div class="col-md-5">
+							<input size="16" type="text" value="" readonly class="form-datetime am-form-field" name="qtime"plugin="datetimepicker" datatype="*" nullmsg="会议签到时间不能为空" errormsg="请选择会议签到时间">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">举办地址</label>
+						<div class="col-md-5" id="address2">
+								<input readonly type="text" name="address" class="am-form-field am-radius" placeholder="请选择地址" required="" value="北京北京市石景山区">
+								
+							</div>
+					</div>
+				   <div class="form-group">
+						<label class="col-md-3 control-label">详细地址</label>
+						<div class="col-md-5">
+							<input type="text" class="form-control"  name="xxaddress" value="" placeholder="请填写详细地址" datatype="*" nullmsg="详细地址不能为空" errormsg="请填写正确的地址">
+							
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">联系人</label>
+						<div class="col-md-5">
+							<input type="text" class="form-control"  name="contact" value="" placeholder="请填写联系人姓名"  datatype="*" nullmsg="联系人不能为空" errormsg="请填写正确的联系人姓名">
+							
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">联系人手机号</label>
+						<div class="col-md-5">
+							<input type="text" class="form-control"  name="phone" value="" placeholder="请填写联系人手机号"  datatype="m" nullmsg="联系人电话不能为空" errormsg="请填写正确的联系人手机号码">
+							
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-md-3 control-label">会议图片</label>
+						<div class="col-md-5"> 
+							<webuploaderavatar name="companypic" url="{:U('Attachment/ajax_upload')}" word="或将照片拖到这里，最多可选1张"/> 
+						</div>	
+						
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">资料附件</label>
+						<div class="col-md-5">
+							 <webuploaderfile name="downfile" url="{:U('Attachment/file_upload')}" word="或将文件拖到这里，最多可选3个"/> 
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-md-3 control-label">会议规模</label>
+						<div class="col-md-5">
+							
+							<input type="text" class="form-control"  name="scale" placeholder="请输入最多会议人数" datatype="n" nullmsg="请输入最多会议人数,必须为数字" errormsg="请填写最多会议人数数字" value="">
+						</div>	
+						
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-3 control-label">是否审核参会人员</label>
+						<div class="col-md-9">
+							<select class="form-control input-medium" name="is_user">
+								<option value="0">不审核</option>
+								<option value="1">审核</option>
+								
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-md-3 control-label">会议简介</label>
+						<div class="col-md-8" style="width:90%">
+							<textarea type="text" id="UMeditor1" name="brief" value="" style="z-index:999"></textarea>
+						</div>	
+						
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">会议日程</label>
+						<div class="col-md-8" style="width:90%">
+							<textarea type="text" id="UMeditor2" name="agenda" value="" style="z-index:999"></textarea>
+						</div>		
+						
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">会议嘉宾</label>
+						<div class="col-md-8" style="width:90%">
+							<textarea type="text" id="UMeditor3" name="guests" value="" style="z-index:999"></textarea>
+						</div>		
+						
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">参会指南</label>
+						<div class="col-md-8" style="width:90%">
+							<textarea type="text" id="UMeditor4" name="guide" value="" style="z-index:999"></textarea>
+						</div>		
+						
+					</div>
+						
+					<div class="form-actions">
+						<div class="row">
+							<div class="col-md-offset-3 col-md-9">
+								<button type="submit" class="btn green" id="save">保存数据</button>
+								<button type="reset" class="btn default">恢复默认</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			
+		</div>
+		<!-- END PAGE CONTENT-->
+		<!--中间部分-->
+	</div>
+	<!-- END CONTENT -->
+	
+</div>
+<script type="text/javascript">
+$(function() {     
+
+	var demo = $("#myform").Validform({
+		tiptype:4,
+		label:".label",
+		showAllError:true,		
+		usePlugin:{
+			datetimepicker:{}
+		},
+	});
+	demo.addRule([{
+		ele:"select",
+		datatype:"*",
+	}]);
+})		
+</script>
+
+<!----编辑器设置s--->
+ 
+<link href="__STATICS__/ueditor/themes/default/css/ueditor.min.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="__STATICS__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__STATICS__/ueditor/ueditor.all.js"></script>
+<script type="text/javascript" src="__STATICS__/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+<script type="text/javascript">
+ 
+UE.getEditor('UMeditor1', {
+	initialFrameWidth : "75%",
+	initialFrameHeight : 200
+});
+UE.getEditor('UMeditor2', {
+	initialFrameWidth : "75%",
+	initialFrameHeight : 200
+});
+UE.getEditor('UMeditor3', {
+	initialFrameWidth : "75%",
+	initialFrameHeight : 200
+}); 
+UE.getEditor('UMeditor4', {
+	initialFrameWidth : "75%",
+	initialFrameHeight : 200
+});
+</script>
+
+<!----编辑器设置e--->
+
+<include file="Public/footer" />
+
+<script src="__HOME_JS__/amazeui.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__HOME_JS__/iscroll.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__HOME_JS__/address.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+	$(function() {
+		document.addEventListener('touchmove', function (e) {
+			e.preventDefault();
+		}, false);
+
+		//城市多级联动
+		$("#address2").address({
+			prov: "北京石",
+			city: "北京市",
+			district: "景山区",
+			scrollToCenter: true,
+			footer: true,
+			
+		});
+
+
+});
+
+</script>
+<!--设置时间js-->
+<script src="__HOME_JS__/amazeui.datetimepicker.min.js"></script>
+<script src="__HOME_JS__/amazeui.datetimepicker.zh-CN.js"></script>
+<script>
+(function($){
+  // 也可以在页面中引入 amazeui.datetimepicker.zh-CN.js
+  $.fn.datetimepicker.dates['zh-CN'] = {
+    days: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"],
+    daysShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+    daysMin:  ["日", "一", "二", "三", "四", "五", "六", "日"],
+    months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+    monthsShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+    today: "今日",
+    suffix: [],
+    meridiem: ["上午", "下午"]
+  };
+
+  $('.form-datetime').datetimepicker({
+    language:  'zh-CN',
+    format: 'yyyy-mm-dd hh:ii'
+  });
+ 
+
+}(jQuery));
+</script>
+<webuploaderjs />
+	
+	
+	
+	

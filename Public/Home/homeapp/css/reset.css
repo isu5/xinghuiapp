@@ -1,0 +1,16 @@
+/**
+*  重置更新css
+*/
+.txt-tzht,.txt-tzht-jgpush{
+	float:left;
+	font-size:24px;
+	color:#fff;
+	
+}
+
+.txt-tzht p,.txt-tzht-jgpush p{font-size:18px;color:#FF6022}
+.txt-tzht-jgpush{
+	height: 111px;
+    
+    width: 492px;
+}

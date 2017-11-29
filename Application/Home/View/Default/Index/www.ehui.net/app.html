@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html><head>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="utf-8">
+<link type="text/css" rel="stylesheet" href="css/css.css">
+<title>易会管家_办会助手</title>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+<div class="box">
+	<div class="main-box">
+		
+		<div class="header">
+			<a href="" class="logo">
+				<img src="images/logo.png">
+			</a>					
+			<div class="language">
+				<a href="index.html" class="chinese"></a>
+				<a href="index_en.html" class="english"></a>
+			</div>
+		</div>
+		
+		<div class="content">
+			<div class="pc">
+				<h1>易会管家</h1>
+				<img src="images/pic.png"/>
+			</div>
+			<div class="pc-btn">
+				<h1>易会管家</h1>
+				<div class="btn-img">
+					<img src="images/erweima.png"/>
+					<a href="https://itunes.apple.com/us/app/yi-qian-dao/id671715406?mt=8"><img src="images/ios.png"/></a>
+					<a href="https://ehui.net/apps/eqd/eqd.apk" target="_blank"><img src="images/android.png" /></a>
+				</div>				
+			</div>
+			<div class="mobile-btn">
+				<a id="iphone" href="https://itunes.apple.com/us/app/yi-qian-dao/id671715406?mt=8">
+					<img src="images/ios.png"/>
+				</a>
+				<a id="android" href="https://ehui.net/apps/eqd/eqd.apk" target="_blank">
+					<img src="images/android.png" />
+				</a>
+			</div>
+		</div>	
+	</div>
+	<div class="footer">
+		&copy;2015 Ehui Co., Ltd.
+	</div>	
+</div>
+<!--弹窗-->
+<div class="popup">
+	<div class="popup_bg"></div>
+	<div class="tishi_pop">
+		<img src="images/popup.png" />
+	</div>
+	<div class="tishi_pop2">
+		<img src="images/popup2.png" />
+	</div>
+</div>
+
+<script type="text/javascript">
+//微信显示右上交按钮
+function onBridgeReady(){
+    WeixinJSBridge.call('showOptionMenu');
+}
+if (typeof WeixinJSBridge == "undefined"){
+    if (document.addEventListener) {
+        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    } else if (document.attachEvent) {
+        document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    }
+} else {
+    onBridgeReady();
+};
+
+(function () {
+	//var IPHONEURL = "";
+	//var WINPHONEURL = "";
+	//var ANDROIDURL = "";
+	//var PCURL = '';
+	//var DOWNLOADTIPURL = '';
+	var CURRENTURL = '';
+	var isMobile = 0;
+	var platForm = '';
+	var page = {};
+	var UA = navigator.userAgent.toLowerCase();
+
+	var iOS5 = navigator.userAgent.match("OS 5_");
+	if (typeof ontouchstart != "undefined" && typeof ontouchend != "undefined") {
+		var touchStartOrClick = "touchstart",
+			touchEndOrClick = "touchend";
+	} else {
+		var touchStartOrClick = "click",
+			touchEndOrClick = "click";
+	}
+
+	page.init = function () {
+		page.initView();
+		page.initEvent();		
+	};
+
+	page.initView = function() {
+		if (UA.indexOf('windows phone') != -1) {			
+			//CURRENTURL = WINPHONEURL;
+			isMobile = 3;
+			platForm = 'winphone';
+		}else if (UA.indexOf('iphone') != -1) {
+						
+			//CURRENTURL = IPHONEURL;
+			isMobile = 2;
+			platForm = 'iphone';
+		} else if (UA.indexOf('android') != -1) {
+						
+			//CURRENTURL = ANDROIDURL;
+			isMobile = 1;
+			platForm = 'android';
+		} else {
+			//$('#js-doc').addClass('pc');
+			//CURRENTURL = PCURL;
+			isMobile = 0;
+			platForm = 'pc';
+		}
+	};
+
+	page.initEvent = function () {
+		if (page.isWinXin() && (isMobile==2)) {
+			$("#iphone").bind(touchStartOrClick, this.showDownloadTip);
+			
+			$("#iphone").bind(touchStartOrClick, this.popupIphoneShow);
+			$("#android").bind(touchStartOrClick, this.popupIphoneShow);
+			$(".popup_bg").bind(touchStartOrClick, this.popupHide);
+		}
+		
+		if(page.isWinXin() && (isMobile==1)){
+			$("#iphone").bind(touchStartOrClick, this.popupAndroidShow);
+			$("#android").bind(touchStartOrClick, this.popupAndroidShow);
+			$(".popup_bg").bind(touchStartOrClick, this.popupHide);
+		}
+	};
+	
+	page.isWinXin = function isWinXin() {
+		var _hash = location.hash;
+		if (_hash.length > 0) {
+			return false;
+		} else {
+			return UA.indexOf('micromessenger') != -1;
+		}
+	};
+
+	page.showDownloadTip = function (event) {
+		event.preventDefault();
+		//window.location.href = DOWNLOADTIPURL;
+	};
+	
+	page.downloadMobile = function (url, event) {
+		event.preventDefault();
+		if (page.isWinXin() && (isMobile==2)) {
+			page.showDownloadTip();
+			return false;
+		}
+    };   
+    page.popupIphoneShow = function iphoneShow(){
+    	$(".popup").show();
+    	$(".tishi_pop").show();
+    	$(".tishi_pop2").hide();
+    };
+    page.popupAndroidShow = function androidShow(){
+    	$(".popup").show();
+    	$(".tishi_pop").hide();
+    	$(".tishi_pop2").show();
+    };
+    
+    page.popupHide = function popupNone(){
+    	$(".popup").hide();
+    };
+    
+	page.init();
+	
+})();
+
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-12323216-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- Head BEGIN -->
+<head>
+    <meta charset="utf-8">
+    <title>新用户注册-幸会</title>
+    <meta content="幸会" name="description">
+    <meta content="幸会" name="keywords">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!-- Global styles START -->
+<link href="__HOME_CSS__/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="__HOME_CSS__/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!-- Global styles END -->
+<!-- form-start -->
+<link href="__HOME_CSS__/uniform.default.css" rel="stylesheet" type="text/css">
+<link href="__HOME_CSS__/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+<!-- form-end -->
+<!-- Theme styles START -->
+<link href="__HOME_CSS__/components.css" rel="stylesheet" type="text/css" />
+<link href="__HOME_CSS__/style.css" rel="stylesheet" type="text/css" />
+<!-- metronic revo slider styles -->
+<link href="__HOME_CSS__/custom.css" rel="stylesheet" type="text/css" />
+<script src="__HOME_JS__/jquery.min.js" type="text/javascript"></script>
+<script src="__HOME_JS__/form.validate.js" type="text/javascript"></script>
+<!-- Theme styles END -->
+<link rel="icon" href="http://static.pedaily.cn/app/newseed/favicon.ico" mce_href="http://static.pedaily.cn/app/newseed/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://static.pedaily.cn/app/newseed/favicon.ico" mce_href="http://static.pedaily.cn/app/newseed/favicon.ico" type="image/x-icon"/>
+<meta name="apple-mobile-web-app-title" content="新芽">
+<!-- <link rel="apple-touch-icon" href="http://static.pedaily.cn/app/newseed/touch-icon-iphone.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="http://static.pedaily.cn/app/newseed/touch-icon-ipad.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="http://static.pedaily.cn/app/newseed/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="http://static.pedaily.cn/app/newseed/touch-icon-ipad-retina.png" />
+ -->
+</head>
+<!-- Head END -->
+<!-- Body BEGIN -->
+<body class="corporate mutual">
+<div class="login">
+    <div class="login-top">
+        <a href="{$Think.CONFIG.WEB_URL}">
+            <img src="__XHAPP__/images/xhui_logo.png" alt="幸会" >
+        </a>
+        <p class="title">注册</p>
+        <p class="slogan">幸会！您的专用会议APP！</p>
+    </div>
+    <form class="form-horizontal login-form" id="reg_form" action="__SELF__" method="post">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <input type="email" id="email" name="email" data-rules="required:true$email:true$checkEmail:true" data-errors="required:请填写您的邮箱$email:请填写正确格式的邮箱$checkEmail:邮箱已被占用，请使用其他邮箱注册" class="form-control required" placeholder="请输入您的邮箱地址">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <input type="password" id="pass" data-rules="required:true$minlength:9$maxlength:50" data-errors="required:密码不能为空$minlength:密码长度9~30位$maxlength:密码长度9~30位" class="form-control required" placeholder="密码">
+                <input type="hidden" id="password" name="password">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <input type="password" id="rpass" data-rules="required:true$equalTo:#pass" data-errors="required:确认密码不能为空$equalTo:两次输入不一致" class="form-control required" placeholder="确认密码">
+            </div>
+        </div>
+       
+        <div class="form-group">
+            <div class="col-sm-12">
+                <input type="button"  class="btn red btn-xlarge btn-block submit" value="立即注册">
+                <div class="form-error" id="reg_error"></div>
+            </div>
+        </div>
+        <div class="form-check">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="agree" id="agree" checked="checked" value="1"/>同意
+                    <a href="#" target="_blank" class="font-blue">《网站注册协议》</a>
+                </label>
+                <a href="{:U('Login/index')}" class="pull-right">立即登录</a>
+            </div>
+        </div>
+    </form>
+</div>
+<footer>
+    <p class="login-bottom">
+        Copyright &copy;2013-2017 {$Think.CONFIG.APP_COMPANY}  All rights reserved. {$Think.CONFIG.WEB_ICP_NUMBER}　
+    </p>
+</footer>
+<script src="__HOME_JS__/bootstrap.min.js" type="text/javascript"></script>
+<script src="__HOME_JS__/back-to-top.js" type="text/javascript"></script>
+<script src="__HOME_JS__/sha1.js" type="text/javascript"></script>
+<script src="__HOME_JS__/command.js" type="text/javascript"></script>
+<script src="__HOME_JS__/form-wizard.js" type="text/javascript"></script>
+<script src="__HOME_JS__/dictionary.js" type="text/javascript"></script>
+<script src="__HOME_JS__/jquery.validate.min.js" type="text/javascript"></script>
+<script src="__HOME_JS__/metronic.js" type="text/javascript"></script>
+<script src="__HOME_JS__/common.js" type="text/javascript"></script>
+<script src="__HOME_JS__/additional-methods.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="__ADMIN_LIB__/layer/2.1/layer.js"></script>
+<!-- END CORE PLUGINS -->
+<!--form-->
+
+<!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+<!-- slvcider for products -->
+<script>
+    $(function() {
+        var adtersubmit;
+        
+        $('#reg_form').fromvalidate({
+            btnmsg: '正在注册，请稍候...',
+            errordiv: 'reg_error',
+
+            beforesubmit: function() {
+                if (!$('#agree').is(':checked')) {
+                    $('#reg_error').html('请同意网站注册协议');
+                    return false;
+                }
+                return true;
+            },
+            aftersubmit: function(data) {
+                if (data.code == 1) {
+
+                   layer.msg('恭喜您，注册成功！', {icon: data.code, time: 2000, },function(){
+                        window.location.href= "{:U('Register/regSuccess')}";
+                     });
+                }
+            }
+        });
+       
+
+
+        $('#reg_form #pass').change(function() {
+            $('#reg_form #password').val(hex_sha1($(this).val()));
+        });
+
+       
+    });
+
+  
+
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<layout name="layout" />
+
+<article class="page-container">
+	<form action="__SELF__" method="post" class="form form-horizontal" id="form-pri-add">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>上级权限：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<span class="select-box inline">
+					<select name="pid" class="select">
+						<option value="0">顶级权限</option>
+						
+						<volist name="data" id="v">
+							<option value="{$v.id}">{$v['_name']}{$v['pri_name']}</option>
+						</volist>
+					</select>
+				</span> 
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>权限名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="roleName" name="pri_name" datatype="*4-16" nullmsg="权限名称不能为空">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">权限链接：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="Index/index" id="" name="name_url">
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">图标:</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="icon-home" id="" name="icon">
+				不知怎么添加，可移步至 <a href="http://www.bootcss.com/p/font-awesome/" target="_blank" class="btn btn-warning radius">图标参照表 </a>
+			</div>
+			
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">排序</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="请填写整数数字，数字越大越排在前" id="" name="sort">
+			</div>
+			
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">是否显示：</label>
+			
+			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
+				<div class="radio-box">
+					<input type="radio" id="sex-1" name="status" value="1" checked>
+						<label for="sex-1">显示</label>
+				</div>
+				<div class="radio-box">
+					<input type="radio" id="sex-2" name="status" value="0">
+						<label for="sex-2">隐藏</label>
+				</div>
+			</div>
+			
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+			</div>
+		</div>
+	</form>
+</article>
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+$(function(){
+
+	$("#form-pri-add").validate({
+		rules:{
+			pri_name:{
+				required:true,
+			},
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+			$.post("{:U('Privilege/add')}",
+				$(form).serialize(), function(data){
+					if(data==1){
+                        //添加数据成功，关闭弹出窗之前，刷新列表页面的数据
+						layer.msg('添加成功', { icon: 1, time: 2000 ,shade: 0.5},function(){
+						parent.window.location.href= "{:U('Privilege/index')}";
+						var index = parent.layer.getFrameIndex(window.name);
+						parent.layer.close(index);
+						});
+                        
+                    }else{
+                        layer.msg('添加失败', {icon: 2, time: 2000,shade: 0.5 });
+                    }
+				});
+		}
+	});
+});
+</script>
+<!--/请在上方写此页面业务相关的脚本-->

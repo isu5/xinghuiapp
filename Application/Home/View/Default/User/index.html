@@ -1,0 +1,189 @@
+<include file="Public/header" />
+
+
+<body class="page-header-fixed page-quick-sidebar-over-content ">
+<!-- BEGIN HEADER -->
+<div class="page-header navbar navbar-fixed-top">
+	<!-- BEGIN HEADER INNER -->
+	<div class="page-header-inner">
+		<!-- BEGIN LOGO -->
+		<div class="page-logo">
+			会员中心
+			<div class="menu-toggler sidebar-toggler  ">
+				<!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+                
+			</div>
+            
+		</div>
+		<!-- END LOGO -->
+		<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+		<a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+		</a>
+        
+		<!-- <a class="navbar-brand disabled" href="#" style="text-align:center;width: 150px; height:45px;background: #4E5966;">
+			&nbsp;&nbsp;&nbsp;<span style="color: #fff;">PC版管理</span>
+		</a>
+		
+		<a class="navbar-brand" href="#" style="text-align:center;width: 150px;height:45px;">
+			&nbsp;&nbsp;&nbsp;<span style="color: #fff;">APP管理</span>
+		</a> -->
+		<!-- END RESPONSIVE MENU TOGGLER -->
+		<!-- BEGIN TOP NAVIGATION MENU -->
+		<include file="Public/top" />
+		<!-- END TOP NAVIGATION MENU -->
+	</div>
+	<!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->
+<div class="clearfix">
+</div>
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+	<!-- BEGIN SIDEBAR -->
+	<div class="page-sidebar-wrapper">
+		<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+		<!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+		
+		<include file="Public/menu" />
+		
+		
+		
+		
+	</div>
+	<!-- END SIDEBAR -->
+	
+	<!--中部开始--->
+	
+	<script src="__HOME_JS__/echarts.min.js"></script>
+	<!-- BEGIN CONTENT -->
+	<div class="page-content-wrapper">
+		<div class="page-content">
+			
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			
+			<!-- END STYLE CUSTOMIZER -->
+			<!-- BEGIN PAGE HEADER-->
+			<h3 class="page-title">
+			会员中心首页
+			</h3>
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li>
+						<i class="fa fa-home"></i>
+						<a href="#">首页</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						会员中心首页
+					
+					</li>
+					
+				</ul>
+				
+			</div>
+			<!-- END PAGE HEADER-->
+			<!-- BEGIN PAGE CONTENT-->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="note note-success">
+                    <span style="margin-right:8px;">快捷操作:</span>
+                        
+						
+						<switch name="info[0]['is_cert']">
+							<case value="2">
+								<a href="{:U('Conference/add')}" class="btn btn-primary "><b>添加会议</b></a>
+								<a href="{:U('Certify/index')}" class="btn btn-primary "><b>实名认证</b></a>
+								<a href="{:U('User/addAccount')}" class="btn btn-primary "><b>添加二级账户</b></a>
+							</case>
+							<case value="1">
+								<a href="{:U('User/info')}" class="btn btn-primary "><b>账户信息</b></a>
+								<a href="{:U('Certify/person')}" class="btn btn-primary "><b>实名认证</b></a>
+							</case>
+							<default />
+							<a href="{:U('User/info')}" class="btn btn-primary "><b>账户信息</b></a>
+							<a href="{:U('Conference/add')}" class="btn btn-primary "><b>添加会议</b></a>
+						</switch>
+						
+						
+
+					</div>
+				</div>
+			</div>
+			<!-- END PAGE CONTENT-->
+            
+            <div  class="charts">
+            <!--charts-->
+              <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main"  class="page-bar" style=" margin:0 auto;height:400px; margin-top:25px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+    title: {
+        text: '会议发布统计'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['会议发布','参会人员审核']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'会议发布',
+            type:'line',
+            stack: '总量',
+            data:['']
+        },
+        {
+            name:'参会人员审核',
+            type:'line',
+            stack: '总量',
+            data:['']
+        }
+       
+    ]
+};
+
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+            <!--endcharts-->
+            </div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+	
+</div>
+		
+<!-- END CONTAINER -->
+
+
+
+
+<include file="Public/footer" />
+	
+	
