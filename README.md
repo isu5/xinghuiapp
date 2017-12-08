@@ -1,4 +1,4 @@
-##APP
+#APP
 Thinkphp 3.2.3 RBAC权限 + H-ui后台 
 #登录
 使用Validform验证，用户名密码，验证码是否正确，layer弹窗成功or失败返回
