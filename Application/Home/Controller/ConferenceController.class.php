@@ -109,17 +109,25 @@ class ConferenceController extends PublicController{
 		$cate = $this->cate->getTree();
 		
 		$data = $this->model->where(array('id'=>$id))->find();
+		//p($data);
+		//资料文档array_filter(explode(',', $data['downfile']));json_decode($data['downfile'],true)
+		$row['downfile'] = json_decode($data['downfile'],true);
+		$row['downfileArr'] = array_filter(explode('###', $row['downfile']));
+		//p($row['downfileArr']);
+		//p($row);
 		//修改时，获取的认证公司
 		$cert = D('Certify')->field('company')->where('uid='.$uid)->find();
 		//p($cert);
 		
 		$this->assign(array(
 			'cate'=>$cate,
+			'row' =>$row,
 			'data'=>$data,
 			'cert'=>$cert
-		)
+			)
 		
 		);
+		//p($data);
 		
 		$this->display();
 	}

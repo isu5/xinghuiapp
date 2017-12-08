@@ -37,7 +37,7 @@ class AttachmentController extends PublicController{
      * 百度文件上传
      */
     public function file_upload(){
-    	ajax_upload('/file/');
+    	file_upload('/file/');
     }
 	
 	//企业产品图片上传
@@ -49,6 +49,14 @@ class AttachmentController extends PublicController{
 	public function conf_upload(){
 		ajax_upload('/conference/');
 		
+	}
+	
+	//资料文件删除
+	public function delFile(){
+		$file = $_POST['downfile'];
+		if(file_exists($file)){
+			unlink($file);
+		}
 	}
 }
 ?>

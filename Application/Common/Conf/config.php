@@ -20,7 +20,7 @@ return array(
 		'__HOME_FONTS__'        => 	__ROOT__. '/Public/Home/fonts',
 		'__COMMON_JS__'			=>  __ROOT__.'/Public/Common', 		//公共js
 		'__UP__'				=>  __ROOT__.'/Public/uploadify',   //上传插件uploadify
-		'__STATICS__'			=>  __ROOT__.'/Public/statics',   //上传插件uploadify
+		'__STATICS__'			=>  __ROOT__.'/Public/statics',   //
 		'__ZUI__'				=>  __ROOT__.'/Public/Home/zui',   //zui前端框架库
 		'__HOMEAPP__'			=>  __ROOT__.'/Public/Home/homeapp',   //zui前端框架库
 		
@@ -28,6 +28,7 @@ return array(
 		
 		'__XHAPP__'				=>  __ROOT__.'/Public/Home/xhapp',   //xhapp前台页面
 		'__HDJS__'				=>  __ROOT__.'/Public/Home/hdjs_modules',   //hdjs
+		'__PLUPLOAD__'				=>  __ROOT__.'/Public/plupload',   //上传插件plupload
 		
 	
 	),
