@@ -30,7 +30,7 @@ class UserpartnersModel extends BaseModel{
 		 }
 
 		$data['data'] = $this
-		->field('id,companyname,phone,email,address,logo,area,website,profile')
+		->field('id,companyname,phone,email,address,logo,area,website,profile,type')
 		->where($where)
 		->limit(($curpage - 1) * $showrow.','.$showrow)
 		->order('id desc')
@@ -44,7 +44,7 @@ class UserpartnersModel extends BaseModel{
 		$where = [];
 		$where['id'] = I('post.id');
 		$data['data'] = $this
-		->field('id,companyname,phone,email,address,logo,area,website,profile')
+		->field('id,companyname,phone,email,address,logo,area,website,profile,type')
 		->where($where)
 		->order('id desc')
 		->find();

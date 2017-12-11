@@ -20,7 +20,7 @@ return array(
 		'__HOME_FONTS__'        => 	__ROOT__. '/Public/Home/fonts',
 		'__COMMON_JS__'			=>  __ROOT__.'/Public/Common', 		//公共js
 		'__UP__'				=>  __ROOT__.'/Public/uploadify',   //上传插件uploadify
-		'__STATICS__'			=>  __ROOT__.'/Public/statics',   //
+		'__STATICS__'			=>  __ROOT__.'/Public/statics',   //上传插件uploadify
 		'__ZUI__'				=>  __ROOT__.'/Public/Home/zui',   //zui前端框架库
 		'__HOMEAPP__'			=>  __ROOT__.'/Public/Home/homeapp',   //zui前端框架库
 		
@@ -28,6 +28,7 @@ return array(
 		
 		'__XHAPP__'				=>  __ROOT__.'/Public/Home/xhapp',   //xhapp前台页面
 		'__HDJS__'				=>  __ROOT__.'/Public/Home/hdjs_modules',   //hdjs
+		
 		'__PLUPLOAD__'				=>  __ROOT__.'/Public/plupload',   //上传插件plupload
 		
 	
@@ -45,6 +46,7 @@ return array(
     	'exts' => array('jpg', 'gif', 'png', 'jpeg'),
     	'rootPath' => './Uploads/',  // 上传图片的保存路径  -> PHP要使用的路径，硬盘上的路径
     	'savePath' => '/Uploads/',   // 显示图片时的路径    -> 浏览器用的路径，相对网站根目录
+    	'saveName' => '',   // 保存原来的文件名称
     ),
 	//***********************************其他设置**********************************
     'RONG_IS_DEV'            => true,//是否是在开发中

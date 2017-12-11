@@ -23,7 +23,7 @@ class ConferenceController extends PublicController{
 	
 	
 	
-	//发布的会议
+	//发布的会议列表
     public function index(){
         
     	$data = $this->model->sendConf();
@@ -372,6 +372,41 @@ class ConferenceController extends PublicController{
 		
 	}
 	
+	//会议修改
+	public function edit(){
+		$data['id'] = I('post.id');
+		if(IS_POST){
+			if ($this->model->create(I('post.',2))) {
+				
+				if ($this->model->save() != FALSE) {
+					
+					Response::show(200,'修改成功');
+				}else{
+					
+					Response::show(401,'修改失败');
+				}
+			}else{
+				
+				Response::show(402,$this->model->getError());
+			}
+		}
+	}
+	
+	
+	//修改会议资料
+	public function editFiles(){
+		$data['conf_id'] = I('post.conf_id');
+		$data['downfile'] = I('post.downfile');
+		$info = $this->model->field('downfile')->where(array('id'=>$data['conf_id']))->find();
+		$file = json_decode($info['downfile']);
+		foreach($file as $k=>$v){
+			$v[$k] = I('post.downfile');
+		}
+		
+		p($v[$k]);
+		
+	}
+	
 	
 	
 	//返回立即参会状态
@@ -618,14 +653,14 @@ class ConferenceController extends PublicController{
 		if(IS_POST){
 			$post = $myaudit->where(array('conf_id'=>$data['conf_id']))->delete();
 			$conf = $this->model->where(array('id'=>$data['conf_id']))->delete();
-			
-			if($post && $conf ){
-				return Response::show(200,'删除成功!');
+			($post || $conf) ? Response::show(200,'删除成功!'):Response::show(401,'删除失败!');
+			/* if($post){
+				Response::show(200,'删除成功!');
 				
 			}else{
 				
 				Response::show(401,'删除失败!');
-			}
+			}  */
 		}
 	}
 	

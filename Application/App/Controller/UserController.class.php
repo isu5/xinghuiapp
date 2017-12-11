@@ -48,16 +48,20 @@ class UserController extends PublicController{
 	public function certStatus(){
 		$data['uid'] = I('post.user_id');
 		$cert = D('Certify');
-		$iscert = $cert->where(array('uid'=>$data['uid']))->find();
+		$iscert=$cert->where(array('uid'=>$data['uid']))->find();
+		//企业
+		$comiscert = $cert->field('company,certificate,certificateimg,certtime,type,is_cert')->where(array('uid'=>$data['uid']))->find();
 		
+		//个人
+		$personcert = $cert->field('uid,realname,idcard,front,back,certtime,type,is_cert')->where(array('uid'=>$data['uid']))->find();
 		if(IS_POST){
 			if($iscert['is_cert'] == 3){
 				Response::show(401,'您的申请已提交，正在审核中，请耐心等待!');
 				
 			}elseif($iscert['is_cert'] == 2){
-				Response::show(200,'恭喜您，您已通过企业认证审核!');
+				Response::show(200,'恭喜您，您已通过企业认证审核!',$comiscert);
 			}elseif($iscert['is_cert'] == 1){
-				Response::show(201,'恭喜您，您已通过个人实名认证审核!');
+				Response::show(201,'恭喜您，您已通过个人实名认证审核!',$personcert);
 			}elseif($iscert['is_cert'] == 4){
 				
 				Response::show(402,'您提交的审核信息不符合要求，请重新提交!',$iscert);

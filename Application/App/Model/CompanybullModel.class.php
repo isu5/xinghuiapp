@@ -41,7 +41,8 @@ class CompanybullModel extends BaseModel{
 	public function _before_insert(&$data, $option){
 		$data['addtime'] = time();
 		$data['user_id'] = I('post.user_id');
-		$data['pic']= json_encode(app_upload_image('/Uploads/Companybull'));
+		$data['pic'] = json_encode(app_upload_image('/Uploads/Companybull'));
+		$data['file'] = json_encode(app_upload_file('/Uploads/Companybull/file'));
 	}
 	
 	//

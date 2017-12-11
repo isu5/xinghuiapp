@@ -59,7 +59,10 @@ class LoginController extends Controller{
 					cookie("username",$user['username']);
 					cookie("useremail",$user['email']);
 					cookie("userphone",$user['phone']);
-					$code = ['code'=>1]; //登录成功
+					//登录成功
+					$code = ['code'=>1]; 
+					//添加日志
+					addlog('登录成功!');
 				}else{
 					//用户名或者密码错误
 				//	p($user['level']);	
@@ -120,9 +123,11 @@ class LoginController extends Controller{
 
 	//用户退出
 		public function logout(){
+			
 			cookie('userid',null);
 			cookie('username',null);
 			cookie('useremail',null);
+			cookie('userphone',null);
 			
 			redirect(U('Login/index'));
 		}

@@ -221,20 +221,43 @@ class ConferenceModel extends RelationModel{
 		return $data;
 	}
 
-
-
-
-
+	//插入前操作
 	public function _before_insert(&$data, $option){
 		
-		$data['downfile'] = json_encode(I('post.downfile'));
 		$data['uid'] = I('post.uid');
 		$data['addtime'] = time();
+		if (isset($_FILES['companypic']) && $_FILES['companypic']['error'] == 0) {
+			$ret = uploadOne('companypic','Conference',array());
+			if($ret['ok'] == 1){
+				$data['companypic'] = json_encode($ret['images'][0]);
+			}else{
+				$this->error = $ret['error'];
+				return FALSE;
+			}
+		}
+		
 		//p($data);die;
 		//认证后把公司名称添加到新建会议的表中
 		/* $cert = D('Certify');
 		$info = $cert->field('id,uid,companyname')->where(array( 'uid' =>$data['uid']))->find();
 		p($info); */
+	}
+	
+	
+	//修改之前
+	public function _before_update(&$data, $option){
+		$data['downfile'] = app_upload_file('file');
+		
+		if (isset($_FILES['companypic'])) {
+			$ret = uploadOne('companypic','Conference',array());
+			if($ret['ok'] == 1){
+				$data['companypic'] = json_encode($ret['images'][0]);
+			}else{
+				$this->error = $ret['error'];
+				return FALSE;
+			}
+		}
+		
 	}
 	
 	//筛选条件查询
@@ -304,12 +327,10 @@ class ConferenceModel extends RelationModel{
 		//p($this->getLastSql());die;
 	
 		return $data;
-
-		
-		
-		
 		
 	}
+	
+	
 	
 	
 	

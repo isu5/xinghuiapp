@@ -50,13 +50,5 @@ class AttachmentController extends PublicController{
 		ajax_upload('/conference/');
 		
 	}
-	
-	//资料文件删除
-	public function delFile(){
-		$file = $_POST['downfile'];
-		if(file_exists($file)){
-			unlink($file);
-		}
-	}
 }
 ?>
