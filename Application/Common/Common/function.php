@@ -21,6 +21,43 @@ function p($arr){
 	echo $str;
 	
 }
+//增加日志
+function addlog($log, $name = false)
+{
+    $Model = M('log');
+    if (!$name) {
+       
+        $uid = cookie('userid');
+        if ($uid) {
+            $user = M('User')->field('id,username')->where(array('id' => $uid))->find();
+            $data['user_id'] = $user['id'];
+        } else {
+            $data['user_id'] = '';
+        }
+    } else {
+        $data['user_id'] = $name;
+    }
+    $data['login_time'] = time();
+    $data['login_ip'] = $_SERVER["REMOTE_ADDR"];
+	$arr = GetIpLookup($_SESSION['last_login_ip']); 
+	$data['logout_address']	= $arr['country'].'-'.$arr['province'].'-'.$arr['city'];
+	$data['type'] = 1; //pc
+	if($data['type'] == 1){
+		$res['type'] = "电脑";
+	}else{
+		$res['type'] = "手机";
+	}
+	$data['status'] = 1;  //登录
+	//登录成功!尊敬的用户942546059/010-9989483您好！您使用了电脑在2017-12-08 09:36:15登录地址为中国-北京-北京
+	$info = '尊敬的用户'.cookie(username).'/'.cookie(userphone)."您好！您使用了". $res['type'].date('Y-m-d H:s',$data['login_time']).'登录地址为'.$data['logout_address'];
+    $data['log'] = $log.$info;
+    $Model->data($data)->add();
+}
+
+
+
+
+
 //处理手机号，隐藏中间4位数
 function hidephone($phone){
 	$p = substr($phone,0,3)."****".substr($phone,7,4);
@@ -651,7 +688,34 @@ function app_upload_image($path,$maxSize=52428800){
         return $data;
     }
 }
+/**
+ * app //文件上传
+ * @return string 上传后的图片名
+ */
 
+function app_upload_file($path,$maxSize=52428800){
+    ini_set('max_execution_time', '0');
+    // 去除两边的/
+    $path=trim($path,'.');
+    $path=trim($path,'/');
+    $config=array(
+        'rootPath'  =>'./',         //文件上传保存的根路径
+        'savePath'  =>'./'.$path.'/',   
+        'exts'      => array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'txt','pdf'),
+        'maxSize'   => $maxSize,
+        'autoSub'   => true,
+		'subName'	=> 	array('date','Ymd/H/'.time()),  //生成保存的子目录
+        );
+    $upload = new \Think\Upload($config);// 实例化上传类
+    $info = $upload->upload();
+    if($info) {
+        foreach ($info as $k => $v) {
+            $data['pic']=trim($v['savepath'],'.').$v['savename'];
+            $data['name']=trim($v['name']);
+        }
+        return $data;
+    }
+}
 /**
 * 删除图片
 */
