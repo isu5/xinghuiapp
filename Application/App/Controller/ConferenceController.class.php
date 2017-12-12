@@ -377,12 +377,9 @@ class ConferenceController extends PublicController{
 		$data['id'] = I('post.id');
 		if(IS_POST){
 			if ($this->model->create(I('post.',2))) {
-				
 				if ($this->model->save() != FALSE) {
-					
 					Response::show(200,'修改成功');
 				}else{
-					
 					Response::show(401,'修改失败');
 				}
 			}else{
@@ -395,15 +392,45 @@ class ConferenceController extends PublicController{
 	
 	//修改会议资料
 	public function editFiles(){
-		$data['conf_id'] = I('post.conf_id');
-		$data['downfile'] = I('post.downfile');
-		$info = $this->model->field('downfile')->where(array('id'=>$data['conf_id']))->find();
-		$file = json_decode($info['downfile']);
-		foreach($file as $k=>$v){
-			$v[$k] = I('post.downfile');
+		$data['id'] = I('post.id');
+		$oldfile = I('post.oldfile'); //接收的文件路径
+		$downfile = app_upload_file('/Uploads/file');  //上传文件
+		$data['downfile'] = $downfile['pic']."###"; //新上传的文件 和数据库保持文件一致，加###
+		$info = $this->model->field('downfile')->where(array('id'=>$data['id']))->find();
+		
+		$row = str_replace($oldfile,$data['downfile'],$info['downfile']);
+		if(IS_POST){
+			$res = M('Conference')->where(array('id'=>$data['id']))->setField('downfile',$row);
+			
+			if($res){
+				Response::show(200,'替换成功',$row);
+			}else{
+				Response::show(401,'替换失败');	
+			}
+		
 		}
 		
-		p($v[$k]);
+	}
+	//会议删除资料
+	public function delFiles(){
+		$data['id'] = I('post.id');
+		$data['downfile'] = I('post.downfile');
+		$info = $this->model->field('downfile')->where(array('id'=>$data['id']))->find();
+		//$row['downfile'] = array_filter(explode('###', $info['downfile']));
+		//p($info);
+		//p($row);
+		
+		if(IS_POST){
+			$row = str_replace($data['downfile'],'',$info['downfile']);
+			$res = M('Conference')->where(array('id'=>$data['id']))->setField('downfile',$row);
+			/* p($this->model->getLastSql());
+			p($res);die; */
+			if($res){
+				Response::show(200,'删除成功',$row);
+			}else{
+				Response::show(401,'删除失败');	
+			}
+		}
 		
 	}
 	

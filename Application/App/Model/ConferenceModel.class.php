@@ -226,40 +226,16 @@ class ConferenceModel extends RelationModel{
 		
 		$data['uid'] = I('post.uid');
 		$data['addtime'] = time();
-		if (isset($_FILES['companypic']) && $_FILES['companypic']['error'] == 0) {
-			$ret = uploadOne('companypic','Conference',array());
-			if($ret['ok'] == 1){
-				$data['companypic'] = json_encode($ret['images'][0]);
-			}else{
-				$this->error = $ret['error'];
-				return FALSE;
-			}
-		}
-		
-		//p($data);die;
-		//认证后把公司名称添加到新建会议的表中
-		/* $cert = D('Certify');
-		$info = $cert->field('id,uid,companyname')->where(array( 'uid' =>$data['uid']))->find();
-		p($info); */
+		//app 上传图片
+		$data['companypic'] = json_encode(app_upload_image("/Uploads/Conference"));
 	}
 	
 	
 	//修改之前
 	public function _before_update(&$data, $option){
-		$data['downfile'] = app_upload_file('file');
-		
-		if (isset($_FILES['companypic'])) {
-			$ret = uploadOne('companypic','Conference',array());
-			if($ret['ok'] == 1){
-				$data['companypic'] = json_encode($ret['images'][0]);
-			}else{
-				$this->error = $ret['error'];
-				return FALSE;
-			}
-		}
-		
+		//app 修改上传图片
+		$data['companypic'] = json_encode(app_upload_image("/Uploads/Conference"));
 	}
-	
 	//筛选条件查询
 	public function filterCert(){
 		$where = array();
