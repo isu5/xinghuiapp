@@ -99,7 +99,6 @@ class ConferenceController extends PublicController{
 					$this->success('修改成功！', U('show', array('id' => $id)));
     				exit;
 				}
-				
 			}
 			$this->error($this->model->getError());
 		
@@ -111,14 +110,14 @@ class ConferenceController extends PublicController{
 		$data = $this->model->where(array('id'=>$id))->find();
 		//p($data);
 		//资料文档array_filter(explode(',', $data['downfile']));json_decode($data['downfile'],true)
-		$row['downfile'] = json_decode($data['downfile'],true);
+		$row['downfile'] = $data['downfile'];
+		
 		$row['downfileArr'] = array_filter(explode('###', $row['downfile']));
 		//p($row['downfileArr']);
 		//p($row);
 		//修改时，获取的认证公司
 		$cert = D('Certify')->field('company')->where('uid='.$uid)->find();
 		//p($cert);
-		
 		$this->assign(array(
 			'cate'=>$cate,
 			'row' =>$row,
@@ -196,7 +195,14 @@ class ConferenceController extends PublicController{
 		
 		$data = $this->model->showOne();
 		//p($data);
-		$this->assign('data',$data);
+		$row['downfile'] = $data['downfile'];
+		$row['downfileArr'] = array_filter(explode('###', $row['downfile']));
+		
+		//p($data);
+		$this->assign(array(
+			'data'=>$data,
+			'row'=>$row,
+		));
 		
 		$this->display();
 	}

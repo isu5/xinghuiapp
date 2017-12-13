@@ -108,23 +108,11 @@
 							<label class="col-md-3 control-label">下载资料</label>
 							<div class="col-md-9">
 								<p class="form-control-static">
+								<volist name="row['downfileArr']" id="vo">
+									<a href="{$vo}"><?php echo substr($vo,37)?></a><br/>
+								</volist>
 								
 								
-								<?php
-									$vo = readjson($data['downfile']);
-									/* foreach($vo as $k => $v){
-										$str = "<a href='$v'>";
-										$str .=$data['title'];
-										$str .= "</a>";
-										echo $str;
-									} */
-									for($i=0;$i<count($vo);$i++){
-										$str = "<a href='$vo[$i]'>";
-										$str .= $data['title']. '文件下载<br/>';
-										$str .= "</a>";
-										echo $str;
-									}
-								?>
 								</p>
 							</div>
 						</div>
