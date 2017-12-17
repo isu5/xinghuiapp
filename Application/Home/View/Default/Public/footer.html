@@ -67,6 +67,31 @@ var urlstr = location.href;
 	
  -->
 
+<script type="text/javascript">
+
+	var urlstr = location.href;  
+      //alert(urlstr);  
+	var urlstatus=false;  
+	 $("#menu li a").each(function () {  
+			//-1 > true
+		if ((urlstr + '/').indexOf($(this).attr('href')) > -1&&$(this).attr('href')!='') { 
+			//console.log( $(this).parent());
+		  $(this).parent().addClass('active open');
+		  $(this).find('.arrow').addClass('active');
+		  $(this).parents('.sub-menu').show();
+		  $('#menu').find('.sub-menu').parent().addClass('active')
+		  urlstatus = true;
+		  
+		} else {  
+		  $(this).parent().removeClass('active');  
+		}  
+	});  
+	if (!urlstatus) {$("#menu li a").eq(0).parent().addClass('active'); } 
+	
+	
+
+</script>
+
 <!--底部js部分 /-->
 
 
