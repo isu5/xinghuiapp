@@ -79,7 +79,9 @@ var urlstr = location.href;
 		  $(this).parent().addClass('active open');
 		  $(this).find('.arrow').addClass('active');
 		  $(this).parents('.sub-menu').show();
-		  $('#menu').find('.sub-menu').parent().addClass('active')
+		  $('#menu').find('.sub-menu').parent().sibling().hide().addClass('active');
+		  //$('#menu').find('.sub-menu').parent().addClass('active');
+		 
 		  urlstatus = true;
 		  
 		} else {  
