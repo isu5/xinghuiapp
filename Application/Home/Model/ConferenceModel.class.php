@@ -100,7 +100,7 @@ class ConferenceModel extends BaseModel{
 
 	public function _before_insert(&$data, $option){
 		
-		$data['downfile'] = json_encode(I('post.downfile'));
+		$data['downfile'] = I('post.downfile');
 		$data['companypic'] = json_encode(I('post.companypic'));
 		$data['uid'] = cookie(userid);
 		$data['addtime'] = time();
@@ -158,8 +158,7 @@ class ConferenceModel extends BaseModel{
 	//修改前
 	public function _before_update(&$data, $option){
 		if($_POST['downfile']){
-			
-			$data['downfile'] = json_encode(I('post.downfile'));
+			$data['downfile'] = I('post.downfile');
 			
 		}
 		if($_POST['companypic']){

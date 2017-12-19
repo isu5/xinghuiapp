@@ -42,7 +42,7 @@ class CompanybullModel extends BaseModel{
 		$data['addtime'] = time();
 		$data['user_id'] = I('post.user_id');
 		$data['pic'] = json_encode(app_upload_image('/Uploads/Companybull'));
-		$data['file'] = json_encode(app_upload_file('/Uploads/Companybull/file'));
+		$data['file'] = json_encode(app_upload_bull('/Uploads/Companybull/file'),JSON_UNESCAPED_UNICODE);
 	}
 	
 	//

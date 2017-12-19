@@ -688,12 +688,12 @@ function app_upload_image($path,$maxSize=52428800){
         return $data;
     }
 }
+
 /**
- * app //文件上传
+ * app 公告文件上传
  * @return string 上传后的图片名
  */
-
-function app_upload_file($path,$maxSize=52428800){
+function app_upload_bull($path,$maxSize=52428800){
     ini_set('max_execution_time', '0');
     // 去除两边的/
     $path=trim($path,'.');
@@ -703,6 +703,35 @@ function app_upload_file($path,$maxSize=52428800){
         'savePath'  =>'./'.$path.'/',   
         'exts'      => array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'txt','pdf'),
         'maxSize'   => $maxSize,
+		'saveName'  =>  '',     // 上传文件的保存规则，支持数组和字符串方式定义
+        'autoSub'   => true,
+		'subName'	=> 	array('date','Ymd/H/'.time()),  //生成保存的子目录
+        );
+    $upload = new \Think\Upload($config);// 实例化上传类
+    $info = $upload->upload();
+    if($info) {
+        foreach ($info as $k => $v) {
+            $data[]=trim($v['savepath'],'.').$v['savename'];
+        }
+        return $data;
+    }
+}
+/**
+ * app //文件上传
+ * @return string 上传后的图片名
+ */
+
+function app_upload_file($path,$maxSize=524288000){
+    ini_set('max_execution_time', '0');
+    // 去除两边的/
+    $path=trim($path,'.');
+    $path=trim($path,'/');
+    $config=array(
+        'rootPath'  =>'./',         //文件上传保存的根路径
+        'savePath'  =>'./'.$path.'/',   
+        'exts'      => array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'txt','pdf'),
+        'maxSize'   => $maxSize,
+		'saveName'  =>  '',     // 上传文件的保存规则，支持数组和字符串方式定义
         'autoSub'   => true,
 		'subName'	=> 	array('date','Ymd/H/'.time()),  //生成保存的子目录
         );
@@ -1006,8 +1035,7 @@ function ajax_upload($path='file',$format='empty',$maxSize='52428800'){
         }else{
             // 返回成功信息
             foreach($info as $file){
-                $data['pic']=trim($file['savepath'].$file['savename'],'.');
-				$data['name'] = $file['name'];
+                $data['name']=trim($file['savepath'].$file['savename'],'.');
                 echo json_encode($data);
             }
         }
