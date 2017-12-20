@@ -27,7 +27,24 @@
 		</div>
 			
 			<!--中间部分-->
-			<!-- BEGIN PAGE CONTENT-->
+			<!-- BEGIN PAGE CONTENT
+			<div class="form-horizontal">
+			<div class="form-group">
+				<label class="col-md-3 control-label">企业公告标题：</label>
+				<div class="col-md-8">
+					<p class="form-control-static">{$data.title}</p>
+					
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-3 control-label">企业公告内容：</label>
+				<div class="col-md-8">
+					<p class="form-control-static">{$data.content|htmlspecialchars_decode|stripslashes}</p>
+					
+				</div>
+			</div>
+		</div>
+			-->
 	 <div class="tabbable-custom tabbable-full-width">
 				<ul class="nav nav-tabs">
 					<li class="active">
@@ -38,23 +55,17 @@
 				
 				 
 			<div class="portlet-body form" >
-					<div class="form-body">
-					<div class="form-horizontal">
-						<div class="form-group">
-							<label class="col-md-3 control-label">企业公告标题：</label>
-							<div class="col-md-8">
-								<p class="form-control-static">{$data.title}</p>
-								
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-3 control-label">企业公告内容：</label>
-							<div class="col-md-8">
-								<p class="form-control-static">{$data.content|htmlspecialchars_decode|stripslashes}</p>
-								
-							</div>
-						</div>
-					</div>
+				<div class="form-body">
+					<table class="table table-striped  table-bordered table-hover">
+						<tr>
+							<th width="350">企业公告标题</th>
+							<th>企业公告内容</th>
+						</tr>
+						<tr>
+							<td>{$data.title}</td>
+							<td>{$data.content|htmlspecialchars_decode|stripslashes}</td>
+						</tr>
+					</table>
 				
 				</div>
 		
