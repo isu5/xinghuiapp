@@ -23,6 +23,10 @@ class IndexController extends Controller {
 		
 	}
 	
+	//文件上传
+	public function ajax_upload(){
+		ajax_upload('/Uploads/image/');
+	}
 	
 	//生成二维码
 	public function usercode($id){

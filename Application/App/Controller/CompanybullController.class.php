@@ -36,12 +36,11 @@ class CompanybullController extends PublicController{
 	public function add(){
 		if (IS_POST) {
 			
-			//p($_POST);die;
 			if($this->model->create(I('post.',1))){
 				if($this->model->add()){
-					
+					//p($_FILES);die;
 					Response::show(200,'添加成功!');
-					exit;
+					
 				}else{
 					Response::show(401,'添加失败!');
 				}

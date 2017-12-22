@@ -235,7 +235,9 @@ class ConferenceModel extends RelationModel{
 	public function _before_update(&$data, $option){
 		//app 修改上传图片
 		$data['companypic'] = json_encode(app_upload_image("/Uploads/Conference"));
+		//p($data);
 	}
+	
 	//筛选条件查询
 	public function filterCert(){
 		$where = array();

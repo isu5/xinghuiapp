@@ -131,7 +131,10 @@ class UserModel extends BaseModel{
 			$where['id'] =  array('neq',$uid);
 		} */
 		//翻页
-		$count = $this->alias('a')->where($where)->count();
+		//根据会议id查出来当前会议参会人员人数
+		$count = $this->alias('a')->where($where)->join('LEFT JOIN __CONFERENCE_AUDIT__ b on b.user_id=a.id
+			LEFT JOIN __CONFERENCE__ c on c.id=b.conf_id
+		')->count();
 		$page = new \Think\Page($count,$pagesize);
 		//配置分页
 		$page->setConfig('prev', '上一页');

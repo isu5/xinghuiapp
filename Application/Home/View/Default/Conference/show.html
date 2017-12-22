@@ -72,6 +72,16 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-md-3 control-label">会议图片</label>
+							<div class="col-md-9">
+								<p class="form-control-static">
+								<volist name="row['companypic']" id="vo">
+								<img src="{$vo}" width="200" />
+								</volist>
+								</p>
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="col-md-3 control-label">举办地址</label>
 							<div class="col-md-9">
 								<p class="form-control-static">{$data.address}{$data.xxaddress}</p>

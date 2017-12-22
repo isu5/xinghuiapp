@@ -657,7 +657,8 @@ jQuery(function() {
     }
 
     uploader.onUploadSuccess=function(file ,response){
-        \$('#'+file.id +' .bjy-filename').val(response.name)
+		console.log(response);
+        \$('#'+file.id +' .bjy-filename').val(response.pic)
     }
     uploader.onUploadError=function(file){
         alert(fileError);

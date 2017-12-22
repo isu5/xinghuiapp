@@ -39,7 +39,8 @@ class ConferenceauditlistModel extends BaseModel{
 		
 		
 		//∑≠“≥
-		$count = $this->alias('a')->where($where)->count();
+		$count = $this->alias('a')->where($where)->join('LEFT JOIN __CONFERENCE__ b on b.id=a.conf_id
+		') ->count();
 		$page = new \Think\Page($count,$pagesize);
 		//≈‰÷√∑÷“≥
 		$page->setConfig('prev', '…œ“ª“≥');

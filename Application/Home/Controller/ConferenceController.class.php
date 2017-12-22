@@ -197,8 +197,8 @@ class ConferenceController extends PublicController{
 		//p($data);
 		$row['downfile'] = $data['downfile'];
 		$row['downfileArr'] = array_filter(explode('###', $row['downfile']));
-		
-		//p($data);
+		$row['companypic'] = json_decode($data['companypic']);
+		//p($row);
 		$this->assign(array(
 			'data'=>$data,
 			'row'=>$row,

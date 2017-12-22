@@ -20,8 +20,8 @@ class DownloadController extends PublicController{
 	*/
 	public function index(){
 		$data = $this->model->search();
-		/* p($data);
-    	p($this->model->getlastsql());
+		//p($data);
+    	/* p($this->model->getlastsql());
     	
     	p($_COOKIE);die; */
 		$this->assign(array(
@@ -37,6 +37,9 @@ class DownloadController extends PublicController{
 	*/
 	public function add(){
 		if(IS_POST){
+			/* p($_FILES);
+			p($_POST);
+			die; */
 			if($this->model->create(I('post.',1))){
 				if($this->model->add()){
 					$this->success('添加成功',U('Download/index'));

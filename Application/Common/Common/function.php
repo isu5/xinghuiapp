@@ -667,7 +667,7 @@ function uploadOne($imgName, $dirName, $thumb = array())
  * app 图片上传
  * @return string 上传后的图片名
  */
-function app_upload_image($path,$maxSize=52428800){
+function app_upload_image($path,$maxSize=524288000){
     ini_set('max_execution_time', '0');
     // 去除两边的/
     $path=trim($path,'.');
@@ -676,8 +676,10 @@ function app_upload_image($path,$maxSize=52428800){
         'rootPath'  =>'./',         //文件上传保存的根路径
         'savePath'  =>'./'.$path.'/',   
         'exts'      => array('jpg', 'gif', 'png', 'jpeg','bmp'),
-        'maxSize'   => $maxSize,
+		'maxSize'   => $maxSize,
+		'saveName'  =>  '',     // 上传文件的保存规则，支持数组和字符串方式定义
         'autoSub'   => true,
+		'subName'	=> 	array('date','Ymd/'.time()),  //生成保存的子目录
         );
     $upload = new \Think\Upload($config);// 实例化上传类
     $info = $upload->upload();
@@ -693,7 +695,7 @@ function app_upload_image($path,$maxSize=52428800){
  * app 公告文件上传
  * @return string 上传后的图片名
  */
-function app_upload_bull($path,$maxSize=52428800){
+function app_upload_bull($path,$maxSize=524288000){
     ini_set('max_execution_time', '0');
     // 去除两边的/
     $path=trim($path,'.');
@@ -721,7 +723,7 @@ function app_upload_bull($path,$maxSize=52428800){
  * @return string 上传后的图片名
  */
 
-function app_upload_file($path,$maxSize=524288000){
+function app_upload_file($path,$maxSize=5242880000){
     ini_set('max_execution_time', '0');
     // 去除两边的/
     $path=trim($path,'.');
@@ -991,7 +993,6 @@ function GetIpLookup($ip = ''){
 }  
 
 /**
- * 图片上传
  * 上传文件类型控制 此方法仅限ajax上传使用
  * @param  string   $path    字符串 保存文件路径示例： /Upload/image/
  * @param  string   $format  文件格式限制
@@ -1003,7 +1004,7 @@ function ajax_upload($path='file',$format='empty',$maxSize='52428800'){
     // 去除两边的/
     $path=trim($path,'/');
     // 添加Upload根目录
-    $path=strtolower(substr($path, 0,7))==='uploads' ? ucfirst($path) : 'Uploads/'.$path;
+    $path=strtolower(substr($path, 0,6))==='uploads' ? ucfirst($path) : 'Uploads/'.$path;
     // 上传文件类型控制
     $ext_arr= array(
             'image' => array('gif', 'jpg', 'jpeg', 'png', 'bmp'),
@@ -1020,12 +1021,14 @@ function ajax_upload($path='file',$format='empty',$maxSize='52428800'){
                 'savePath'  =>  './'.$path.'/',         // 文件上传的保存路径（相对于根路径）
                 'saveName'  =>  array('uniqid',''),     // 上传文件的保存规则，支持数组和字符串方式定义
                 'autoSub'   =>  true,                   // 自动使用子目录保存上传文件 默认为true
-                'exts'      =>  isset($ext_arr[$format])?$ext_arr[$format]:'',
+                'exts'      =>    isset($ext_arr[$format])?$ext_arr[$format]:'',
             );
+        // p($_FILES);
         // 实例化上传
         $upload=new \Think\Upload($config);
         // 调用上传方法
         $info=$upload->upload();
+        // p($info);
         $data=array();
         if(!$info){
             // 返回错误信息
@@ -1036,8 +1039,9 @@ function ajax_upload($path='file',$format='empty',$maxSize='52428800'){
             // 返回成功信息
             foreach($info as $file){
                 $data['name']=trim($file['savepath'].$file['savename'],'.');
+                // p($data);
                 echo json_encode($data);
-            }
+            }               
         }
     }
 }
@@ -1090,6 +1094,7 @@ function file_upload($path='file',$format='empty',$maxSize='52428800'){
             foreach($info as $file){
                 $data['pic']=trim($file['savepath'].$file['savename'],'.');
 				$data['name'] = $file['name'];
+				
                 echo json_encode($data);
             }
         }

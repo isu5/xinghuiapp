@@ -37,7 +37,8 @@ class DownloadModel extends BaseModel{
 	public function _before_insert(&$data, $option){
 		$data['addtime'] = time();
 		$data['user_id'] = cookie(userid);
-		$data['downfile'] = json_encode(I('post.downfile'));
+		$data['downfile'] = json_encode($_POST['downfile'],JSON_UNESCAPED_UNICODE);
+		
 
 	}
 	

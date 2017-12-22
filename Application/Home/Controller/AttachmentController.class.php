@@ -37,7 +37,9 @@ class AttachmentController extends PublicController{
      * 百度文件上传
      */
     public function file_upload(){
+		
     	file_upload('/file/');
+		
     }
 	
 	//企业产品图片上传
