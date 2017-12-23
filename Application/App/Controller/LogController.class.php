@@ -35,8 +35,7 @@ class LogController extends PublicController{
 			
 			if($this->model->create(I('post.',1))){
 				if ($this->model->add()) {
-					
-					Response::show(200,'登录成功!');
+					Response::show(200,'添加成功!');
 				}else{
 					Response::show(401,'登录失败');
 				}
