@@ -28,116 +28,92 @@
 			
 			<!--中间部分-->
 			<!-- BEGIN PAGE CONTENT-->
-	 <div class="tabbable-custom tabbable-full-width">
-				<ul class="nav nav-tabs">
-					<li class="active">
-						<a href="JavaScript:;" ><i class="fa fa-tags"></i>会议管理</a>
-					</li>
+	<div class="tabbable-custom tabbable-full-width">
+		<ul class="nav nav-tabs">
+			<li class="active">
+				<a href="JavaScript:;" ><i class="fa fa-tags"></i>会议管理</a>
+			</li>
+		</ul>
+		<div class="portlet-body form" >
+			<table class="table table-striped  table-bordered table-hover" >
+				<tr>
+					<th>会议标题</th>
+					<td>{$data.title}</td>
+				</tr>
+				<tr>
+					<th>会议类型</th>
+					<td>{$data.catename}</td>
+				</tr>
+				<tr>
+					<th>举办公司</th>
+					<td>{$data.companyname}</td>
 					
-				</ul>
+				</tr>
+				<tr>
+					<th>起始时间</th>
+					<td>
+						{$data.ctime}至{$data.etime}
+					</td>
+				</tr>
+				<tr>
+					<th>报名截止</th>
+					<td>
+						{$data.qtime}
+					</td>
+				</tr>
+				<tr>
+					<th>会议图片</th>
+					<td>
+						<volist name="row['companypic']" id="vo">
+						<img src="{$vo}" width="200" />
+						</volist>
+					</td>
+				</tr>
+				<tr>
+					
+					<th>举办地址</th>
+					<td>{$data.address}{$data.xxaddress}</td>
 				
-				 
-			<div class="portlet-body form" >
-					<div class="form-body">
-					<div class="form-horizontal">
-						<div class="form-group">
-							<label class="col-md-3 control-label">会议标题</label>
-							<div class="col-md-5">
-								<p class="form-control-static">{$data.title}</p>
-								
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-3 control-label">会议类型</label>
-							<div class="col-md-9">
-								<p class="form-control-static">{$data.catename}</p>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-3 control-label">举办公司</label>
-							<div class="col-md-9">
-								<p class="form-control-static">{$data.companyname}</p>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-3 control-label">起始时间</label>
-							<div class="col-md-9">
-								<p class="form-control-static">{$data.ctime}至{$data.etime}</p>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-3 control-label">报名截止</label>
-							<div class="col-md-9">
-								<p class="form-control-static">{$data.qtime}</p>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-3 control-label">会议图片</label>
-							<div class="col-md-9">
-								<p class="form-control-static">
-								<volist name="row['companypic']" id="vo">
-								<img src="{$vo}" width="200" />
-								</volist>
-								</p>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-3 control-label">举办地址</label>
-							<div class="col-md-9">
-								<p class="form-control-static">{$data.address}{$data.xxaddress}</p>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-3 control-label">联系人</label>
-							<div class="col-md-9">
-								<p class="form-control-static">
-									{$data.contact}
-								</p>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-3 control-label">联系人电话</label>
-							<div class="col-md-9">
-								<p class="form-control-static">
-									{$data.phone}
-								</p>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-3 control-label">是否需要审核参会人员</label>
-							<div class="col-md-9">
-								<p class="form-control-static">
-									<eq name="data.is_user" value="1">
-										<span class="label label-success radius" >是</span><else/>
-										<span class="label label-default radius" >否</span>
-									</eq>
-								</p>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-3 control-label">下载资料</label>
-							<div class="col-md-9">
-								<p class="form-control-static">
-								<volist name="row['downfileArr']" id="vo">
-									<a href="{$vo}"><?php echo substr($vo,37)?></a><br/>
-								</volist>
-								
-								
-								</p>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-3 control-label">二维码</label>
-							<div class="col-md-9">
-								<p class="form-control-static">
-									
-									<img src="{:U('Conference/dicaoliao',array('id'=>$data['id']))}" width="200px" />
-								</p>
-							</div>
-						</div>
-					</div>
+				</tr>
+				<tr>
+					<th>联系人</th>
+					<td>{$data.contact}</td>
+				</tr>
+				<tr>
+					<th>联系人电话</th>
+					<td>{$data.phone}</td>
+				</tr>
+				<tr>
+					
+					<th>
+						是否需要审核参会人员
+					</th>
+					<td>
+						<eq name="data.is_user" value="1">
+							<span class="label label-success radius" >是</span><else/>
+							<span class="label label-default radius" >否</span>
+						</eq>
+					</td>
 				
-				</div>
+				</tr>
+				<tr>
+					<th>下载资料</th>
+					<td>
+						<volist name="row['downfileArr']" id="vo">
+							<a href="{$vo}"><?php echo substr($vo,37)?></a><br/>
+						</volist>
+					</td>
+				</tr>
+				<tr>
+					<th>二维码</th>
+					<td>
+						<img src="{:U('Conference/dicaoliao',array('id'=>$data['id']))}" width="200px" />
+					</td>
+					
+				</tr>
+					
+				
+		</table>
 		
 	<!-- END PAGE CONTENT-->
 	<!--中间部分-->
