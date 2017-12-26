@@ -95,6 +95,17 @@ input,button,submit,textarea,option,textarea{font-family:'微软雅黑';}
 						
 					</div>
 					<div class="form-group">
+						<label class="col-md-3 control-label">是否公开</label>
+						<div class="col-md-5">
+							<div class="radio-box">
+								<input type="radio" id="radio-1" name="is_private" value="0" checked>
+								<label for="radio-1">公开</label>
+								<input type="radio" id="radio-2" name="is_private" value="1">
+								<label for="radio-2">私密</label>
+							  </div>
+						</div>
+					</div>
+					<div class="form-group">
 						<label class="col-md-3 control-label">举办公司</label>
 						<div class="col-md-5">
 							<input type="text" class="form-control"  name="companyname" value="{$cert.company}">
@@ -257,7 +268,8 @@ $(function() {
 	demo.addRule([{
 		ele:"select",
 		datatype:"*",
-	}]);
+	}
+	]);
 });		
 </script>
 

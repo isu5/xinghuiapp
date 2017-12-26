@@ -81,7 +81,7 @@ class UserModel extends BaseModel{
 		$id = I('post.id');
 		//修改头像，刷新融云用户
 		refreshRongcloud_token($id);
-		if (isset($_FILES['logo']) && $_FILES['front']['error'] == 0) {
+		if (isset($_FILES['logo']) && $_FILES['logo']['error'] == 0) {
 			
 			$ret = uploadOne('logo','Avatar',array());
 			if($ret['ok'] == 1){

@@ -78,10 +78,10 @@
             <div class="form-check">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="remember" id="remember" checked="">自动登录
+                       <!--  <input type="checkbox" name="remember" id="remember" checked="">自动登录 -->
                         <a href="{:U('Login/RecoveryPwd')}" target="_blank" class="font-blue">忘记密码</a>
                     </label>
-                    <a href="" class="pull-right sigup">立即注册</a>
+                    <!---<a href="" class="pull-right sigup">立即注册</a>--->
                 </div>
             </div>
 
@@ -172,7 +172,7 @@
             });
             //$('#form_login #loginvcodeimg').click();
            
-            $('.sigup').attr('href', '{:U('Register/index')}' + window.location.search);
+            //$('.sigup').attr('href', '{:U('Register/index')}' + window.location.search);
         });
     </script>
 </body>

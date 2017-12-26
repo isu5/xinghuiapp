@@ -130,7 +130,6 @@ class IndexController extends Controller {
 					if($this->sign->add($data)){
 						jgpushPerson($jpush['jpush'],$data['conf_id'],$type); //签到成功
 						
-						
 						//扫码签到成功，参会按钮返回 参会中（您已扫码签到，请入场参会！参会中），
 						D('Conferenceaudit')->where(array('conf_id'=>$data['conf_id'],'user_id'=>$data['user_id']))->setField('status',4);
 						D('Conferenceauditlist')->where(array('conf_id'=>$data['conf_id'],'user_id'=>$data['user_id']))->setField('status',4);
@@ -179,7 +178,6 @@ class IndexController extends Controller {
 			Response::show(200,'数据获取成功!',$data);
 			
 		}
-		
 		
 	}
 	//个人定制化推送消息

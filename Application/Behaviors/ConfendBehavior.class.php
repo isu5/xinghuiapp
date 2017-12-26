@@ -8,10 +8,10 @@ class ConfendBehavior{
 	function run(){
 		
 		//判断当前时间 >= 会议结束时间，说明会议已经结束
-		$conf = D('Conference');
+		$conf = M('Conference');
 		$audit = M('Conference_auditlist');
 		
-		$uid = cookie(userid);
+		$uid = $_COOKIE['userid'];
 		
 		$t = time(); //当前时间
 		

@@ -32,7 +32,7 @@ class LoginController extends Controller{
 					$this->model->where(array('id'=>$user['id']))->setField('is_login',1);
 					//p($loginfo);
 					if($user['is_login'] == 1){
-						Response::show(201,'您已经登录，或在其他设备已经登录了！');
+						Response::show(201,'您已经登录，或在其他设备已经登录了！',$data);
 						exit;
 					}
 					Response::show(200,'登录成功',$data);

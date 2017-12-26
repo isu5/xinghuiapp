@@ -70,7 +70,17 @@ input,button,submit,textarea,option,textarea{font-family:'微软雅黑';}
 								</volist>
 							</select>
 						</div>
-						
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">是否公开</label>
+						<div class="col-md-5">
+							<div class="radio-box">
+								<input type="radio" id="radio-1" name="is_private" value="0" <if condition="$data.is_private eq 0"> checked</if>>
+								<label for="radio-1">公开</label>
+								<input type="radio" id="radio-2" name="is_private" value="1" <if condition="$data.is_private eq 1"> checked</if>>
+								<label for="radio-2">私密</label>
+							  </div>
+						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 control-label">举办公司</label>

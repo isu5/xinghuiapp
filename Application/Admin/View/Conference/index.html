@@ -30,8 +30,9 @@
 				<th width="25"><input type="checkbox" name="" value=""></th>
 				<th width="20">ID</th>
 				<th width="100">会议标题</th>
-				<th>会议类型</th>
+				<th width="60">会议类型</th>
 				<th>举办公司</th>
+				<th>发布者</th>
 				<th>联系人电话</th>
 				<th>起始时间</th>
 				<th>签到时间</th>
@@ -47,6 +48,7 @@
 				<td>{$v.id}</td>
 				<td>{$v.title}</td>
 				<td>{$v.catename}</td>
+				<td>{$v.username}</td>
 				<td>{$v.companyname}</td>
 				<td><if condition="$v['email'] eq ''">{$v.phone}<else /> {$v.email}</if></td>
 				<td>{$v.ctime|strtotime|date="Y-m-d H:i",###}至{$v.etime|strtotime|date="Y-m-d H:i",###}</td>

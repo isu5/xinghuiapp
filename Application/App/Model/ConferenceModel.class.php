@@ -89,6 +89,7 @@ class ConferenceModel extends RelationModel{
 		$where = array();
 		//$where['a.uid'] = I('post.uid');
 		$where['statuses'] = 0;
+		$where['is_private'] = 0;
 		$title = I('post.title');
 		if ( $title ) {
 			$where['title'] = array('like',"%$title%");
@@ -278,6 +279,8 @@ class ConferenceModel extends RelationModel{
 		
 		//状态为进行中
 		$where['statuses'] = 0;
+		//公开的会议
+		$where['is_private'] = 0;
 		
 		$showrow = 10; //一页显示的行数
 		
@@ -309,6 +312,44 @@ class ConferenceModel extends RelationModel{
 	}
 	
 	
+	//二级账户显示主账户的内部会议列表
+	public function privateConfList(){
+		$data['uid'] = I('post.uid');
+		$user = D('User');
+		$map = $user->field('id,pid')->where(array('id'=>$data['uid']))->find();
+		//p($map);
+		//内部私密会议
+		$where['is_private'] = 1;
+		$where['statuses'] = 0;
+		$where['uid'] = $map['pid'];
+		
+		$showrow = 10; //一页显示的行数
+		
+		$curpage = I('post.page',1);; //当前的页,还应该处理非数字的情况
+	
+		$total = $this->where($where)->count();	
+		
+		
+		$page = new AppPage($total, $showrow);
+		if ($total > $showrow) {
+			$data['page'] =  $page->myde_write();
+		}
+		 
+		$data['data'] = $this->alias('a')
+		->field('a.*,c.catename,d.pic,d.bullurl')
+		->join('LEFT JOIN __CONFERENCE_CATE__ c on c.id=a.cid
+			LEFT JOIN __CONFERENCE_PIC__ d on d.conf_id=a.id
+			')
+		->where($where)
+		->limit(($curpage - 1) * $showrow.','.$showrow)
+		->order('a.id desc')
+		->group('a.id')
+		->select();
+		//p($this->_Sql());die;
+		return $data;
+		
+		
+	}
 	
 	
 	
