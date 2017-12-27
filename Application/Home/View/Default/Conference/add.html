@@ -101,7 +101,7 @@ input,button,submit,textarea,option,textarea{font-family:'微软雅黑';}
 								<input type="radio" id="radio-1" name="is_private" value="0" checked>
 								<label for="radio-1">公开</label>
 								<input type="radio" id="radio-2" name="is_private" value="1">
-								<label for="radio-2">私密</label>
+								<label for="radio-2">内部</label>
 							  </div>
 						</div>
 					</div>
@@ -115,17 +115,18 @@ input,button,submit,textarea,option,textarea{font-family:'微软雅黑';}
 					<div class="form-group">
 						<label class="col-md-3 control-label">起始时间</label>
 						<div class="col-md-5">
-							<input size="16" type="text" value="" readonly class="form-datetime am-form-field" name="ctime" datatype="*" nullmsg="会议开始时间不能为空" errormsg="请选择会议开始时间">
+							<div class="input-group" style="width:100%">
+								<input type="text" class="form-datetime am-form-field" placeholder="请选择会议开始时间"  readonly name="ctime" datatype="*" nullmsg="会议开始时间不能为空" errormsg="请选择会议开始时间" data-clearbtn="true">
+								   
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 control-label"></label>
 						<div class="col-md-5">
-							
-							  <input size="16" type="text" value="" readonly class="form-datetime am-form-field" name="etime"plugin="datetimepicker" datatype="*" nullmsg="会议结束时间不能为空" errormsg="请选择会议结束时间">
+							  <input  type="text" value="" placeholder="请选择会议结束时间"  readonly class="form-datetime am-form-field" name="etime"plugin="datetimepicker" datatype="*" nullmsg="会议结束时间不能为空" errormsg="请选择会议结束时间">
 							 
 						</div>
-						
 					</div>
 					<!-- <div class="form-group">
 						<label class="col-md-3 control-label">报名截止</label>
@@ -136,7 +137,7 @@ input,button,submit,textarea,option,textarea{font-family:'微软雅黑';}
 					<div class="form-group">
 						<label class="col-md-3 control-label">报名截止</label>
 						<div class="col-md-5">
-							<input size="16" type="text" value="" readonly class="form-datetime am-form-field" name="qtime"plugin="datetimepicker" datatype="*" nullmsg="会议签到时间不能为空" errormsg="请选择会议签到时间">
+							<input size="16" type="text" value="" placeholder="请选择会议报名截止时间"  readonly class="form-datetime am-form-field" name="qtime"plugin="datetimepicker" datatype="*" nullmsg="会议签到时间不能为空" errormsg="请选择会议签到时间">
 						</div>
 					</div>
 					<div class="form-group">

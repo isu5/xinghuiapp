@@ -55,6 +55,7 @@
 						<th>报名截止</th>
 						<th>举办地址</th>
 						<th>会议状态</th>
+						<th>是否公开</th>
 						<th>是否审核参会人员</th>
 						<th  style="width:150px;">操作</th>
 					</tr>
@@ -85,6 +86,12 @@
 								</eq>
 							</td>
 							<td>
+								<eq name="v.is_private" value="1">
+                                <span class="badge badge-roundless badge-primary">内部</span>   <else/>
+								<span class="badge badge-roundless badge-danger">公开</span>	
+								</eq>
+							</td>
+							<td>
 								<eq name="v.is_user" value="1">
 									<span class="badge badge-roundless badge-primary">是</span>   
 								<else/>
@@ -99,7 +106,7 @@
 									<ul class="dropdown-menu" role="menu">
 										<li>
 											<a href="{:U('Conference/edit',array(id=>$v['id']))}" >
-												编辑
+												会议编辑
 											</a> 
 										</li>
 										<li>
@@ -109,16 +116,16 @@
 										</li>
 										<li>
 											<a href="{:U('Confpic/add',array(id=>$v['id']))}">
-												新增会议详情
+												新增会议图片
 											</a> 
+										</li>
+										<li>
+											<a href="{:U('Userpartners/add',array(id=>$v['id']))}">
+											新增合作伙伴 </a>
 										</li>
 										<li>
 											<a href="{:U('Conference/auditlist',array(id=>$v['id']))}">
 											参会人员审核 </a>
-										</li>	
-										<li>
-											<a href="{:U('Userpartners/add',array(id=>$v['id']))}">
-											合作伙伴 </a>
 										</li>
 									</ul>
 								</div>

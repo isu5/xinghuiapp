@@ -321,7 +321,8 @@ class ConferenceModel extends RelationModel{
 		//p($map);
 		//内部私密会议
 		$where['is_private'] = 1;
-		$where['statuses'] = 0;
+		//会议状态 0开始1结束
+		$where['statuses'] = I('post.state');
 		$where['uid'] = $map['pid'];
 		
 		$showrow = 10; //一页显示的行数
