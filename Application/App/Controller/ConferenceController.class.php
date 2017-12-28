@@ -673,21 +673,18 @@ class ConferenceController extends PublicController{
 	//删除我发布的会议
 	public function myauditdel(){
 		
-		$data['conf_id'] = I('post.conf_id');
-		
+		$id = I('post.conf_id');
 		$myaudit = D('Conferenceaudit');
-		
+		$myauditlist = D('Conferenceauditlist');
 		if(IS_POST){
-			$post = $myaudit->where(array('conf_id'=>$data['conf_id']))->delete();
-			$conf = $this->model->where(array('id'=>$data['conf_id']))->delete();
-			($post || $conf) ? Response::show(200,'删除成功!'):Response::show(401,'删除失败!');
-			/* if($post){
+			//修复app删除会议，审核表中还存在该会议id的bug
+			if($this->model->delete($id) !== FALSE){
+				$myaudit->where(array('conf_id'=>$id))->delete();
+				$myauditlist->where(array('conf_id'=>$id))->delete();
 				Response::show(200,'删除成功!');
-				
 			}else{
-				
-				Response::show(401,'删除失败!');
-			}  */
+				Response::show(401,'删除失败!',$this->model->getError());
+			}  
 		}
 	}
 	
