@@ -115,8 +115,6 @@ class ConferenceController extends PublicController{
 				}else{
 					Response::show(401,'意见反馈失败!');
 				}
-			}else{
-				Response::show(402,'数据不合法!',$m->getError());
 			}
 		}
 		
@@ -371,6 +369,18 @@ class ConferenceController extends PublicController{
 		}
 		
 	}
+	//删除公告
+	public function delbull(){
+		$data['id'] = I('post.id');
+		if(IS_POST){
+			$res = M('Company_bull')->where(array('id'=>$data['id']))->delete();
+			if($res){
+				Response::show(200,'删除成功');
+			}else{
+				Response::show(401,'删除失败');	
+			}
+		}
+	}
 	
 	//会议修改
 	public function edit(){
@@ -543,6 +553,8 @@ class ConferenceController extends PublicController{
 		if(I('post.status') == 2){  //2 拒绝
 			$audit->where(array('conf_id'=>$data['conf_id'],'user_id'=>$data['user_id']))->setField('status',2);
 			$auditlist->where(array('conf_id'=>$data['conf_id'],'user_id'=>$data['user_id']))->setField('status',2);
+			//极光推送拒绝提醒
+			jgpushRefused($jpush['jpush']);
 			Response::show(200,'您已拒绝!');
 		} 
 		if(I('post.status') == 1){  //1 同意
