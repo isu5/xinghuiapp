@@ -98,8 +98,9 @@ class ConferenceauditModel extends BaseModel{
 		->where($condition)
 		->limit(($curpage - 1) * $showrow.','.$showrow)
 		->order('id desc')
+		->group('id')
 		->select();
-		//p($this->_Sql());
+		//p($this->_Sql());die;
 		return $data;	
 	}
 	

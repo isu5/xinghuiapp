@@ -92,13 +92,24 @@ class UserModel extends BaseModel{
 	//修改详情
 	public function updateDetails(){
 		$id = $_COOKIE['userid'];
+		$companyname = I('post.companyname');
 		$address = I('post.address');
 		$profile = I('post.profile');
 		$website = I('post.website');
+		$landline = I('post.landline');
 		$area = I('post.area');
 		$position = I('post.position');
 		
-		$this->save(array('address'=>$address,'area'=>$area,'website'=>$website,'profile'=>$profile,'position'=>$position,'id'=>$id));
+		$this->save(array(
+			'companyname'=>$companyname,
+			'address'=>$address,
+			'area'=>$area,
+			'website'=>$website,
+			'landline'=>$landline,
+			'profile'=>$profile,
+			'position'=>$position,
+			'id'=>$id
+			));
 		
 		return true;
 		
@@ -158,7 +169,7 @@ class UserModel extends BaseModel{
 	//二级账户
 	public function accountAli(){
 		$uid = cookie(userid);
-		$user = $this->field('id,pid,username,remark,ctime')->where()->select();
+		$user = $this->field('id,pid,username,remark,phone,ctime')->where()->select();
 		$level = findson($user,$uid);  //查找所有pid下的子id
 		return $level;
 

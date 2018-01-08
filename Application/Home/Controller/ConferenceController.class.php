@@ -157,10 +157,13 @@ class ConferenceController extends PublicController{
 		$uid = I('get.uid');
 		$audit = D('Conference_audit');
 		$audit2 = D('Conference_auditlist');
+		$jpush = $this->user->where('id='.$uid)->find();
 		$data =  $audit->where(array('conf_id'=>$id,'user_id'=>$uid))->setField('status',2);
 		$auditlist =  $audit2->where(array('conf_id'=>$id,'user_id'=>$uid))->setField('status',2);
 		
 		if($data && $auditlist){
+			//极光推送拒绝提醒
+			jgpushRefused($jpush['jpush']);
 			$code = array('status'=>'y','info'=>'您已拒绝');
 		}else{
 			$code = array('status'=>'n','info'=>'操作失败');

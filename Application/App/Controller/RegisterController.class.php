@@ -13,25 +13,24 @@ class RegisterController extends Controller{
 	}
 	
 	public function index(){
-		
-		
-		
+		$data['phone'] = I('post.phone');
+		$data['password'] = I('post.password');
+		//判断手机号是否为二级账户
+		$arr = $this->model->field('id,username,remark,phone,level')->where(array('phone'=>$data['phone']))->find();
 		if(IS_POST){
-			if ($this->model->create(I('post.',1))) {
+			if ($arr['level'] == 2) {
+				Response::show(403,'您的手机号是二级账户！请解绑后注册');
+			}else{
 				//成功
-				if ($result = $this->model->add()) {
-					$id = $result;
+				if ($result = $this->model->add($data)) {
+					$id = $result;	
 					//二维码
 					$dimecode = U('Index/usercode',array('id'=>$id));
 					$this->model->where(array('id'=>$id))->setField(array('dimecode'=>$dimecode));
 					Response::show(200,'注册成功');
 				}else{
-					Response::show(401,'注册失败');
+					Response::show(401,'注册失败'.$this->model->getError());
 				}
-				
-			}else{
-				
-				Response::show(402,'注册失败'.$this->model->getError());
 			}
 		}
 

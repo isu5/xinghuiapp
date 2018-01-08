@@ -397,6 +397,60 @@ function jgpushAgreed($tag){
 	
 }
 
+//审核拒绝提醒
+function jgpushRefused($tag){
+	$client = new JPushClient(C('JPUSH.APP_KEY'), C('JPUSH.MASTER_SECRET'));
+	try{
+		$client->push()
+		->setPlatform('all')
+		->addAlias($tag)
+		->setNotificationAlert('您还没有资质参加会议，如有疑问请联系客服!')
+		->send();
+	}catch (\JPush\Exceptions\APIConnectionException $e) {
+		// try something here
+		//如果存在异常，则说明用户可能不在线
+		if($e){
+			
+			return ['code'=>201,'message'=>'该用户没有登录app，不能推送'];
+		}
+	} catch (\JPush\Exceptions\APIRequestException $e) {
+		// try something hereif($e){
+			//如果存在异常，则说明用户可能不在线
+		if($e){
+			
+			return ['code'=>201,'message'=>'该用户没有登录app客户端，不能推送'];
+		}
+	}
+	
+}
+
+//二级账户删除解绑提醒
+function jgpushAccount($tag){
+	$client = new JPushClient(C('JPUSH.APP_KEY'), C('JPUSH.MASTER_SECRET'));
+	try{
+		$client->push()
+		->setPlatform('all')
+		->addAlias($tag)
+		->setNotificationAlert('您的手机号已解绑，可以重新注册了!')
+		->send();
+	}catch (\JPush\Exceptions\APIConnectionException $e) {
+		// try something here
+		//如果存在异常，则说明用户可能不在线
+		if($e){
+			
+			return ['code'=>201,'message'=>'该用户没有登录app，不能推送'];
+		}
+	} catch (\JPush\Exceptions\APIRequestException $e) {
+		// try something hereif($e){
+			//如果存在异常，则说明用户可能不在线
+		if($e){
+			
+			return ['code'=>201,'message'=>'该用户没有登录app客户端，不能推送'];
+		}
+	}
+	
+}
+
 //认证审核通过
 function jgpushCert($tag){
 	$client = new JPushClient(C('JPUSH.APP_KEY'), C('JPUSH.MASTER_SECRET'));
@@ -707,7 +761,7 @@ function app_upload_bull($path,$maxSize=524288000){
         'maxSize'   => $maxSize,
 		'saveName'  =>  '',     // 上传文件的保存规则，支持数组和字符串方式定义
         'autoSub'   => true,
-		'subName'	=> 	array('date','Ymd/H/'.time()),  //生成保存的子目录
+		'subName'	=> 	array('date','Ymd/'.time()),  //生成保存的子目录
         );
     $upload = new \Think\Upload($config);// 实例化上传类
     $info = $upload->upload();
@@ -735,7 +789,7 @@ function app_upload_file($path,$maxSize=5242880000){
         'maxSize'   => $maxSize,
 		'saveName'  =>  '',     // 上传文件的保存规则，支持数组和字符串方式定义
         'autoSub'   => true,
-		'subName'	=> 	array('date','Ymd/H/'.time()),  //生成保存的子目录
+		'subName'	=> 	array('date','Ymd/'.time()),  //生成保存的子目录
         );
     $upload = new \Think\Upload($config);// 实例化上传类
     $info = $upload->upload();
@@ -1076,7 +1130,7 @@ function file_upload($path='file',$format='empty',$maxSize='52428800'){
                 'savePath'  =>  './'.$path.'/',         // 文件上传的保存路径（相对于根路径）
                 'saveName'  =>  '',     // 上传文件的保存规则，支持数组和字符串方式定义
                 'autoSub'   =>  true,                   // 自动使用子目录保存上传文件 默认为true
-				'subName'	=> 	array('date','Ymd/H/'.time()),  //生成保存的子目录
+				'subName'	=> 	array('date','Ymd/'.time()),  //生成保存的子目录
                 'exts'      =>  isset($ext_arr[$format])?$ext_arr[$format]:'',
             );
         // 实例化上传

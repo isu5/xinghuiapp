@@ -46,6 +46,7 @@
 						<th style="width:25px;">id</th>
 						<th  style="width:120px;">二级账户用户名</th>
 						<th  style="width:120px;">二级账户用户备注</th>
+						<th  style="width:120px;">二级账户手机号</th>
 						<th  style="width:80px;">添加时间</th>
 						<th  style="width:150px;">操作</th>
 					</tr>
@@ -56,6 +57,7 @@
 							<td>{$v.id}</td>
 							<td>{$v.username}</td>
 							<td>{$v.remark}</td>
+							<td>{$v.phone}</td>
 							<td>{$v.ctime|date='Y-m-d H:i',###}</td>
 							
 							<td>
@@ -73,7 +75,7 @@
 									</ul>
 								</div>
 								
-                                <button type="button" class="btn btn-danger" onClick="showalert('询问','你确定要删除 <strong></strong> 吗?','{:U('User/accountDel',array(id=>$v['id']))}')" >删除</button>
+                                <button type="button" class="btn btn-danger" onClick="showalert('询问','您确定要 <strong>删除绑定</strong> 吗?','{:U('User/accountDel',array(id=>$v['id']))}')" >删除绑定</button>
                             </td>
 						</tr>
 						</volist>

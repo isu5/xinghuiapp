@@ -51,17 +51,25 @@
 									</div>
 								</div>
 								<div class="form-group">
-								<input  type="hidden" name="level" value="2" />
+								
 									<label class="col-md-3 control-label">用户备注</label>
 									<div class="col-md-9">
-										<input type="text" class="form-control"  name="remark" value="" datatype="*"  nullmsg="请输入二级账户备注信息不能为空" errormsg="请输入二级账户备注信息">
+										<input type="text" class="form-control"  name="remark" value="" datatype="*"  nullmsg="备注信息不能为空" errormsg="请输入二级账户备注信息">
+										<span style="color:red"></span>
+									</div>
+								</div>
+								<div class="form-group">
+								
+									<label class="col-md-3 control-label">绑定手机号</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control"  name="phone" value="" datatype="m"  nullmsg="手机号不能为空" errormsg="请正确输入二级账户手机号">
 										<span style="color:red"></span>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-md-3 control-label">密码</label>
 									<div class="col-md-9">
-										<input type="password" class="form-control"  name="password" value="" datatype="s9-30" nullmsg="请输入二级账户密码" errormsg="请输入二级账户密码，字符在9-30个之间">
+										<input type="password" class="form-control"  name="password" value="" datatype="s9-30" nullmsg="密码不能为空" errormsg="请输入二级账户密码，字符在9-30个之间">
 										
 									</div>
 								</div>
@@ -111,6 +119,11 @@ $(function() {
 						
 				});
 			} else if(data.status == 3){ 
+			
+				layer.msg(data.info, {icon: 2, time: 3000,shade: 0.5 },function(){
+					window.location.reload();
+					});
+			}else if(data.status == 4){ 
 			
 				layer.msg(data.info, {icon: 2, time: 3000,shade: 0.5 },function(){
 					window.location.reload();

@@ -76,7 +76,7 @@ class UserController extends PublicController{
 				die;
 			}
 		}
-		$data = $this->model->field('id,companyname,position,address,profile,area')->where(array('id'=>$id))->find();
+		$data = $this->model->field('id,companyname,position,address,profile,website,landline,area')->where(array('id'=>$id))->find();
 		
 		$this->assign('data',$data);
 
@@ -88,6 +88,7 @@ class UserController extends PublicController{
 		$user = M('User');
 		$data['username'] = I('post.username');
 		$data['remark'] = I('post.remark');
+		$data['phone'] = I('post.phone');
 		$data['password'] = strtoupper(sha1(I('post.password')));
 		$data['pid'] = cookie(userid);  //上级账户（主账户）
 		$data['ctime'] = time();
@@ -101,20 +102,23 @@ class UserController extends PublicController{
 		//把主账户的公司名称保存到自账号的companyname 字段里
 		$info = $user->field('id,pid,username,companyname')->where('id='.$data['pid'])->find();
 		$data['companyname'] = $info['companyname'];
-		//判断用户名是否存在
 		
-		$acc = $user->field('id,pid,username')->where(array('username'=>$data['username']))->find();
+		//判断用户名是否存在
+		$acc = $user->field('id,pid,username,phone')->where(array('username'=>$data['username']))->find();
+		//判断手机号是否存在
+		$acc1 = $user->field('id,pid,username,phone')->where(array('phone'=>$data['phone']))->find();
 		
 		
 		if (IS_POST) {
-			
+			//判断用户名是否存在
 			if($acc['username'] == $data['username']){
 				$code = array('status'=>3,'info'=>'对不起，您填写的用户名已存在');
-				//$this->error('对不起，您填写的用户名已存在！');
 				
-				
+			//判断手机号是否存在
+			}elseif($acc1['phone'] == $data['phone']){
+				$code = array('status'=>4,'info'=>'对不起，您填写的手机号已存在');
 			}else{
-				
+					
 				if (C('ACCOUNT_NUM') > $count) {
 					$result = $user->add($data);
 					if ($result) {
@@ -194,7 +198,9 @@ class UserController extends PublicController{
 	//删除二级账户
 	public function accountDel(){
 		$id = I('get.id', 0);
+		$jpush = $this->model->where('id='.$id)->find();
 		if($this->model->delete($id) !== FALSE){
+			jgpushAccount($jpush['jpush']);
 			$code = array('status'=>'y','info'=>'二级账户删除成功');
 		}else{
 			$this->error($this->model->getError());
