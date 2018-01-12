@@ -113,17 +113,19 @@ class IndexController extends Controller {
 		//p($jpush['jpush']);die;
 		//审核中
 		$status = D('Conferenceaudit')->where(array('conf_id'=>$data['conf_id'],'user_id'=>$data['user_id']))->find();
-	
+		if(!$status){
+			Response::show(408,'对不起，您还没有参加会议，不能签到!');
+			exit;
+		}
 		//判断是否签到，签到就推送到签到人的所保存的信息
 		$sign = M('Conference_sign');
-		
-		
 		
 		//查询要推送的标题，内容
 		$info = D('Signjgpush')->field('id,title,content')->where(array('user_id'=>$data['user_id']))->find();
 		
 		
 		if(IS_POST ){
+			
 			if($status['status'] ==1 ){
 				if($this->sign->create()){
 					
