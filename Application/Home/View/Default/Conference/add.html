@@ -4,7 +4,6 @@
 
 <link rel="stylesheet" type="text/css" href="__HOME_CSS__/amazeui.min.css"/>
 <link rel="stylesheet" type="text/css" href="__HOME_CSS__/amazeui.address.css" />
-<link rel="stylesheet" type="text/css" href="__HOME_CSS__/amazeui.datetimepicker.css"/>
 <!-- css样式开始 -->
 <style type="text/css">
 .demo{width:900px;margin:10px auto;}
@@ -23,6 +22,31 @@ input,button,submit,textarea,option,textarea{font-family:'微软雅黑';}
 .demo .clear{clear:both;}
 <!-- css样式结束 -->
 </style>
+
+<!-- 日期时间插件 -->
+<script src="__LAYDATE__/laydate.js"></script> 
+<script>
+//执行一个laydate实例
+laydate.render({
+  elem: '.form-datetime',
+  type: 'datetime',
+  format: 'yyyy-MM-dd HH:mm:ss'
+});
+laydate.render({
+  elem: '.form-datetime1',
+  type: 'datetime',
+  format: 'yyyy-MM-dd HH:mm:ss'
+});
+laydate.render({
+  elem: '.form-datetime2',
+  type: 'datetime',
+  format: 'yyyy-MM-dd HH:mm:ss'
+});
+
+
+</script>
+<!-- 日期时间插件 -->
+
 <div class="page-content">
 
 	<h3 class="page-title">
@@ -116,7 +140,7 @@ input,button,submit,textarea,option,textarea{font-family:'微软雅黑';}
 						<label class="col-md-3 control-label">起始时间</label>
 						<div class="col-md-5">
 							<div class="input-group" style="width:100%">
-								<input type="text" class="form-datetime am-form-field" placeholder="请选择会议开始时间"  readonly name="ctime" datatype="*" nullmsg="会议开始时间不能为空" errormsg="请选择会议开始时间" data-clearbtn="true">
+								<input type="text" class="form-datetime form-control" placeholder="请选择会议开始时间" name="ctime" datatype="*" nullmsg="会议开始时间不能为空" errormsg="请选择会议开始时间" data-clearbtn="true">
 								   
 							</div>
 						</div>
@@ -124,20 +148,15 @@ input,button,submit,textarea,option,textarea{font-family:'微软雅黑';}
 					<div class="form-group">
 						<label class="col-md-3 control-label"></label>
 						<div class="col-md-5">
-							  <input  type="text" value="" placeholder="请选择会议结束时间"  readonly class="form-datetime am-form-field" name="etime"plugin="datetimepicker" datatype="*" nullmsg="会议结束时间不能为空" errormsg="请选择会议结束时间">
+							  <input  type="text" placeholder="请选择会议结束时间" class="form-datetime1 form-control" name="etime" datatype="*" nullmsg="会议结束时间不能为空" errormsg="请选择会议结束时间">
 							 
 						</div>
 					</div>
-					<!-- <div class="form-group">
-						<label class="col-md-3 control-label">报名截止</label>
-						<div class="col-md-5">
-							<input size="16" type="text" value="" readonly class="form-datetime am-form-field" name="btime"plugin="datetimepicker" datatype="*" nullmsg="报名截止时间不能为空" errormsg="请选择报名截止时间">
-						</div>
-					</div> -->
+					
 					<div class="form-group">
 						<label class="col-md-3 control-label">报名截止</label>
 						<div class="col-md-5">
-							<input size="16" type="text" value="" placeholder="请选择会议报名截止时间"  readonly class="form-datetime am-form-field" name="qtime"plugin="datetimepicker" datatype="*" nullmsg="会议签到时间不能为空" errormsg="请选择会议签到时间">
+							<input type="text" value="" placeholder="请选择会议报名截止时间" class="form-datetime2 form-control" name="qtime" datatype="*" nullmsg="会议签到时间不能为空" errormsg="请选择会议签到时间">
 						</div>
 					</div>
 					<div class="form-group">
@@ -313,50 +332,26 @@ UE.getEditor('UMeditor4', {
 <script src="__HOME_JS__/address.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
-	$(function() {
-		document.addEventListener('touchmove', function (e) {
-			e.preventDefault();
-		}, false);
+$(function() {
+	document.addEventListener('touchmove', function (e) {
+		e.preventDefault();
+	}, false);
 
-		//城市多级联动
-		$("#address2").address({
-			prov: "北京石",
-			city: "北京市",
-			district: "景山区",
-			scrollToCenter: true,
-			footer: true,
-			
-		});
+	//城市多级联动
+	$("#address2").address({
+		prov: "北京石",
+		city: "北京市",
+		district: "景山区",
+		scrollToCenter: true,
+		footer: true,
+		
+	});
 
-
+	
 });
 
 </script>
-<!--设置时间js-->
-<script src="__HOME_JS__/amazeui.datetimepicker.min.js"></script>
-<script src="__HOME_JS__/amazeui.datetimepicker.zh-CN.js"></script>
-<script>
-(function($){
-  // 也可以在页面中引入 amazeui.datetimepicker.zh-CN.js
-  $.fn.datetimepicker.dates['zh-CN'] = {
-    days: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"],
-    daysShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六", "周日"],
-    daysMin:  ["日", "一", "二", "三", "四", "五", "六", "日"],
-    months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-    monthsShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-    today: "今日",
-    suffix: [],
-    meridiem: ["上午", "下午"]
-  };
 
-  $('.form-datetime').datetimepicker({
-    language:  'zh-CN',
-    format: 'yyyy-mm-dd hh:ii'
-  });
- 
-
-}(jQuery));
-</script>
 
 
 <!----plupload上传插件 单图上传--------->
@@ -423,6 +418,11 @@ $(function(){
 		$("#multimage").val(new_multimage);
 		$(this).parents('li.li_image').remove();
 	})
+})
+</script>
+<script type="text/javascript">
+$(function(){
+	$('.form-datetime').val();
 })
 </script>
 

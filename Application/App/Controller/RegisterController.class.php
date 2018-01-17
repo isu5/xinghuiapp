@@ -15,6 +15,7 @@ class RegisterController extends Controller{
 	public function index(){
 		$data['phone'] = I('post.phone');
 		$data['password'] = I('post.password');
+		$data['ctime'] = time();
 		//判断手机号是否为二级账户
 		$arr = $this->model->field('id,username,remark,phone,level')->where(array('phone'=>$data['phone']))->find();
 		if(IS_POST){

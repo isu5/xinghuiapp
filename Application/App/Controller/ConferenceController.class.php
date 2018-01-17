@@ -56,6 +56,9 @@ class ConferenceController extends PublicController{
     
 		$uid = I('post.uid');
 		$info = $this->cert->field('is_cert,uid,type')->where(array('uid'=>$uid))->select();
+		
+		//判断用户是否是二级账户
+		
 		//p($info);
 		//is_cert 为空，或者大于=3的时候，提示要实名认证
 		if($info[0]['is_cert'] > 3 || empty($info[0]['is_cert'])){

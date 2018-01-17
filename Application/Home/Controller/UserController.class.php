@@ -172,6 +172,7 @@ class UserController extends PublicController{
 		if (IS_POST) {
 			$data['password'] = strtoupper(sha1($_POST['password']));
 			$data['remark'] = I('post.remark');
+			$data['phone'] = I('post.phone');
 			//p($data);die;
 			if($this->model->create()){
 				
@@ -186,7 +187,7 @@ class UserController extends PublicController{
 			$this->ajaxReturn($code);
 			
 		}
-		$pwd = $this->model->field('id,username,remark,password')->where('id=' .$id)->find();
+		$pwd = $this->model->field('id,username,remark,password,phone')->where('id=' .$id)->find();
 		
 		$this->assign('data',$pwd);
 		$this->display();

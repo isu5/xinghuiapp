@@ -62,7 +62,6 @@ class ConferenceController extends PublicController{
 		
 		$uid = cookie(userid);
 		if (IS_POST) {
-			
 			//p($_POST);die;
 			if($this->model->create(I('post.',1))){
 				if($this->model->add()){
@@ -75,7 +74,6 @@ class ConferenceController extends PublicController{
 			}else{
 				$this->error($this->model->getError());
 			}
-
 		}
 		//获取栏目
 		$cate = $this->cate->getTree();
@@ -172,8 +170,6 @@ class ConferenceController extends PublicController{
 	}
 	
 	
-	
-	
 	//删除会议
 	public function delete(){
 		$id = I('get.id', 0);
@@ -212,7 +208,6 @@ class ConferenceController extends PublicController{
 	
 	//生成二维码
 	public function dicaoliao($id){
-		
 		qrcode($id);
 	}
 	
@@ -231,7 +226,6 @@ class ConferenceController extends PublicController{
 	
 	//我参加的 待审核列表
 	public function myaudit(){
-		
 		$res = D('Conferenceauditlist')-> myauditlist();
 		
 		$this->assign(array(
