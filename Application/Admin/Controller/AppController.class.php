@@ -55,6 +55,14 @@ class AppController extends CommonController{
 		
 		$this->display();
 	}
-	
+	//É¾³ý
+	public function delete(){
+		if($this->app->delete(I('get.id', 0)) !== FALSE){
+			$this->ajaxReturn(1);
+		}else{
+			$this->error($this->app->getError());
+			$this->ajaxReturn(0);
+		}
+	}
 	
 }
