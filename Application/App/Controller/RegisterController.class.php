@@ -28,7 +28,8 @@ class RegisterController extends Controller{
 					//二维码
 					$dimecode = U('Index/usercode',array('id'=>$id));
 					$this->model->where(array('id'=>$id))->setField(array('dimecode'=>$dimecode));
-					Response::show(200,'注册成功');
+					$info = $this->model->field('id,token')->where(array('id'=>$id))->find();
+					Response::show(200,'注册成功',$info);
 				}else{
 					Response::show(401,'注册失败'.$this->model->getError());
 				}
