@@ -125,6 +125,11 @@ $(function() {
 					});
 			}else if(data.status == 4){ 
 			
+				layer.msg(data.info, {icon: 1, time: 3000,shade: 0.5 },function(){
+					window.location.reload();
+					});
+			} else if(data.status == 5){ 
+			
 				layer.msg(data.info, {icon: 2, time: 3000,shade: 0.5 },function(){
 					window.location.reload();
 					});

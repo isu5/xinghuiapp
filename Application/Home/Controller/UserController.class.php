@@ -106,17 +106,21 @@ class UserController extends PublicController{
 		//判断用户名是否存在
 		$acc = $user->field('id,pid,username,phone')->where(array('username'=>$data['username']))->find();
 		//判断手机号是否存在
-		$acc1 = $user->field('id,pid,username,phone')->where(array('phone'=>$data['phone']))->find();
+		$acc1 = $user->field('id,pid,username,phone,type')->where(array('phone'=>$data['phone']))->find();
 		
 		
 		if (IS_POST) {
 			//判断用户名是否存在
 			if($acc['username'] == $data['username']){
 				$code = array('status'=>3,'info'=>'对不起，您填写的用户名已存在');
-				
 			//判断手机号是否存在
+			}elseif($acc1['type'] == 2){
+				$code = array('status'=>5,'info'=>'对不起，您填写的手机号为企业账户手机号，无法绑定！');
 			}elseif($acc1['phone'] == $data['phone']){
-				$code = array('status'=>4,'info'=>'对不起，您填写的手机号已存在');
+				//修改个人属性
+				$userinfo = array('pid'=>$data['pid'],'level'=>'2');
+				$this->model->where(array('id'=>$acc1['id']))->setField($userinfo);
+				$code = array('status'=>4,'info'=>'您填写的手机号已绑定成功!');
 			}else{
 					
 				if (C('ACCOUNT_NUM') > $count) {
@@ -168,25 +172,34 @@ class UserController extends PublicController{
 	//二级账户修改密码
 	public function accountPwd(){
 		$id = I('get.id');
-		
+		$user = M('User');
+		$data['password'] = strtoupper(sha1($_POST['password']));
+		$data['remark'] = I('post.remark');
+		$data['phone'] = I('post.phone');
+		$pid = cookie(userid);
+		//判断手机号是否存在
+		$acc1 = $user->field('id,pid,username,phone,type')->where(array('phone'=>$data['phone']))->find();
 		if (IS_POST) {
-			$data['password'] = strtoupper(sha1($_POST['password']));
-			$data['remark'] = I('post.remark');
-			$data['phone'] = I('post.phone');
-			//p($data);die;
-			if($this->model->create()){
-				
-				if($this->model->where(array('id'=>$id))->save($data)){
+			
+			if($acc1['type'] == 2){
+				$code = array('status'=>5,'info'=>'对不起，您填写的手机号为企业账户手机号，无法绑定！');
+			}elseif($acc1['phone'] == $data['phone']){
+				//修改个人属性
+				$userinfo = array('pid'=>$pid,'level'=>'2');
+				$this->model->where(array('id'=>$acc1['id']))->setField($userinfo);
+				$code = array('status'=>4,'info'=>'您填写的手机号已绑定成功!');
+			}else{
+				if($user->where(array('id'=>$id))->data($data)->save()){
 					$code = array('status'=>'1','info'=>'密码修改成功');
 				}else{
 					$code = array('status'=>'0','info'=>'密码修改失败');
 				}
-			}else{
-				$this->error($this->model->getError());
 			}
-			$this->ajaxReturn($code);
-			
+				$this->ajaxReturn($code);
 		}
+			
+			
+		
 		$pwd = $this->model->field('id,username,remark,password,phone')->where('id=' .$id)->find();
 		
 		$this->assign('data',$pwd);

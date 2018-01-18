@@ -31,7 +31,7 @@
 			 <div class="tabbable-custom tabbable-full-width">
 						<ul class="nav nav-tabs">
 							<li class="active">
-								<a href="JavaScript:;" ><i class="fa fa-tags"></i>添加二级账户</a>
+								<a href="JavaScript:;" ><i class="fa fa-tags"></i>修改二级账户</a>
 							</li>
 							
 						</ul>
@@ -119,17 +119,30 @@ $(function() {
 
 	$("#myform").Validform({
 		tiptype:4,
+		showAllError:true,
 		ajaxPost:true,
 		
 		callback:function(data){ 
-			if(data.status == 1){ 
-				layer.msg(data.info, { icon: 1, time: 3000 ,shade: 0.5},function(){
-					window.location.href= "{:U('User/accountList')}";
+			if(data.status ==  5){ 
+				layer.msg(data.info, {icon: 2, time: 3000,shade: 0.5 },function(){
+					window.location.reload();
+				});
+				
+			}else if(data.status == 4){ 
+				layer.msg(data.info, {icon: 1, time: 3000,shade: 0.5 },function(){
+					window.location.reload();
+					});
+				
+			}else if(data.status == 1){ 
+			
+				layer.msg(data.info, { icon: 2, time: 3000 ,shade: 0.5},function(){
+					window.location.href = "{:U('User/accountList')}";
 						
 				});
 			} else {
-				layer.msg('填写密码不能与原密码相同', {icon: 2, time: 3000,shade: 0.5 });
-				window.location.reload();
+				layer.msg(data.info, {icon: 2, time: 3000,shade: 0.5 },function(){
+					window.location.reload();
+				});
 			}
 		} 
 	});
