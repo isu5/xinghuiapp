@@ -30,7 +30,7 @@ class CertifyController extends PublicController{
 					Response::show(401,'认证失败');
 				}
 			}else{
-				Response::show(402,'数据不合法',$this->model->getError());
+				Response::show(402,$this->model->getError());
 			}
 			
 		}
@@ -55,7 +55,7 @@ class CertifyController extends PublicController{
 					Response::show(401,'认证失败',$this->model->getError());
 				}
 			}else{
-				Response::show(402,'数据不合法',$this->model->getError());
+				Response::show(402,$this->model->getError());
 			}
 			
 		}

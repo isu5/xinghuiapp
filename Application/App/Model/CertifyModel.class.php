@@ -7,7 +7,15 @@ use Common\Model\BaseModel;
 
 class CertifyModel extends BaseModel{
 
+	protected $_validate=array(
 
+		array('company','require','手机号必须填写',1,'regex',4),
+		array('idcard','','您填写的身份证号已经存在！',0,'unique',1), // 在新增的时候验证name字段是否唯一
+		array('company','','您填写的公司名称已经存在！',0,'unique',1), // 在新增的时候验证name字段是否唯一
+		array('certificate','','您填写的统一代码已经存在！',0,'unique',1), // 在新增的时候验证name字段是否唯一
+		array('company','','您填写的公司名称已经存在！',0,'unique',2), // 在新增的时候验证name字段是否唯一
+		array('certificate','','您填写的统一代码已经存在！',0,'unique',2), // 在新增的时候验证name字段是否唯一
+	);
 	/**
 	 * [_before_insert 添加之前需要添加的数据]
 	 * @param  [type] $data   [description]
