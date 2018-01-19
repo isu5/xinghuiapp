@@ -83,7 +83,7 @@ class ConferenceController extends PublicController{
 						$user = $this->user->field('id,pid,jpush')->where('pid='.$data['uid'])->select();
 						foreach($user as $k=>$v){
 							//推送二级账户消息
-							jgpushInside($v['jpush'],$data['title'],$data['brief']);
+							jgpushInside($v['jpush'],$id,$data['title'],$data['brief']);
 						}
 						
 					}

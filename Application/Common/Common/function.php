@@ -373,9 +373,9 @@ function jgpushgx($tag,$title,$content){
 * 极光内部会议推送 type=5
 *
 */
-function jgpushInside($tag,$title,$content){
+function jgpushInside($tag,$conf_id,$title,$content){
 	
-	$extras = array("title"=>$title, "content"=>$content,"type"=>5); //自定义数组 
+	$extras = array("title"=>$title, "content"=>$content,'conf_id'=>$conf_id,"type"=>5); //自定义数组 
 	$android_notification = array(
 		'title' => '幸会会议',
 		'build_id' => 2,
