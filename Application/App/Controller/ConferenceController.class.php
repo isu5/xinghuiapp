@@ -75,9 +75,20 @@ class ConferenceController extends PublicController{
 			
 			//p($_POST);die;
 			if($this->model->create(I('post.',1))){
-				if($this->model->add()){
+				if($id = $this->model->add()){
+					$data = $this->model->field('title,ctime,qtime,brief,uid,is_private')->where(array('id'=>$id))->find();
+					//判断会议为内部会议时，推送发布者下的二级账户会议消息
+					if($data['is_private'] == 1){
+						//查找所有pid下的子id
+						$user = $this->user->field('id,pid,jpush')->where('pid='.$data['uid'])->select();
+						foreach($user as $k=>$v){
+							//推送二级账户消息
+							jgpushInside($v['jpush'],$data['title'],$data['brief']);
+						}
+						
+					}
 					
-					Response::show(200,'添加成功!');
+					Response::show(200,'添加成功!',$id);
 					exit;
 				}else{
 					Response::show(401,'添加失败!');

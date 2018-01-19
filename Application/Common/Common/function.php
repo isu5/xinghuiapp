@@ -368,7 +368,52 @@ function jgpushgx($tag,$title,$content){
 	
 	
 }
-
+/****
+*
+* 极光内部会议推送 type=5
+*
+*/
+function jgpushInside($tag,$title,$content){
+	
+	$extras = array("title"=>$title, "content"=>$content,"type"=>5); //自定义数组 
+	$android_notification = array(
+		'title' => '幸会会议',
+		'build_id' => 2,
+		'extras' => $extras
+	);
+	$alert = $title;
+	$client = new JPushClient(C('JPUSH.APP_KEY'), C('JPUSH.MASTER_SECRET'));
+	try {
+		$client->push()
+		->setPlatform('all')
+		->addAlias($tag)
+		->setNotificationAlert($alert)
+		->androidNotification($alert,$android_notification)
+		 ->message('Hello JPush', [
+			  'title' => 'Hello',
+			  'content_type' => 'text',
+			  'extras' => $extras
+			  
+			])
+		->send();
+	} catch (\JPush\Exceptions\APIConnectionException $e) {
+		// try something here
+		//如果存在异常，则说明用户可能不在线
+		if($e){
+			
+			return ['code'=>201,'message'=>'该用户没有登录app，不能推送'];
+		}
+	} catch (\JPush\Exceptions\APIRequestException $e) {
+		// try something hereif($e){
+			//如果存在异常，则说明用户可能不在线
+		if($e){
+			
+			return ['code'=>201,'message'=>'该用户没有登录app客户端，不能推送'];
+		}
+	}
+	
+	
+}
 
 //审核通过提醒
 function jgpushAgreed($tag){

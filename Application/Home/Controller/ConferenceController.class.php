@@ -64,10 +64,18 @@ class ConferenceController extends PublicController{
 		if (IS_POST) {
 			//p($_POST);die;
 			if($this->model->create(I('post.',1))){
-				if($this->model->add()){
-
+				if($id = $this->model->add()){
+					$data = $this->model->field('title,ctime,qtime,brief,uid')->where(array('id'=>$id))->find();
+					if($data['is_private'] == 1){
+						//查找所有pid下的子id
+						$user = $this->user->field('id,pid,jpush')->where('pid='.$data['uid'])->select();
+						foreach($user as $k=>$v){
+							//推送二级账户消息
+							jgpushInside($v['jpush'],$data['title'],$data['brief']);
+						}
+						
+					}
 					$this->success('添加成功',U('Conference/index'));
-					exit;
 				}else{
 					$this->error('添加失败');
 				}
