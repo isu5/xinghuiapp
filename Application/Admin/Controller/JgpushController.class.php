@@ -48,4 +48,14 @@ class JgpushController extends CommonController{
 		$this->display();
 		
 	}
+	
+	//É¾³ý
+	public function delete(){
+		if($this->jg->delete(I('get.id', 0)) !== FALSE){
+			$this->ajaxReturn(1);
+		}else{
+			$this->error($this->jg->getError());
+			$this->ajaxReturn(0);
+		}
+	}
 }
