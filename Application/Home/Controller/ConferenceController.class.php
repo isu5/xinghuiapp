@@ -75,7 +75,7 @@ class ConferenceController extends PublicController{
 						}
 						
 					}
-					$this->success('添加成功',U('Conference/index'));
+					$this->error('添加成功',U('Conference/index'));
 				}else{
 					$this->error('添加失败');
 				}
@@ -116,8 +116,7 @@ class ConferenceController extends PublicController{
 		$data = $this->model->where(array('id'=>$id))->find();
 		//p($data);
 		//资料文档array_filter(explode(',', $data['downfile']));json_decode($data['downfile'],true)
-		$row['downfile'] = $data['downfile'];
-		
+		$row['downfile'] = $data['downfile'];		
 		$row['downfileArr'] = array_filter(explode('###', $row['downfile']));
 		//p($row['downfileArr']);
 		//p($row);
@@ -127,8 +126,10 @@ class ConferenceController extends PublicController{
 		$this->assign(array(
 			'cate'=>$cate,
 			'row' =>$row,
+			'companypic'=>$data['companypic'],
 			'data'=>$data,
-			'cert'=>$cert
+			'cert'=>$cert,
+			
 			)
 		
 		);
@@ -204,11 +205,11 @@ class ConferenceController extends PublicController{
 		//p($data);
 		$row['downfile'] = $data['downfile'];
 		$row['downfileArr'] = array_filter(explode('###', $row['downfile']));
-		$row['companypic'] = json_decode($data['companypic']);
 		//p($row);
 		$this->assign(array(
 			'data'=>$data,
 			'row'=>$row,
+			'companypic'=>$data['companypic']
 		));
 		
 		$this->display();

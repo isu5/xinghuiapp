@@ -1123,9 +1123,9 @@ Dropdown Menu Badges
 Customized Bootstrap Buttons
 ***/
 /* Default buttons */
-.btn {
+.btn,.btn1 {
   border-width: 0;
- /* padding: 4px 6px;*/
+ padding: 4px 6px;
   margin: 0 2px;
   font-size: 12px;
   outline: none !important;

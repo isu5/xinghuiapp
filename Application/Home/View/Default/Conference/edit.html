@@ -1,30 +1,56 @@
 <layout name="layout" />
 
 <!--设置时间样式-->
-<webuploadercss />
+
 <link rel="stylesheet" type="text/css" href="__HOME_CSS__/amazeui.min.css"/>
 <link rel="stylesheet" type="text/css" href="__HOME_CSS__/amazeui.address.css" />
-<link rel="stylesheet" type="text/css" href="__HOME_CSS__/amazeui.datetimepicker.css"/>
+<!-- css样式开始 -->
 <style type="text/css">
-.demo{width:900px;margin:10px auto;}
-.demo .btn{background-color: #00B7EE;text-decoration: none;color:#fff;}
-.demo .btn:hover{background-color: #00B7EE;text-decoration: none;color:#fff;}
-.demo .ul_pics{margin-top:10px;margin-left:-35px;}
-.demo .ul_pics li{float:left;width:160px;height:160px;border:1px solid #ddd;padding:2px;text-align: center;margin:0 5px 5px 0;list-style:none;}
-.demo .ul_pics li .img{width: 150px;height: 140px;display: table-cell;vertical-align: middle;position:relative;}
-.demo .ul_pics li img{max-width: 150px;max-height: 140px;vertical-align: middle;}
-.demo .progress{position:relative;padding: 1px; border-radius:3px; margin:60px 0 0 0;} 
-.demo .bar {background-color: green; display:block; width:0%; height:20px; border-radius:3px; } 
-.demo .percent{position:absolute; height:20px; display:inline-block;top:3px; left:2%; color:#fff } 
-.demo .span_del{display:block;height:10px;width:10px;position:absolute;top:5px;right:5px;cursor:pointer;background:url(/Public/plupload/images/local_upload_close.png);display:none;}
+.demo,.demo1{width:900px;margin:10px auto;}
+.demo .btn,.demo1 .btn1{background-color: #00B7EE;text-decoration: none;color:#fff;}
+.demo .btn:hover,.demo1 .btn1:hover{background-color: #00B7EE;text-decoration: none;color:#fff;}
+.demo .ul_pics,.demo1 .ul_pics1{margin-top:10px;margin-left:-35px;}
+.demo .ul_pics li,.demo1 .ul_pics1 li{float:left;width:160px;height:160px;border:1px solid #ddd;padding:2px;text-align: center;margin:0 5px 5px 0;list-style:none;}
+.demo .ul_pics li .img,.demo1 .ul_pics1 li .img1{width: 150px;height: 140px;display: table-cell;vertical-align: middle;position:relative;}
+.demo .ul_pics li img,.demo1 .ul_pics1 li img{max-width: 150px;max-height: 140px;vertical-align: middle;}
+.demo .progress,.demo1 .progress1{position:relative;padding: 1px; border-radius:3px; margin:60px 0 0 0;} 
+.demo .bar,.demo1 .bar1 {background-color: green; display:block; width:0%; height:20px; border-radius:3px; } 
+.demo .percent,.demo1 .percent1{position:absolute; height:20px; display:inline-block;top:3px; left:2%; color:#fff } 
+.demo .span_del,.demo1 .span_del1{display:block;height:10px;width:10px;position:absolute;top:5px;right:5px;cursor:pointer;background:url(/Public/plupload/images/local_upload_close.png);display:none;}
 input,button,submit,textarea,option,textarea{font-family:'微软雅黑';}
-.demo .baocun{cursor:pointer;}
-.demo .clear{clear:both;}
+.demo .baocun,.demo1 .baocun1{cursor:pointer;}
+.demo .clear,.demo1 .clear1{clear:both;}
+<!-- css样式结束 -->
 </style>
+
+<!-- 日期时间插件 -->
+<script src="__LAYDATE__/laydate.js"></script> 
+<script>
+//执行一个laydate实例
+laydate.render({
+  elem: '.form-datetime',
+  type: 'datetime',
+  format: 'yyyy-MM-dd HH:mm:ss'
+});
+laydate.render({
+  elem: '.form-datetime1',
+  type: 'datetime',
+  format: 'yyyy-MM-dd HH:mm:ss'
+});
+laydate.render({
+  elem: '.form-datetime2',
+  type: 'datetime',
+  format: 'yyyy-MM-dd HH:mm:ss'
+});
+
+
+</script>
+<!-- 日期时间插件 -->
+
 <div class="page-content">
 
 	<h3 class="page-title">
-	新建会议
+	编辑会议
 	</h3>
 	<div class="page-bar">
 		<ul class="page-breadcrumb">
@@ -34,7 +60,7 @@ input,button,submit,textarea,option,textarea{font-family:'微软雅黑';}
 				<i class="fa fa-angle-right"></i>
 			</li>
 			<li>
-				新建会议
+				编辑会议
 			
 			</li>
 			
@@ -45,14 +71,35 @@ input,button,submit,textarea,option,textarea{font-family:'微软雅黑';}
 	<!--中间部分-->
 	<!-- BEGIN PAGE CONTENT-->
 	 <div class="tabbable-custom tabbable-full-width">
+	 
+	 <!-----========================================================================-------------------->
+		<ul class="nav nav-tabs">
+			<!-- <li class="active">
+				<a href="javascript:;" ><i class="fa fa-tags"></i>基本信息</a>
+			</li>
+			<li class="">
+				<a href=""><i class="fa fa-tag"></i> 会议简介 </a>
+			</li>
+			<li  class="   ">
+				<a href=""><i class="fa fa-tag"></i> 参会嘉宾</a>
+			</li>
+			<li  class="">
+				<a href=""><i class="fa fa-bell"></i>会议日程 </a>
+			</li>
+			<li  class="">
+				<a href=""><i class="fa fa-bell"></i>参会指南</a>
+			</li> -->
+		</ul>
 		<div class="portlet-body form" >
+			 
 		
 			<form class="form-horizontal"   action="__SELF__" method="post" id="myform" >
 				<div class="form-body">
 					<div class="form-group">
 						<label class="col-md-3 control-label">会议标题</label>
 						<div class="col-md-5">
-							<input type="text" class="form-control"  name="title" value="{$data.title}" datatype="*" nullmsg="请输入会议标题" errormsg="会议标题输入有误">
+							<input type="text" class="form-control"  name="title" datatype="*" nullmsg="请输入会议标题" errormsg="会议标题输入有误" value="{$data['title']}">
+							
 						</div>
 					</div>
 					
@@ -61,7 +108,6 @@ input,button,submit,textarea,option,textarea{font-family:'微软雅黑';}
 						<div class="col-md-9">
 							<select class="form-control input-medium" name="cid">
 								<option value="">请选择</option>
-								
 								<volist name="cate" id="v">
 								<if condition="$v.id eq 1">
 									<else />
@@ -70,6 +116,7 @@ input,button,submit,textarea,option,textarea{font-family:'微软雅黑';}
 								</volist>
 							</select>
 						</div>
+						
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 control-label">是否公开</label>
@@ -79,34 +126,34 @@ input,button,submit,textarea,option,textarea{font-family:'微软雅黑';}
 								<label for="radio-1">公开</label>
 								<input type="radio" id="radio-2" name="is_private" value="1" <if condition="$data.is_private eq 1"> checked</if>>
 								<label for="radio-2">内部</label>
-							  </div>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 control-label">举办公司</label>
 						<div class="col-md-5">
-							<input type="text" class="form-control"  name="companyname" value="{$cert.company}" disabled>
+							<input type="text" class="form-control"  name="companyname" value="{$cert.company}">
 							
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 control-label">起始时间</label>
 						<div class="col-md-5">
-							<input size="16" type="text" value="{$data.ctime}" readonly class="form-datetime am-form-field" name="ctime" datatype="*" nullmsg="会议开始时间不能为空" errormsg="请选择会议开始时间" >
+							<div class="input-group" style="width:100%">
+								<input size="16" type="text" value="{$data.ctime}" readonly class="form-datetime am-form-field" name="ctime" datatype="*" nullmsg="会议开始时间不能为空" errormsg="请选择会议开始时间" >  
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 control-label"></label>
 						<div class="col-md-5">
-							
 							  <input size="16" type="text" value="{$data.etime}" readonly class="form-datetime am-form-field" name="etime" plugin="datetimepicker" datatype="*" nullmsg="会议结束时间不能为空" errormsg="请选择会议结束时间">
 							 
 						</div>
-						
 					</div>
-
+					
 					<div class="form-group">
-						<label class="col-md-3 control-label">签到时间</label>
+						<label class="col-md-3 control-label">报名截止</label>
 						<div class="col-md-5">
 							<input size="16" type="text" value="{$data.qtime}" readonly class="form-datetime am-form-field" name="qtime"plugin="datetimepicker" datatype="*" nullmsg="会议签到时间不能为空" errormsg="请选择会议签到时间">
 						</div>
@@ -139,35 +186,42 @@ input,button,submit,textarea,option,textarea{font-family:'微软雅黑';}
 							
 						</div>
 					</div>
+					
 					<div class="form-group">
 						<label class="col-md-3 control-label">会议图片</label>
 						<div class="col-md-5"> 
 							
-							<webuploaderavatar name="companypic"  url="{:U('Attachment/ajax_upload')}" word="或将照片拖到这里，最多可选1张"/> 
+							<div class="demo1">
+								<a class="btn1" id="btn1">上传图片</a> <font style="font-size:12px">限制<span style="color:red">10M</span>,支持gif,jpg,jpeg,png,bmp格式</font> 
+								<ul id="ul_pics1" class="ul_pics1 clearfix">
+									<li class="li_image1" ><div class="img1"><img src="{$companypic}" /><span class="span_del1"></span></div></li>
+
+								</ul>
+								<input type='hidden' name="companypic" value="{$companypic}" id="multimage1" />
+								<div class="clear1"></div>
+							</div>
 						</div>	
 						
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 control-label">资料附件</label>
 						<div class="col-md-5">
-							<div class="demo"> 
-								<a class="btn" id="btn">上传附件</a> <font style="font-size:12px"><span style="color:red">10M</span>,支持doc,docx,xls, xlsx,ppt,pdf格式</font> 
+							<div class="demo">
+								<a class="btn" id="btn">上传附件</a> <font style="font-size:12px">限制<span style="color:red">10M</span>,支持doc,docx,xls, xlsx,ppt,pdf格式</font> 
 								<ul id="ul_pics" class="ul_pics clearfix">
 									<volist name="row['downfileArr']" id="vo">
-										<li class="li_image" ><div class="img"><a href="{$vo}"><?php echo substr($vo,37)?></a></a><span class="span_del"></span></div></li>
+										<li class="li_image" ><div class="img"><a href="{$vo}"><?php echo substr($vo,37)?></a><span class="span_del"></span></div></li>
 									</volist>
-								 </ul>
-								 <input type='hidden' value="{$row['downfile']}" name="downfile" id="multimage" />
-								 <div class="clear"></div>
-								
-							 </div> 
+								</ul>
+								<input type='hidden' value="{$row['downfile']}" name="downfile" id="multimage" />
+								<div class="clear"></div>
+							</div>
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label class="col-md-3 control-label">会议规模</label>
 						<div class="col-md-5">
-							
 							<input type="text" class="form-control"  name="scale" placeholder="请输入最多会议人数" datatype="n" nullmsg="请输入最多会议人数,必须为数字" errormsg="请填写最多会议人数数字" value="{$data.scale}">
 						</div>	
 						
@@ -184,6 +238,7 @@ input,button,submit,textarea,option,textarea{font-family:'微软雅黑';}
 							</select>
 						</div>
 					</div>
+					
 					<div class="form-group">
 						<label class="col-md-3 control-label">会议简介</label>
 						<div class="col-md-8" style="width:90%">
@@ -213,8 +268,6 @@ input,button,submit,textarea,option,textarea{font-family:'微软雅黑';}
 						
 					</div>
 						
-					</div>
-						
 					<div class="form-actions">
 						<div class="row">
 							<div class="col-md-offset-3 col-md-9">
@@ -225,16 +278,38 @@ input,button,submit,textarea,option,textarea{font-family:'微软雅黑';}
 					</div>
 				</form>
 			</div>
+			
 		</div>
 		<!-- END PAGE CONTENT-->
 		<!--中间部分-->
 	</div>
 	<!-- END CONTENT -->
+	
 </div>
+<script type="text/javascript">
+$(function() {     
+
+	var demo = $("#myform").Validform({
+		tiptype:4,
+		label:".label",
+		showAllError:true,		
+		usePlugin:{
+			datetimepicker:{}
+		},
+	});
+	demo.addRule([{
+		ele:"select",
+		datatype:"*",
+	}
+	]);
+});		
+</script>
+
 <!----编辑器设置s--->
-<link href="__STATICS__/ueditor/themes/default/css/dialogbase.css" type="text/css" rel="stylesheet">
+ 
+<link href="__STATICS__/ueditor/themes/default/css/ueditor.min.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" charset="utf-8" src="__STATICS__/ueditor/ueditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="__STATICS__/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__STATICS__/ueditor/ueditor.all.js"></script>
 <script type="text/javascript" src="__STATICS__/ueditor/lang/zh-cn/zh-cn.js"></script>
 
 <script type="text/javascript">
@@ -255,80 +330,41 @@ UE.getEditor('UMeditor4', {
 	initialFrameWidth : "75%",
 	initialFrameHeight : 200
 });
-
 </script>
+
 <!----编辑器设置e--->
 
-
-<script type="text/javascript">
-$(function() {     
-
-	var demo = $("#myform").Validform({
-		tiptype:4,
-		label:".label",
-		showAllError:true,		
-		usePlugin:{
-			datetimepicker:{}
-		},
-	});
-	demo.addRule([{
-		ele:"select",
-		datatype:"*",
-	}]);
-})		
-</script>
 <include file="Public/footer" />
+
+
+<webuploaderjs />
 
 <script src="__HOME_JS__/amazeui.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="__HOME_JS__/iscroll.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="__HOME_JS__/address.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
-	$(function() {
-		document.addEventListener('touchmove', function (e) {
-			e.preventDefault();
-		}, false);
+$(function() {
+	document.addEventListener('touchmove', function (e) {
+		e.preventDefault();
+	}, false);
 
-		//城市多级联动
-		$("#address2").address({
-			prov: "北京石",
-			city: "北京市",
-			district: "景山区",
-			scrollToCenter: true,
-			footer: true,
-			
-		});
+	//城市多级联动
+	$("#address2").address({
+		prov: "北京石",
+		city: "北京市",
+		district: "景山区",
+		scrollToCenter: true,
+		footer: true,
+		
+	});
 
-
+	
 });
 
 </script>
-<!--设置时间js-->
-<script src="__HOME_JS__/amazeui.datetimepicker.min.js"></script>
-<script src="__HOME_JS__/amazeui.datetimepicker.zh-CN.js"></script>
-<script>
-(function($){
-  // 也可以在页面中引入 amazeui.datetimepicker.zh-CN.js
-  $.fn.datetimepicker.dates['zh-CN'] = {
-    days: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"],
-    daysShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六", "周日"],
-    daysMin:  ["日", "一", "二", "三", "四", "五", "六", "日"],
-    months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-    monthsShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-    today: "今日",
-    suffix: [],
-    meridiem: ["上午", "下午"]
-  };
 
-  $('.form-datetime').datetimepicker({
-    language:  'zh-CN',
-    format: 'yyyy-mm-dd hh:ii'
-  });
- 
 
-}(jQuery));
-</script>
-<webuploaderjs />
 
 <!----plupload上传插件 单图上传--------->
 <script type="text/javascript" src="__PLUPLOAD__/plupload/plupload.full.min.js"></script>
@@ -396,6 +432,78 @@ $(function(){
 	})
 })
 </script>
+<!----会议图片上传-->
+<script type="text/javascript">
+      var uploader1 = new plupload.Uploader({
+          runtimes: 'html5,flash,silverlight,html4', 
+          browse_button: 'btn1', 
+          url: "{:U('Attachment/product_upload')}", 
+          flash_swf_url: '/Public/plupload/plupload/Moxie.swf', 
+          silverlight_xap_url: '/Public/plupload/plupload/Moxie.xap', 
+          filters: {
+              max_file_size: '10mb', 
+              mime_types: [
+                  {title: "files", extensions: 'gif,jpg,jpeg,png,bmp'}
+              ]
+          },
+          multi_selection: true, 
+          init: {
+              FilesAdded: function(up, files) { 
+                  if ($("#ul_pics1").children("li").length >= 1) {
+                      alert("您上传的图片超过限制了！");
+                      uploader1.destroy();
+                  } else {
+                      var li = '';
+                      plupload.each(files, function(file) { 
+                          li += "<li class='li_image1' id='" + file['id'] + "'><div class='progress1'><span class='bar'></span><span class='percent1'>0%</span></div></li>";
+                      });
+                      $("#ul_pics1").append(li);
+                      uploader1.start();
+                  }
+              },
+              UploadProgress: function(up, file) { 
+				var percent = file.percent;
+                  $("#" + file.id).find('.bar').css({"width": percent + "%"});
+                  $("#" + file.id).find(".percent1").text(percent + "%");
+              },
+              FileUploaded: function(up, file, info) { 
+                 var data = eval("(" + info.response + ")");
+				 
+                  $("#" + file.id).html("<div class='img1'><img src='"+data.name+"'><span class='span_del1'></span></div>");
+                  var old=$("#multimage1").val();
+				$("#multimage1").val(data.name+'');
+              },
+              Error: function(up, err) { 
+                  alert(err.message);
+              }
+          }
+      });
+      uploader1.init();
+</script>
+<script type="text/javascript">
+$(function(){
+	$(".demo1").on("mouseover",'.li_image1',function(){
+		$(this).find(".span_del1").show();
+	})
+	$(".demo1").on("mouseout",'.li_image1',function(){
+		$(this).find(".span_del1").hide();
+	})
+	$("#ul_pics1").on("click",'.span_del1',function(){
+		var href=$(this).siblings('a').attr('href');
+		var multimage=$("#multimage1").val();
+		var new_multimage=multimage.replace(href+'', '');
+		$("#multimage1").val(new_multimage);
+		$(this).parents('li.li_image1').remove();
+	})
+})
+</script>
+<script type="text/javascript">
+$(function(){
+	$('.form-datetime').val();
+})
+</script>
+
+
 	
 	
 	

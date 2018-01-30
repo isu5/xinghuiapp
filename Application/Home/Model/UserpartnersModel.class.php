@@ -22,7 +22,7 @@ class UserpartnersModel extends BaseModel{
 		$data['ctime'] = time();
 		$data['utime'] = time();
 		
-		$data['logo'] = json_encode(I('post.logo'));
+		$data['logo'] = I('post.logo');
 	
 	}
 	

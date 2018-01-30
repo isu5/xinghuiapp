@@ -52,5 +52,13 @@ class AttachmentController extends PublicController{
 		ajax_upload('/conference/');
 		
 	}
+	
+	//合作伙伴图片上传处理
+	public function userC_upload(){
+		ajax_upload('/userc/');
+		
+	}
+	
+	
 }
 ?>

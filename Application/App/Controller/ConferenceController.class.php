@@ -513,31 +513,26 @@ class ConferenceController extends PublicController{
 		$is_user = $this->model->where(array('id'=>$data['conf_id']))->find();
 		
 		if($is_user['is_user'] == 1){
+			//需要审核，状态值为3，为审核中
 			$data['status'] = 3;
 		}else{
+			//不需要审核，状态值为1，为参会中
 			$data['status'] = 1;
 		}
-		
+		$audits = $audit->where(array('conf_id'=>$data['conf_id'],'user_id'=>$data['user_id']))->find();
+		$auditlists = $auditlist->where(array('conf_id'=>$data['conf_id'],'user_id'=>$data['user_id']))->find();
 		if(IS_POST){
-			if($audit->create() && $auditlist->create() ){
-				$audits = $audit->where(array('conf_id'=>$data['conf_id'],'user_id'=>$data['user_id']))->find();
-				$auditlists = $auditlist->where(array('conf_id'=>$data['conf_id'],'user_id'=>$data['user_id']))->find();
-				if( $audits && $auditlists ){
+			if($audits && $auditlists){
 					return Response::show(401,'您已参加会议，请勿重复提交!');
-					
 				}else{
-					if($audit->add($data) && $auditlist->add($data) ){
-					
+					if($data['status'] ==3 || $data['status']==1 ){
+						$audit->add($data);
+						$auditlist->add($data);
 						Response::show(200,'参加成功!');
 						
 					}else{
 						Response::show(403,'参加失败!');
 					}
-				
-				}
-			}else{
-					
-				Response::show(402,'添加数据不合法!',$audit->getError()); 
 			}
 		}
 	}

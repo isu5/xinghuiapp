@@ -101,7 +101,7 @@ class ConferenceModel extends BaseModel{
 	public function _before_insert(&$data, $option){
 		
 		$data['downfile'] = I('post.downfile');
-		$data['companypic'] = json_encode(I('post.companypic'));
+		$data['companypic'] = I('post.companypic');
 		$data['uid'] = cookie(userid);
 		$data['addtime'] = time();
 		//处理ueditor 转义字符，正常插入数据库
@@ -120,6 +120,7 @@ class ConferenceModel extends BaseModel{
 		$etime = I('post.etime');
 		$qtime = I('post.qtime');
 		$cid = I('post.cid');
+		$companyname = I('post.companyname');
 		$address = I('post.address');
 		$xxaddress = I('post.xxaddress');
 		$contact = I('post.contact');
@@ -130,14 +131,19 @@ class ConferenceModel extends BaseModel{
 		$agenda = htmlspecialchars_decode(I('post.agenda'));
 		$guests = htmlspecialchars_decode(I('post.guests'));
 		$guide = htmlspecialchars_decode(I('post.guide'));
+		//如果修改时间的话，修改会议的状态
+		$conf = M('Conference');
+		$audit = M('Conference_audit');
 		
+		$conf->where(array('id'=>$id))->setField('statuses',0);
+		$audit->where(array('conf_id'=>$id))->setField('status',0);
 		
 		$this->where(array('id'=>$id))->save(array(
 			'title'=>$title,
 			'ctime'=>$ctime,
 			'etime'=>$etime,
 			'qtime'=>$qtime,
-		
+			'companyname'=>$companyname,
 			'cid'=>$cid,
 			'address'=>$address,
 			'xxaddress'=>$xxaddress,
@@ -159,11 +165,11 @@ class ConferenceModel extends BaseModel{
 	public function _before_update(&$data, $option){
 		if($_POST['downfile']){
 			$data['downfile'] = I('post.downfile');
-			
 		}
 		if($_POST['companypic']){
-			$data['companypic'] = json_encode(I('post.companypic')); 
+			$data['companypic'] = I('post.companypic');
 		}
+		
 	}
 
 
