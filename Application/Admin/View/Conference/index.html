@@ -12,7 +12,7 @@
 	<div class="text-c"> 
 	<form class="Huiform" method="get" action="__ACTION__" >
 		<input type="text" class="input-text" style="width:250px" placeholder="输入会议标题" id="" name="username" value="<?php echo I('get.username')?>">
-		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
+		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜标题</button>
 	</form>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
@@ -31,14 +31,14 @@
 				<th width="20">ID</th>
 				<th width="100">会议标题</th>
 				<th width="60">会议类型</th>
-				<th>举办公司</th>
-				<th>发布者</th>
-				<th>联系人电话</th>
+				<th width="78">发布者</th>
+				<th>举办方</th>
+				<th width="78">联系电话</th>
 				<th>起始时间</th>
 				<th>签到时间</th>
 				<th>举办地址</th>
-				<th>审核参会人员</th>
-				<th width="100">操作</th>
+				<th width="50">是否审核</th>
+				<th width="25">操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -49,11 +49,11 @@
 				<td>{$v.title}</td>
 				<td>{$v.catename}</td>
 				<td>{$v.username}</td>
-				<td>{$v.companyname}</td>
+				<td class="text-l">{$v.companyname}</td>
 				<td><if condition="$v['email'] eq ''">{$v.phone}<else /> {$v.email}</if></td>
-				<td>{$v.ctime|strtotime|date="Y-m-d H:i",###}至{$v.etime|strtotime|date="Y-m-d H:i",###}</td>
+				<td>{$v.ctime|strtotime|date="Y-m-d H:i",###}至<br/>{$v.etime|strtotime|date="Y-m-d H:i",###}</td>
 				<td class="text-l">{$v.qtime|strtotime|date="Y-m-d H:i",###}</td>
-				<td>{$v.address}{$v.xxaddress}</td>
+				<td class="text-l">{$v.address}{$v.xxaddress}</td>
 				<td>
 					<eq name="v.is_user" value="1">
 						<span class="label label-success radius" >是</span><else/>

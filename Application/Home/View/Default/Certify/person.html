@@ -73,7 +73,13 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label">身份证号</label>
 								<div class="col-md-9">
-									<p class="form-control-static">{$cert.idcard}</p>
+									<p class="form-control-static">
+									<?php 
+										$data = substr_replace($cert['idcard'],'****',4,10);
+										echo $data;
+										
+										?>
+									</p>
 								</div>
 							</div>
 							<div class="form-group">
@@ -81,7 +87,7 @@
 								<div class="col-md-9">
 									<p class="form-control-static">
 									<img src="{$cert.front}" width="100" id="idCardFront" /> 
-									<a onmouseover="f_img_preview('idCardFront',this.src)"><i class="glyphicon glyphicon-picture"></i>预览</a>
+									<a onclick="f_img_preview('idCardFront',this.src)"><i class="glyphicon glyphicon-picture"></i>点击查看</a>
 									</p>
 								</div>
 							</div>
@@ -90,7 +96,7 @@
 								<div class="col-md-9">
 									<p class="form-control-static">
 									<img src="{$cert.back}" width="100" id="idCardBack" /> 
-									<a onmouseover="f_img_preview('idCardBack',this.src)"><i class="glyphicon glyphicon-picture"></i>预览</a>
+									<a onclick="f_img_preview('idCardBack',this.src)"><i class="glyphicon glyphicon-picture"></i>点击查看</a>
 									</p>
 								</div>
 							</div>

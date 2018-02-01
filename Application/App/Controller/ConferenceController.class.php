@@ -38,7 +38,7 @@ class ConferenceController extends PublicController{
 			)); */
 		$data = array(
 			'result' => $data['data'],
-			'page' => $data['page']
+			//'page' => $data['page']
 		);
 		if($data['result'] == null ){
 			Response::show(401,'没有更多数据!');
@@ -85,11 +85,8 @@ class ConferenceController extends PublicController{
 							//推送二级账户消息
 							jgpushInside($v['jpush'],$id,$data['title'],$data['brief']);
 						}
-						
 					}
-					
 					Response::show(200,'添加成功!',$id);
-					exit;
 				}else{
 					Response::show(401,'添加失败!');
 				}
@@ -631,7 +628,7 @@ class ConferenceController extends PublicController{
 			$res = D('Conferenceauditlist')-> myauditlist();
 			$data = array(
 				'result' => $res['data'],
-				'page' => $res['page'],
+				//'page' => $res['page'],
 				
 			);
 			if($data['result'] == null ){
@@ -676,24 +673,19 @@ class ConferenceController extends PublicController{
 			$res = D('Conferenceaudit')-> rongImAuditList();
 			$data = array(
 				'result' => $res['data'],
-				
 			);
 			if($data['result'] == null ){
 				Response::show(401,'没有更多数据!');
-				
 			}else{
 				Response::show(200,'数据获取成功!',$data);
-				
 			}
 		}else{
 			Response::show(402,'参数不合法!',$this->model->getError());
-			
 		}
 	}
 	
 	//删除我发布的会议
 	public function myauditdel(){
-		
 		$id = I('post.conf_id');
 		$myaudit = D('Conferenceaudit');
 		$myauditlist = D('Conferenceauditlist');

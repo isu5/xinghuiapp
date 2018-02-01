@@ -24,7 +24,7 @@
 				<th width="25">ID</th>
 				<th width="45">用户名</th>
 				<th width="35">姓名</th>
-				<th width="40">身份证号</th>
+				<th width="50">身份证号</th>
 				<th width="90">身份证正面</th>
 				<th width="150">身份证反面</th>
 				<th width="130">认证时间</th>
@@ -39,12 +39,20 @@
 				<td>{$v.id}</td>
 				<td>{$v.username}</td>
 				<td>{$v.realname}</td>
-				<td>{$v.idcard}</td>
-				<td class="text-l">
-				 {:showImg($v['front'],100,front.$v['id'])} <a onmouseover="f_img_preview('front{$v.id}',this.src)">预览</a>
+				<td>
+				<?php 
+				$data = substr_replace($v['idcard'],'****',4,10);
+				echo $data;
+				
+				?>
+				
+				
 				</td>
 				<td class="text-l">
-				 {:showImg($v['back'],100,back.$v['id'])} <a onmouseover="f_img_preview('back{$v.id}',this.src)">预览</a>
+				 {:showImg($v['front'],100,front.$v['id'])} <a onclick="f_img_preview('front{$v.id}',this.src)">点击查看</a>
+				</td>
+				<td class="text-l">
+				 {:showImg($v['back'],100,back.$v['id'])} <a onclick="f_img_preview('back{$v.id}',this.src)">点击查看</a>
 				
 				</td>
 				<td>{$v.certtime|date="Y-m-d H:i",###}</td>

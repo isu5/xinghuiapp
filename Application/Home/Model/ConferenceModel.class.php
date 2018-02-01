@@ -95,13 +95,10 @@ class ConferenceModel extends BaseModel{
 	}
 
 
-
-
-
 	public function _before_insert(&$data, $option){
 		
 		$data['downfile'] = I('post.downfile');
-		$data['companypic'] = I('post.companypic');
+		$data['companypic'] = '['.json_encode(I('post.companypic')).']';
 		$data['uid'] = cookie(userid);
 		$data['addtime'] = time();
 		//处理ueditor 转义字符，正常插入数据库
@@ -109,7 +106,7 @@ class ConferenceModel extends BaseModel{
 		$data['agenda'] = htmlspecialchars_decode($_POST['agenda']);
 		$data['guests'] = htmlspecialchars_decode($_POST['guests']);
 		$data['guide'] = htmlspecialchars_decode($_POST['guide']);
-		
+		p($data);die;
 	}
 	
 	//修改数据
@@ -163,12 +160,15 @@ class ConferenceModel extends BaseModel{
 	
 	//修改前
 	public function _before_update(&$data, $option){
+		
 		if($_POST['downfile']){
 			$data['downfile'] = I('post.downfile');
 		}
 		if($_POST['companypic']){
-			$data['companypic'] = I('post.companypic');
+			
+			$data['companypic'] = '['.json_encode(I('post.companypic')).']';
 		}
+		p($data);
 		
 	}
 

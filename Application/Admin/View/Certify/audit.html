@@ -45,12 +45,12 @@
 				<td>{$v.idcard}</td>
 				<td class="text-l">
 				<if condition='$v["front"]'>
-					{:showImg($v['front'],60,front.$v['id'])} <a onmouseover="f_img_preview('front{$v.id}',this.src)">预览</a>
+					{:showImg($v['front'],60,front.$v['id'])} <a onclick="f_img_preview('front{$v.id}',this.src)">点击查看</a>
 				</if>
 				</td>
 				<td class="text-l">
 				<if condition='$v["back"]'>
-					{:showImg($v['back'],60,back.$v['id'])} <a onmouseover="f_img_preview('back{$v.id}',this.src)">预览</a>
+					{:showImg($v['back'],60,back.$v['id'])} <a onclick="f_img_preview('back{$v.id}',this.src)">点击查看</a>
 				</if>
 				</td>
 				<td class="text-l">{$v.company}</td>
@@ -58,7 +58,7 @@
 				<td class="text-l">
 				
 				<if condition='$v["certificateimg"]'>
-					{:showImg($v['certificateimg'],60,certificateimg.$v['id'])} <a onmouseover="f_img_preview('certificateimg{$v.id}',this.src)">预览</a>
+					{:showImg($v['certificateimg'],60,certificateimg.$v['id'])} <a onclick="f_img_preview('certificateimg{$v.id}',this.src)">点击查看</a>
 				</if>
 				</td>
 				<td >

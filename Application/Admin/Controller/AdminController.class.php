@@ -141,7 +141,39 @@ class AdminController extends CommonController{
 		}
 
 	}
-
+	
+	
+	//个人信息修改
+	public function editAdmin(){
+		$id = session('uid');
+		$admin = M('Admin');
+		$data['password'] = md5(I('post.password'));
+		$map = $this->admin->field('id,username')->where(array('id'=>$id))->find();
+		//p($map);
+		if(IS_POST){
+			
+			if($admin->where(array('id'=>$id))->save($data)){
+				
+				$this->ajaxReturn(1);
+			}else{
+				$this->ajaxReturn(0);
+			}
+		}
+		
+		
+		$this->assign(array(
+			'id'=>$map['id'],
+			'username'=>$map['username'],
+			
+		));
+		
+		$this->display();
+		
+		
+	}
+	
+	
+	
 
 
 

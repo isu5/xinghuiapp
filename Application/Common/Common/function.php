@@ -199,14 +199,14 @@ function getRongcloudToken($uid){
 */
 
 
-function jgpushAll($title,$content,$type=1){
-	$extras = array("title"=>$title, "content"=>$content,'type'=>1); //自定义数组 
+function jgpushAll($title="",$content,$type=1){
+	$extras = array("content"=>$content,'type'=>1); //自定义数组 
 	$android_notification = array(
-		'title' => '幸会会议',
+		//'title' => '幸会会议',
 		'build_id' => 2,
 		'extras' => $extras
 	);
-	$alert= $title;
+	$alert= $content;
 	$client = new JPushClient(C('JPUSH.APP_KEY'), C('JPUSH.MASTER_SECRET'));
 	try{
 		$push = $client->push()
@@ -244,7 +244,7 @@ function jgpushAll($title,$content,$type=1){
 function jgpushPerson($tag,$conf_id){
 	$extras = array("conf_id"=>$conf_id,'type'=>2); //自定义数组 
 	$android_notification = array(
-		'title' => '幸会会议',
+		//'title' => '幸会会议',
 		'build_id' => 2,
 		'extras' => $extras
 	);
@@ -285,7 +285,7 @@ function jgpushPerson($tag,$conf_id){
 function signJgpush($tag,$title,$content){
 	$extras = array("title"=>$title, "content"=>$content,"type"=>4); //自定义数组 
 	$android_notification = array(
-		'title' => '幸会会议',
+		//'title' => '幸会会议',
 		'build_id' => 2,
 		'extras' => $extras
 	);
@@ -331,7 +331,7 @@ function jgpushgx($tag,$title,$content){
 	
 	$extras = array("title"=>$title, "content"=>$content,"type"=>3); //自定义数组 
 	$android_notification = array(
-		'title' => '幸会会议',
+		//'title' => '幸会会议',
 		'build_id' => 2,
 		'extras' => $extras
 	);
@@ -377,7 +377,7 @@ function jgpushInside($tag,$conf_id,$title,$content){
 	
 	$extras = array("title"=>$title, "content"=>$content,'conf_id'=>$conf_id,"type"=>5); //自定义数组 
 	$android_notification = array(
-		'title' => '幸会会议',
+		//'title' => '幸会会议',
 		'build_id' => 2,
 		'extras' => $extras
 	);
@@ -761,6 +761,36 @@ function uploadOne($imgName, $dirName, $thumb = array())
         }
     }
 }
+/**
+ * 会议图片上传
+ * @return string 上传后的图片名
+ */
+function conf_upload_image($path,$maxSize=524288000){
+    ini_set('max_execution_time', '0');
+    // 去除两边的/
+    $path=trim($path,'.');
+    $path=trim($path,'/');
+    $config=array(
+        'rootPath'  =>'./',         //文件上传保存的根路径
+        'savePath'  =>'./'.$path.'/',   
+        'exts'      => array('jpg', 'gif', 'png', 'jpeg','bmp'),
+		'maxSize'   => $maxSize,
+		'saveName'  =>  '',     // 上传文件的保存规则，支持数组和字符串方式定义
+        'autoSub'   => true,
+		'subName'	=> 	array('date','Ymd/'.time()),  //生成保存的子目录
+        );
+    $upload = new \Think\Upload($config);// 实例化上传类
+    $info = $upload->upload();
+    if($info) {
+        foreach ($info as $k => $v) {
+            $data['name']=trim($v['savepath'],'.').$v['savename'];
+        }
+        return $data;
+    }
+}
+
+
+
 
 /**
  * app 图片上传

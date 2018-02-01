@@ -15,8 +15,13 @@ class ConferenceauditlistModel extends BaseModel{
 	public function myauditlist(){
 		$where = array();
 		$where['user_id'] = I('post.user_id'); 
-		$status = I('post.status');
-			switch ( $status ) {
+		//所有的公开会议
+		$where['is_private'] = 0;
+		
+		//$status = I('post.status');
+			$data = $this->where(array('user_id'=>$where['user_id']))->select();
+			//p($data['status']);
+			/* switch ( $data['status'] ) {
 			case 1:
 			$where['status'] = 1;	//审核通过
 			break;  
@@ -34,9 +39,9 @@ class ConferenceauditlistModel extends BaseModel{
 			break;
 			default:
 			$where['status'] = 3;
-		}
+		} */
 		
-		
+		 
 		
 		//翻页
 		$showrow = 15; //一页显示的行数
@@ -47,11 +52,24 @@ class ConferenceauditlistModel extends BaseModel{
 
 		$page = new AppPage($total, $showrow);
 		if ($total > $showrow) {
-			$data['page'] =  $page->myde_write();
+			//$data['page'] =  $page->myde_write();
 		}
+		
+		/*
+		  "id": "35",
+                "title": "公开会议",
+                "ctime": "2018-01-24 00:00:00",
+                "etime": "2018-01-31 00:00:00",
+                "qtime": "2018-01-30 00:00:00",
+                "address": "北京北京市石景山区",
+                "xxaddress": "w",
+                "is_user": "1",
+                "is_private": "0"
+
+		*/
 
 		$data['data'] = $this ->alias('a')
-		->field('a.*,b.*')
+		->field('a.status,b.id,b.title,b.ctime,b.etime,b.qtime,b.address,b.xxaddress,b.is_user,b.is_private,b.companypic')
 		->join('LEFT JOIN __CONFERENCE__ b on b.id=a.conf_id
 		') 
 		->where($where)

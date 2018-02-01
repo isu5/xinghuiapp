@@ -16,6 +16,7 @@ class ConferenceauditModel extends BaseModel{
 	public function myauditPartici(){
 		$where = [];
 		$where['conf_id'] = I('post.conf_id');
+		
 		$where['status'] = 3;
 		
 		//翻页
@@ -31,7 +32,7 @@ class ConferenceauditModel extends BaseModel{
 		}
  
 		$data['data'] = $this->alias('a')
-		->field('a.*,b.*')
+		->field('b.id,b.logo,b.companyname,b.username,b.phone,b.type')
 		->join('LEFT JOIN __USER__ b on b.id=a.user_id
 		')
 		->where($where)
@@ -48,7 +49,12 @@ class ConferenceauditModel extends BaseModel{
 	
 	public function rongImAuditList(){
 		$where = [];
-		$where['conf_id'] = I('post.conf_id');
+		//传会议标题，查找到该会议id
+		$title = I('post.title');
+		$m = M('Conference');
+		$map = $m->field('id')->where(array('title'=>$title))->find();
+		
+		$where['conf_id'] = $map['id'];
 		$data['data'] = $this->alias('a')
 		->field('a.conf_id,b.id,b.companyname,b.username,b.logo,b.type')
 		->join('LEFT JOIN __USER__ b on b.id=a.user_id

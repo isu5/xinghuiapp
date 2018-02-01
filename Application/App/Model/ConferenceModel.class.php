@@ -142,10 +142,10 @@ class ConferenceModel extends RelationModel{
 
 		$page = new AppPage($total, $showrow);
 		if ($total > $showrow) {
-			$data['page'] =  $page->myde_write();
+			//$data['page'] =  $page->myde_write();
 		 }
 		$data['data'] = $this->alias('a')
-		->field('a.*,c.catename,d.pic,d.bullurl')
+		->field('a.id,a.title,a.ctime,a.etime,a.qtime,a.address,a.xxaddress,a.companypic,a.is_user,a.is_private,c.catename,d.pic,d.bullurl')
 		->join('LEFT JOIN __CONFERENCE_CATE__ c on c.id=a.cid
 			LEFT JOIN __CONFERENCE_PIC__ d on d.conf_id=a.id
 			')
@@ -292,12 +292,30 @@ class ConferenceModel extends RelationModel{
 		
 		$page = new AppPage($total, $showrow);
 		if ($total > $showrow) {
-			$data['page'] =  $page->myde_write();
+			//$data['page'] =  $page->myde_write();
 		 }
 		
+		/**
 		
-		$data['data'] = $this/* ->alias('a')
-		->field('a.*,b.is_cert,c.catename')
+		  "id": "35",
+                "title": "公开会议",
+                "ctime": "2018-01-24 00:00:00",
+                "etime": "2018-01-31 00:00:00",
+                "qtime": "2018-01-30 00:00:00",
+                "address": "北京北京市石景山区",
+                "xxaddress": "w",
+                "is_user": "1",
+                "is_private": "0",
+				"status":"1"
+
+		*/
+		
+		
+		
+		
+		$data['data'] = $this
+		->field('id,title,ctime,etime,qtime,address,xxaddress,is_user,is_private,companypic')
+		/*
 		->join('LEFT JOIN __CERTIFY__ b ON a.uid=b.uid 
 				LEFT JOIN __CONFERENCE_CATE__ c ON c.id=a.cid 
 			') */
@@ -334,13 +352,14 @@ class ConferenceModel extends RelationModel{
 		
 		$page = new AppPage($total, $showrow);
 		if ($total > $showrow) {
-			$data['page'] =  $page->myde_write();
+			//$data['page'] =  $page->myde_write();
 		}
 		 
 		$data['data'] = $this->alias('a')
-		->field('a.*,c.catename,d.pic,d.bullurl')
+		->field('a.id,a.title,a.ctime,a.etime,a.qtime,a.companypic,a.address,a.xxaddress,a.is_user,a.is_private,e.status')
 		->join('LEFT JOIN __CONFERENCE_CATE__ c on c.id=a.cid
 			LEFT JOIN __CONFERENCE_PIC__ d on d.conf_id=a.id
+			LEFT JOIN __CONFERENCE_AUDITLIST__ e on e.conf_id=a.id
 			')
 		->where($where)
 		->limit(($curpage - 1) * $showrow.','.$showrow)

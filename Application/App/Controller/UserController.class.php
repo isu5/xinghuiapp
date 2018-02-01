@@ -290,7 +290,7 @@ class UserController extends PublicController{
 		if( IS_POST ){
 			$data = array(
 				'result' => $res['data'],
-				'page'=> $res['page']
+				//'page'=> $res['page']
 			);
 			if($data['result'] == null ){
 				Response::show(401,'没有数据!');

@@ -72,7 +72,13 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label">证书号码</label>
 								<div class="col-md-9">
-									<p class="form-control-static">{$cert.certificate}</p>
+									<p class="form-control-static">
+									<?php 
+										$data = substr_replace($cert['certificate'],'****',4,10);
+										echo $data;
+										
+										?>
+									</p>
 								</div>
 							</div>
 							<div class="form-group">
@@ -81,7 +87,7 @@
 									<p class="form-control-static">
 									<!-- <img src="{$cert.certificateimg}" width="100" id="uploadfile" />  -->
 									{:showImg($cert['certificateimg'],100,uploadfile)}
-									<a onmouseover="f_img_preview('uploadfile',this.src)"><i class="glyphicon glyphicon-picture"></i>预览</a>
+									<a onclick="f_img_preview('uploadfile',this.src)"><i class="glyphicon glyphicon-picture"></i>点击查看</a>
 									</p>
 								</div>
 							</div>

@@ -22,7 +22,7 @@
 			<tr class="text-c">
 				<th width="25">ID</th>
 				<th width="45">用户名</th>
-				<th width="40">公司名称</th>
+				<th width="200">公司名称</th>
 				<th width="90">证件号码</th>
 				<th width="150">证件照片</th>
 				<th width="130">认证时间</th>
@@ -36,8 +36,13 @@
 				<td>{$v.id}</td>
 				<td>{$v.username}</td>
 				<td>{$v.company}</td>
-				<td>{$v.certificate}</td>
-				<td class="text-l">{:showImg($v['certificateimg'],100,certificateimg.$v['id'])} <a onmouseover="f_img_preview('certificateimg{$v.id}',this.src)">预览</a></td>
+				<td>
+				<?php 
+				$data = substr_replace($v['certificate'],'****',4,10);
+				echo $data;
+				?>
+				</td>
+				<td class="text-l">{:showImg($v['certificateimg'],100,certificateimg.$v['id'])} <a onclick="f_img_preview('certificateimg{$v.id}',this.src)">点击查看</a></td>
 				<td>{$v.certtime|date="Y-m-d H:i",###}</td>
 				<td class="td-status">
 					<eq name="v.is_cert" value="2">
