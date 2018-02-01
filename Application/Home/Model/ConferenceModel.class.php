@@ -43,7 +43,7 @@ class ConferenceModel extends BaseModel{
 	/**
 	 * 前台单条数据
 	 */
-	public function showOne($pagesize=15){
+	public function showOne(){
 		
 		//搜索
 		$where = array();
@@ -106,7 +106,7 @@ class ConferenceModel extends BaseModel{
 		$data['agenda'] = htmlspecialchars_decode($_POST['agenda']);
 		$data['guests'] = htmlspecialchars_decode($_POST['guests']);
 		$data['guide'] = htmlspecialchars_decode($_POST['guide']);
-		p($data);die;
+		//p($data);die;
 	}
 	
 	//修改数据
@@ -168,7 +168,7 @@ class ConferenceModel extends BaseModel{
 			
 			$data['companypic'] = '['.json_encode(I('post.companypic')).']';
 		}
-		p($data);
+		//p($data);
 		
 	}
 

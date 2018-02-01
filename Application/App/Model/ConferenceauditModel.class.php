@@ -1,6 +1,6 @@
 <?php
 /**
-*  我发布的 人员审核列表
+*  待审核人员列表
 */
 namespace App\Model;
 use Common\Model\BaseModel;
@@ -12,13 +12,11 @@ class ConferenceauditModel extends BaseModel{
 	protected $tableName = 'conference_audit';
 	
 	
-	//我发布的参会人员列表
+	//待审核人员列表
 	public function myauditPartici(){
 		$where = [];
 		$where['conf_id'] = I('post.conf_id');
-		
-		$where['status'] = 3;
-		
+		$where['status'] = array('eq',3);
 		//翻页
 		$showrow = 15; //一页显示的行数
 		
@@ -39,7 +37,7 @@ class ConferenceauditModel extends BaseModel{
 		->limit(($curpage - 1) * $showrow.','.$showrow)
 		->order('id desc')
 		->select();
-
+		//p($this->getLastSql());
 		return $data;	
 		
 		

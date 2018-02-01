@@ -197,10 +197,13 @@ laydate.render({
 							<div class="demo1">
 								<a class="btn1" id="btn1">上传图片</a> <font style="font-size:12px">限制<span style="color:red">10M</span>,支持gif,jpg,jpeg,png,bmp格式</font> 
 								<ul id="ul_pics1" class="ul_pics1 clearfix">
-									<li class="li_image1" ><div class="img1"><img src="{$companypic}" /><span class="span_del1"></span></div></li>
-
+									<volist name="companypic" id="pic">
+									<li class="li_image1" ><div class="img1"><img src="{$pic}" /><span class="span_del1"></span></div></li>
+									</volist>
 								</ul>
-								<input type='hidden' name="companypic" value="{$companypic}" id="multimage1" />
+								<volist name="companypic" id="pic">
+									<input type='hidden' name="companypic" value="{$pic}" id="multimage1" />
+								</volist>
 								<div class="clear1"></div>
 							</div>
 						</div>	

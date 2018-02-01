@@ -1,5 +1,22 @@
 <layout name="layout" />
+<!-- 日期时间插件 -->
+<script src="__LAYDATE__/laydate.js"></script> 
+<script>
+//执行一个laydate实例
+laydate.render({
+  elem: '.form-datetime',
+  type: 'datetime',
+  format: 'yyyy-MM-dd HH:mm:ss'
+});
+laydate.render({
+  elem: '.form-datetime1',
+  type: 'datetime',
+  format: 'yyyy-MM-dd HH:mm:ss'
+});
 
+
+</script>
+<!-- 日期时间插件 -->
 <nav class="breadcrumb">
 	<i class="Hui-iconfont">&#xe67f;</i> 首页
 	 <span class="c-gray en">&gt;</span> 会议管理 
@@ -11,8 +28,12 @@
 <div class="page-container">
 	<div class="text-c"> 
 	<form class="Huiform" method="get" action="__ACTION__" >
+	日期范围：
+		<input type="text" onfocus="" id="datemin" name="ctime" value="<?php echo I('get.ctime')?>"  class="input-text Wdate form-datetime" style="width:120px;">
+		-
+		<input type="text" onfocus="" id="datemin" name="etime" value="<?php echo I('get.etime')?>" class="input-text Wdate form-datetime" style="width:120px;">
 		<input type="text" class="input-text" style="width:250px" placeholder="输入会议标题" id="" name="username" value="<?php echo I('get.username')?>">
-		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜标题</button>
+		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜会议</button>
 	</form>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 

@@ -1,5 +1,22 @@
 <layout name="layout" />
+<!-- 日期时间插件 -->
+<script src="__LAYDATE__/laydate.js"></script> 
+<script>
+//执行一个laydate实例
+laydate.render({
+  elem: '.form-datetime',
+  type: 'datetime',
+  format: 'yyyy-MM-dd HH:mm:ss'
+});
+laydate.render({
+  elem: '.form-datetime1',
+  type: 'datetime',
+  format: 'yyyy-MM-dd HH:mm:ss'
+});
 
+
+</script>
+<!-- 日期时间插件 -->
 <nav class="breadcrumb">
 	<i class="Hui-iconfont">&#xe67f;</i> 首页
 	 <span class="c-gray en">&gt;</span> 用户中心 
@@ -11,14 +28,17 @@
 <div class="page-container">
 	<div class="text-c"> 
 	<form class="Huiform" method="get" action="__ACTION__" >
-		<input type="text" class="input-text" style="width:250px" placeholder="输入会员名称" id="" name="username" value="<?php echo I('get.username')?>">
+	日期范围：
+		<input type="text" onfocus="" id="datemin" name="ctime" value="<?php echo I('get.ctime')?>"  class="input-text Wdate form-datetime" style="width:120px;">
+		-
+		<input type="text" onfocus="" id="datemin" name="etime" value="<?php echo I('get.etime')?>" class="input-text Wdate form-datetime" style="width:120px;">
+		<input type="text" class="input-text" style="width:250px" placeholder="输入昵称/个人电话/所属单位" id="" name="username" value="<?php echo I('get.username')?>">
+		
+		
 		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
 	</form>
 	</div>
-	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
-	<!-- <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="member_add('添加用户','member-add.html','','510')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加用户</a></span> 
-	<span class="r">共有数据：<strong>88</strong> 条</span> -->
-	</div>
+	
 	<div class="mt-20">
 	<table class="table table-border table-bordered table-hover table-bg table-sort">
 		<thead>
@@ -37,6 +57,13 @@
 			</tr>
 		</thead>
 		<tbody>
+		<empty name="data">
+			<tr class="text-l">
+				<td colspan="11">
+				<blockquote>搜索结果：<p class="Huialert Huialert-error">没有查到您搜索数据</p></blockquote>
+				</td>
+			</tr>
+		<else/>
 		<volist name="data" id="v">
 			<tr class="text-c">
 				<td><input type="checkbox" value="1" name=""></td>
@@ -81,6 +108,7 @@
 				<a title="删除" href="javascript:;" onclick="member_del(this,'{$v.id}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 			</tr>
 		</volist>
+		</empty>
 		</tbody>
 	</table>
 	{$page}

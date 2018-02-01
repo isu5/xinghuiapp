@@ -118,6 +118,8 @@ class ConferenceController extends PublicController{
 		//资料文档array_filter(explode(',', $data['downfile']));json_decode($data['downfile'],true)
 		$row['downfile'] = $data['downfile'];		
 		$row['downfileArr'] = array_filter(explode('###', $row['downfile']));
+		$pic = json_decode($data['companypic']);
+		
 		//p($row['downfileArr']);
 		//p($row);
 		//修改时，获取的认证公司
@@ -126,7 +128,7 @@ class ConferenceController extends PublicController{
 		$this->assign(array(
 			'cate'=>$cate,
 			'row' =>$row,
-			'companypic'=>$data['companypic'],
+			'companypic'=>$pic,
 			'data'=>$data,
 			'cert'=>$cert,
 			
@@ -206,10 +208,11 @@ class ConferenceController extends PublicController{
 		$row['downfile'] = $data['downfile'];
 		$row['downfileArr'] = array_filter(explode('###', $row['downfile']));
 		//p($row);
+		$pic = json_decode($data['companypic']);
 		$this->assign(array(
 			'data'=>$data,
 			'row'=>$row,
-			'companypic'=>$data['companypic']
+			'companypic'=>$pic
 		));
 		
 		$this->display();

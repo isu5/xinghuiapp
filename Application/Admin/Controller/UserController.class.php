@@ -15,7 +15,7 @@ class UserController extends CommonController{
 		$this->user = D('User');
 	}
 	
-
+	//企业用户列表
 	public function index(){
 		
 		$data = $this->user->search();
@@ -31,6 +31,20 @@ class UserController extends CommonController{
 		
 		
 	}
+	//个人用户列表
+	public function person(){
+		$data = $this->user->search();
+		//p($data);die;
+		
+		$this->assign(array(
+			'data' => $data['data'],
+			'page' => $data['page']
+			));
+
+
+		$this->display();
+	}
+	
 	//显示单个用户信息
 	
 	public function show(){

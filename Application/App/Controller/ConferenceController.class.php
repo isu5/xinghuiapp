@@ -461,11 +461,10 @@ class ConferenceController extends PublicController{
 	public function joinStatus(){
 		$data['conf_id'] = I('post.id');
 		$data['user_id'] = I('post.user_id');
-		$join = D('Conference_audit');
+		$join = D('Conferenceaudit');
 		$user = $join->where(array('user_id'=>$data['user_id'],'conf_id'=>$data['conf_id']))->find();
 		//获取该会议是不是需要审核人员
 		$is_user = $this->model->where(array('id'=>$data['conf_id']))->find();
-		//print_r($is_user);die;
 		
 		//p($user);die;
 		//当前时间
@@ -474,7 +473,8 @@ class ConferenceController extends PublicController{
 		$btime = strtotime($is_user['qtime']);
 		
 		if(IS_POST){
-			
+			//print_r($user);die;
+		
 			if($user['status'] == 3){
 				return Response::show(200,'审核中',$rest);
 				
@@ -646,7 +646,7 @@ class ConferenceController extends PublicController{
 		
 	}
 	
-	// 我发布的 参会人员列表
+	// 待审核人员列表
 	public function myauditlist(){
 		if( IS_POST ){
 			$res = D('Conferenceaudit')-> myauditPartici();
@@ -715,6 +715,21 @@ class ConferenceController extends PublicController{
 		}
 		
 	}
+	
+	//融云会议讨论组：--根据标题查询会议id
+	public function findConfId(){
+		$data = $this->model->findMettingId();
+		//p($data);
+		if($data == null ){
+			Response::show(401,'没有数据');
+			
+		}else{
+			Response::show(200,'获取成功',$data);
+		}
+		
+		
+	}
+	
 	
 	//查询是否存在讨论组
 	public function isrongim(){

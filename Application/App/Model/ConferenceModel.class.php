@@ -295,21 +295,6 @@ class ConferenceModel extends RelationModel{
 			//$data['page'] =  $page->myde_write();
 		 }
 		
-		/**
-		
-		  "id": "35",
-                "title": "公开会议",
-                "ctime": "2018-01-24 00:00:00",
-                "etime": "2018-01-31 00:00:00",
-                "qtime": "2018-01-30 00:00:00",
-                "address": "北京北京市石景山区",
-                "xxaddress": "w",
-                "is_user": "1",
-                "is_private": "0",
-				"status":"1"
-
-		*/
-		
 		
 		
 		
@@ -370,6 +355,15 @@ class ConferenceModel extends RelationModel{
 		return $data;
 		
 		
+	}
+	
+	
+	//融云会议讨论组：--根据标题查询会议id
+	public function findMettingId(){
+		$where = [];
+		$title = I('post.title');
+		$data = $this->field('id')->where(array('title'=>$title))->find();
+		return $data;
 	}
 	
 	
