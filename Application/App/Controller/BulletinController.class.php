@@ -16,7 +16,7 @@ class BulletinController extends PublicController{
     	p($_COOKIE);die; */
 		$data = array(
 			'result' => $data['data'],
-			'page' => $data['page']
+			//'page' => $data['page']
 			);
 			//p($data);die;
 		if($data['result'] !== null ){

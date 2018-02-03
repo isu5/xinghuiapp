@@ -131,7 +131,21 @@ CREATE TABLE `tzht_user_partners` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='合作伙伴表';
 
 
+-----平台消息删除中间表
+create table tzht_del_jgpush(
+id int(11) unsigned not null primary key auto_increment,
+user_id int unsigned not null default 0 comment '用户id',
+jp_id int unsigned not null default 0 comment '平台消息id',
+deltime int unsigned not null default 0 comment '删除时间'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='平台消息删除中间表';
 
+-----我的会议删除中间表
+create table tzht_conference_del(
+id int(11) unsigned not null primary key auto_increment,
+user_id int unsigned not null default 0 comment '用户id',
+conf_id int unsigned not null default 0 comment '会议id',
+deltime int unsigned not null default 0 comment '删除时间'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='我的会议删除中间表';
 
 
 

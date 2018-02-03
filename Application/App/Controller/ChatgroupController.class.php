@@ -51,7 +51,7 @@ class ChatgroupController extends PublicController{
 		$res = $this->chat->search();
 		$data = array(
 				'result' => $res['data'],	
-				'page' => $res['page'],	
+				//'page' => $res['page'],	
 			);
 		
 		if($data['result'] == null ){
@@ -67,7 +67,7 @@ class ChatgroupController extends PublicController{
 		$res = $this->chat->grouplists();
 		$data = array(
 				'result' => $res['data'],	
-				'page' => $res['page'],	
+				//'page' => $res['page'],	
 			);
 		
 		if($data['result'] == null ){
@@ -123,7 +123,7 @@ class ChatgroupController extends PublicController{
 		$res = $this->user->nogrouplists();
 		$data = array(
 				'result' => $res['data'],	
-				'page' => $res['page'],	
+				//'page' => $res['page'],	
 			);
 		//p($res);die;
 		if($data['result'] == null ){

@@ -64,7 +64,7 @@ class IndexController extends Controller {
 		$data = array(
 			'result' => $data['data'],
 			
-			'page' => $data['page']
+			//'page' => $data['page']
 		);
 		
 		if(!$data['result']){
@@ -91,7 +91,7 @@ class IndexController extends Controller {
 		$data = $this->conf->searchFront();
 		$data = array(
 			'result' => $data['data'],
-			'page' => $data['page']
+			//'page' => $data['page']
 		);
 		if($data['result'] == null ){
 			Response::show(401,'没有更多数据!');
@@ -121,7 +121,7 @@ class IndexController extends Controller {
 		$sign = M('Conference_sign');
 		
 		//查询要推送的标题，内容
-		$info = D('Signjgpush')->field('id,title,content')->where(array('user_id'=>$data['user_id']))->find();
+		$info = D('Signjgpush')->field('id,title,content,addtime')->where(array('user_id'=>$data['user_id']))->order('addtime desc')->find();
 		
 		
 		if(IS_POST ){
@@ -171,7 +171,7 @@ class IndexController extends Controller {
 		$data = D('Jgpush')->search();
 		$data = array(
 			'result' => $data['data'],
-			'page' => $data['page']
+			//'page' => $data['page']
 		);
 		if($data['result'] == null ){
 			Response::show(401,'没有更多数据!');
@@ -219,7 +219,7 @@ class IndexController extends Controller {
 		$data = D('Signjgpush')->msgMerge();
 		$data = array(
 			'result' => $data['data'],
-			'page' => $data['page']
+			//'page' => $data['page']
 		);
 		if($data['result'] == null ){
 			Response::show(401,'没有更多数据!');
@@ -234,23 +234,45 @@ class IndexController extends Controller {
 	public function deljgpushMerge(){
 		$data['id'] = I('post.id');
 		$data['type'] = I('post.type');
-		$jgpush = D('Jgpushperson');
-		$sign = D('Signjgpush');
+		$jgpush = M('Jgpushperson');
+		$sign = M('Signjgpush');
 		if(IS_POST){
-			if('type'==0){
+			if($data['type']==0){
 				$post1 = $jgpush->where(array('id'=>$data['id']))->delete();
+				if($post1){
+					Response::show(200,'删除成功!');
+				}else{
+					Response::show(401,'删除失败!');
+				}
 			}else{
 				$post2 = $sign->where(array('id'=>$data['id']))->delete();
+				if($post2){
+					Response::show(200,'删除成功!');
+				}else{
+					Response::show(401,'删除失败!');
+				}
 			}
 			
-			if($post1 || $post2){
-				return Response::show(200,'删除成功!');
-			}else{
-				Response::show(401,'删除失败!');
-			}
+			
 		}
 	}
 	
+	
+	//删除平台消息
+	public function deljgMsg(){
+		$data['user_id'] = I('post.user_id');
+		$data['jp_id'] = I('post.jp_id');
+		$data['deltime'] = time();
+		$jpush = M('Del_jgpush');
+		
+		if($jpush->add($data)){
+			Response::show(200,'删除成功!');
+		}else{
+			Response::show(401,'删除失败!');
+		}
+			
+		
+	}
 	
 	
 	

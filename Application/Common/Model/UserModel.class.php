@@ -18,6 +18,16 @@ class UserModel extends BaseModel{
 			//按用户名，按手机号，公司主体搜索
 			$where['_string'] = " (companyname like '%$username%')  OR ( username like '%$username%') OR ( phone like '%$username%')";
 		}
+		//按用户类型搜索
+		$utype = I('get.utype');
+		if($utype ==1)
+			
+			$where['type'] = array('eq',1);
+		elseif($utype ==2)
+			$where['type'] = array('eq',2);
+		elseif($utype ==3)
+			$where['level'] = array('eq',2);
+		
 		//按时间搜索
 		$ctimes = I('get.ctime');
 		$etimes = I('get.etime');
@@ -25,11 +35,11 @@ class UserModel extends BaseModel{
 		$etime = strtotime($etimes);
 		/* p($ctime);
 		p($etime); */
-		if($ctime && $etime){
+		if($ctime && $etime)
 			$where['ctime'] = array('between', array($ctime, $etime));
-		}elseif($ctime){
+		elseif($ctime)
 			$where['ctime'] = array('egt', $ctime);
-		}elseif ($etime)
+		elseif ($etime)
 			$where['ctime'] = array('elt', $etime);  
 		
 		

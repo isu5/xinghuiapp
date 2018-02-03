@@ -133,7 +133,7 @@ class UserModel extends BaseModel{
 		 }
 
 		$data['data'] = $this->alias('a')
-		->field('a.id,a.logo,a.companyname,a.username,a.phone,a.type')
+		->field('a.id,a.logo,a.companyname,a.username,a.phone,a.type,a.nickname')
 		->join('LEFT JOIN __CONFERENCE_AUDIT__ b on b.user_id=a.id
 		')
 		->where($where)
@@ -186,7 +186,7 @@ class UserModel extends BaseModel{
 		 }
 
 		$data['data'] = $this->alias('a')
-		->field('a.id,a.username,a.logo,a.companyname,a.dimecode,a.type,b.state')
+		->field('a.id,a.username,a.logo,a.companyname,a.dimecode,a.type,a.nickname,b.state')
 		->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.conf_user_id=a.id
 		')
 		->where($where)
@@ -228,7 +228,7 @@ class UserModel extends BaseModel{
 			$data['page'] =  $page->myde_write();
 		 }
 		$data['data'] = $this->alias('a')
-		->field('a.id,a.username,a.logo,a.companyname,a.dimecode,a.type,b.state')
+		->field('a.id,a.username,a.logo,a.companyname,a.dimecode,a.type,a.nickname,b.state')
 		->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.conf_user_id=a.id
 		')
 		->where($where)
@@ -269,7 +269,7 @@ class UserModel extends BaseModel{
 			$data['page'] =  $page->myde_write();
 		 }
 		$data['data'] = $this
-		->field('id,username,logo,companyname,type,phone,dimecode')
+		->field('id,username,logo,companyname,type,phone,dimecode,nickname')
 		->where($where)
 		->limit(($curpage - 1) * $showrow.','.$showrow)
 		->order('id desc')
@@ -365,7 +365,7 @@ class UserModel extends BaseModel{
 		}
 		
 		$data['data'] = $this
-		 ->field('id,logo,companyname,username,phone,type')->where(array('id'=>array('in',$user)))
+		 ->field('id,logo,companyname,username,phone,type,nickname')->where(array('id'=>array('in',$user)))
 		 ->limit(($curpage - 1) * $showrow.','.$showrow)->order('id desc')
 		 ->select();
 		
@@ -377,7 +377,7 @@ class UserModel extends BaseModel{
 	//二级账户显示
 	public function account(){
 		$uid = I('post.id');
-		$user = $this->field('id,pid,logo,username,remark,type')->where()->select();
+		$user = $this->field('id,pid,logo,username,nickname,remark,type')->where()->select();
 		$level = findson($user,$uid);  //查找所有pid下的子id
 		return $level;
 	}

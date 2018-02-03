@@ -79,7 +79,7 @@ class ChatgroupModel extends BaseModel{
 		}
 		
 		$data['data'] = D('User')
-		->field('id,logo,companyname,username,phone,type')
+		->field('id,logo,companyname,username,phone,type,nickname')
 		->where($where)->limit(($curpage - 1) * $showrow.','.$showrow)->order('id desc')
 		
 		->select();

@@ -113,10 +113,8 @@ class ConferenceModel extends BaseModel{
 	public function updateConf(){
 		$id = I('get.id');
 		$title = I('post.title');
-		$ctime = I('post.ctime');
-		$etime = I('post.etime');
-		$qtime = I('post.qtime');
 		$cid = I('post.cid');
+		$is_private = I('post.is_private');
 		$companyname = I('post.companyname');
 		$address = I('post.address');
 		$xxaddress = I('post.xxaddress');
@@ -128,20 +126,19 @@ class ConferenceModel extends BaseModel{
 		$agenda = htmlspecialchars_decode(I('post.agenda'));
 		$guests = htmlspecialchars_decode(I('post.guests'));
 		$guide = htmlspecialchars_decode(I('post.guide'));
-		//如果修改时间的话，修改会议的状态
+		/* //如果修改时间的话，修改会议的状态
 		$conf = M('Conference');
 		$audit = M('Conference_audit');
-		
-		$conf->where(array('id'=>$id))->setField('statuses',0);
-		$audit->where(array('conf_id'=>$id))->setField('status',0);
+		if($ctime || $etime || $qtime){
+			$conf->where(array('id'=>$id))->setField('statuses',3);
+			$audit->where(array('conf_id'=>$id))->setField('status',3);
+		} */
 		
 		$this->where(array('id'=>$id))->save(array(
 			'title'=>$title,
-			'ctime'=>$ctime,
-			'etime'=>$etime,
-			'qtime'=>$qtime,
 			'companyname'=>$companyname,
 			'cid'=>$cid,
+			'is_private'=>$is_private,
 			'address'=>$address,
 			'xxaddress'=>$xxaddress,
 			'contact'=>$contact,

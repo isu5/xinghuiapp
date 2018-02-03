@@ -51,12 +51,12 @@
 						<th>会议标题</th>
 						<th width="80">会议类型</th>
 						<th>举办公司</th>
-						<th>起始时间</th>
+						<th width="180">起始时间</th>
 						<th>报名截止</th>
 						<th>举办地址</th>
-						<th>会议状态</th>
-						<th>是否公开</th>
-						<th>是否审核参会人员</th>
+						<th width="80">会议状态</th>
+						<th width="80">是否公开</th>
+						<th width="80">审核权限</th>
 						<th  style="width:150px;">操作</th>
 					</tr>
 					</thead>
@@ -81,8 +81,8 @@
                             <td class="center">{$v.address}{$v.xxaddress}</td>
 							<td>
 								<eq name="v.statuses" value="1">
-                                <span class="badge badge-roundless badge-primary">会议已结束</span>   <else/>
-								<span class="badge badge-roundless badge-danger">会议进行中</span>	
+                                <span class="badge badge-roundless badge-primary">已结束</span>   <else/>
+								<span class="badge badge-roundless badge-danger">进行中</span>	
 								</eq>
 							</td>
 							<td>

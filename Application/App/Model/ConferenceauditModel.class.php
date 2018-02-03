@@ -30,7 +30,7 @@ class ConferenceauditModel extends BaseModel{
 		}
  
 		$data['data'] = $this->alias('a')
-		->field('b.id,b.logo,b.companyname,b.username,b.phone,b.type')
+		->field('b.id,b.logo,b.companyname,b.username,b.phone,b.type,b.nickname')
 		->join('LEFT JOIN __USER__ b on b.id=a.user_id
 		')
 		->where($where)
@@ -54,7 +54,7 @@ class ConferenceauditModel extends BaseModel{
 		
 		$where['conf_id'] = $map['id'];
 		$data['data'] = $this->alias('a')
-		->field('a.conf_id,b.id,b.companyname,b.username,b.logo,b.type')
+		->field('a.conf_id,b.id,b.companyname,b.username,b.logo,b.type,b.nickname')
 		->join('LEFT JOIN __USER__ b on b.id=a.user_id
 		')
 		->where($where)
@@ -96,7 +96,7 @@ class ConferenceauditModel extends BaseModel{
 		 }
 
 		$data['data'] = $this->alias('a')
-		->field('b.id,b.logo,b.companyname,b.username,b.phone,b.type')
+		->field('b.id,b.logo,b.companyname,b.username,b.phone,b.type,b.nickname')
 		->join('LEFT JOIN __USER__ b on b.id=a.user_id
 		')
 		->where($condition)

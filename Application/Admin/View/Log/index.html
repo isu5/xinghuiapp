@@ -60,7 +60,7 @@
 				
 				</td>
 				<td class="td-manage">
-				<a title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+				<a title="删除" href="javascript:;" onclick="member_del(this,'{$v.id}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 			</tr>
 		</volist>
 		</tbody>
@@ -101,31 +101,7 @@ function member_add(title,url,w,h){
 function member_show(title,url,id,w,h){
 	layer_show(title,url,w,h);
 }
-/*用户-停用*/
-function member_stop(obj,id){
-	layer.confirm('确认不予通过吗？',{
-		icon: 3,
-		title: '提示信息',
-		btn: ['是的','取消'], //按钮
-		shade: [0.4, '#393D49']
-	},function(){
-		$.get("{:U('Certify/stop')}", { "id": id },function(data){
-			if (data == 1) {
 
-				layer.msg('未通过!',{icon: 5,time:1000},function(index){
-
-					$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="admin_start(this,id)" href="javascript:;" title="审核"><i class="Hui-iconfont">&#xe603;</i></a>');
-					$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">未通过</span>');
-					$(obj).remove();
-					location.reload();
-				}, "json");	
-			}else if (data == 2) {
-				layer.msg('原超级管理员不允许禁用！',{icon:2,time:1000});
-			};
-		})
-		
-	})
-}
 
 /*用户-启用*/
 function member_start(obj,id){
@@ -159,9 +135,27 @@ function change_password(title,url,id,w,h){
 }
 /*用户-删除*/
 function member_del(obj,id){
-	layer.confirm('确认要删除吗？',function(index){
-		$(obj).parents("tr").remove();
-		layer.msg('已删除!',{icon:1,time:1000});
+	
+	layer.confirm('确认要删除吗？',{
+		icon: 3,
+		title: '提示信息',
+		btn: ['是的','取消'], //按钮
+		shade: [0.4, '#393D49']
+	},function(){
+		$.get("{:U('Log/delete')}", { "id": id },function(data){
+			if (data == 1) {
+				layer.msg('已删除!',{icon: 6,time:1000},function(index){
+					$(obj).parents("tr").remove();
+					$(obj).remove();
+					location.reload();
+				}, "json");
+			}else{
+				layer.msg('删除失败!',{icon: 2,time:1000},function(index){
+					
+					location.reload();
+				}, "json");
+			}
+		})
 	});
 }
 </script> 

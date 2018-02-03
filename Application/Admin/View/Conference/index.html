@@ -1,5 +1,6 @@
 <layout name="layout" />
 <!-- 日期时间插件 -->
+
 <script src="__LAYDATE__/laydate.js"></script> 
 <script>
 //执行一个laydate实例
@@ -27,12 +28,27 @@ laydate.render({
  </nav>
 <div class="page-container">
 	<div class="text-c"> 
-	<form class="Huiform" method="get" action="__ACTION__" >
+	<form class="Huiform layui-form" method="get" action="__ACTION__" >
+	 <span class="select-box inline">
+		<select name="utype" class="select">
+			<option value="" >请选择会议类型</option>
+			<volist name="cate" id="c">
+				<option value="{$c.id}" <?php $utype=I('get.utype'); if($utype==$c['id']){ ?> selected="selected" <?php }?>>{$c.catename}</option>
+			</volist>
+		</select>
+	</span>
 	日期范围：
 		<input type="text" onfocus="" id="datemin" name="ctime" value="<?php echo I('get.ctime')?>"  class="input-text Wdate form-datetime" style="width:120px;">
 		-
-		<input type="text" onfocus="" id="datemin" name="etime" value="<?php echo I('get.etime')?>" class="input-text Wdate form-datetime" style="width:120px;">
-		<input type="text" class="input-text" style="width:250px" placeholder="输入会议标题" id="" name="username" value="<?php echo I('get.username')?>">
+		<input type="text" onfocus="" id="datemin" name="etime" value="<?php echo I('get.etime')?>" class="input-text Wdate form-datetime1" style="width:120px;">
+		省份查询：
+		<span class="select-box inline">
+			<select name="city"  class="select">
+				<option value="">请选择省</option>
+			</select>
+		</span>
+		<input type="text" class="input-text" style="width:250px" placeholder="输入会议标题" id="" name="title" value="<?php echo I('get.title')?>">
+		
 		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜会议</button>
 	</form>
 	</div>
@@ -63,6 +79,13 @@ laydate.render({
 			</tr>
 		</thead>
 		<tbody>
+		<empty name="data">
+			<tr class="text-l">
+				<td colspan="11">
+				<blockquote>搜索结果：<p class="Huialert Huialert-error">没有查到您搜索的数据</p></blockquote>
+				</td>
+			</tr>
+		<else/>
 		<volist name="data" id="v">
 			<tr class="text-c">
 				<td><input type="checkbox" value="1" name=""></td>
@@ -86,6 +109,7 @@ laydate.render({
 				<a title="删除" href="javascript:;" onclick="member_del(this,'{$v.id}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 			</tr>
 		</volist>
+		</empty>
 		</tbody>
 	</table>
 	{$page}
@@ -151,4 +175,43 @@ function member_del(obj,id){
 		
 	});
 }
+
 </script> 
+
+<script>
+	//初始数据
+	var areaData = Area;
+	var $form;
+	var form;
+	var $;
+	layui.use(['jquery', 'form'], function() {
+		$ = layui.jquery;
+		form = layui.form();
+		$form = $('form');
+		loadProvince();
+	});
+	 //加载省数据
+	function loadProvince() {
+		var proHtml = '';
+		for (var i = 0; i < areaData.length; i++) {
+			proHtml += '<option value="' + areaData[i].provinceCode + '_' + areaData[i].mallCityList.length + '_' + i + '">' + areaData[i].provinceName + '</option>';
+		}
+		//初始化省数据
+		$form.find('select[name=province]').append(proHtml);
+		form.render();
+		form.on('select(province)', function(data) {
+			$form.find('select[name=area]').html('<option value="">请选择县/区</option>').parent().hide();
+			var value = data.value;
+			var d = value.split('_');
+			var code = d[0];
+			var count = d[1];
+			var index = d[2];
+			if (count > 0) {
+				loadCity(areaData[index].mallCityList);
+			} else {
+				$form.find('select[name=city]').parent().hide();
+			}
+		});
+	}
+   
+</script>

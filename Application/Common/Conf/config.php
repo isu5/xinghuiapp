@@ -29,6 +29,7 @@ return array(
 		'__XHAPP__'				=>  __ROOT__.'/Public/Home/xhapp',   //xhapp前台页面
 		'__HDJS__'				=>  __ROOT__.'/Public/Home/hdjs_modules',   //hdjs
 		'__LAYDATE__'				=>  __ROOT__.'/Public/Home/js/layer/laydate',   //laydate 日期时间插件
+		'__LAYER__'				=>  __ROOT__.'/Public/Home/js/layer',   //laydate 日期时间插件
 	
 		'__PLUPLOAD__'			=>  __ROOT__.'/Public/plupload',   //上传插件plupload
 		

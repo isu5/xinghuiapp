@@ -269,7 +269,7 @@ class ConferenceController extends PublicController{
 		
 			$data = array(
 				'result' => $res['data'],
-				'page' => $res['page'],
+				//'page' => $res['page'],
 				
 			);
 			if($data['result'] == null ){
@@ -293,7 +293,7 @@ class ConferenceController extends PublicController{
 		
 			$data = array(
 				'result' => $res['data'],
-				'page' => $res['page'],
+				//'page' => $res['page'],
 				
 			);
 			if($data['result'] == null ){
@@ -367,7 +367,7 @@ class ConferenceController extends PublicController{
 			
 		$data = array(
 			'result' => $res['data'],
-			'page' => $res['page'],
+			//'page' => $res['page'],
 			
 		);
 		//p($data);die;
@@ -580,7 +580,7 @@ class ConferenceController extends PublicController{
 		
 			$data = array(
 				'result' => $res['data'],
-				'page' => $res['page'],
+				//'page' => $res['page'],
 				
 			);
 			if($data['result'] == null ){
@@ -605,7 +605,7 @@ class ConferenceController extends PublicController{
 			
 			$data = array(
 				'result' => $res['data'],
-				'page' => $res['page'],
+				//'page' => $res['page'],
 				
 			);
 			//p($data);
@@ -632,7 +632,7 @@ class ConferenceController extends PublicController{
 				
 			);
 			if($data['result'] == null ){
-				Response::show(401,'没有更多数据!');
+				Response::show(401,'没有数据!');
 				
 			}else{
 				Response::show(200,'数据获取成功!',$data);
@@ -652,7 +652,7 @@ class ConferenceController extends PublicController{
 			$res = D('Conferenceaudit')-> myauditPartici();
 			$data = array(
 				'result' => $res['data'],
-				'page' => $res['page'],
+				//'page' => $res['page'],
 				
 			);
 			if($data['result'] == null ){
@@ -765,6 +765,21 @@ class ConferenceController extends PublicController{
 		
 	}
 	
+	//删除我参加的结束的会议
+	public function  delEndConf(){
+		$data['user_id'] = I('post.user_id');
+		$data['conf_id'] = I('post.conf_id');
+		$data['deltime'] = time();
+		$jpush = M('Conference_del');
+		if($jpush->add($data)){
+			Response::show(200,'删除成功!');
+		}else{
+			Response::show(401,'删除失败!');
+		}
+		
+		
+		
+	}
 	
 	
 	

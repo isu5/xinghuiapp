@@ -171,7 +171,7 @@ class UserController extends PublicController{
 		
 			$data = array(
 				'result' => $res['data'],
-				'page' => $res['page'],
+				//'page' => $res['page'],
 				
 			);
 			if($data['result'] == null ){

@@ -28,6 +28,17 @@ class LogController extends CommonController{
 		$this->display();
 		
 	}
+	
+	//删除日志
+	public function delete(){
+		
+		if($this->model->delete(I('get.id', 0)) !== FALSE){
+			$this->ajaxReturn(1);
+		}else{
+			$this->error($this->model->getError());
+			$this->ajaxReturn(0);
+		}
+	}
 
 
 }

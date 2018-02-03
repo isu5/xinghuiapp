@@ -16,9 +16,11 @@ class ConferenceController extends CommonController{
 	public function index(){
 		$data = $this->model->search();
     	//p($data);
+		$cate = $this->cate->select();
 		$this->assign(array(
 			'data' => $data['data'],
-			'page' => $data['page']
+			'page' => $data['page'],
+			'cate' => $cate
 			));
 
 

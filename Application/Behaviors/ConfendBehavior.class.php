@@ -9,7 +9,9 @@ class ConfendBehavior{
 		
 		//判断当前时间 >= 会议结束时间，说明会议已经结束
 		$conf = M('Conference');
-		$audit = M('Conference_auditlist');
+		$audit = M('Conference_audit');
+		$auditlist = M('Conference_auditlist');
+		
 		
 		$uid = $_COOKIE['userid'];
 		
@@ -23,6 +25,7 @@ class ConfendBehavior{
 			if($t >= $etime){
 				$conf->where(array('id'=>$data[$i]['id']))->setField('statuses',1);
 				$audit->where(array('conf_id'=>$data[$i]['id']))->setField('status',5);
+				$auditlist->where(array('conf_id'=>$data[$i]['id']))->setField('status',5);
 			}
 			
 			

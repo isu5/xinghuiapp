@@ -142,12 +142,18 @@ laydate.render({
 								   
 							</div>
 						</div>
+						<div class="col-md-4">
+							<span style="color:red;font-size:12px">为不影响会议进程，开始时间在会议添加后不可修改</span>
+						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 control-label"></label>
 						<div class="col-md-5">
 							  <input  type="text" placeholder="请选择会议结束时间" class="form-datetime1 form-control" name="etime" datatype="*" nullmsg="会议结束时间不能为空" errormsg="请选择会议结束时间">
 							 
+						</div>
+						<div class="col-md-4">
+							<span style="color:red;font-size:12px">为不影响会议进程，结束时间在会议添加后不可修改</span>
 						</div>
 					</div>
 					
@@ -157,13 +163,13 @@ laydate.render({
 							<input type="text" value="" placeholder="请选择会议签到时间" class="form-datetime2 form-control" name="qtime" datatype="*" nullmsg="会议签到时间不能为空" errormsg="请选择会议签到时间">
 						</div>
 						<div class="col-md-4">
-						<span style="color:red;font-size:12px">签到时间在会议开始之前，请慎重选择</span>
+						<span style="color:red;font-size:12px">签到时间在会议开始之前，请慎重选择，在会议添加后不可修改</span>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 control-label">会议地点</label>
 						<div class="col-md-5" id="address2">
-								<input readonly type="text" name="address" class="am-form-field am-radius" placeholder="请选择会议地点" required="" style="font-size:14px" value="北京北京市石景山区">
+								<input  type="text" name="address" class="am-form-field am-radius" placeholder="请选择会议地点" required="" style="font-size:14px" value="北京北京市石景山区">
 								
 							</div>
 					</div>
@@ -286,7 +292,6 @@ $(function() {
 
 	var demo = $("#myform").Validform({
 		tiptype:4,
-		label:".label",
 		showAllError:true,		
 		usePlugin:{
 			datetimepicker:{}

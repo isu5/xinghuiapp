@@ -21,7 +21,7 @@ class CompanybullController extends PublicController{
     	p($_COOKIE);die; */
 		$data = array(
 			'result' => $data['data'],
-			'page' => $data['page']
+			//'page' => $data['page']
 			);
 			//p($data);die;
 		if(!empty($data['result'])){

@@ -19,7 +19,7 @@ class ConferenceauditlistModel extends BaseModel{
 		$where['is_private'] = 0;
 		
 		//$status = I('post.status');
-			$data = $this->where(array('user_id'=>$where['user_id']))->select();
+			//$data = $this->where(array('user_id'=>$where['user_id']))->select();
 			//p($data['status']);
 			/* switch ( $data['status'] ) {
 			case 1:
@@ -66,17 +66,25 @@ class ConferenceauditlistModel extends BaseModel{
                 "is_user": "1",
                 "is_private": "0"
 
-		*/
-
+		
+		
+		$sql = $m->where(array('user_id'=>$where['user_id']))->buildSql(); ;
 		$data['data'] = $this ->alias('a')
 		->field('a.status,b.id,b.title,b.ctime,b.etime,b.qtime,b.address,b.xxaddress,b.is_user,b.is_private,b.companypic')
 		->join('LEFT JOIN __CONFERENCE__ b on b.id=a.conf_id
 		') 
 		->where($where)
 		->limit(($curpage - 1) * $showrow.','.$showrow)
-		->order('id desc')
+		->order('id desc')->table($sql)
 		->select();
-		//p($this->getLastSql());
+		*/
+		$sql = 'SELECT conf_id FROM tzht_conference_del WHERE user_id = '.$where['user_id'];
+		$limit = ($curpage - 1) * $showrow.','.$showrow;
+		$data['data'] = $this->query('SELECT a.status,b.id,b.title,b.ctime,b.etime,b.qtime,b.address,b.xxaddress,b.is_user,b.is_private,b.companypic FROM tzht_conference_auditlist a
+ LEFT JOIN tzht_conference b on b.id=a.conf_id 
+WHERE user_id='.$where['user_id'].' and is_private ='.$where['is_private'].' and  a.conf_id not in ('.$sql.') ORDER BY id desc LIMIT '.$limit);
+		
+		
 		return $data;
 	}
 	

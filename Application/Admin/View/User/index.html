@@ -1,5 +1,6 @@
-<layout name="layout" />
+<layout name="layout" /> 
 <!-- 日期时间插件 -->
+
 <script src="__LAYDATE__/laydate.js"></script> 
 <script>
 //执行一个laydate实例
@@ -28,12 +29,18 @@ laydate.render({
 <div class="page-container">
 	<div class="text-c"> 
 	<form class="Huiform" method="get" action="__ACTION__" >
+	 <span class="select-box inline">
+		<select name="utype" class="select">
+			<option value="1" <?php $utype =  I('get.utype');if($utype==1){?> selected="selected" <?php }?>>个人</option>
+			<option value="2" <?php $utype =  I('get.utype');if($utype==2){?> selected="selected" <?php }?>>企业</option>
+			<option value="3" <?php $utype =  I('get.utype');if($utype==3){?> selected="selected" <?php }?>>二级账户</option>
+		</select>
+	</span>
 	日期范围：
 		<input type="text" onfocus="" id="datemin" name="ctime" value="<?php echo I('get.ctime')?>"  class="input-text Wdate form-datetime" style="width:120px;">
 		-
-		<input type="text" onfocus="" id="datemin" name="etime" value="<?php echo I('get.etime')?>" class="input-text Wdate form-datetime" style="width:120px;">
+		<input type="text" onfocus="" id="datemin" name="etime" value="<?php echo I('get.etime')?>" class="input-text Wdate form-datetime1" style="width:120px;">
 		<input type="text" class="input-text" style="width:250px" placeholder="输入昵称/个人电话/所属单位" id="" name="username" value="<?php echo I('get.username')?>">
-		
 		
 		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
 	</form>
@@ -60,7 +67,7 @@ laydate.render({
 		<empty name="data">
 			<tr class="text-l">
 				<td colspan="11">
-				<blockquote>搜索结果：<p class="Huialert Huialert-error">没有查到您搜索数据</p></blockquote>
+				<blockquote>搜索结果：<p class="Huialert Huialert-error">没有查到您搜索的数据</p></blockquote>
 				</td>
 			</tr>
 		<else/>

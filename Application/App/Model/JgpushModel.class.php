@@ -1,6 +1,6 @@
 <?php
 /**
-* ¸öĞÔÍÆËÍ
+* ä¸ªæ€§æ¨é€
 */
 namespace App\Model;
 use Common\Model\BaseModel;
@@ -11,35 +11,33 @@ class JgpushModel extends BaseModel{
 	
 	
 	
-	//¼«¹âÍÆËÍĞÅÏ¢ÁĞ±í
+	//æå…‰æ¨é€ä¿¡æ¯åˆ—è¡¨
 	public function search(){
 		$where = [];
+		$map['user_id'] = I('post.user_id');
 		
-		//·­Ò³
-		$showrow = 15; //Ò»Ò³ÏÔÊ¾µÄĞĞÊı
+		//ç¿»é¡µ
+		$showrow = 15; //ä¸€é¡µæ˜¾ç¤ºçš„è¡Œæ•°
 		
-		$curpage = I('post.page',1); //µ±Ç°µÄÒ³,»¹Ó¦¸Ã´¦Àí·ÇÊı×ÖµÄÇé¿ö
+		$curpage = I('post.page',1); //å½“å‰çš„é¡µ,è¿˜åº”è¯¥å¤„ç†éæ•°å­—çš„æƒ…å†µ
 
 		$total = $this->where($where)->count();	
 
 		$page = new AppPage($total, $showrow);
 		if ($total > $showrow) {
-			$data['page'] =  $page->myde_write();
+			//$data['page'] =  $page->myde_write();
 		}
- 
-		$data['data'] = $this
-		->field('title,content,addtime')
-		->where($where)
-		->limit(($curpage - 1) * $showrow.','.$showrow)
-		->order('id desc')
-		->select();
-
+		$sql = 'SELECT jp_id from tzht_del_jgpush where user_id='.$map['user_id'];
+		$limit = ($curpage - 1) * $showrow.','.$showrow;
+		
+		$data['data'] = $this->query('SELECT * from tzht_jgpush where id not in ('.$sql.') ORDER BY id desc LIMIT '.$limit);
+		//p($this->getLastSql());die;
 		return $data;	
 		
 		
 	}
 	
-	//²åÈëÇ°
+	//æ’å…¥å‰
 	public function _before_insert(&$data,$option){
 		$data['addtime'] = time();
 

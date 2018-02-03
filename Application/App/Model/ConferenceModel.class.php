@@ -184,6 +184,7 @@ class ConferenceModel extends RelationModel{
 		$where = array();
 		$where['conf_id'] = I('post.id');
 		$data['data'] = $pic
+		->field('id,title,bullurl,pic,addtime')
 		->where($where)
 		->order('id desc')
 		->limit('0,3')
@@ -325,8 +326,20 @@ class ConferenceModel extends RelationModel{
 		//内部私密会议
 		$where['is_private'] = 1;
 		//会议状态 0开始1结束
-		$where['statuses'] = I('post.state');
+		$state = I('post.state');
+		switch ( $state ) {
+			case 1:
+			$where['statuses'] =  array('eq',1);
+			break;  
+			case 0:
+			$where['statuses'] =  array('eq',0);
+			break;		
+			default:
+			
+		}
+		
 		$where['uid'] = $map['pid'];
+		
 		
 		$showrow = 10; //一页显示的行数
 		
