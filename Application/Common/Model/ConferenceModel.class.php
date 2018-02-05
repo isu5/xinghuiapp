@@ -31,6 +31,11 @@ class ConferenceModel extends BaseModel{
 		elseif ($etime)
 			$where['a.ctime'] = array('elt', $etime);  
 		
+		//按地址
+		$address = I('get.addr');
+		if($address){
+			$where['a.address'] = array('eq',$address);
+		}
 		//按会议类型
 		$utype = I('get.utype');
 		//全部类型 id=1 ,其他栏目显示对应栏目

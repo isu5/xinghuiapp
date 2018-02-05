@@ -1,4 +1,7 @@
 <layout name="layout" />
+
+<link rel="stylesheet" type="text/css" href="__HOME_CSS__/amazeui.min.css"/>
+<link rel="stylesheet" type="text/css" href="__HOME_CSS__/amazeui.address.css" />
 <!-- 日期时间插件 -->
 
 <script src="__LAYDATE__/laydate.js"></script> 
@@ -42,38 +45,30 @@ laydate.render({
 		-
 		<input type="text" onfocus="" id="datemin" name="etime" value="<?php echo I('get.etime')?>" class="input-text Wdate form-datetime1" style="width:120px;">
 		省份查询：
-		<span class="select-box inline">
-			<select name="city"  class="select">
-				<option value="">请选择省</option>
-			</select>
+		<span class="inline" id="address2">
+		<input type="text" class="input-text"  style="width:250px" placeholder="" name="addr" value="<?php echo I('get.addr')?>">
 		</span>
-		<input type="text" class="input-text" style="width:250px" placeholder="输入会议标题" id="" name="title" value="<?php echo I('get.title')?>">
+		<input type="text" class="input-text" style="width:250px" placeholder="输入会议标题" id="" name="title" value="<?php echo I('get.title')?>" />
 		
 		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜会议</button>
 	</form>
 	</div>
-	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
-		<!-- <span class="l">
-		<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
-		<i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> 
-		<a href="javascript:;" onclick="member_add('添加用户','member-add.html','','510')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加用户</a>
-		</span> 
-		<span class="r">共有数据：<strong>88</strong> 条</span>  -->
-	</div>
+	
 	<div class="mt-20">
 	<table class="table table-border table-bordered table-hover table-bg table-sort">
 		<thead>
 			<tr class="text-c">
 				<th width="25"><input type="checkbox" name="" value=""></th>
-				<th width="20">ID</th>
+				<th >ID</th>
 				<th width="100">会议标题</th>
-				<th width="60">会议类型</th>
+				<th width="80">会议类型</th>
 				<th width="78">发布者</th>
 				<th>举办方</th>
 				<th width="78">联系电话</th>
 				<th>起始时间</th>
 				<th>签到时间</th>
 				<th>举办地址</th>
+				<th>会议状态</th>
 				<th width="50">是否审核</th>
 				<th width="25">操作</th>
 			</tr>
@@ -99,6 +94,12 @@ laydate.render({
 				<td class="text-l">{$v.qtime|strtotime|date="Y-m-d H:i",###}</td>
 				<td class="text-l">{$v.address}{$v.xxaddress}</td>
 				<td>
+					<eq name="v.statuses" value="1">
+						<span class="label label-success radius" >进行中</span><else/>
+						<span class="label label-default radius" >已结束</span>
+					</eq>
+				</td>
+				<td>
 					<eq name="v.is_user" value="1">
 						<span class="label label-success radius" >是</span><else/>
 						<span class="label label-default radius" >否</span>
@@ -115,7 +116,30 @@ laydate.render({
 	{$page}
 	</div>
 </div>
+<script src="__HOME_JS__/amazeui.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__HOME_JS__/iscroll.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__HOME_JS__/address.js" type="text/javascript" charset="utf-8"></script>
 
+<script type="text/javascript">
+$(function() {
+	document.addEventListener('touchmove', function (e) {
+		e.preventDefault();
+	}, false);
+
+	//城市多级联动
+	$("#address2").address({
+		prov: "北京石",
+		city: "北京市",
+		district: "景山区",
+		scrollToCenter: true,
+		footer: true,
+		
+	});
+
+	
+});
+
+</script>
 <script type="text/javascript">
 $(function(){
 	$('.table-sort').dataTable({
@@ -178,40 +202,3 @@ function member_del(obj,id){
 
 </script> 
 
-<script>
-	//初始数据
-	var areaData = Area;
-	var $form;
-	var form;
-	var $;
-	layui.use(['jquery', 'form'], function() {
-		$ = layui.jquery;
-		form = layui.form();
-		$form = $('form');
-		loadProvince();
-	});
-	 //加载省数据
-	function loadProvince() {
-		var proHtml = '';
-		for (var i = 0; i < areaData.length; i++) {
-			proHtml += '<option value="' + areaData[i].provinceCode + '_' + areaData[i].mallCityList.length + '_' + i + '">' + areaData[i].provinceName + '</option>';
-		}
-		//初始化省数据
-		$form.find('select[name=province]').append(proHtml);
-		form.render();
-		form.on('select(province)', function(data) {
-			$form.find('select[name=area]').html('<option value="">请选择县/区</option>').parent().hide();
-			var value = data.value;
-			var d = value.split('_');
-			var code = d[0];
-			var count = d[1];
-			var index = d[2];
-			if (count > 0) {
-				loadCity(areaData[index].mallCityList);
-			} else {
-				$form.find('select[name=city]').parent().hide();
-			}
-		});
-	}
-   
-</script>
