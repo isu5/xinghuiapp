@@ -353,7 +353,7 @@ class ConferenceModel extends RelationModel{
 			//$data['page'] =  $page->myde_write();
 		}
 		 
-		$data['data'] = $this->alias('a')
+		/* $data['data'] = $this->alias('a')
 		->field('a.id,a.title,a.ctime,a.etime,a.qtime,a.companypic,a.address,a.xxaddress,a.is_user,a.is_private,e.status')
 		->join('LEFT JOIN __CONFERENCE_CATE__ c on c.id=a.cid
 			LEFT JOIN __CONFERENCE_PIC__ d on d.conf_id=a.id
@@ -363,7 +363,28 @@ class ConferenceModel extends RelationModel{
 		->limit(($curpage - 1) * $showrow.','.$showrow)
 		->order('a.id desc')
 		->group('a.id')
-		->select();
+		->select(); 
+		
+		SELECT a.id,a.title,a.ctime,a.etime,a.qtime,a.companypic,a.address,a.xxaddress,a.is_user,a.is_private,e.status FROM tzht_conference a LEFT JOIN tzht_conference_cate c on c.id=a.cid
+
+			LEFT JOIN tzht_conference_pic d on d.conf_id=a.id
+
+			LEFT JOIN tzht_conference_auditlist e on e.conf_id=a.id
+
+			  WHERE `is_private` = 1 AND `uid` = '4' and  e.conf_id not in (SELECT conf_id FROM tzht_conference_del WHERE user_id = 33) GROUP BY a.id ORDER BY a.id desc LIMIT 0,10
+
+		
+		*/
+		$sql = 'SELECT conf_id FROM tzht_conference_del WHERE user_id = '.$data['uid'];
+		$limit = ($curpage - 1) * $showrow.','.$showrow;
+		
+		$data['data'] = $this->query('SELECT e.status,a.id,a.title,a.ctime,a.etime,a.qtime,a.address,a.xxaddress,a.is_user,a.is_private,a.companypic FROM tzht_conference a 
+		LEFT JOIN tzht_conference_cate c on c.id=a.cid 
+		LEFT JOIN tzht_conference_pic d on d.conf_id=a.id
+		LEFT JOIN tzht_conference_auditlist e on e.conf_id=a.id
+WHERE uid='.$where['uid'].' and '.$state.'  and is_private ='.$where['is_private'].' and e.conf_id not in ('.$sql.') GROUP BY a.id ORDER BY id desc LIMIT '.$limit);
+		
+		
 		//p($this->_Sql());die;
 		return $data;
 		
