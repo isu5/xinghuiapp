@@ -84,7 +84,7 @@ class ConferenceauditlistModel extends BaseModel{
  LEFT JOIN tzht_conference b on b.id=a.conf_id 
 WHERE user_id='.$where['user_id'].' and is_private ='.$where['is_private'].' and  a.conf_id not in ('.$sql.') ORDER BY id desc LIMIT '.$limit);
 		
-		
+		//p($this->_Sql());die;
 		return $data;
 	}
 	

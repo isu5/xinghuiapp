@@ -771,12 +771,15 @@ class ConferenceController extends PublicController{
 		$data['conf_id'] = I('post.conf_id');
 		$data['deltime'] = time();
 		$jpush = M('Conference_del');
-		if($jpush->add($data)){
+		if(IS_POST){
+			if($jpush->add($data)){
 			Response::show(200,'删除成功!');
+			}else{
+				Response::show(401,'删除失败!');
+			}
 		}else{
-			Response::show(401,'删除失败!');
+			Response::show(402,$jpush->getError());
 		}
-		
 		
 		
 	}
