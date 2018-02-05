@@ -94,7 +94,7 @@ laydate.render({
 				<td class="text-l">{$v.qtime|strtotime|date="Y-m-d H:i",###}</td>
 				<td class="text-l">{$v.address}{$v.xxaddress}</td>
 				<td>
-					<eq name="v.statuses" value="1">
+					<eq name="v.statuses" value="0">
 						<span class="label label-success radius" >进行中</span><else/>
 						<span class="label label-default radius" >已结束</span>
 					</eq>
