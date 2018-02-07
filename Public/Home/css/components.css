@@ -1815,7 +1815,7 @@ Dropdown Menu
   display: block;
   clear: both;
   font-weight: 300;
-  line-height: 15px;
+  line-height: 10px;
   white-space: nowrap;
 }
 .dropdown-menu li > a > [class^="fa-"],
@@ -9428,12 +9428,12 @@ Red Default
 /* Button */
 .red.btn {
   color: #FFFFFF;
-  background-color: #d84a38;
+  background-color: #2878b9;
   border-color: "";
 }
 .red.btn:hover, .red.btn:focus, .red.btn:active, .red.btn.active {
   color: #FFFFFF;
-  background-color: #c63927;
+  background-color: #2878b9;
 }
 .open .red.btn.dropdown-toggle {
   color: #FFFFFF;
