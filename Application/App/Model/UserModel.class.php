@@ -252,7 +252,7 @@ class UserModel extends BaseModel{
 		
 		if ( $companyname ) {
 			
-			$where['_string'] = " (username like '%$companyname%')  OR ( email like '%$companyname%') OR ( phone like '%$companyname%')";
+			$where['_string'] = " (username like '%$companyname%')  OR ( companyname like '%$companyname%') OR ( phone like '%$companyname%')";
 		}else{
 			return false;
 		}

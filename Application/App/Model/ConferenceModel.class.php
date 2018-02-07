@@ -458,9 +458,10 @@ WHERE uid='.$where['uid'].' and is_private=1 ORDER BY id desc LIMIT '.$limit);
 		
 		$sql = 'SELECT conf_id FROM tzht_conference_del WHERE user_id = '.$data['uid'];
 		$limit = ($curpage - 1) * $showrow.','.$showrow;
-			
-		$data['data'] = $this->query('SELECT a.status,b.id,b.title,b.ctime,b.etime,b.qtime,b.address,b.xxaddress,b.is_user,b.is_private,b.companypic FROM tzht_conference_auditlist a
+		$m= M();
+		$data['data'] = $m->query('SELECT a.status,b.id,b.title,b.ctime,b.etime,b.qtime,b.address,b.xxaddress,b.is_user,b.is_private,b.companypic FROM tzht_conference_auditlist a
  LEFT JOIN tzht_conference b on b.id=a.conf_id 
+
 WHERE uid='.$where['uid'].' and is_private =1 and  a.conf_id not in ('.$sql.') group by b.id ORDER BY id desc LIMIT '.$limit);
 			
 		//p($this->_Sql());die;

@@ -308,8 +308,8 @@ class UserController extends PublicController{
 	
 	//二级账户的会议列表删除一条会议
 	public function delAccountConfOne(){
-		$conf = D('Conference');
-		$res = $conf->delAccountConfOne();
+		$conf = D('Conferenceauditlist');
+		$res = $conf->privateConfList();
 		if( IS_POST ){
 			$data = array(
 				'result' => $res['data'],
