@@ -304,6 +304,29 @@ class UserController extends PublicController{
 			
 		}
 	}
+	
+	
+	//二级账户的会议列表删除一条会议
+	public function delAccountConfOne(){
+		$conf = D('Conference');
+		$res = $conf->delAccountConfOne();
+		if( IS_POST ){
+			$data = array(
+				'result' => $res['data'],
+				//'page'=> $res['page']
+			);
+			if($data['result'] == null ){
+				Response::show(401,'没有数据!');
+				
+			}else{
+				Response::show(200,'数据获取成功!',$data );
+				
+			}
+		}else{
+			Response::show(402,'参数不合法!');
+			
+		}
+	}
 
 	
 

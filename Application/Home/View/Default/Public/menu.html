@@ -13,19 +13,13 @@
 		<li class="sidebar-search-wrapper">
 
 		</li>
-		<li class="start current  ">
+		<!-- <li class="start current  ">
 			<a href="{:U('User/index')}">
 			<i class="icon-home"></i>
 			<span class="title">会员中心</span>
 			
 			</a>
-		<li class="">
-			<a href="{:U('User/info')}">
-			<i class="fa fa-magic"></i>
-			<span class="title">基本资料</span>
-			
-			</a>
-		</li>
+		</li> -->
 		
 		
 		<switch name="info[0]['is_cert']">
@@ -40,32 +34,56 @@
 				<li class="current " >
 					<a href="{:U('Certify/message')}">
 					<i class="fa fa-tags"></i>
-					已发布会议</a>
+					新建会议</a>
 				</li>
-				<li class="current" >
+				<li class="current " >
 					<a href="{:U('Certify/message')}">
-					<i class="fa fa-trophy"></i>
-					已参加会议</a>
+					<i class="fa fa-tags"></i>
+					已发布会议</a>
 				</li>
 				<li  class="current">
 					<a href="{:U('Certify/message')}">
 					<i class="fa fa-tag"></i>
-					待审核会议</a>
+					我参加的会议</a>
 				</li>
 			
 				
 			 
 			</ul>
 		</li>	
-		<li class=" ">
-			<a href="{:U('Certify/message')}">
-			<i class="fa fa-magic"></i>
-			<span class="title">新建会议</span>
-			
-			</a>
-		</li>
+		
 		</case>
 		<case value="2">
+		
+		
+		<li class="">
+			<a href="javascript:;">
+			<i class="fa fa-file-text-o"></i>
+			<span class="title">会议管理</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub-menu">
+				<li class="start ">
+					<a href="{:U('Conference/add')}">
+					<i class="fa fa-magic"></i>
+					<span class="title">新建会议</span>
+					
+					</a>
+				</li>
+				<li class="current " >
+					<a href="{:U('Conference/index')}">
+					<i class="fa fa-tags"></i>
+					已发布会议</a>
+				</li>
+				<li  class="current">
+					<a href="{:U('Conference/myaudit')}">
+					<i class="fa fa-tag"></i>
+					我参加的会议</a>
+				</li>
+				
+				
+			</ul>
+		</li>
 		<li class=" ">
 			<a href="javascript:;">
 			<i class="fa fa-file-text-o"></i>
@@ -97,54 +115,7 @@
 				
 				</li>
 			</ul>
-		</li>
-		
-		<li class="">
-			<a href="javascript:;">
-			<i class="fa fa-file-text-o"></i>
-			<span class="title">会议管理</span>
-			<span class="arrow "></span>
-			</a>
-			<ul class="sub-menu">
-				<li class="start ">
-					<a href="{:U('Conference/add')}">
-					<i class="fa fa-magic"></i>
-					<span class="title">新建会议</span>
-					
-					</a>
-				</li>
-				<li class="current " >
-					<a href="{:U('Conference/index')}">
-					<i class="fa fa-tags"></i>
-					已发布会议</a>
-				</li>
-				<li  class="current">
-					<a href="{:U('Conference/myaudit')}">
-					<i class="fa fa-tag"></i>
-					待审核会议</a>
-				</li>
-				<li class="">
-					<a href="{:U('Confpic/index')}">
-					<i class="fa fa-tags"></i>
-					<span class="title">会议图片列表</span>
-					</a>
-					
-				</li>	
-				<li class="">
-					<a href="{:U('Confbull/index')}">
-					<i class="fa fa-tags"></i>
-					<span class="title">会议公告列表</span>
-					</a>
-				</li>
-				<li class="">
-					<a href="{:U('Userpartners/index')}">
-					<i class="fa fa-tags"></i>
-					<span class="title">会议合作伙伴列表</span>
-					</a>
-				</li>		
-				
-			</ul>
-		</li>	
+		</li>		
 		
 		<li class="">
 			<a href="javascript:;">
@@ -171,11 +142,27 @@
 			
 		</case>
 		<case value="1">
+		
+		<li class="">
+			<a href="javascript:;">
+			<i class="fa fa-file-text-o"></i>
+			<span class="title">会议管理</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub-menu">
+				
+				<li class="current" >
+					<a href="{:U('Conference/myaudit',array('status'=>3))}">
+					<i class="fa fa-trophy"></i>
+					我参加的会议</a>
+				</li>
+				
+			</ul>
+		</li>
 		<li class=" ">
 			<a href="{:U('Download/index')}">
 			<i class="fa fa-magic"></i>
 			<span class="title">企业资料</span>
-			
 			</a>
 		</li>
 		<li class=" ">
@@ -192,22 +179,6 @@
 			
 			</a>
 		</li>
-		<li class="">
-			<a href="javascript:;">
-			<i class="fa fa-file-text-o"></i>
-			<span class="title">会议管理</span>
-			<span class="arrow "></span>
-			</a>
-			<ul class="sub-menu">
-				
-				<li class="current" >
-					<a href="{:U('Conference/myaudit',array('status'=>3))}">
-					<i class="fa fa-trophy"></i>
-					已参加会议</a>
-				</li>
-				
-			</ul>
-		</li>
 		</case>	
 		<default />
 		<li class="">
@@ -218,6 +189,11 @@
 			</a>
 			<ul class="sub-menu">
 				<li class="current " >
+					<a href="{:U('Conference/add')}">
+					<i class="fa fa-magic"></i>
+					新建会议</a>
+				</li>
+				<li class="current " >
 					<a href="{:U('Conference/index')}">
 					<i class="fa fa-tags"></i>
 					已发布会议</a>
@@ -226,21 +202,13 @@
 				<li  class="current">
 					<a href="{:U('Conference/myaudit',array('status'=>3))}">
 					<i class="fa fa-tag"></i>
-					待审核会议</a>
+					我参加的会议</a>
 				</li>
 			
 				
 			 
 			</ul>
 		</li>	
-		<li class=" ">
-			<a href="{:U('Conference/add')}">
-			<i class="fa fa-magic"></i>
-			<span class="title">新建会议</span>
-			
-			</a>
-		</li>
-		
 		</switch>
 			
 			
@@ -307,6 +275,7 @@
 			
 			</a>
 		</li> -->
+		
 		<li class="">
 			<a href="javascript:;">
 			<i class="fa fa-gear "></i>
@@ -315,10 +284,21 @@
 			</a>
 			<ul class="sub-menu">
 				<li  class="current">
+					<a href="{:U('User/info')}">
+					<i class="fa fa-magic "></i>
+					基本资料</a>
+				</li>
+				<li  class="current">
 					<a href="{:U('User/password')}">
 					<i class="fa fa-gears "></i>
 					修改密码</a>
 				</li>
+				<li  class="current">
+					<a href="{:U('User/details')}">
+					<i class="fa fa-magic "></i>
+					详情</a>
+				</li>
+				
 				
 				<li  class="current">
 					<a href="{:U('Login/logout')}">

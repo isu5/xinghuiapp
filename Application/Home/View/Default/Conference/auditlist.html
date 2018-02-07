@@ -1,17 +1,24 @@
 <layout name="layout" />
-
+<?php $type = I('get.type')?>
 <div class="page-content">
 	<div class="tabbable-custom tabbable-full-width">
 		<ul class="nav nav-tabs">
 			<li class="active">
+				<?php if($type==1){?>
 				<a href="javascript:;" ><i class="fa fa-tags"></i>参会人员审核</a>
+				<?php }else{ ?>
+				<a href="javascript:;" ><i class="fa fa-tags"></i>个性推送</a>
+				<?php } ?>
 			</li>
 			
 		</ul>
 		<div  class="portlet-body">
+			<?php if($type==0){?>
 			<p class="col-md-12 text-center alert alert-danger">注：推送为直接推送给个人或者企业帐号信息，签到推送为保存后推送，把需要推送的信息先保存，参会人员
 			扫码签到后自动推送保存的信息。
 			</p>
+			<?php } ?>
+			
 
 				<table class="table table-striped  table-bordered table-hover"  >
 					<thead>
@@ -37,17 +44,13 @@
 								<td class="center">{$v.phone}</td>
 								<td>
 								
+								<?php if($type==1){?>
+								
 								<if condition="$v['is_user'] eq 1">
 									<switch name="v.status" >
 										<case value="1">
 										
 										<button type="button" class="btn btn-red">您已同意</button>
-										<a href="{:U('Jgpushperson/gexingts',array('id'=>I('get.id'),'uid'=>$v['id']))}">
-											<button type="button" class="btn btn-danger">推送</button>
-										</a>
-										<a href="{:U('Signjgpush/signts',array('id'=>I('get.id'),'uid'=>$v['id']))}">
-											<button type="button" class="btn btn green">签到推送</button>
-										</a>
 										
 										</case>
 										<case value="2">
@@ -56,9 +59,6 @@
 										
 										<case value="4">
 										<button type="button" class="btn btn-green">参会中</button>
-										<a href="{:U('Jgpushperson/gexingts',array('id'=>I('get.id'),'uid'=>$v['id']))}">
-											<button type="button" class="btn btn-danger">推送</button>
-										</a>
 										
 										</case>
 										<case value="5">
@@ -66,19 +66,28 @@
 										</case>
 										<default />
 										
-										<button type="button" class="btn btn-green" onClick="agreealert('询问','你确定要同意 <strong></strong> 吗?','{:U('Conference/agreed',array('id'=>I('get.id'),'uid'=>$v['id']))}')" >同意</button>
-										<button type="button" class="btn btn-danger" onClick="refusedalert('询问','你确定要拒绝 <strong></strong> 吗?','{:U('Conference/refused',array('id'=>I('get.id'),'uid'=>$v['id']))}')" >拒绝</button>
+										<!--<button type="hidden" class="btn btn-danger" onClick="refusedalert('询问','您确定要拒绝 <strong></strong> 吗?','{:U('Conference/refused',array('id'=>I('get.id'),'uid'=>$v['id']))}')" >拒绝</button>
+										--><button type="button" class="btn btn-green" onClick="agreealert('询问','您确定要同意 <strong></strong> 吗?','{:U('Conference/agreed',array('id'=>I('get.id'),'uid'=>$v['id']))}')" >同意</button>
+										<button type="button" class="btn btn-danger" onClick="refusedalert('询问','您确定要拒绝 <strong></strong> 吗?','{:U('Conference/refused',array('id'=>I('get.id'),'uid'=>$v['id']))}')" >拒绝</button>
 										
 									</switch>	
 									<else/>
-										<a href="{:U('Jgpushperson/gexingts',array('id'=>I('get.id'),'uid'=>$v['id']))}">
-											<button type="button" class="btn btn-danger">推送</button>
-										</a>
-										<a href="{:U('Signjgpush/signts',array('id'=>I('get.id'),'uid'=>$v['id']))}">
-											<button type="button" class="btn btn green">签到推送</button>
-										</a>
+										<button type="button" class="btn btn-red">您已同意</button>
+										
 									
-								</if>									
+								</if>
+								<?php }else{?>
+									<!--<a href="{:U('Jgpushperson/gexingts',array('id'=>I('get.id'),'uid'=>$v['id']))}">
+										<button type="button" class="btn btn-danger">推送</button>
+									</a>-->
+									<a href="{:U('Jgpushperson/gexingts',array('id'=>I('get.id'),'uid'=>$v['id']))}">
+										<button type="button" class="btn btn-danger">推送</button>
+									</a>
+									<a href="{:U('Signjgpush/signts',array('id'=>I('get.id'),'uid'=>$v['id']))}">
+										<button type="button" class="btn btn green">签到推送</button>
+									</a>
+								<?php } ?>
+								
 								</td>
 							</tr>
 							</volist>

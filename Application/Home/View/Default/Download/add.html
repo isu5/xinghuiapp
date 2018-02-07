@@ -39,15 +39,15 @@
 						 <div class="form-body">
 							<div class="form-group">
 								<label class="col-md-3 control-label">资料标题</label>
-								<div class="col-md-8">
-									<input type="text" class="form-control"  name="title"  placeholder="请输入产品标题" datatype="*" nullmsg="产品标题不能为空" errormsg="请输入产品标题"   value="">
+								<div class="col-md-5">
+									<input type="text" class="form-control"  name="title"  placeholder="请输入资料标题,标题不能为空" datatype="*" nullmsg="资料标题不能为空" errormsg="请输入产品标题"   value="">
 								</div>
 							</div>
 							
 							<div class="form-group">
 								<label class="col-md-3 control-label">文件上传</label>
 								<div class="col-md-9">
-									<webuploaderfile name="downfile" url="{:U('Attachment/file_upload')}" word="或将文件拖到这里，最多可选1张"/> 
+									<webuploaderfile name="downfile" url="{:U('Attachment/file_upload')}" word="最多可选1个,限制10M,支持doc,docx,xls, xlsx,ppt,pdf格式"/> 
 								</div>
 							</div>
 							
@@ -55,8 +55,8 @@
 					<div class="form-actions">
 						<div class="row">
 							<div class="col-md-offset-3 col-md-9">
-								<button type="submit" class="btn green" id="save">保存数据</button>
-								<button type="reset" class="btn default">恢复默认</button>
+								<button type="submit" class="btn green" id="save">提交</button>
+								<button type="reset" class="btn default">重置</button>
 							</div>
 						</div>
 					</div>

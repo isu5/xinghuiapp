@@ -31,7 +31,10 @@
        <div class="tabbable-custom tabbable-full-width">
 			<ul class="nav nav-tabs">
 				<li class="active">
-					<a href="JavaScript:;" ><i class="fa fa-tags"></i>会议图片管理</a>
+					<a href="JavaScript:;" ><i class="fa fa-tags"></i>新建会议图片</a>
+				</li>
+				<li class="">
+					<a href="{:U('Confpic/index')}" ><i class="fa fa-tags"></i>会议公告图片</a>
 				</li>
 			</ul>
 			<div class="portlet-body form" >
@@ -40,20 +43,20 @@
 						  <div class="form-body">
 							<div class="form-group">
 								<label class="col-md-3 control-label">图片标题</label>
-								<div class="col-md-9">
+								<div class="col-md-5">
 									<input type="text" class="form-control"  name="title"  placeholder="请输入产品标题" datatype="*" nullmsg="产品标题不能为空" errormsg="请输入产品标题"   value="">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-md-3 control-label">图片链接</label>
-								<div class="col-md-9">
-									<input type="text" class="form-control"  name="bullurl"  placeholder="请输入产品链接" datatype="url" nullmsg="请输入产品链接" errormsg="产品链接格式不对，请重新填写" value="">
+								<div class="col-md-5">
+									<input type="text" class="form-control"  name="bullurl"  placeholder="请输入产品链接 例:http://www.baidu.com" datatype="url" nullmsg="请输入产品链接" errormsg="产品链接格式不对，请重新填写" value="">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-md-3 control-label">产品图片</label>
 								<div class="col-md-9">
-									<webuploaderavatar name="pic" url="{:U('Attachment/conf_upload')}" word="或将照片拖到这里，最多可选1张"/> 
+									<webuploaderavatar name="pic" url="{:U('Attachment/conf_upload')}" word="最多可选1张,限制10M,支持gif,jpg,jpeg,png,bmp格式"/> 
 								</div>
 							</div>
 							
@@ -61,8 +64,8 @@
 					<div class="form-actions">
 						<div class="row">
 							<div class="col-md-offset-3 col-md-9">
-								<button type="submit" class="btn green" id="save">保存数据</button>
-								<button type="reset" class="btn default">恢复默认</button>
+								<button type="submit" class="btn green btn-lg" id="save">提交</button>
+								<button type="reset" class="btn default btn-lg">重置</button>
 							</div>
 						</div>
 					</div>

@@ -180,13 +180,14 @@ class UserController extends PublicController{
 		//判断手机号是否存在
 		$acc1 = $user->field('id,pid,username,phone,type')->where(array('phone'=>$data['phone']))->find();
 		if (IS_POST) {
-			
+			p($data);die;
 			if($acc1['type'] == 2){
 				$code = array('status'=>5,'info'=>'对不起，您填写的手机号为企业账户手机号，无法绑定！');
 			}elseif($acc1['phone'] == $data['phone']){
 				//修改个人属性
 				$userinfo = array('pid'=>$pid,'level'=>'2');
 				$this->model->where(array('id'=>$acc1['id']))->setField($userinfo);
+				$user->where(array('id'=>$id))->data($data)->save();
 				$code = array('status'=>4,'info'=>'您填写的手机号已绑定成功!');
 			}else{
 				if($user->where(array('id'=>$id))->data($data)->save()){
@@ -195,7 +196,7 @@ class UserController extends PublicController{
 					$code = array('status'=>'0','info'=>'密码修改失败');
 				}
 			}
-				$this->ajaxReturn($code);
+				$this->ajaxReturn($code); 
 		}
 			
 			

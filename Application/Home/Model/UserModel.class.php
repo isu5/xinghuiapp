@@ -136,6 +136,7 @@ class UserModel extends BaseModel{
 	public function auditPartici($pagesize=15){
 		$where = [];
 		$where['conf_id'] = I('get.id');
+		
 		 $uid = cookie(userid);
 		/*if($uid){
 			//

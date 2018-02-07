@@ -98,8 +98,8 @@
 							<div class="form-actions">
 								<div class="row">
 									<div class="col-md-offset-3 col-md-9">
-										<button type="submit" class="btn green" id="save">保存数据</button>
-										<button type="reset" class="btn default">恢复默认</button>
+										<button type="submit" class="btn green btn-lg" id="save">提交</button>
+										<button type="reset" class="btn default btn-lg">重置</button>
 									</div>
 								</div>
 							</div>
@@ -122,29 +122,7 @@ $(function() {
 		showAllError:true,
 		ajaxPost:true,
 		
-		callback:function(data){ 
-			if(data.status ==  5){ 
-				layer.msg(data.info, {icon: 2, time: 3000,shade: 0.5 },function(){
-					window.location.reload();
-				});
-				
-			}else if(data.status == 4){ 
-				layer.msg(data.info, {icon: 1, time: 3000,shade: 0.5 },function(){
-					window.location.reload();
-					});
-				
-			}else if(data.status == 1){ 
-			
-				layer.msg(data.info, { icon: 2, time: 3000 ,shade: 0.5},function(){
-					window.location.href = "{:U('User/accountList')}";
-						
-				});
-			} else {
-				layer.msg(data.info, {icon: 2, time: 3000,shade: 0.5 },function(){
-					window.location.reload();
-				});
-			}
-		} 
+		<!--  --> 
 	});
 	
 })		

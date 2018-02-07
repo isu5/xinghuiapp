@@ -20,7 +20,12 @@
 	</div>
 			<!--table-->
     <div class="tabbable-custom tabbable-full-width">
-		
+		<ul class="nav nav-tabs">
+			
+			<li class="active">
+				<a href="{:U('Confpic/index')}" ><i class="fa fa-tags"></i>会议公告图片</a>
+			</li>
+		</ul>
 						
   		<div class="tab-content" >
 
@@ -91,7 +96,7 @@
 							
 							<td>
 								
-                                <button type="button" class="btn btn-danger" onClick="showalert('询问','你确定要删除 <strong></strong> 吗?','{:U('Confpic/delete',array('id'=>$v['id']))}')" >删除</button>
+                                <button type="button" class="btn btn-danger" onClick="showalert('询问','您确定要删除 <strong></strong> 吗?','{:U('Confpic/delete',array('id'=>$v['id']))}')" >删除</button>
                             </td>
 						</tr>
 						</volist>

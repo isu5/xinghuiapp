@@ -69,13 +69,13 @@
 										
 										<li>
 											<a href="{:U('User/accountPwd',array('id'=>$v['id']))}" >
-											修改密码
+											修改信息
 											</a>  
 										</li>	 
 									</ul>
 								</div>
 								
-                                <button type="button" class="btn btn-danger" onClick="showalert('询问','您确定要 <strong>删除绑定</strong> 吗?','{:U('User/accountDel',array(id=>$v['id']))}')" >删除绑定</button>
+                                <button type="button" class="btn btn-danger" onClick="showalert('询问','您确定要 <strong>删除绑定</strong> 吗?','{:U('User/accountDel',array(id=>$v['id']))}')" >删除账号</button>
                             </td>
 						</tr>
 						</volist>

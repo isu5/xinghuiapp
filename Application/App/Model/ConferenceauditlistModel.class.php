@@ -56,18 +56,7 @@ class ConferenceauditlistModel extends BaseModel{
 		}
 		
 		/*
-		  "id": "35",
-                "title": "公开会议",
-                "ctime": "2018-01-24 00:00:00",
-                "etime": "2018-01-31 00:00:00",
-                "qtime": "2018-01-30 00:00:00",
-                "address": "北京北京市石景山区",
-                "xxaddress": "w",
-                "is_user": "1",
-                "is_private": "0"
-
-		
-		
+		 
 		$sql = $m->where(array('user_id'=>$where['user_id']))->buildSql(); ;
 		$data['data'] = $this ->alias('a')
 		->field('a.status,b.id,b.title,b.ctime,b.etime,b.qtime,b.address,b.xxaddress,b.is_user,b.is_private,b.companypic')
@@ -88,6 +77,55 @@ WHERE user_id='.$where['user_id'].' and is_private ='.$where['is_private'].' and
 		return $data;
 	}
 	
+	
+	//二级账户显示主账户的内部会议列表
+	public function privateConfList(){
+		$data['uid'] = I('post.uid');
+		$user = D('User');
+		$map = $user->field('id,pid')->where(array('id'=>$data['uid']))->find();
+		//p($map);
+		//内部私密会议
+		$where['is_private'] = 1 ;
+		//会议状态 0开始1结束
+		$state = I('post.state');
+		switch ( $state ) {
+			case 1:
+			$where['statuses'] =  array('eq',1);
+			break;  
+			case 0:
+			$where['statuses'] =  array('eq',0);
+			break;		
+			default:
+			
+		}
+		
+		$where['uid'] = $map['pid'];
+		
+		
+		$showrow = 10; //一页显示的行数
+		
+		$curpage = I('post.page',1);; //当前的页,还应该处理非数字的情况
+	
+		$total = $this->where($where)->count();	
+		
+		
+		$page = new AppPage($total, $showrow);
+		if ($total > $showrow) {
+			//$data['page'] =  $page->myde_write();
+		}
+		
+		$sql = 'SELECT conf_id FROM tzht_conference_del WHERE user_id = '.$data['uid'];
+		$limit = ($curpage - 1) * $showrow.','.$showrow;
+			
+		$data['data'] = $this->query('SELECT a.status,b.id,b.title,b.ctime,b.etime,b.qtime,b.address,b.xxaddress,b.is_user,b.is_private,b.companypic FROM tzht_conference_auditlist a
+ LEFT JOIN tzht_conference b on b.id=a.conf_id 
+WHERE uid='.$where['uid'].' and is_private =1 and  a.conf_id not in ('.$sql.') ORDER BY id desc LIMIT '.$limit);
+			
+		//p($this->_Sql());die;
+		return $data;
+		
+		
+	}
 	
 	
 	

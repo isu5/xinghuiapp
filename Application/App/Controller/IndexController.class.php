@@ -113,10 +113,7 @@ class IndexController extends Controller {
 		//p($jpush['jpush']);die;
 		//审核中
 		$status = D('Conferenceaudit')->where(array('conf_id'=>$data['conf_id'],'user_id'=>$data['user_id']))->find();
-		if(!$status){
-			Response::show(408,'对不起，您还没有参加会议，不能签到!');
-			exit;
-		}
+		
 		//判断是否签到，签到就推送到签到人的所保存的信息
 		$sign = M('Conference_sign');
 		
@@ -160,6 +157,10 @@ class IndexController extends Controller {
 			}elseif($status['status'] == 5 ){
 				//根据当前时间-会议结束时间>0 
 				Response::show(407,'会议已结束！');
+			}
+			if(!$status){
+			Response::show(408,'对不起，您还没有参加会议，不能签到!');
+				exit;
 			}
 			
 		}

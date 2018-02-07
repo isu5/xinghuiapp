@@ -324,7 +324,110 @@ class ConferenceModel extends RelationModel{
 		$map = $user->field('id,pid')->where(array('id'=>$data['uid']))->find();
 		//p($map);
 		//内部私密会议
-		$where['is_private'] = 1;
+		$where['is_private'] = 1 ;
+		//会议状态 0开始1结束
+		$state = I('post.state');
+		switch ( $state ) {
+			case 1:
+			$where["'statuses'"] =  array('eq',1);
+			break;
+			case 0:
+			$where["'statuses'"] =  array('eq',0);
+			break;
+			default:
+			
+		}
+		
+		$where['uid'] = $map['pid'];
+		
+		
+		$showrow = 10; //一页显示的行数
+		
+		$curpage = I('post.page',1);; //当前的页,还应该处理非数字的情况
+	
+		$total = $this->where($where)->count();	
+		
+		
+		$page = new AppPage($total, $showrow);
+		if ($total > $showrow) {
+			//$data['page'] =  $page->myde_write();
+		}
+		
+		$data['data'] = $this->alias('a')
+		->field('a.id,a.title,a.ctime,a.etime,a.qtime,a.companypic,a.address,a.xxaddress,a.is_user,a.is_private,e.status')
+		->join('LEFT JOIN __CONFERENCE_CATE__ c on c.id=a.cid
+			LEFT JOIN __CONFERENCE_PIC__ d on d.conf_id=a.id
+			LEFT JOIN __CONFERENCE_AUDITLIST__ e on e.conf_id=a.id
+			')
+		->where($where)
+		->limit(($curpage - 1) * $showrow.','.$showrow)
+		->order('a.id desc')
+		->group('a.id')
+		->select();
+		return $data;
+		/*
+		
+		//0 获取正在进行的
+		if($state==0){
+			$data['data'] = $this->alias('a')
+			->field('a.id,a.title,a.ctime,a.etime,a.qtime,a.companypic,a.address,a.xxaddress,a.is_user,a.is_private,e.status')
+			->join('
+				LEFT JOIN __CONFERENCE_AUDITLIST__ e on e.conf_id=a.id
+				
+				')
+			->where($where)
+			->limit(($curpage - 1) * $showrow.','.$showrow)
+			->order('a.id desc')
+			->group('a.id')
+			->select(); 
+		}
+		
+		//如果为1怎结束，需要删除处理
+		if($state==1){
+			$sql = 'SELECT conf_id FROM tzht_conference_del WHERE user_id = '.$data['uid'];
+			$limit = ($curpage - 1) * $showrow.','.$showrow;
+			 $data['data'] = $this->query('SELECT a.status,b.id,b.title,b.ctime,b.etime,b.qtime,b.address,b.xxaddress,b.is_user,b.is_private,b.companypic FROM tzht_conference_auditlist a
+ LEFT JOIN tzht_conference b on b.id=a.conf_id 
+WHERE uid='.$where['uid'].' and is_private=1  and b.id not in ('.$sql.') GROUP BY b.id ORDER BY id desc LIMIT '.$limit);
+		}
+		
+		/* 
+		SELECT a.id,a.title,a.ctime,a.etime,a.qtime,a.companypic,a.address,a.xxaddress,a.is_user,a.is_private,e.status FROM tzht_conference a LEFT JOIN tzht_conference_cate c on c.id=a.cid
+
+			LEFT JOIN tzht_conference_pic d on d.conf_id=a.id
+
+			LEFT JOIN tzht_conference_auditlist e on e.conf_id=a.id
+
+			  WHERE `is_private` = 1 AND `uid` = '4' and  e.conf_id not in (SELECT conf_id FROM tzht_conference_del WHERE user_id = 33) GROUP BY a.id ORDER BY a.id desc LIMIT 0,10
+		
+		$sql = 'SELECT conf_id FROM tzht_conference_del WHERE user_id = '.$data['uid'];
+		$limit = ($curpage - 1) * $showrow.','.$showrow;
+		
+		/* $data['data'] = $this->query('SELECT e.status,a.id,a.title,a.ctime,a.etime,a.qtime,a.address,a.xxaddress,a.is_user,a.is_private,a.companypic,a.statuses FROM tzht_conference a 
+		LEFT JOIN tzht_conference_cate c on c.id=a.cid 
+		LEFT JOIN tzht_conference_pic d on d.conf_id=a.id
+		LEFT JOIN tzht_conference_auditlist e on e.conf_id=a.id
+WHERE uid='.$where['uid'].' and '.$state.'  and is_private ='.$where['is_private'].' and e.conf_id not in ('.$sql.') GROUP BY a.id ORDER BY id desc LIMIT '.$limit);
+		
+		 
+		 $data['data'] = $this->query('SELECT a.status,b.id,b.title,b.ctime,b.etime,b.qtime,b.address,b.xxaddress,b.is_user,b.is_private,b.companypic FROM tzht_conference_auditlist a
+ LEFT JOIN tzht_conference b on b.id=a.conf_id 
+WHERE uid='.$where['uid'].' and is_private=1 ORDER BY id desc LIMIT '.$limit);
+*/
+		//p($this->_Sql());die;
+		
+		
+		
+	}
+	
+	//二级账户会议列表删除后的列表
+	public function delAccountConfOne(){
+		$data['uid'] = I('post.uid');
+		$user = D('User');
+		$map = $user->field('id,pid')->where(array('id'=>$data['uid']))->find();
+		//p($map);
+		//内部私密会议
+		$where['is_private'] = 1 ;
 		//会议状态 0开始1结束
 		$state = I('post.state');
 		switch ( $state ) {
@@ -350,46 +453,22 @@ class ConferenceModel extends RelationModel{
 		
 		$page = new AppPage($total, $showrow);
 		if ($total > $showrow) {
-			//$data['page'] =  $page->myde_write();
+			$data['page'] =  $page->myde_write();
 		}
-		 
-		/* $data['data'] = $this->alias('a')
-		->field('a.id,a.title,a.ctime,a.etime,a.qtime,a.companypic,a.address,a.xxaddress,a.is_user,a.is_private,e.status')
-		->join('LEFT JOIN __CONFERENCE_CATE__ c on c.id=a.cid
-			LEFT JOIN __CONFERENCE_PIC__ d on d.conf_id=a.id
-			LEFT JOIN __CONFERENCE_AUDITLIST__ e on e.conf_id=a.id
-			')
-		->where($where)
-		->limit(($curpage - 1) * $showrow.','.$showrow)
-		->order('a.id desc')
-		->group('a.id')
-		->select(); 
 		
-		SELECT a.id,a.title,a.ctime,a.etime,a.qtime,a.companypic,a.address,a.xxaddress,a.is_user,a.is_private,e.status FROM tzht_conference a LEFT JOIN tzht_conference_cate c on c.id=a.cid
-
-			LEFT JOIN tzht_conference_pic d on d.conf_id=a.id
-
-			LEFT JOIN tzht_conference_auditlist e on e.conf_id=a.id
-
-			  WHERE `is_private` = 1 AND `uid` = '4' and  e.conf_id not in (SELECT conf_id FROM tzht_conference_del WHERE user_id = 33) GROUP BY a.id ORDER BY a.id desc LIMIT 0,10
-
-		
-		*/
 		$sql = 'SELECT conf_id FROM tzht_conference_del WHERE user_id = '.$data['uid'];
 		$limit = ($curpage - 1) * $showrow.','.$showrow;
-		
-		$data['data'] = $this->query('SELECT e.status,a.id,a.title,a.ctime,a.etime,a.qtime,a.address,a.xxaddress,a.is_user,a.is_private,a.companypic FROM tzht_conference a 
-		LEFT JOIN tzht_conference_cate c on c.id=a.cid 
-		LEFT JOIN tzht_conference_pic d on d.conf_id=a.id
-		LEFT JOIN tzht_conference_auditlist e on e.conf_id=a.id
-WHERE uid='.$where['uid'].' and '.$state.'  and is_private ='.$where['is_private'].' and e.conf_id not in ('.$sql.') GROUP BY a.id ORDER BY id desc LIMIT '.$limit);
-		
-		
+			
+		$data['data'] = $this->query('SELECT a.status,b.id,b.title,b.ctime,b.etime,b.qtime,b.address,b.xxaddress,b.is_user,b.is_private,b.companypic FROM tzht_conference_auditlist a
+ LEFT JOIN tzht_conference b on b.id=a.conf_id 
+WHERE uid='.$where['uid'].' and is_private =1 and  a.conf_id not in ('.$sql.') group by b.id ORDER BY id desc LIMIT '.$limit);
+			
 		//p($this->_Sql());die;
 		return $data;
 		
 		
 	}
+	
 	
 	
 	//融云会议讨论组：--根据标题查询会议id

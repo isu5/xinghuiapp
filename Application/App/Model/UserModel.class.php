@@ -377,8 +377,21 @@ class UserModel extends BaseModel{
 	//二级账户显示
 	public function account(){
 		$uid = I('post.id');
-		$user = $this->field('id,pid,logo,username,nickname,remark,type')->where()->select();
-		$level = findson($user,$uid);  //查找所有pid下的子id
+		$type = I('post.type');
+		if($type==0){
+			$user = $this->field('id,pid,logo,username,nickname,remark,type')->where()->select();
+			$level = findson($user,$uid);  //查找所有pid下的子id
+		}else{
+			$user = $this->field('pid')->where(array('id'=>$uid))->find();
+			$where['id'] = array('neq',$uid);
+			$mmp = $this->field('id,pid,logo,username,nickname,remark,type')->where($where)->select();
+			if($uid){
+				$level = findson($mmp,$user['pid']);
+			}
+			
+			
+		}
+		
 		return $level;
 	}
 	

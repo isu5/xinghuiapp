@@ -20,7 +20,14 @@
 	</div>
 			<!--table-->
     <div class="tabbable-custom tabbable-full-width">
+		<ul class="nav nav-tabs">
+				
+				<li class="active">
+					<a href="{:U('Userpartners/index')}" ><i class="fa fa-tags"></i>合作伙伴列表</a>
+				</li>
+			</ul>
   		<div class="tab-content" >
+			
             <!--table-->
           	<table width="100%" border="0" style="margin-bottom:20px;">
 			  <tr>
@@ -78,7 +85,7 @@
 							
 							<td>
 								
-                                <button type="button" class="btn btn-danger" onClick="showalert('询问','你确定要删除 <strong></strong> 吗?','{:U('Userpartners/delete',array('id'=>$v['id']))}')" >删除</button>
+                                <button type="button" class="btn btn-danger" onClick="showalert('询问','您确定要删除 <strong></strong> 吗?','{:U('Userpartners/delete',array('id'=>$v['id']))}')" >删除</button>
                             </td>
 						</tr>
 						</volist>

@@ -31,7 +31,10 @@
        <div class="tabbable-custom tabbable-full-width">
 			<ul class="nav nav-tabs">
 				<li class="active">
-					<a href="{:U('Confbull/add')}" ><i class="fa fa-tags"></i>新建公告</a>
+					<a href="{:U('Confbull/add',array('id'=>I('get.id')))}" ><i class="fa fa-tags"></i>新建会议公告</a>
+				</li>
+				<li class="">
+					<a href="{:U('Confbull/index')}" ><i class="fa fa-tags"></i>会议公告列表</a>
 				</li>
 			</ul>
 			<div class="portlet-body form" >
@@ -57,8 +60,8 @@
 					<div class="form-actions">
 						<div class="row">
 							<div class="col-md-offset-3 col-md-9">
-								<button type="submit" class="btn green" id="save">保存数据</button>
-								<button type="reset" class="btn default">恢复默认</button>
+								<button type="submit" class="btn green btn-lg" id="save">提交</button>
+								<button type="reset" class="btn default btn-lg">重置</button>
 							</div>
 						</div>
 					</div>
