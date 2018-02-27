@@ -285,6 +285,30 @@ class ConferenceController extends PublicController{
 		}
 		
 	}
+	
+	//被关注人员
+	public function refocuslist(){
+		if( IS_POST ){
+			$res = $this->user->refocuslist();
+		
+			$data = array(
+				'result' => $res['data'],
+				//'page' => $res['page'],
+				
+			);
+			if($data['result'] == null ){
+				Response::show(401,'没有更多数据!');
+				
+			}else{
+				Response::show(200,'数据获取成功!',$data);
+				
+			}
+		}else{
+			Response::show(402,'参数不合法!');
+			
+		}
+	}
+	
 	//搜索通讯录
 	public function searchFocuslist(){
 		//p($_POST);

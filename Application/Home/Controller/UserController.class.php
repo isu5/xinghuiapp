@@ -5,11 +5,13 @@ class UserController extends PublicController{
 
 	
 	private $model = null;
+	private $focus = null;
 	
 	//继承父类
 	public function __construct(){
 		parent::__construct();
 		$this->model = D('User');
+		$this->focus = M('Conference_focus');
 	}
 	
 
@@ -113,14 +115,12 @@ class UserController extends PublicController{
 			//判断用户名是否存在
 			if($acc['username'] == $data['username']){
 				$code = array('status'=>3,'info'=>'对不起，您填写的用户名已存在');
-			//判断手机号是否存在
+			//判断是否为已经注册过的企业手机号
 			}elseif($acc1['type'] == 2){
 				$code = array('status'=>5,'info'=>'对不起，您填写的手机号为企业账户手机号，无法绑定！');
 			}elseif($acc1['phone'] == $data['phone']){
-				//修改个人属性
-				$userinfo = array('pid'=>$data['pid'],'level'=>'2');
-				$this->model->where(array('id'=>$acc1['id']))->setField($userinfo);
-				$code = array('status'=>4,'info'=>'您填写的手机号已绑定成功!');
+				//判断手机号是否存在
+				$code = array('status'=>4,'info'=>'您填写的手机号已经绑定过,请解绑删除或更换手机号!');
 			}else{
 					
 				if (C('ACCOUNT_NUM') > $count) {
@@ -180,20 +180,17 @@ class UserController extends PublicController{
 		//判断手机号是否存在
 		$acc1 = $user->field('id,pid,username,phone,type')->where(array('phone'=>$data['phone']))->find();
 		if (IS_POST) {
-			p($data);die;
+			//p($data);die;
 			if($acc1['type'] == 2){
 				$code = array('status'=>5,'info'=>'对不起，您填写的手机号为企业账户手机号，无法绑定！');
 			}elseif($acc1['phone'] == $data['phone']){
 				//修改个人属性
-				$userinfo = array('pid'=>$pid,'level'=>'2');
-				$this->model->where(array('id'=>$acc1['id']))->setField($userinfo);
-				$user->where(array('id'=>$id))->data($data)->save();
-				$code = array('status'=>4,'info'=>'您填写的手机号已绑定成功!');
+				$code = array('status'=>4,'info'=>'您填写的手机号已经绑定过,请解绑删除或更换手机号!');
 			}else{
 				if($user->where(array('id'=>$id))->data($data)->save()){
-					$code = array('status'=>'1','info'=>'密码修改成功');
+					$code = array('status'=>1,'info'=>'密码修改成功');
 				}else{
-					$code = array('status'=>'0','info'=>'密码修改失败');
+					$code = array('status'=>0,'info'=>'密码修改失败');
 				}
 			}
 				$this->ajaxReturn($code); 
@@ -207,6 +204,19 @@ class UserController extends PublicController{
 		$this->display();
 		
 		
+	}
+	//二级账户关注的列表
+	public function focus(){
+		$res = $this->model->focusList();
+		
+			$this->assign(array(
+				'data' => $res['data'],
+				'page' => $res['page'],
+				
+			));
+			//p($res['data']);
+		//$this->assign('data',$data);
+		$this->display();
 	}
 	
 	

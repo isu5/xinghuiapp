@@ -137,7 +137,7 @@ class UserModel extends BaseModel{
 		$where = [];
 		$where['conf_id'] = I('get.id');
 		
-		 $uid = cookie(userid);
+		 //$uid = cookie(userid);
 		/*if($uid){
 			//
 			$where['id'] =  array('neq',$uid);
@@ -167,6 +167,60 @@ class UserModel extends BaseModel{
 		
 	}
 	
+	//签到人员列表
+	public function signList($pagesize=15){
+		$where = [];
+		$where['conf_id'] = I('get.id');
+		$count = $this->alias('a')->where($where)->join('LEFT JOIN __CONFERENCE_SIGN__ b on b.user_id=a.id
+			LEFT JOIN __CONFERENCE__ c on c.id=b.conf_id
+		')->count();
+		$page = new \Think\Page($count,$pagesize);
+		//配置分页
+		$page->setConfig('prev', '上一页');
+		$page->setConfig('next', '下一页');
+		$data['page'] = $page->show();
+		$data['data'] = $this->alias('a')
+		->field('a.id,a.logo,a.companyname,a.phone,a.username,c.is_user')
+		->join('LEFT JOIN __CONFERENCE_SIGN__ b on b.user_id=a.id
+			LEFT JOIN __CONFERENCE__ c on c.id=b.conf_id
+		')
+		->where($where)
+		->limit($page->firstRow.','.$page->listRows)
+		->order('id desc')
+		->select();
+		//p($this->getLastSql());
+		//p($count);
+		return $data;
+	}
+	
+	
+	//二级账户关注列表
+	public function focusList($pagesize=15){
+		$where = [];
+		$where['user_id'] = I('get.id');
+		
+		//翻页
+		
+		$count = $this->alias('a')->where($where)->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.conf_user_id=a.id
+		')->count();	
+
+
+		$page = new \Think\Page($count,$pagesize);
+		//配置分页
+		$page->setConfig('prev', '上一页');
+		$page->setConfig('next', '下一页');
+		$data['page'] = $page->show();
+
+		$data['data'] = $this->alias('a')
+		->field('a.id,a.username,a.logo,a.companyname,a.dimecode,a.remark,a.phone,a.ctime')
+		->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.conf_user_id=a.id
+		')
+		->where($where)
+		->limit($page->firstRow.','.$page->listRows)
+		->order('id desc')
+		->select();
+		return $data;
+	}
 	//二级账户
 	public function accountAli(){
 		$uid = cookie(userid);

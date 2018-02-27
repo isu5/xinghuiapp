@@ -1,16 +1,25 @@
 <layout name="layout" />
-<?php $type = I('get.type')?>
+<?php 
+$type = I('get.type');
+$sign = I('get.sign');
+$id = I('get.id');
+?>
 <div class="page-content">
 	<div class="tabbable-custom tabbable-full-width">
 		<ul class="nav nav-tabs">
+			<?php if($type==1){?>
+				<li class="active">
+					<a href="javascript:;" ><i class="fa fa-tags"></i>参会人员审核</a>
+				</li>
+				<li>
+				<!-- <a href="{:U('Conference/signList',array(sign=>0))}" ><i class="fa fa-tags"></i>签到人员列表</a> -->
+				<a href="{:U('Conference/signList',array(id=>$id,sign=>1))}" ><i class="fa fa-tags"></i>签到人员列表</a>
+				</li>
+			<?php }else{ ?>
 			<li class="active">
-				<?php if($type==1){?>
-				<a href="javascript:;" ><i class="fa fa-tags"></i>参会人员审核</a>
-				<?php }else{ ?>
 				<a href="javascript:;" ><i class="fa fa-tags"></i>个性推送</a>
 				<?php } ?>
 			</li>
-			
 		</ul>
 		<div  class="portlet-body">
 			<?php if($type==0){?>
@@ -27,14 +36,14 @@
 						<th>logo</th>
 						<th>公司名称/昵称</th>
 						<th>联系电话</th>
-						<th  style="width:260px;">操作</th>
+						<th  style="width:200px;">操作</th>
 					</tr>
 					</thead>
 					<tbody id="checked"> 
 						<empty name="data">
-							<div class="col-md-12 alert alert-danger">
-								暂没有数据
-							</div>
+							<tr class=" alert alert-danger">
+								<td colspan="5">暂没有数据</td>
+							</tr>
 						<else/>
 							<volist name="data" id="v" >
 							<tr>
@@ -50,19 +59,19 @@
 									<switch name="v.status" >
 										<case value="1">
 										
-										<button type="button" class="btn btn-red">您已同意</button>
+										<button type="button" class="btn btn-success">您已同意</button>
 										
 										</case>
 										<case value="2">
-										<button type="button" class="btn btn-green">您已拒绝</button>
+										<button type="button" class="btn btn-danger">您已拒绝</button>
 										</case>
 										
 										<case value="4">
-										<button type="button" class="btn btn-green">参会中</button>
+										<button type="button" class="btn btn-success">参会中</button>
 										
 										</case>
 										<case value="5">
-										<button type="button" class="btn btn-green">已结束</button>
+										<button type="button" class="btn btn-default">已结束</button>
 										</case>
 										<default />
 										
@@ -72,7 +81,7 @@
 										
 									</switch>	
 									<else/>
-										<button type="button" class="btn btn-red">您已同意</button>
+										<button type="button" class="btn btn-primary">您已同意</button>
 										
 									
 								</if>

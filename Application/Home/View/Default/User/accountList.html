@@ -76,6 +76,7 @@
 								</div>
 								
                                 <button type="button" class="btn btn-danger" onClick="showalert('询问','您确定要 <strong>删除绑定</strong> 吗?','{:U('User/accountDel',array(id=>$v['id']))}')" >删除账号</button>
+                                <a type="button" class="btn btn-primary" href="{:U('User/focus',array(id=>$v['id']))}" >关注列表</a>
                             </td>
 						</tr>
 						</volist>
@@ -92,7 +93,8 @@
 	<!-- END CONTENT -->
 	
 </div>
-<include file="Public/footer" />
+
+<include file='Public/footer' />
 
 
 	

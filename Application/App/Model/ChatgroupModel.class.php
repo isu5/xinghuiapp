@@ -50,8 +50,10 @@ class ChatgroupModel extends BaseModel{
 
 	public function _before_insert(&$data,$option){
 		$data['addtime'] = time();
+		
 
 	}
+	
 	//群组人员列表
 	public function grouplists(){
 		$where = [];

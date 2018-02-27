@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost
 Source Server Version : 50553
 Source Host           : localhost:3306
-Source Database       : xinghui
+Source Database       : xh2188comcn
 
 Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-02-01 13:34:27
+Date: 2018-02-27 17:00:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,7 +35,7 @@ CREATE TABLE `tzht_admin` (
 -- ----------------------------
 -- Records of tzht_admin
 -- ----------------------------
-INSERT INTO `tzht_admin` VALUES ('1', 'admin123', '1eea36fbd4f4919251e3192dce2da380', '', '', '1', '123.114.107.201', '1517453727', '208');
+INSERT INTO `tzht_admin` VALUES ('1', 'admin123', '1eea36fbd4f4919251e3192dce2da380', '', '', '1', '123.114.107.176', '1519695165', '243');
 INSERT INTO `tzht_admin` VALUES ('2', 'ylnmp123', '8edae303e1cf6bdacef40e84a36ed7ce', 'zhangsan@qq.com', '', '1', '0.0.0.0', '1482720707', '8');
 INSERT INTO `tzht_admin` VALUES ('14', 'admin22', '25f9e794323b453885f5181f1b624d0b', 'admin22@qq.com', '', '1', '111.199.25.75', '1502350333', '4');
 INSERT INTO `tzht_admin` VALUES ('15', 'rzmanage', '7fef6171469e80d32c0559f88b377245', '123@qq.com', '认证管理', '1', '123.114.108.22', '1517394686', '7');
@@ -118,7 +118,6 @@ CREATE TABLE `tzht_bulletin` (
 -- Records of tzht_bulletin
 -- ----------------------------
 INSERT INTO `tzht_bulletin` VALUES ('1', '2018 CBEC AI 中国人工智能发展应用峰会', '<p>2017公告01</p>', '1516182908', '', '50', '1');
-INSERT INTO `tzht_bulletin` VALUES ('2', '2018 CBEC AI 中国人工智能发展应用峰会2', '<h1 class=\"ev_name\" style=\"padding: 0px; margin: 10px 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; font-size: 18px; white-space: normal;\">2018 CBEC AI 中国人工智能发展应用峰会</h1><p><br/></p>', '1516182932', '', '50', '1');
 
 -- ----------------------------
 -- Table structure for `tzht_cate`
@@ -154,7 +153,7 @@ CREATE TABLE `tzht_certify` (
   `type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1为个人认证，2为企业认证',
   `is_cert` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否认证,1为个人认证，2为企业认证，3为审核中',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='个人认证表';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='个人认证表';
 
 -- ----------------------------
 -- Records of tzht_certify
@@ -162,6 +161,8 @@ CREATE TABLE `tzht_certify` (
 INSERT INTO `tzht_certify` VALUES ('2', '4', '', '', '', '', '北京同舟鸿图文化创意有限公司', '9111010758589247XH', '/./Uploads/Certificate/2018-01-17/5a5ec5c191f36.JPG', '1516160449', '2', '2');
 INSERT INTO `tzht_certify` VALUES ('3', '14', '', '', '', '', '北京同舟鸿图文化创意有限公司', '9111010758589247XH', '/./Uploads/Certificate/2018-01-18/5a5ff7914a55d.jpg', '1516238737', '2', '4');
 INSERT INTO `tzht_certify` VALUES ('4', '25', '王永刚', '140202197411302510', '/./Uploads/Idcard/2018-01-22/5a65cd6089ef6.JPG', '/./Uploads/Idcard/2018-01-22/5a65cd6091c15.JPG', '', '', '', '1516621152', '1', '1');
+INSERT INTO `tzht_certify` VALUES ('10', '34', '', '', '', '', '北京中网深蓝技术有限公司', '911101070717459231', '/./Uploads/Certificate/2018-02-06/5a79484f00f92.jpg', '1517897577', '2', '2');
+INSERT INTO `tzht_certify` VALUES ('12', '53', '', '', '', '', '北京水云舟文化创意有限公司', '110107018519145', '/./Uploads/Certificate/2018-02-09/5a7d7235152d4.jpg', '1518170677', '2', '2');
 
 -- ----------------------------
 -- Table structure for `tzht_chatgroup`
@@ -171,17 +172,50 @@ CREATE TABLE `tzht_chatgroup` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '群组id',
   `c_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '群主id',
   `s_id` text COMMENT '群员集合id',
-  `title` varchar(80) NOT NULL DEFAULT '' COMMENT '群组标题',
+  `title` varchar(100) NOT NULL DEFAULT '' COMMENT '群组标题',
+  `bulltitle` varchar(100) NOT NULL,
   `content` varchar(255) NOT NULL DEFAULT '未设置' COMMENT '群公告',
   `rongid` varchar(80) NOT NULL DEFAULT '' COMMENT '融云群组标识',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '群组添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='群组表';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='群组表';
 
 -- ----------------------------
 -- Records of tzht_chatgroup
 -- ----------------------------
-INSERT INTO `tzht_chatgroup` VALUES ('3', '26', '4', '1596', '群组公告', '8d7fb5bb-1248-4bbd-93f6-c3558b732523', '1516950143');
+INSERT INTO `tzht_chatgroup` VALUES ('3', '26', '4', '1596', '', '群组公告', '8d7fb5bb-1248-4bbd-93f6-c3558b732523', '1516950143');
+INSERT INTO `tzht_chatgroup` VALUES ('8', '31', '22,21', '2018校友会', '', '群组公告', '0aaa0e69-9b3a-4b46-9e33-a4ea3d6b5a52', '1517806129');
+INSERT INTO `tzht_chatgroup` VALUES ('10', '41', '51,50,49,48,46,45,44,43,42', '幸会小团队', '', '未设eerrt置', 'f939f733-c20c-4187-a8ec-27fc843eb1a8', '1518048115');
+INSERT INTO `tzht_chatgroup` VALUES ('11', '45', '44,39', '开发部群组', '', '个人群组公告', '7c0afc35-9ee0-4e68-b76f-9b063dd8e627', '1518051477');
+INSERT INTO `tzht_chatgroup` VALUES ('12', '45', '49,47,46', '2018科技盛会', '', '未设置', 'eb283076-151e-42bb-8719-c54bcd5d9b27', '1519356834');
+INSERT INTO `tzht_chatgroup` VALUES ('13', '45', '47,46,49', '2018AI智能', '', '', '9a58292d-3fd0-42a8-83d7-035f9ff3e007', '1519459973');
+INSERT INTO `tzht_chatgroup` VALUES ('14', '45', '49,47,46', '2018人工智能', '', '未设置', '466fb602-ff0b-4906-a07a-78b79189229e', '1519605397');
+INSERT INTO `tzht_chatgroup` VALUES ('15', '45', '49,47,46', '2018智能物联', '', '未设置', '26fc1c2a-00ac-430f-bd9c-99cac3a97faf', '1519614398');
+
+-- ----------------------------
+-- Table structure for `tzht_chatgroup_bull`
+-- ----------------------------
+DROP TABLE IF EXISTS `tzht_chatgroup_bull`;
+CREATE TABLE `tzht_chatgroup_bull` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '群组公告id',
+  `chat_id` int(10) unsigned NOT NULL COMMENT '群组id',
+  `title` varchar(100) NOT NULL COMMENT '群组标题',
+  `bulltitle` varchar(100) NOT NULL DEFAULT '' COMMENT '群组标题',
+  `pic` text NOT NULL,
+  `file` text NOT NULL,
+  `content` text,
+  `addtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '企业公告添加时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='群组公告表';
+
+-- ----------------------------
+-- Records of tzht_chatgroup_bull
+-- ----------------------------
+INSERT INTO `tzht_chatgroup_bull` VALUES ('2', '0', '55', '2018科技盛会', '[\"\\/Uploads\\/Companybull\\/20180224\\/1519460997\\/img_1519460938919.jpg\",\"\\/Uploads\\/Companybull\\/20180224\\/1519460997\\/img_1519460939000.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180224\\/1519460997\\/A+Byte+of+Python-1.pdf\"]', '55', '1519460997');
+INSERT INTO `tzht_chatgroup_bull` VALUES ('3', '0', '588', '2018AI智能', '[\"\\/Uploads\\/Companybull\\/20180224\\/1519464464\\/img_1519464405297.jpg\",\"\\/Uploads\\/Companybull\\/20180224\\/1519464464\\/img_1519464405419.jpg\",\"\\/Uploads\\/Companybull\\/20180224\\/1519464464\\/img_1519464405528.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180224\\/1519464464\\/A+Byte+of+Python-1.pdf\",\"\\/Uploads\\/Companybull\\/file\\/20180224\\/1519464464\\/A+Byte+of+Python-2.pdf\"]', '585', '1519464464');
+INSERT INTO `tzht_chatgroup_bull` VALUES ('4', '0', '2018人工智能', '2018人工智能', '[\"\\/Uploads\\/Companybull\\/20180226\\/1519605443\\/img_1519605381499.jpg\",\"\\/Uploads\\/Companybull\\/20180226\\/1519605443\\/img_1519605381584.jpg\",\"\\/Uploads\\/Companybull\\/20180226\\/1519605443\\/img_1519605381685.jpg\",\"\\/Uploads\\/Companybull\\/20180226\\/1519605443\\/img_1519605381748.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180226\\/1519605443\\/A+Byte+of+Python-1.pdf\",\"\\/Uploads\\/Companybull\\/file\\/20180226\\/1519605443\\/A+Byte+of+Python-2.pdf\"]', '公告', '1519605443');
+INSERT INTO `tzht_chatgroup_bull` VALUES ('5', '0', '582', '', '[\"\\/Uploads\\/Companybull\\/20180226\\/1519632724\\/img_1519632660481.jpg\",\"\\/Uploads\\/Companybull\\/20180226\\/1519632724\\/img_1519632660588.jpg\",\"\\/Uploads\\/Companybull\\/20180226\\/1519632724\\/img_1519632660649.jpg\",\"\\/Uploads\\/Companybull\\/20180226\\/1519632724\\/img_1519632660735.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180226\\/1519632724\\/A+Byte+of+Python-1.pdf\"]', '塔读', '1519632724');
+INSERT INTO `tzht_chatgroup_bull` VALUES ('6', '0', '58282', '', '[\"\\/Uploads\\/Companybull\\/20180226\\/1519632758\\/img_1519632690765.jpg\",\"\\/Uploads\\/Companybull\\/20180226\\/1519632758\\/img_1519632690862.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180226\\/1519632758\\/A+Byte+of+Python-2.pdf\",\"\\/Uploads\\/Companybull\\/file\\/20180226\\/1519632758\\/A+Byte+of+Python-1.pdf\"]', '塔读扶她', '1519632758');
 
 -- ----------------------------
 -- Table structure for `tzht_company_bull`
@@ -197,19 +231,25 @@ CREATE TABLE `tzht_company_bull` (
   `content` text NOT NULL COMMENT '内容',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '企业公告添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COMMENT='企业公告表';
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COMMENT='企业公告表';
 
 -- ----------------------------
 -- Records of tzht_company_bull
 -- ----------------------------
 INSERT INTO `tzht_company_bull` VALUES ('15', '22', 'fhh', '[\"\\/Uploads\\/Companybull\\/20180122\\/1516592680\\/img_1516592657661.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180122\\/1516592680\\/幸会后台管理系统数据库数据表结构.xlsx\",\"\\/Uploads\\/Companybull\\/file\\/20180122\\/1516592680\\/IOS客户端功能修复(8月6日).docx\"]', '', 'ghh', '1516592680');
 INSERT INTO `tzht_company_bull` VALUES ('16', '22', 'gg', '[\"\\/Uploads\\/Companybull\\/20180122\\/1516592732\\/img_1516592705831.jpg\",\"\\/Uploads\\/Companybull\\/20180122\\/1516592732\\/img_1516592705943.jpg\",\"\\/Uploads\\/Companybull\\/20180122\\/1516592732\\/img_1516592706027.jpg\",\"\\/Uploads\\/Companybull\\/20180122\\/1516592732\\/img_1516592706122.jpg\",\"\\/Uploads\\/Companybull\\/20180122\\/1516592732\\/img_1516592706182.jpg\",\"\\/Uploads\\/Companybull\\/20180122\\/1516592732\\/img_1516592706296.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180122\\/1516592732\\/幸会后台管理系统数据库数据表结构.xlsx\",\"\\/Uploads\\/Companybull\\/file\\/20180122\\/1516592732\\/IOS客户端功能修复(8月6日).docx\"]', '', 'ggy', '1516592732');
-INSERT INTO `tzht_company_bull` VALUES ('18', '25', '1', '[\"\\/Uploads\\/Companybull\\/20180125\\/1516838632\\/img_1516838619997.jpg\"]', 'null', '', '口', '1516838632');
-INSERT INTO `tzht_company_bull` VALUES ('23', '21', '4855', '[\"\\/Uploads\\/Companybull\\/20180129\\/1517199645\\/img_1517199613839.jpg\",\"\\/Uploads\\/Companybull\\/20180129\\/1517199645\\/img_1517199613893.jpg\",\"\\/Uploads\\/Companybull\\/20180129\\/1517199645\\/img_1517199613943.jpg\",\"\\/Uploads\\/Companybull\\/20180129\\/1517199645\\/img_1517199614024.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180129\\/1517199645\\/幸会后台管理系统数据库数据表结构.xlsx\",\"\\/Uploads\\/Companybull\\/file\\/20180129\\/1517199645\\/IOS客户端功能修复(8月6日).docx\"]', '', '天空', '1517199645');
 INSERT INTO `tzht_company_bull` VALUES ('30', '30', '585', '[\"\\/Uploads\\/Companybull\\/20180130\\/1517283202\\/img_1517283178039.jpg\",\"\\/Uploads\\/Companybull\\/20180130\\/1517283202\\/img_1517283178152.jpg\",\"\\/Uploads\\/Companybull\\/20180130\\/1517283202\\/img_1517283178223.jpg\",\"\\/Uploads\\/Companybull\\/20180130\\/1517283202\\/img_1517283178273.jpg\",\"\\/Uploads\\/Companybull\\/20180130\\/1517283202\\/img_1517283178327.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180130\\/1517283202\\/幸会后台管理系统数据库数据表结构.xlsx\"]', '', '填空呢', '1517283202');
 INSERT INTO `tzht_company_bull` VALUES ('32', '31', '55', '[\"\\/Uploads\\/Companybull\\/20180130\\/1517305810\\/img_1517305779187.jpg\",\"\\/Uploads\\/Companybull\\/20180130\\/1517305810\\/img_1517305779320.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180130\\/1517305810\\/幸会后台管理系统数据库数据表结构.xlsx\"]', '', '啦啦啦', '1517305810');
-INSERT INTO `tzht_company_bull` VALUES ('33', '25', '全球能源', '[\"\\/Uploads\\/Companybull\\/20180130\\/1517306474\\/img_1517306445273.jpg\"]', 'null', '', '全球能源', '1517306474');
-INSERT INTO `tzht_company_bull` VALUES ('34', '21', '公告', '[\"\\/Uploads\\/Companybull\\/20180201\\/1517461587\\/img_1517461563564.jpg\",\"\\/Uploads\\/Companybull\\/20180201\\/1517461587\\/img_1517461563673.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180201\\/1517461587\\/microlog.txt\",\"\\/Uploads\\/Companybull\\/file\\/20180201\\/1517461587\\/.dev_id.txt\"]', '', '186784', '1517461587');
+INSERT INTO `tzht_company_bull` VALUES ('41', '21', '585', '[\"\\/Uploads\\/Companybull\\/20180203\\/1517652765\\/img_1517652738653.jpg\",\"\\/Uploads\\/Companybull\\/20180203\\/1517652765\\/img_1517652738773.jpg\",\"\\/Uploads\\/Companybull\\/20180203\\/1517652765\\/img_1517652738858.jpg\",\"\\/Uploads\\/Companybull\\/20180203\\/1517652765\\/img_1517652738970.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180203\\/1517652765\\/.dev_id.txt\",\"\\/Uploads\\/Companybull\\/file\\/20180203\\/1517652765\\/microlog.txt\"]', '', '599', '1517652765');
+INSERT INTO `tzht_company_bull` VALUES ('43', '21', '5555', '[\"\\/Uploads\\/Companybull\\/20180205\\/1517793787\\/img_1517793707568.jpg\",\"\\/Uploads\\/Companybull\\/20180205\\/1517793787\\/img_1517793707716.jpg\",\"\\/Uploads\\/Companybull\\/20180205\\/1517793787\\/img_1517793707627.jpg\",\"\\/Uploads\\/Companybull\\/20180205\\/1517793787\\/img_1517793707859.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180205\\/1517793787\\/A+Byte+of+Python.pdf\"]', '', '8896', '1517793787');
+INSERT INTO `tzht_company_bull` VALUES ('44', '34', '美景', '[\"\\/Uploads\\/Companybull\\/20180205\\/1517794071\\/img_1517793973807.jpg\",\"\\/Uploads\\/Companybull\\/20180205\\/1517794071\\/img_1517793979555.jpg\",\"\\/Uploads\\/Companybull\\/20180205\\/1517794071\\/img_1517793997311.jpg\",\"\\/Uploads\\/Companybull\\/20180205\\/1517794071\\/img_1517794001791.jpg\",\"\\/Uploads\\/Companybull\\/20180205\\/1517794071\\/img_1517794006086.jpg\",\"\\/Uploads\\/Companybull\\/20180205\\/1517794071\\/img_1517794011568.jpg\",\"\\/Uploads\\/Companybull\\/20180205\\/1517794071\\/img_1517794017580.jpg\",\"\\/Uploads\\/Companybull\\/20180205\\/1517794071\\/img_1517794022024.jpg\",\"\\/Uploads\\/Companybull\\/20180205\\/1517794071\\/img_1517794027193.jpg\"]', 'null', '', '心情的愉悦。', '1517794071');
+INSERT INTO `tzht_company_bull` VALUES ('45', '25', '1.', '[\"\\/Uploads\\/Companybull\\/20180205\\/1517839462\\/img_1517839458498.jpg\",\"\\/Uploads\\/Companybull\\/20180205\\/1517839462\\/img_1517839463159.jpg\"]', 'null', '', '请大家注意时间！', '1517839462');
+INSERT INTO `tzht_company_bull` VALUES ('46', '4', '企业公告标题123', '', '', '', '<p>企业公告标题123<br/></p>', '1517912582');
+INSERT INTO `tzht_company_bull` VALUES ('47', '32', 'bdhdndj', 'null', 'null', '', 'hdjjd', '1517912742');
+INSERT INTO `tzht_company_bull` VALUES ('48', '4', '默默无闻', 'null', 'null', '', '5454997', '1517913102');
+INSERT INTO `tzht_company_bull` VALUES ('49', '4', '你也一样', '[\"\\/Uploads\\/Companybull\\/20180206\\/1517913156\\/img_1517913154806.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180206\\/1517913156\\/bmcclog20171211225210.txt\"]', '', '心热呀', '1517913156');
+INSERT INTO `tzht_company_bull` VALUES ('50', '41', '1', '[\"\\/Uploads\\/Companybull\\/20180207\\/1518013609\\/img_1518013605695.jpg\"]', 'null', '', '谢谢大家关注', '1518013609');
+INSERT INTO `tzht_company_bull` VALUES ('51', '45', '公告', '[\"\\/Uploads\\/Companybull\\/20180222\\/1519262432\\/img_1519262358747.jpg\",\"\\/Uploads\\/Companybull\\/20180222\\/1519262432\\/img_1519262375689.jpg\",\"\\/Uploads\\/Companybull\\/20180222\\/1519262432\\/img_1519262375784.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180222\\/1519262432\\/.dev_id.txt\",\"\\/Uploads\\/Companybull\\/file\\/20180222\\/1519262432\\/microlog.txt\"]', '', '5855566', '1519262432');
 
 -- ----------------------------
 -- Table structure for `tzht_conference`
@@ -240,19 +280,20 @@ CREATE TABLE `tzht_conference` (
   `brief` text COMMENT '会议简介',
   `is_private` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否公开，0为公开，1为内部',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8 COMMENT='会议表';
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8 COMMENT='会议表';
 
 -- ----------------------------
 -- Records of tzht_conference
 -- ----------------------------
 INSERT INTO `tzht_conference` VALUES ('32', 'GMIC 2018 北京 全球移动互联网大会', '2018-01-23 00:00:00', '2018-02-28 00:00:00', '2018-02-07 00:00:00', '北京北京市石景山区', '景阳宏昌', '[\"\\/Uploads\\/image\\/2018-01-30\\/5a6fbe9a723e0.jpg\"]', '北京同舟鸿图文化创意有限公司', 'Candy', '18810356923', '/Uploads/file/20180130/1517272730/A+Byte+of+Python.pdf###', '4', '2', '1516682898', '564', '1', '0', '', '', '', '<p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\"><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\">亲爱的吉米客们（GMICers）：</strong></p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">GMIC北京2017大会5万人参与的景象犹在眼前，GMIC北京2018又拉开了启动大幕。2018年4月26日-28日，我们又将相会在国家会议中心，共同见证中国<a href=\"https://m.huodongjia.com/tag/437/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">互联网</a>和<a href=\"https://m.huodongjia.com/tag/1192/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">科技</a>领域的进步与发展。</p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">站在AlphaGo Zero、量子技术、<a href=\"https://m.huodongjia.com/tag/17374/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">区块链</a>等各种新技术持续爆发的时代关口，我们有必要回顾一下中国互联网与科技的<a href=\"https://m.huodongjia.com/tag/926/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">历史</a>，从时代的角度来剖析中国互联网与科技的未来：<br/><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\">1998年-2007年 中国PC互联网的黄金十年</strong></p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">1998年，是中国互联网企业值得纪念的一年，这一年，腾讯、新浪、京东、搜狐都纷纷成立，奠定了中国互联网在全球市场的地位，直至今日，这些即将迎来20年诞辰的企业仍屹立在行业之巅。以网易、新浪、搜、腾讯为代表的“四大门户”共同拉开了中国互联网高速发展的帷幕，深刻影响了中国的<a href=\"https://m.huodongjia.com/tag/909/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">经济</a>、<a href=\"https://m.huodongjia.com/tag/1742/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">社会</a>的发展。</p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\"><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\">2008年-2017年 中国<a href=\"https://m.huodongjia.com/tag/966/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">移动互联网</a>的黄金十年</strong></p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">2008年，iPhone的入华标志着中国互联网进入到了移动互联网时代，微博、小米、微信、美团等明向企业纷纷崛起，成为大众的生活中不可缺少的重要工具。而随着移动互联网的崛起，在市场、资本等力量的共同作用下，中国互联网的发展也超越了欧美等传统科技强国，实现了从“copy to China”到“copy from China”的逆转，成就了新的全球经济奇迹。</p><p><br/></p>', '0');
-INSERT INTO `tzht_conference` VALUES ('35', '公开会议', '2018-01-24 00:00:00', '2018-01-31 00:00:00', '2018-01-30 00:00:00', '北京北京市石景山区', 'w', '[\"\\/Uploads\\/Conference\\/20180129\\/1517221511\\/img_1516350488408.jpg\"]', '北京同舟鸿图文化创意有限公司', '我', '18810356923', '/Uploads/file/20180129/1517212849/幸会后台管理系统数据库数据表结构.xlsx###', '4', '3', '1516774729', '1110', '1', '1', '<p>会议日程</p>', '<p>会议嘉宾</p>', '<p>参会指南</p>', '会议简介 123', '0');
-INSERT INTO `tzht_conference` VALUES ('36', '同舟鸿图内部会议', '2018-01-24 00:00:00', '2018-02-24 00:00:00', '2018-01-31 00:00:00', '北京北京市石景山区', '景阳宏昌', '[\"\\/Uploads\\/image\\/2018-01-24\\/5a6826aec89aa.jpg\"]', '北京同舟鸿图文化创意有限公司', '刘卫国', '18911936236', '', '4', '2', '1516775108', '8', '1', '0', '', '', '', '<p>同舟鸿图内部会议</p>', '1');
-INSERT INTO `tzht_conference` VALUES ('49', '同舟鸿图年会(2018.1.30)', '2018-01-31 10:00:00', '2018-01-31 18:00:00', '2018-01-31 10:00:00', '北京北京市石景山区', '景阳宏昌309', '[\"\\/Uploads\\/image\\/2018-01-24\\/5a6826aec89aa.jpg\"]', '北京同舟鸿图文化创意有限公司', '李洪亮', '18810356923', '/Uploads/file/20180130/1517306889/A+Byte+of+Python.pdf###', '4', '2', '1517306900', '6', '1', '1', '', '', '', '<p>会议简介</p>', '1');
-INSERT INTO `tzht_conference` VALUES ('50', '同舟鸿图公开会议(2018.1.30)', '2018-01-31 10:00:00', '2018-01-31 18:00:00', '2018-01-31 10:00:00', '北京北京市石景山区', '景阳宏昌309', '[\"\\/Uploads\\/image\\/2018-01-24\\/5a6826aec89aa.jpg\"]', '北京同舟鸿图文化创意有限公司', '李洪亮', '18810356923', '/Uploads/file/20180130/1517307087/A+Byte+of+Python.pdf###', '4', '2', '1517307098', '6', '1', '1', '', '', '', '<p>会议简介</p>', '0');
-INSERT INTO `tzht_conference` VALUES ('58', '同舟鸿图公开会议(2018.2.1)', '2018-02-01 09:00:00', '2018-02-01 18:00:00', '2018-02-01 09:00:00', '北京北京市石景山区', '景阳宏昌309', '[\"\\/Uploads\\/image\\/2018-01-24\\/5a6826aec89aa.jpg\"]', '北京同舟鸿图文化创意有限公司', '李洪亮', '18810356923', '', '4', '2', '1517394442', '6', '1', '0', '', '', '', '<p><span style=\"color: rgb(51, 51, 51); font-family: \">会议简介</span></p>', '0');
-INSERT INTO `tzht_conference` VALUES ('59', '同舟鸿图年会(2018.2.1)', '2018-02-01 09:00:00', '2018-02-01 18:00:00', '2018-02-01 09:00:00', '北京北京市石景山区', '景阳宏昌309', '[\"\\/Uploads\\/product\\/2018-02-01\\/5a72a4d6ad576.jpg\"]', '北京同舟鸿图文化创意有限公司', '李洪亮', '18810356923', '', '4', '2', '1517394550', '5', '1', '0', '', '', '', '<p>会议简介</p>', '1');
-INSERT INTO `tzht_conference` VALUES ('60', '201会议测试', '2018-02-01 00:00:00', '2018-02-02 00:00:00', '2018-01-31 18:00:00', '北京北京市石景山区', '北辰东路8号北京国际会议中心', '[\"\\/Uploads\\/image\\/2018-01-24\\/5a6826aec89aa.jpg\"]', '北京同舟鸿图文化创意有限公司', '郑伟', '13717563620', '', '4', '2', '1517455726', '2000', '0', '0', '', '', '', '201会议测试\n\n', '0');
+INSERT INTO `tzht_conference` VALUES ('86', ' 年会2', '2018-02-06 17:10:00', '2018-02-06 17:30:00', '2018-02-06 16:55:00', '北京北京市石景山区', '晋阳', '[\"\"]', '北京中网深蓝技术有限公司', '李经理', '18618249918', '', '34', '10', '1517907284', '10', '1', '1', '', '', '', '<p>内部会议</p>', '1');
+INSERT INTO `tzht_conference` VALUES ('87', '年会3', '2018-02-06 17:10:00', '2018-02-06 17:20:00', '2018-02-06 17:10:00', '北京北京市石景山区', 'crd', '[\"\"]', '北京中网深蓝技术有限公司', '李经理', '18618249918', '', '34', '10', '1517907797', '10', '1', '1', '', '', '', '<p>年会3</p>', '1');
+INSERT INTO `tzht_conference` VALUES ('88', '年会4', '2018-02-06 17:30:00', '2018-02-06 17:36:00', '2018-02-06 17:35:00', '北京北京市石景山区', 'crd', '[\"\"]', '北京中网深蓝技术有限公司', '了李经理', '18618249918', '', '34', '10', '1517909335', '10', '0', '1', '', '', '', '<p>年会3</p>', '1');
+INSERT INTO `tzht_conference` VALUES ('92', '年会5', '2018-02-07 11:00:00', '2018-02-07 11:15:00', '2018-02-07 11:15:00', '北京北京市石景山区', 'crd', '[\"\"]', '北京中网深蓝技术有限公司', '李经理', '18601159800', '', '34', '10', '1517971955', '10', '1', '1', '', '', '', '<p>年会5</p>', '1');
+INSERT INTO `tzht_conference` VALUES ('95', '中网深蓝公开会议(2018.2.7) ', '2018-02-07 15:00:00', '2018-02-07 18:00:00', '2018-02-07 15:30:00', '北京北京市石景山区', '景阳宏昌309', '[\"\\/Uploads\\/product\\/2018-02-07\\/5a7a9fe6ee348.jpg\"]', '北京中网深蓝技术有限公司', '李洪亮', '18810356923', '/Uploads/file/20180207/1517985771/A+Byte+of+Python.pdf###', '34', '2', '1517985776', '13', '1', '1', '', '', '', '<p><span style=\"color: rgb(51, 51, 51); font-family: \"Segoe UI\", \"Lucida Grande\", Helvetica, Arial, \"Microsoft YaHei\", FreeSans, Arimo, \"Droid Sans\", \"wenquanyi micro hei\", \"Hiragino Sans GB\", \"Hiragino Sans GB W3\", FontAwesome, sans-serif; font-size: 14px; font-weight: bold; text-align: center; background-color: rgb(255, 255, 255);\">会议简介</span></p>', '0');
+INSERT INTO `tzht_conference` VALUES ('96', '中网深蓝年会(2018.2.7)', '2018-02-07 15:00:00', '2018-02-07 18:33:00', '2018-02-07 15:30:00', '北京北京市石景山区', '景阳宏昌309', '[\"\\/Uploads\\/product\\/2018-02-07\\/5a7aa055290f7.jpg\"]', '北京中网深蓝技术有限公司', '李洪亮', '18810356923', '/Uploads/file/20180207/1517985881/A+Byte+of+Python.pdf###', '34', '3', '1517985886', '13', '1', '1', '', '', '', '<p><span style=\"color: rgb(51, 51, 51); font-family: \"Segoe UI\", \"Lucida Grande\", Helvetica, Arial, \"Microsoft YaHei\", FreeSans, Arimo, \"Droid Sans\", \"wenquanyi micro hei\", \"Hiragino Sans GB\", \"Hiragino Sans GB W3\", FontAwesome, sans-serif; font-size: 14px; font-weight: bold; text-align: center; background-color: rgb(255, 255, 255);\">会议简介</span></p>', '1');
+INSERT INTO `tzht_conference` VALUES ('102', '2018年北京同舟鸿图公司年会', '2018-02-08 10:00:00', '2018-02-08 17:00:00', '2018-02-08 09:40:00', '北京北京市石景山区', '石景山路23号中础大厦院内', '[\"\\/Uploads\\/product\\/2018-02-07\\/5a7ad45861822.jpg\"]', '北京同舟鸿图文化创意有限公司', '刘为国', '18911936236', '', '4', '2', '1518000796', '15', '0', '1', '<p>1.年会举办时间：2018年2月8日（星期四）上午9:00-17:00。<br/>2.年会举办地点：北京石景山区八角游乐园中出大厦（格丹轰趴馆）。<br/>3.年会内容主要包括领导讲话、娱乐节目、聚餐等项目，望在2月8日上午9点准时在格丹轰趴馆集合，以<br/>便年会准时开始。</p>', '<p style=\"text-align: left;\"><strong>年会嘉宾:</strong></p><p style=\"text-align: left;\">公司总经理：王永刚</p><p style=\"text-align: left;\">公司经理：陈少华</p><p style=\"text-align: left;\">公司高级设计师：赵银玲</p><p style=\"text-align: left;\">公司高级设计师：邓雅心</p><p style=\"text-align: left;\">公司运营策划部经理：马娜</p><p style=\"text-align: left;\">公司新媒体策划编辑：刘思奥</p><p style=\"text-align: left;\">公司财务部主管：王小群<br/></p><p style=\"text-align: left;\">公司开发部经理：刘为国</p><p style=\"text-align: left;\">公司PHP高级开发工程师：陈江</p><p style=\"text-align: left;\">公司Android高级开发工程师：李洪亮</p>', '<p><span class=\"dn_label\">公交站点：</span> &nbsp;京原路口东 &nbsp;京原路口东 &nbsp;京原路口西 &nbsp;京原路口西 &nbsp;老山南路 &nbsp;老山西街 &nbsp;老山西街 &nbsp;体育场南路东口 &nbsp;体育场南路东口 &nbsp;衙门口桥北 &nbsp;</p><p><span class=\"dn_label\">公交线路：</span> &nbsp;325路 &nbsp;337路 &nbsp;436路 &nbsp;597路 &nbsp;598路 &nbsp;663路 &nbsp;941路 &nbsp;472路 &nbsp;527路 &nbsp;545路 &nbsp;598区间 &nbsp;专46路 &nbsp;965路 &nbsp;914路 &nbsp;574路 &nbsp;专91路 &nbsp;959路 &nbsp;专86环行 &nbsp;373路 &nbsp;快速直达专线27 &nbsp;327路 &nbsp;958路 &nbsp;夜5路 &nbsp;385路&nbsp; <br/></p><p>一号线八角游乐园地铁：A口出右侧中础大厦院内格丹轰趴馆</p><p><br/></p><p><br/></p>', '<p>2017年已经过去，迎来了2018年。为了感谢大家一年来的辛苦和为公司做出的贡献，更为了公司在2018年<br/>公司各项工作顺利的开展，经公司领导研究决定将于本月举办公司年会。</p><p>现将年会相关事宜通知如下：<br/>1.年会举办时间：2018年2月8日（星期四）上午9:00-17:00。<br/>2.年会举办地点：北京石景山区八角游乐园中出大厦（格丹轰趴馆）。<br/>3.年会内容主要包括领导讲话、娱乐节目、聚餐等项目，望在2月8日上午9点准时在格丹轰趴馆集合，以便年会准时开始。<br/>同时，希望大家提前准备一些好玩的节目，到时会有给大家展示才艺的机会，以增加年会的气氛。<br/>关于公司年会具体事宜如上，请大家按通知的内容去做，望大家能够积极配合和支持！</p><p><img src=\"/Uploads/ueditor/image/20180207/1518001265.jpg\" title=\"1518001265.jpg\" alt=\"QQ截图20180207181901.jpg\"/></p><p><img src=\"/Uploads/ueditor/image/20180207/1518001273.jpg\" title=\"1518001273.jpg\" alt=\"QQ截图20180207182111.jpg\"/><img src=\"/Uploads/ueditor/image/20180207/1518001280.jpg\" title=\"1518001280.jpg\" alt=\"QQ截图20180207182156.jpg\"/><img src=\"/Uploads/ueditor/image/20180207/1518001305.jpg\" title=\"1518001305.jpg\" alt=\"QQ截图20180207181939.jpg\"/></p>', '1');
+INSERT INTO `tzht_conference` VALUES ('105', '会议测试', '2018-02-22 11:39:27', '2018-02-22 13:00:00', '2018-02-22 12:13:00', '北京北京市石景山区', '景阳宏昌309', '[\"\\/Uploads\\/product\\/2018-02-22\\/5a8e3b90c0dd2.jpg\"]', '北京中网深蓝技术有限公司', '李洪亮', '18810356923', '/Uploads/file/20180222/1519270804/A+Byte+of+Python.pdf###', '34', '4', '1519270813', '12', '1', '1', '', '', '', '<p><span style=\"color: rgb(51, 51, 51); font-family: \"Segoe UI\", \"Lucida Grande\", Helvetica, Arial, \"Microsoft YaHei\", FreeSans, Arimo, \"Droid Sans\", \"wenquanyi micro hei\", \"Hiragino Sans GB\", \"Hiragino Sans GB W3\", FontAwesome, sans-serif; font-size: 14px; font-weight: 700; text-align: center; background-color: rgb(255, 255, 255);\">会议简介</span></p>', '0');
 
 -- ----------------------------
 -- Table structure for `tzht_conference_audit`
@@ -267,30 +308,15 @@ CREATE TABLE `tzht_conference_audit` (
 -- ----------------------------
 -- Records of tzht_conference_audit
 -- ----------------------------
-INSERT INTO `tzht_conference_audit` VALUES ('32', '26', '0');
-INSERT INTO `tzht_conference_audit` VALUES ('32', '21', '1');
-INSERT INTO `tzht_conference_audit` VALUES ('35', '21', '0');
-INSERT INTO `tzht_conference_audit` VALUES ('36', '21', '4');
-INSERT INTO `tzht_conference_audit` VALUES ('36', '25', '3');
-INSERT INTO `tzht_conference_audit` VALUES ('32', '25', '0');
-INSERT INTO `tzht_conference_audit` VALUES ('35', '4', '0');
-INSERT INTO `tzht_conference_audit` VALUES ('35', '26', '0');
-INSERT INTO `tzht_conference_audit` VALUES ('35', '28', '1');
-INSERT INTO `tzht_conference_audit` VALUES ('32', '15', '2');
-INSERT INTO `tzht_conference_audit` VALUES ('32', '30', '4');
-INSERT INTO `tzht_conference_audit` VALUES ('50', '21', '4');
-INSERT INTO `tzht_conference_audit` VALUES ('49', '21', '4');
-INSERT INTO `tzht_conference_audit` VALUES ('50', '27', '4');
-INSERT INTO `tzht_conference_audit` VALUES ('49', '27', '4');
-INSERT INTO `tzht_conference_audit` VALUES ('50', '32', '1');
-INSERT INTO `tzht_conference_audit` VALUES ('50', '31', '1');
-INSERT INTO `tzht_conference_audit` VALUES ('32', '31', '1');
-INSERT INTO `tzht_conference_audit` VALUES ('49', '33', '4');
-INSERT INTO `tzht_conference_audit` VALUES ('50', '33', '4');
-INSERT INTO `tzht_conference_audit` VALUES ('59', '21', '0');
-INSERT INTO `tzht_conference_audit` VALUES ('58', '21', '4');
-INSERT INTO `tzht_conference_audit` VALUES ('58', '27', '4');
-INSERT INTO `tzht_conference_audit` VALUES ('59', '27', '0');
+INSERT INTO `tzht_conference_audit` VALUES ('102', '44', '5');
+INSERT INTO `tzht_conference_audit` VALUES ('102', '51', '5');
+INSERT INTO `tzht_conference_audit` VALUES ('102', '41', '5');
+INSERT INTO `tzht_conference_audit` VALUES ('102', '45', '5');
+INSERT INTO `tzht_conference_audit` VALUES ('102', '43', '5');
+INSERT INTO `tzht_conference_audit` VALUES ('102', '49', '5');
+INSERT INTO `tzht_conference_audit` VALUES ('102', '42', '5');
+INSERT INTO `tzht_conference_audit` VALUES ('88', '45', '5');
+INSERT INTO `tzht_conference_audit` VALUES ('105', '45', '5');
 
 -- ----------------------------
 -- Table structure for `tzht_conference_auditlist`
@@ -305,30 +331,15 @@ CREATE TABLE `tzht_conference_auditlist` (
 -- ----------------------------
 -- Records of tzht_conference_auditlist
 -- ----------------------------
-INSERT INTO `tzht_conference_auditlist` VALUES ('32', '26', '4');
-INSERT INTO `tzht_conference_auditlist` VALUES ('32', '21', '1');
-INSERT INTO `tzht_conference_auditlist` VALUES ('35', '21', '5');
-INSERT INTO `tzht_conference_auditlist` VALUES ('36', '21', '4');
-INSERT INTO `tzht_conference_auditlist` VALUES ('36', '25', '3');
-INSERT INTO `tzht_conference_auditlist` VALUES ('32', '25', '3');
-INSERT INTO `tzht_conference_auditlist` VALUES ('35', '4', '5');
-INSERT INTO `tzht_conference_auditlist` VALUES ('35', '26', '5');
-INSERT INTO `tzht_conference_auditlist` VALUES ('35', '28', '5');
-INSERT INTO `tzht_conference_auditlist` VALUES ('32', '15', '2');
-INSERT INTO `tzht_conference_auditlist` VALUES ('32', '30', '4');
-INSERT INTO `tzht_conference_auditlist` VALUES ('50', '21', '5');
-INSERT INTO `tzht_conference_auditlist` VALUES ('49', '21', '5');
-INSERT INTO `tzht_conference_auditlist` VALUES ('50', '27', '5');
-INSERT INTO `tzht_conference_auditlist` VALUES ('49', '27', '5');
-INSERT INTO `tzht_conference_auditlist` VALUES ('50', '32', '5');
-INSERT INTO `tzht_conference_auditlist` VALUES ('50', '31', '5');
-INSERT INTO `tzht_conference_auditlist` VALUES ('32', '31', '1');
-INSERT INTO `tzht_conference_auditlist` VALUES ('49', '33', '5');
-INSERT INTO `tzht_conference_auditlist` VALUES ('50', '33', '5');
-INSERT INTO `tzht_conference_auditlist` VALUES ('59', '21', '4');
-INSERT INTO `tzht_conference_auditlist` VALUES ('58', '21', '4');
-INSERT INTO `tzht_conference_auditlist` VALUES ('58', '27', '4');
-INSERT INTO `tzht_conference_auditlist` VALUES ('59', '27', '4');
+INSERT INTO `tzht_conference_auditlist` VALUES ('102', '44', '5');
+INSERT INTO `tzht_conference_auditlist` VALUES ('102', '51', '5');
+INSERT INTO `tzht_conference_auditlist` VALUES ('102', '41', '5');
+INSERT INTO `tzht_conference_auditlist` VALUES ('102', '45', '5');
+INSERT INTO `tzht_conference_auditlist` VALUES ('102', '43', '5');
+INSERT INTO `tzht_conference_auditlist` VALUES ('102', '49', '5');
+INSERT INTO `tzht_conference_auditlist` VALUES ('102', '42', '5');
+INSERT INTO `tzht_conference_auditlist` VALUES ('88', '45', '5');
+INSERT INTO `tzht_conference_auditlist` VALUES ('105', '45', '5');
 
 -- ----------------------------
 -- Table structure for `tzht_conference_bull`
@@ -343,15 +354,17 @@ CREATE TABLE `tzht_conference_bull` (
   `content` text NOT NULL COMMENT '内容',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '公告添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='会议公告表';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='会议公告表';
 
 -- ----------------------------
 -- Records of tzht_conference_bull
 -- ----------------------------
-INSERT INTO `tzht_conference_bull` VALUES ('1', '35', '4', '会议公告', '', '<p>会议公告</p>', '1517205154');
-INSERT INTO `tzht_conference_bull` VALUES ('2', '35', '4', '会议公告', '', '<p>会议公告</p>', '1517205155');
 INSERT INTO `tzht_conference_bull` VALUES ('3', '32', '4', '会议公告', '', '<p><strong>公告通知</strong></p><p style=\"line-height: 16px;\"><img src=\"http://xh.2188.com.cn/Public/statics/ueditor/dialogs/attachment/fileTypeImages/icon_pdf.gif\"/><a style=\"font-size:12px; color:#0066cc;\" href=\"/Uploads/ueditor/file/20180130/1517282928.pdf\" title=\"幸会.pdf\">幸会.pdf</a></p><p><img src=\"/Uploads/ueditor/image/20180130/1517282946.jpg\" title=\"1517282946.jpg\" alt=\"1516848854739.jpg\"/></p>', '1517282948');
 INSERT INTO `tzht_conference_bull` VALUES ('4', '32', '4', '会议公告02', '', '<p><span style=\"color: rgb(255, 0, 0);\"><strong>会议公告通知</strong></span></p><p><span style=\"color: rgb(255, 0, 0);\"></span></p><p style=\"line-height: 16px;\"><img src=\"http://xh.2188.com.cn/Public/statics/ueditor/dialogs/attachment/fileTypeImages/icon_pdf.gif\"/><a style=\"font-size:12px; color:#0066cc;\" href=\"/Uploads/ueditor/file/20180130/1517295110.pdf\" title=\"接口文档.pdf\">接口文档.pdf</a></p><p style=\"box-sizing: border-box; margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(85, 85, 85); font-family: \"microsoft yahei\"; line-height: 35px;\"><span style=\"box-sizing: border-box; margin: 0px; padding: 0px; font-size: 14px;\">1、在C:\\User\\<用户名>\\.gradle 目录下<span style=\"font-size: 14px; color: rgb(79, 129, 189);\">新建</span>一个gradle.properties文件，并在里面添加一行：org.gradle.daemon=true</span></p><p style=\"box-sizing: border-box; margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(85, 85, 85); font-family: \"microsoft yahei\"; line-height: 35px;\"><span style=\"box-sizing: border-box; margin: 0px; padding: 0px; font-size: 14px;\">2、打开AS，在Settings中设置<span style=\"font-size: 14px; color: rgb(255, 0, 0);\">Gradle</span>的工作模式为offline，如下图：</span></p><p><span style=\"color: rgb(255, 0, 0);\"><strong><img src=\"/Uploads/ueditor/image/20180130/1517295054.jpg\" title=\"1517295054.jpg\" alt=\"0034034824143467_b.jpg\" width=\"485\" height=\"324\"/></strong></span></p>', '1517295140');
+INSERT INTO `tzht_conference_bull` VALUES ('5', '87', '34', '公告1', '', '<p>公告一</p>', '1517908478');
+INSERT INTO `tzht_conference_bull` VALUES ('6', '94', '4', ' 公告01', '', '<p style=\"line-height: 16px;\"><img src=\"http://xh.2188.com.cn/Public/statics/ueditor/dialogs/attachment/fileTypeImages/icon_pdf.gif\"/><a style=\"font-size:12px; color:#0066cc;\" href=\"/Uploads/ueditor/file/20180207/1517985522.pdf\" title=\"A+Byte+of+Python.pdf\">A+Byte+of+Python.pdf</a></p><p><img src=\"/Uploads/ueditor/image/20180207/1517985543.jpg\" title=\"1517985543.jpg\" alt=\"36.jpg\" width=\"532\" height=\"433\"/></p>', '1517985564');
+INSERT INTO `tzht_conference_bull` VALUES ('7', '93', '4', ' 公告01', '', '<p style=\"line-height: 16px;\"><img src=\"http://xh.2188.com.cn/Public/statics/ueditor/dialogs/attachment/fileTypeImages/icon_pdf.gif\"/><a style=\"font-size:12px; color:#0066cc;\" href=\"/Uploads/ueditor/file/20180207/1517985638.pdf\" title=\"A+Byte+of+Python.pdf\">A+Byte+of+Python.pdf</a></p><p><img src=\"/Uploads/ueditor/image/20180207/1517985658.jpg\" title=\"1517985658.jpg\" alt=\"240.jpg\"/></p>', '1517985660');
+INSERT INTO `tzht_conference_bull` VALUES ('8', '96', '34', ' 公告01', '', '<p style=\"line-height: 16px;\"><img src=\"http://xh.2188.com.cn/Public/statics/ueditor/dialogs/attachment/fileTypeImages/icon_pdf.gif\"/><a style=\"font-size:12px; color:#0066cc;\" href=\"/Uploads/ueditor/file/20180207/1517985938.pdf\" title=\"A+Byte+of+Python.pdf\">A+Byte+of+Python.pdf</a></p><p><img src=\"/Uploads/ueditor/image/20180207/1517985947.jpg\" title=\"1517985947.jpg\" alt=\"240.jpg\" width=\"510\" height=\"265\"/></p>', '1517985955');
 
 -- ----------------------------
 -- Table structure for `tzht_conference_cate`
@@ -380,6 +393,25 @@ INSERT INTO `tzht_conference_cate` VALUES ('9', '1', '公共事业', '0');
 INSERT INTO `tzht_conference_cate` VALUES ('10', '1', '其他', '0');
 
 -- ----------------------------
+-- Table structure for `tzht_conference_del`
+-- ----------------------------
+DROP TABLE IF EXISTS `tzht_conference_del`;
+CREATE TABLE `tzht_conference_del` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户id',
+  `conf_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '会议id',
+  `deltime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COMMENT='我的会议删除中间表';
+
+-- ----------------------------
+-- Records of tzht_conference_del
+-- ----------------------------
+INSERT INTO `tzht_conference_del` VALUES ('30', '45', '103', '1519268488');
+INSERT INTO `tzht_conference_del` VALUES ('31', '45', '88', '1519271069');
+INSERT INTO `tzht_conference_del` VALUES ('32', '45', '105', '1519280825');
+
+-- ----------------------------
 -- Table structure for `tzht_conference_focus`
 -- ----------------------------
 DROP TABLE IF EXISTS `tzht_conference_focus`;
@@ -398,8 +430,54 @@ INSERT INTO `tzht_conference_focus` VALUES ('21', '26', '1', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('26', '4', '1', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('29', '4', '1', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('30', '4', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('27', '31', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('34', '4', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('27', '34', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('31', '21', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('31', '25', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('21', '33', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('31', '22', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('34', '27', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('25', '33', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('25', '1', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('25', '27', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('25', '34', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('33', '31', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('32', '4', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('22', '38', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('36', '25', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('36', '38', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('36', '27', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('21', '38', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('27', '33', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('31', '34', '1', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('21', '31', '0', '0');
-INSERT INTO `tzht_conference_focus` VALUES ('31', '4', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('38', '21', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('38', '36', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('40', '4', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('41', '43', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('41', '44', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('41', '45', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('41', '42', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('41', '48', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('41', '49', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('41', '50', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('41', '51', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('41', '46', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('41', '34', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('52', '41', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('41', '52', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('53', '34', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('53', '41', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('45', '47', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('41', '36', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('36', '41', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('41', '53', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('45', '53', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('45', '4', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('45', '41', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('45', '46', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('46', '45', '1', '0');
 
 -- ----------------------------
 -- Table structure for `tzht_conference_pic`
@@ -414,12 +492,21 @@ CREATE TABLE `tzht_conference_pic` (
   `pic` varchar(100) NOT NULL DEFAULT '' COMMENT '宣传图片',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='会议详情图片表';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='会议详情图片表';
 
 -- ----------------------------
 -- Records of tzht_conference_pic
 -- ----------------------------
-INSERT INTO `tzht_conference_pic` VALUES ('7', '4', '35', '会议图片', 'http://xh.2188.com.cn/index.php/Admin/Index/index.html', '[\"\\/Uploads\\/conference\\/2018-01-29\\/5a6e92e3ed33f.jpg\"]', '1517196005');
+INSERT INTO `tzht_conference_pic` VALUES ('8', '4', '32', '产品标题', 'http://xh.2188.com.cn/index.php/Admin/Index/index.html', '[\"\\/Uploads\\/conference\\/2018-02-02\\/5a74371401d05.jpg\"]', '1517565721');
+INSERT INTO `tzht_conference_pic` VALUES ('9', '4', '94', '产品01', 'http://xh.2188.com.cn/index.php/Admin/Index/index.html#', '[\"\\/Uploads\\/conference\\/2018-02-07\\/5a7a9e93c9d07.jpg\"]', '1517985428');
+INSERT INTO `tzht_conference_pic` VALUES ('10', '4', '94', '产品02', 'http://xh.2188.com.cn/index.php/Admin/Index/index.html#', '[\"\"]', '1517985466');
+INSERT INTO `tzht_conference_pic` VALUES ('11', '4', '93', ' 产品01', 'http://xh.2188.com.cn/index.php/Admin/Index/index.html', '[\"\\/Uploads\\/conference\\/2018-02-07\\/5a7a9f37ccf51.jpg\"]', '1517985592');
+INSERT INTO `tzht_conference_pic` VALUES ('12', '4', '94', ' 产品02', 'http://xh.2188.com.cn/index.php/Admin/Index/index.html', '[\"\\/Uploads\\/conference\\/2018-02-07\\/5a7a9f4df0819.jpg\"]', '1517985615');
+INSERT INTO `tzht_conference_pic` VALUES ('13', '34', '95', '产品02', 'http://xh.2188.com.cn/index.php/Admin/Index/index.html', '[\"\\/Uploads\\/conference\\/2018-02-07\\/5a7aa012e616f.jpg\"]', '1517985811');
+INSERT INTO `tzht_conference_pic` VALUES ('14', '34', '96', '产品01', ' http://xh.2188.com.cn/index.php/Admin/Index/index.html', '[\"\\/Uploads\\/conference\\/2018-02-07\\/5a7aa075acd9c.jpg\"]', '1517985915');
+INSERT INTO `tzht_conference_pic` VALUES ('16', '4', '102', '2', 'https://www.dianping.com/search/keyword/2/0_%E6%A0%BC%E4%B8%B9%E8%BD%B0%E8%B6%B4%E9%A6%86', '[\"\\/Uploads\\/conference\\/2018-02-07\\/5a7adb11cbde2.jpg\"]', '1518000915');
+INSERT INTO `tzht_conference_pic` VALUES ('17', '4', '102', '3', 'https://www.dianping.com/search/keyword/2/0_%E6%A0%BC%E4%B8%B9%E8%BD%B0%E8%B6%B4%E9%A6%86', '[\"\\/Uploads\\/conference\\/2018-02-07\\/5a7adb2c4a18f.jpg\"]', '1518000941');
+INSERT INTO `tzht_conference_pic` VALUES ('18', '4', '102', '3', 'https://www.dianping.com/search/keyword/2/0_%E6%A0%BC%E4%B8%B9%E8%BD%B0%E8%B6%B4%E9%A6%86', '[\"\\/Uploads\\/conference\\/2018-02-07\\/5a7adb71ae248.jpg\"]', '1518001010');
 
 -- ----------------------------
 -- Table structure for `tzht_conference_sign`
@@ -462,6 +549,85 @@ INSERT INTO `tzht_conference_sign` VALUES ('58', '21');
 INSERT INTO `tzht_conference_sign` VALUES ('59', '27');
 INSERT INTO `tzht_conference_sign` VALUES ('58', '27');
 INSERT INTO `tzht_conference_sign` VALUES ('61', '21');
+INSERT INTO `tzht_conference_sign` VALUES ('60', '21');
+INSERT INTO `tzht_conference_sign` VALUES ('60', '31');
+INSERT INTO `tzht_conference_sign` VALUES ('62', '21');
+INSERT INTO `tzht_conference_sign` VALUES ('63', '21');
+INSERT INTO `tzht_conference_sign` VALUES ('63', '33');
+INSERT INTO `tzht_conference_sign` VALUES ('62', '33');
+INSERT INTO `tzht_conference_sign` VALUES ('62', '27');
+INSERT INTO `tzht_conference_sign` VALUES ('69', '21');
+INSERT INTO `tzht_conference_sign` VALUES ('69', '31');
+INSERT INTO `tzht_conference_sign` VALUES ('69', '33');
+INSERT INTO `tzht_conference_sign` VALUES ('71', '31');
+INSERT INTO `tzht_conference_sign` VALUES ('71', '21');
+INSERT INTO `tzht_conference_sign` VALUES ('72', '21');
+INSERT INTO `tzht_conference_sign` VALUES ('87', '35');
+INSERT INTO `tzht_conference_sign` VALUES ('88', '35');
+INSERT INTO `tzht_conference_sign` VALUES ('32', '21');
+INSERT INTO `tzht_conference_sign` VALUES ('89', '21');
+INSERT INTO `tzht_conference_sign` VALUES ('90', '21');
+INSERT INTO `tzht_conference_sign` VALUES ('91', '21');
+INSERT INTO `tzht_conference_sign` VALUES ('92', '36');
+INSERT INTO `tzht_conference_sign` VALUES ('93', '27');
+INSERT INTO `tzht_conference_sign` VALUES ('94', '27');
+INSERT INTO `tzht_conference_sign` VALUES ('94', '33');
+INSERT INTO `tzht_conference_sign` VALUES ('93', '33');
+INSERT INTO `tzht_conference_sign` VALUES ('94', '21');
+INSERT INTO `tzht_conference_sign` VALUES ('93', '21');
+INSERT INTO `tzht_conference_sign` VALUES ('96', '39');
+INSERT INTO `tzht_conference_sign` VALUES ('97', '21');
+INSERT INTO `tzht_conference_sign` VALUES ('100', '21');
+INSERT INTO `tzht_conference_sign` VALUES ('100', '40');
+INSERT INTO `tzht_conference_sign` VALUES ('100', '22');
+INSERT INTO `tzht_conference_sign` VALUES ('101', '22');
+INSERT INTO `tzht_conference_sign` VALUES ('101', '21');
+INSERT INTO `tzht_conference_sign` VALUES ('101', '40');
+INSERT INTO `tzht_conference_sign` VALUES ('102', '33');
+INSERT INTO `tzht_conference_sign` VALUES ('102', '51');
+INSERT INTO `tzht_conference_sign` VALUES ('102', '41');
+INSERT INTO `tzht_conference_sign` VALUES ('102', '45');
+INSERT INTO `tzht_conference_sign` VALUES ('102', '49');
+INSERT INTO `tzht_conference_sign` VALUES ('102', '42');
+INSERT INTO `tzht_conference_sign` VALUES ('103', '45');
+INSERT INTO `tzht_conference_sign` VALUES ('104', '45');
+INSERT INTO `tzht_conference_sign` VALUES ('105', '45');
+
+-- ----------------------------
+-- Table structure for `tzht_del_jgpush`
+-- ----------------------------
+DROP TABLE IF EXISTS `tzht_del_jgpush`;
+CREATE TABLE `tzht_del_jgpush` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户id',
+  `jp_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '平台消息id',
+  `deltime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COMMENT='平台消息删除中间表';
+
+-- ----------------------------
+-- Records of tzht_del_jgpush
+-- ----------------------------
+INSERT INTO `tzht_del_jgpush` VALUES ('18', '21', '5', '1517655105');
+INSERT INTO `tzht_del_jgpush` VALUES ('19', '31', '6', '1517655195');
+INSERT INTO `tzht_del_jgpush` VALUES ('20', '21', '6', '1517660458');
+INSERT INTO `tzht_del_jgpush` VALUES ('21', '34', '5', '1517792029');
+INSERT INTO `tzht_del_jgpush` VALUES ('22', '34', '6', '1517792031');
+INSERT INTO `tzht_del_jgpush` VALUES ('23', '27', '7', '1517825842');
+INSERT INTO `tzht_del_jgpush` VALUES ('24', '27', '6', '1517825845');
+INSERT INTO `tzht_del_jgpush` VALUES ('25', '25', '7', '1517830596');
+INSERT INTO `tzht_del_jgpush` VALUES ('26', '25', '6', '1517830599');
+INSERT INTO `tzht_del_jgpush` VALUES ('27', '25', '5', '1517830601');
+INSERT INTO `tzht_del_jgpush` VALUES ('28', '33', '7', '1517899691');
+INSERT INTO `tzht_del_jgpush` VALUES ('29', '35', '7', '1517908164');
+INSERT INTO `tzht_del_jgpush` VALUES ('30', '35', '6', '1517908168');
+INSERT INTO `tzht_del_jgpush` VALUES ('31', '35', '5', '1517908170');
+INSERT INTO `tzht_del_jgpush` VALUES ('32', '41', '13', '1518048200');
+INSERT INTO `tzht_del_jgpush` VALUES ('33', '41', '7', '1518048204');
+INSERT INTO `tzht_del_jgpush` VALUES ('34', '41', '6', '1518048207');
+INSERT INTO `tzht_del_jgpush` VALUES ('35', '41', '5', '1518048210');
+INSERT INTO `tzht_del_jgpush` VALUES ('36', '0', '5', '1519262088');
+INSERT INTO `tzht_del_jgpush` VALUES ('37', '45', '5', '1519372750');
 
 -- ----------------------------
 -- Table structure for `tzht_download`
@@ -474,12 +640,13 @@ CREATE TABLE `tzht_download` (
   `downfile` varchar(1000) NOT NULL DEFAULT '' COMMENT '文件资料',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='企业资料表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='企业资料表';
 
 -- ----------------------------
 -- Records of tzht_download
 -- ----------------------------
 INSERT INTO `tzht_download` VALUES ('2', '4', '企业交流会资料', '[\"\\/Uploads\\/file\\/20180129\\/1517207441\\/A+Byte+of+Python.pdf\"]', '1517207442');
+INSERT INTO `tzht_download` VALUES ('3', '34', '产品已', '[\"\\/Uploads\\/file\\/20180206\\/1517910979\\/42类.docx\"]', '1517910987');
 
 -- ----------------------------
 -- Table structure for `tzht_jgpush`
@@ -492,7 +659,7 @@ CREATE TABLE `tzht_jgpush` (
   `type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '推送标识',
   `addtime` int(11) NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='极光推送消息表';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='极光推送消息表';
 
 -- ----------------------------
 -- Records of tzht_jgpush
@@ -500,11 +667,7 @@ CREATE TABLE `tzht_jgpush` (
 INSERT INTO `tzht_jgpush` VALUES ('5', '2018年1月30日天气情况', '北京今天  晴间多云，偏北风3级  5/-6°。', '0', '1517301679');
 INSERT INTO `tzht_jgpush` VALUES ('6', '2018年1月31日天气情况', '2018年1月30日天气情况', '1', '1517301844');
 INSERT INTO `tzht_jgpush` VALUES ('7', '2018年1月31日天气情况', '2018年1月31日天气情况', '1', '1517301946');
-INSERT INTO `tzht_jgpush` VALUES ('8', '2018年1月30日天气情况', '北京今天 晴间多云，偏北风3级 5/-6°。', '1', '1517305147');
-INSERT INTO `tzht_jgpush` VALUES ('9', '推送测试123', '推送测试123推送测试123', '1', '1517305234');
-INSERT INTO `tzht_jgpush` VALUES ('10', '推送测试789', '推送测试789推送测试789', '1', '1517305293');
-INSERT INTO `tzht_jgpush` VALUES ('11', '推送测试56656', '推送测试56656推送测试56656', '1', '1517306038');
-INSERT INTO `tzht_jgpush` VALUES ('12', '推送测试123', '推送测试123推送测试123推送测试123推送测试123', '1', '1517306075');
+INSERT INTO `tzht_jgpush` VALUES ('13', ' 2018年2月8日天气情况	', '北京今天 晴间多云，偏北风3级 5/-6°。', '1', '1517997749');
 
 -- ----------------------------
 -- Table structure for `tzht_jgpushperson`
@@ -519,7 +682,7 @@ CREATE TABLE `tzht_jgpushperson` (
   `type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '推送标识',
   `addtime` int(11) NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='极光推送个人消息表';
+) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8 COMMENT='极光推送个人消息表';
 
 -- ----------------------------
 -- Records of tzht_jgpushperson
@@ -528,6 +691,78 @@ INSERT INTO `tzht_jgpushperson` VALUES ('5', '0', '22', 'wr', 'r', '0', '1516585
 INSERT INTO `tzht_jgpushperson` VALUES ('7', '0', '22', 'afa', 'af', '0', '1516592614');
 INSERT INTO `tzht_jgpushperson` VALUES ('8', '0', '26', '176', '176', '0', '1516760320');
 INSERT INTO `tzht_jgpushperson` VALUES ('10', '0', '26', '176', '176', '0', '1516947201');
+INSERT INTO `tzht_jgpushperson` VALUES ('19', '0', '31', '同州 / 阳谷躺哈虎 参会中', '同州 / 阳谷躺哈虎 参会中', '0', '1517658465');
+INSERT INTO `tzht_jgpushperson` VALUES ('20', '0', '34', '签到代表注意须知', '同舟鸿图签到代表刘为国先生，请您于2月5日到会场签到，请短信姓名+单位+职位发送至18911936236，没有回复着视为放弃此次会议，谢谢！', '0', '1517793685');
+INSERT INTO `tzht_jgpushperson` VALUES ('21', '0', '34', '同舟鸿图签到代表须知', '同舟鸿图刘为国先生，欢迎光临本次盛会，请您于2月6日上午9时前发送确认短信到18911936236，短信内容：单位+姓名+职位，便于我们会务统计，未发送者，我们视为自动放弃参会，谢谢！', '0', '1517793897');
+INSERT INTO `tzht_jgpushperson` VALUES ('22', '0', '31', '12', '12', '0', '1517799969');
+INSERT INTO `tzht_jgpushperson` VALUES ('23', '0', '31', '21', '3', '0', '1517799976');
+INSERT INTO `tzht_jgpushperson` VALUES ('24', '0', '35', '欢迎团队成员', '欢迎参加年会', '0', '1517908099');
+INSERT INTO `tzht_jgpushperson` VALUES ('25', '0', '21', '北京同舟鸿图文化创意有限公司 / 冬日之恋 2018.2.6', 'pushJson', '0', '1517911662');
+INSERT INTO `tzht_jgpushperson` VALUES ('26', '0', '21', '北京同舟鸿图文化创意有限公司 / 冬日之恋 2018.2.6', '北京同舟鸿图文化创意有限公司 / 冬日之恋 2018.2.6', '0', '1517911710');
+INSERT INTO `tzht_jgpushperson` VALUES ('27', '0', '21', '旭日123', '旭日123', '0', '1517969414');
+INSERT INTO `tzht_jgpushperson` VALUES ('28', '0', '33', '推送测试20180207', '推送测试20180207', '0', '1517988320');
+INSERT INTO `tzht_jgpushperson` VALUES ('29', '0', '21', '冬日之恋', '冬日之恋', '0', '1517988713');
+INSERT INTO `tzht_jgpushperson` VALUES ('30', '0', '21', '冬日之恋', '冬日之恋', '0', '1517988721');
+INSERT INTO `tzht_jgpushperson` VALUES ('31', '0', '21', '冬日之恋 2018.2.7 10：08冬日之恋', '冬日之恋 2018.2.7 10：08冬日之恋', '0', '1517988740');
+INSERT INTO `tzht_jgpushperson` VALUES ('32', '0', '21', 'a', '啊vv', '0', '1517994615');
+INSERT INTO `tzht_jgpushperson` VALUES ('33', '0', '21', '北京同舟鸿图文化创意有限公司 / 冬日之恋', '北京同舟鸿图文化创意有限公司 / 冬日之恋', '0', '1517997394');
+INSERT INTO `tzht_jgpushperson` VALUES ('34', '0', '21', '北京同舟鸿图文化创意有限公司 / 冬日之恋', '北京同舟鸿图文化创意有限公司 / 冬日之恋', '0', '1517997405');
+INSERT INTO `tzht_jgpushperson` VALUES ('35', '0', '21', '北京同舟鸿图文化创意有限公司 / 冬日之恋', '北京同舟鸿图文化创意有限公司 / 冬日之恋', '0', '1517997426');
+INSERT INTO `tzht_jgpushperson` VALUES ('36', '0', '21', '北京同舟鸿图文化创意有限公司 / 冬日之恋', '北京同舟鸿图文化创意有限公司 / 冬日之恋', '0', '1517997656');
+INSERT INTO `tzht_jgpushperson` VALUES ('39', '0', '41', '春节快乐！', '春节快乐！', '0', '1519352496');
+INSERT INTO `tzht_jgpushperson` VALUES ('40', '0', '45', '1', '1', '0', '1519365160');
+INSERT INTO `tzht_jgpushperson` VALUES ('41', '0', '45', '121', '1', '0', '1519431981');
+INSERT INTO `tzht_jgpushperson` VALUES ('42', '0', '45', '10', '1', '0', '1519432007');
+INSERT INTO `tzht_jgpushperson` VALUES ('44', '0', '45', '1', '1', '0', '1519432103');
+INSERT INTO `tzht_jgpushperson` VALUES ('45', '0', '45', '3', '3', '0', '1519432149');
+INSERT INTO `tzht_jgpushperson` VALUES ('47', '0', '45', 'r', 'r', '0', '1519432278');
+INSERT INTO `tzht_jgpushperson` VALUES ('48', '0', '45', 'r', 'r', '0', '1519432297');
+INSERT INTO `tzht_jgpushperson` VALUES ('49', '0', '45', 'd', '大', '0', '1519432683');
+INSERT INTO `tzht_jgpushperson` VALUES ('50', '0', '45', 's', 's', '0', '1519433378');
+INSERT INTO `tzht_jgpushperson` VALUES ('51', '0', '45', '123131', '1', '0', '1519434200');
+INSERT INTO `tzht_jgpushperson` VALUES ('52', '0', '45', 'r', 'r', '0', '1519434258');
+INSERT INTO `tzht_jgpushperson` VALUES ('53', '0', '45', 'r', 'r', '0', '1519434295');
+INSERT INTO `tzht_jgpushperson` VALUES ('54', '0', '45', 't', 't', '0', '1519434313');
+INSERT INTO `tzht_jgpushperson` VALUES ('55', '0', '45', 'f', 'f', '0', '1519434350');
+INSERT INTO `tzht_jgpushperson` VALUES ('56', '0', '45', 'f', 'f', '0', '1519434363');
+INSERT INTO `tzht_jgpushperson` VALUES ('57', '0', '45', 'f', 'f', '0', '1519434378');
+INSERT INTO `tzht_jgpushperson` VALUES ('58', '0', '45', 't', 't', '0', '1519434559');
+INSERT INTO `tzht_jgpushperson` VALUES ('59', '0', '45', 't', 't', '0', '1519434576');
+INSERT INTO `tzht_jgpushperson` VALUES ('60', '0', '45', 't', 't', '0', '1519434590');
+INSERT INTO `tzht_jgpushperson` VALUES ('61', '0', '45', 'f', 'f', '0', '1519435055');
+INSERT INTO `tzht_jgpushperson` VALUES ('62', '0', '45', 'f', 'a', '0', '1519435071');
+INSERT INTO `tzht_jgpushperson` VALUES ('63', '0', '45', 'aaf', 'af', '0', '1519435083');
+INSERT INTO `tzht_jgpushperson` VALUES ('64', '0', '45', 'ar', 'ar', '0', '1519435143');
+INSERT INTO `tzht_jgpushperson` VALUES ('65', '0', '45', 'Aar', 'ar', '0', '1519435153');
+INSERT INTO `tzht_jgpushperson` VALUES ('66', '0', '45', 's', 'sf', '0', '1519435632');
+INSERT INTO `tzht_jgpushperson` VALUES ('68', '0', '45', 'f', 'f', '0', '1519435697');
+INSERT INTO `tzht_jgpushperson` VALUES ('70', '0', '45', 'tzhtlhl2018', 'tzhtlhl2018', '0', '1519623255');
+INSERT INTO `tzht_jgpushperson` VALUES ('71', '0', '45', 'r', 'r', '0', '1519623553');
+INSERT INTO `tzht_jgpushperson` VALUES ('72', '0', '45', 'r', 'r', '0', '1519623567');
+INSERT INTO `tzht_jgpushperson` VALUES ('73', '0', '45', 'f', 'f', '0', '1519623653');
+INSERT INTO `tzht_jgpushperson` VALUES ('74', '0', '45', 'f', 'f', '0', '1519623810');
+INSERT INTO `tzht_jgpushperson` VALUES ('75', '0', '45', 'f', 'f', '0', '1519623821');
+INSERT INTO `tzht_jgpushperson` VALUES ('76', '0', '45', 'Af', 'af', '0', '1519623912');
+INSERT INTO `tzht_jgpushperson` VALUES ('77', '0', '45', 'af', 'af', '0', '1519623926');
+INSERT INTO `tzht_jgpushperson` VALUES ('78', '0', '45', 'af', 'af', '0', '1519623937');
+INSERT INTO `tzht_jgpushperson` VALUES ('79', '0', '45', 'd', 'd', '0', '1519624080');
+INSERT INTO `tzht_jgpushperson` VALUES ('80', '0', '45', 'D', 'D', '0', '1519624142');
+INSERT INTO `tzht_jgpushperson` VALUES ('81', '0', '45', 'D', 'D', '0', '1519624151');
+INSERT INTO `tzht_jgpushperson` VALUES ('82', '0', '45', 'D', 'D', '0', '1519624167');
+INSERT INTO `tzht_jgpushperson` VALUES ('83', '0', '45', 'f', 'f', '0', '1519624450');
+INSERT INTO `tzht_jgpushperson` VALUES ('84', '0', '45', 'd', 'd', '0', '1519624478');
+INSERT INTO `tzht_jgpushperson` VALUES ('86', '0', '45', 'f', 'f', '0', '1519624706');
+INSERT INTO `tzht_jgpushperson` VALUES ('88', '0', '45', 'f', 'f', '0', '1519625017');
+INSERT INTO `tzht_jgpushperson` VALUES ('90', '0', '45', 'fa', 'af', '0', '1519625356');
+INSERT INTO `tzht_jgpushperson` VALUES ('97', '0', '45', 'F', 'F', '0', '1519626955');
+INSERT INTO `tzht_jgpushperson` VALUES ('98', '0', '45', 'F', 'AF', '0', '1519626996');
+INSERT INTO `tzht_jgpushperson` VALUES ('100', '0', '45', 'Aeae', 'aewe', '0', '1519627165');
+INSERT INTO `tzht_jgpushperson` VALUES ('101', '0', '45', 'fe', 'ef', '0', '1519627321');
+INSERT INTO `tzht_jgpushperson` VALUES ('102', '0', '45', 'f', 'sf', '0', '1519627457');
+INSERT INTO `tzht_jgpushperson` VALUES ('103', '0', '45', 'f', 'f', '0', '1519627501');
+INSERT INTO `tzht_jgpushperson` VALUES ('104', '0', '45', 'faf', 'afaf', '0', '1519627698');
+INSERT INTO `tzht_jgpushperson` VALUES ('106', '0', '45', 'f', 'f', '0', '1519628070');
+INSERT INTO `tzht_jgpushperson` VALUES ('107', '0', '45', 'faff', 'f', '0', '1519628087');
 
 -- ----------------------------
 -- Table structure for `tzht_log`
@@ -547,12 +782,11 @@ CREATE TABLE `tzht_log` (
   `appinfo` varchar(60) NOT NULL DEFAULT '' COMMENT '手机设备信息',
   `log` text COMMENT '登录信息',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=474 DEFAULT CHARSET=utf8 COMMENT='登录日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=1149 DEFAULT CHARSET=utf8 COMMENT='登录日志表';
 
 -- ----------------------------
 -- Records of tzht_log
 -- ----------------------------
-INSERT INTO `tzht_log` VALUES ('1', '1', '1516155510', '0', '123.114.109.192', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户188****6923/18810356923您好！您使用了电脑2018-01-17 10:30登录地址为中国-北京-北京');
 INSERT INTO `tzht_log` VALUES ('2', '1', '1516156446', '0', '123.114.109.192', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户188****6923/18810356923您好！您使用了电脑2018-01-17 10:06登录地址为中国-北京-北京');
 INSERT INTO `tzht_log` VALUES ('3', '49', '1516157273', '0', '192.168.0.127', '中国-北京-北京', '0', '2', '2', '2.0.2', 'hi6250  HUAWEI\nPRA-AL00', null);
 INSERT INTO `tzht_log` VALUES ('4', '4', '1516160331', '0', '123.114.109.192', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-01-17 11:51登录地址为中国-北京-北京');
@@ -1025,6 +1259,681 @@ INSERT INTO `tzht_log` VALUES ('470', '21', '1517462068', '0', '192.168.0.176', 
 INSERT INTO `tzht_log` VALUES ('471', '4', '1517462087', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.5', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
 INSERT INTO `tzht_log` VALUES ('472', '4', '1517462386', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.5', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
 INSERT INTO `tzht_log` VALUES ('473', '21', '1517462396', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.5', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('474', '4', '1517463439', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.0.5', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('475', '31', '1517463452', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.0.5', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('476', '27', '1517467331', '0', '192.168.0.129', '中国-北京-北京', '0', '2', '2', '2.0.5', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('477', '32', '1517468516', '0', '123.114.107.201', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户135****2050/13552832050您好！您使用了电脑2018-02-01 15:56登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('478', '21', '1517469373', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.5', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('479', '21', '1517469407', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.5', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('480', '31', '1517474400', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.0.5', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('481', '4', '1517474413', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.0.5', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('482', '4', '1517474669', '0', '123.114.107.201', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-01 16:29登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('483', '4', '1517475788', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.0.5', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('484', '21', '1517475799', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.0.5', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('485', '21', '1517476187', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.5', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('486', '21', '1517476375', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.5', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('487', '21', '1517478156', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.5', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('488', '31', '1517478176', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.5', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('489', '31', '1517479252', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.6', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('490', '21', '1517479262', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.6', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('491', '27', '1517480807', '0', '192.168.0.129', '中国-北京-北京', '0', '2', '1', '2.0.5', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('492', '4', '1517481823', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '2', '2.0.5', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('493', '33', '1517481849', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '1', '2.0.5', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('494', '31', '1517493304', '0', '192.168.1.102', '中国-北京-北京', '0', '2', '2', '2.0.6', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('495', '21', '1517493320', '0', '192.168.1.102', '中国-北京-北京', '0', '2', '1', '2.0.6', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('496', '4', '1517531646', '0', '111.199.22.78', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-02 08:06登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('497', '4', '1517535888', '0', '111.199.22.78', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-02 09:48登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('498', '21', '1517536603', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.6', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('499', '27', '1517536744', '0', '192.168.0.129', '中国-北京-北京', '0', '2', '1', '2.0.6', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('500', '21', '1517537824', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.6', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('501', '21', '1517537835', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.6', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('502', '4', '1517538095', '0', '111.199.22.78', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-02 10:35登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('503', '21', '1517541465', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('504', '21', '1517541514', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('505', '31', '1517541536', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('506', '31', '1517541556', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('507', '21', '1517541567', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('508', '21', '1517541611', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('509', '21', '1517542157', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('510', '31', '1517542168', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('511', '31', '1517542490', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('512', '21', '1517542501', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('513', '21', '1517544070', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('514', '31', '1517544080', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('515', '32', '1517544467', '0', '111.199.22.78', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户135****2050/13552832050您好！您使用了电脑2018-02-02 12:47登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('516', '31', '1517547370', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('517', '31', '1517547380', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('518', '31', '1517547387', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('519', '21', '1517547397', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('520', '4', '1517547512', '0', '111.199.22.78', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-02 12:32登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('521', '21', '1517547654', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('522', '21', '1517547685', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('523', '21', '1517547758', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('524', '31', '1517547770', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('525', '31', '1517547858', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('526', '31', '1517547870', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('527', '31', '1517547981', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('528', '21', '1517548037', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('529', '21', '1517549191', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('530', '31', '1517549273', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('531', '31', '1517550686', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('532', '21', '1517550827', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('533', '21', '1517550922', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('534', '21', '1517550937', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('535', '21', '1517552617', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('536', '21', '1517552631', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('537', '21', '1517554265', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('538', '4', '1517554276', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('539', '4', '1517554283', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('540', '21', '1517554292', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('541', '21', '1517554470', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('542', '31', '1517554494', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('543', '31', '1517555250', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('544', '31', '1517555264', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('545', '31', '1517555295', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('546', '21', '1517555306', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('547', '33', '1517556669', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.0.7', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('548', '31', '1517556693', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.0.7', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('549', '21', '1517556782', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.0.7', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('550', '21', '1517556795', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.0.7', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('551', '33', '1517556840', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.0.7', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('552', '21', '1517558375', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('553', '21', '1517558482', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('554', '31', '1517558494', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('555', '31', '1517558642', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('556', '21', '1517558652', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('557', '27', '1517559001', '0', '192.168.0.129', '中国-北京-北京', '0', '2', '1', '2.0.7', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('558', '21', '1517562070', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('559', '31', '1517562080', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('560', '31', '1517562114', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('561', '4', '1517562127', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('562', '21', '1517563262', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('563', '31', '1517563287', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('564', '4', '1517564172', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('565', '21', '1517564182', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.7', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('566', '33', '1517569567', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.0.7', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('567', '4', '1517569591', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.0.7', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('568', '4', '1517570081', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.0.7', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('569', '33', '1517570105', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.0.7', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('570', '21', '1517622298', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('571', '31', '1517623633', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('572', '22', '1517623652', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('573', '4', '1517633152', '0', '61.51.164.40', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-03 12:52登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('574', '22', '1517636918', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('575', '31', '1517636931', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('576', '31', '1517637105', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('577', '21', '1517637116', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('578', '21', '1517637262', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('579', '4', '1517637306', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('580', '4', '1517638175', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('581', '31', '1517638195', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('582', '31', '1517641343', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('583', '22', '1517641385', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('584', '22', '1517641709', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('585', '31', '1517641724', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('586', '21', '1517644311', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('587', '31', '1517644324', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('588', '31', '1517645426', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('589', '21', '1517645437', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('590', '21', '1517645650', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('591', '4', '1517645660', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('592', '4', '1517646023', '0', '61.51.164.40', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-03 16:23登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('593', '4', '1517646048', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('594', '21', '1517646069', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('595', '21', '1517646137', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('596', '4', '1517646148', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('597', '4', '1517646169', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('598', '21', '1517646181', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('599', '4', '1517646582', '0', '61.51.164.40', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-03 16:42登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('600', '21', '1517646600', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('601', '31', '1517646619', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('602', '31', '1517646638', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('603', '27', '1517646659', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.0.7', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('604', '4', '1517646669', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('605', '27', '1517646700', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.0.7', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('606', '4', '1517646704', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('607', '31', '1517646721', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('608', '27', '1517646750', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.0.7', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('609', '31', '1517646773', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('610', '21', '1517646785', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('611', '21', '1517646790', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('612', '4', '1517646801', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('613', '4', '1517646805', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('614', '21', '1517646816', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('615', '21', '1517649907', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('616', '4', '1517649926', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('617', '4', '1517650174', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('618', '21', '1517650183', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('619', '21', '1517650209', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('620', '4', '1517650222', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('621', '4', '1517650808', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('622', '21', '1517650828', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('623', '21', '1517652052', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('624', '31', '1517652063', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('625', '31', '1517652113', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('626', '4', '1517652126', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('627', '4', '1517652185', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('628', '21', '1517652196', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('629', '21', '1517652845', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('630', '31', '1517652872', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('631', '31', '1517652902', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('632', '4', '1517652924', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('633', '4', '1517653462', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('634', '21', '1517653473', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('635', '21', '1517653528', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('636', '31', '1517653540', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('637', '31', '1517654675', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('638', '21', '1517654685', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('639', '21', '1517655170', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('640', '31', '1517655185', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('641', '31', '1517655212', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('642', '4', '1517655225', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('643', '4', '1517655272', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('644', '21', '1517655287', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('645', '4', '1517655506', '0', '61.51.164.40', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-03 18:26登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('646', '21', '1517656135', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('647', '4', '1517656152', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('648', '4', '1517657467', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('649', '21', '1517657495', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('650', '21', '1517658196', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('651', '31', '1517658210', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('652', '31', '1517659670', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('653', '21', '1517659681', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('654', '4', '1517659776', '0', '61.51.164.40', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-03 20:36登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('655', '31', '1517659792', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('656', '4', '1517659804', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('657', '21', '1517660185', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('658', '31', '1517660198', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('659', '31', '1517660442', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('660', '21', '1517660452', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.8', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('661', '21', '1517662251', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('662', '4', '1517662265', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('663', '4', '1517662281', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('664', '21', '1517662290', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('665', '34', '1517741800', '0', '10.171.104.224', '中国-北京-北京', '0', '2', '1', '2.0.9', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('666', '34', '1517741828', '0', '10.171.104.224', '中国-北京-北京', '0', '2', '2', '2.0.9', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('667', '27', '1517741853', '0', '10.171.104.224', '中国-北京-北京', '0', '2', '1', '2.0.9', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('668', '21', '1517791255', '0', '192.168.1.34', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('669', '31', '1517791294', '0', '192.168.1.34', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('670', '4', '1517791448', '0', '125.33.77.237', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-05 08:08登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('671', '27', '1517791844', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.0.9', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('672', '34', '1517791872', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.0.9', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('673', '31', '1517792246', '0', '192.168.1.34', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('674', '21', '1517792258', '0', '192.168.1.34', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('675', '4', '1517793209', '0', '125.33.77.237', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-05 09:29登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('676', '31', '1517794393', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '1', '2.1.0', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('677', '34', '1517794638', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.0', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('678', '34', '1517795361', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.0.9', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('679', '34', '1517796616', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.0', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('680', '21', '1517796622', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('681', '31', '1517796640', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('682', '27', '1517796644', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.0', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('683', '31', '1517796651', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('684', '21', '1517796662', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('685', '21', '1517796679', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('686', '31', '1517796691', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('687', '27', '1517799110', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.0', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('688', '27', '1517799151', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.0', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('689', '31', '1517806302', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('690', '4', '1517806318', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('691', '4', '1517807095', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('692', '21', '1517807108', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('693', '21', '1517807127', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('694', '31', '1517807139', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('695', '31', '1517808273', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('696', '21', '1517808530', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('697', '21', '1517809679', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('698', '4', '1517809703', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('699', '4', '1517811259', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('700', '21', '1517811270', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('701', '21', '1517811574', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('702', '31', '1517811595', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('703', '31', '1517812670', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('704', '21', '1517812680', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('705', '21', '1517813299', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('706', '21', '1517813643', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('707', '21', '1517814764', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('708', '22', '1517814781', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('709', '22', '1517814955', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('710', '21', '1517814966', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('711', '4', '1517815141', '0', '125.33.77.237', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-05 15:01登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('712', '21', '1517815990', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('713', '4', '1517816011', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('714', '4', '1517817116', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('715', '31', '1517817127', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('716', '31', '1517817141', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('717', '21', '1517817161', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('718', '4', '1517817678', '0', '125.33.77.237', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-05 16:18登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('719', '4', '1517818169', '0', '125.33.77.237', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-05 16:29登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('720', '4', '1517819320', '0', '125.33.77.237', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-05 16:40登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('721', '21', '1517821715', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('722', '4', '1517821715', '0', '125.33.77.237', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-05 17:35登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('723', '22', '1517821729', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('724', '22', '1517822188', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('725', '4', '1517822348', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('726', '4', '1517822496', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('727', '21', '1517822509', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('728', '21', '1517822517', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('729', '31', '1517822530', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.0.9', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('730', '31', '1517823230', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.0', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('731', '4', '1517823243', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.0', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('732', '4', '1517823295', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('733', '31', '1517823312', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('734', '4', '1517823486', '0', '125.33.77.237', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-05 17:06登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('735', '4', '1517823820', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.0', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('736', '21', '1517823831', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.0', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('737', '21', '1517824588', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.0', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('738', '31', '1517824599', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.0', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('739', '31', '1517825395', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.0', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('740', '21', '1517825405', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.0', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('741', '4', '1517877055', '0', '111.199.30.193', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-06 08:55登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('742', '4', '1517879519', '0', '111.199.30.193', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-06 09:59登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('743', '4', '1517881185', '0', '111.199.30.193', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-06 09:45登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('744', '21', '1517892998', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('745', '4', '1517893017', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('746', '4', '1517893833', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('747', '21', '1517893852', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('748', '27', '1517896979', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.0', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('749', '34', '1517896995', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.0', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('750', '34', '1517898044', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.0', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('751', '4', '1517898075', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.0', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('752', '4', '1517898112', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.0', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('753', '34', '1517898139', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.0', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('754', '21', '1517898608', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('755', '4', '1517898630', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('756', '34', '1517899922', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.0', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('757', '34', '1517899991', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.0', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('758', '31', '1517902674', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('759', '21', '1517902687', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.0.8', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('760', '1', '1517905132', '0', '192.168.0.104', '中国-北京-北京', '0', '2', '2', '2.1.0', 'unknown  Letv\nLetv X501', null);
+INSERT INTO `tzht_log` VALUES ('761', '34', '1517905166', '0', '192.168.0.104', '中国-北京-北京', '0', '2', '1', '2.1.0', 'unknown  Letv\nLetv X501', null);
+INSERT INTO `tzht_log` VALUES ('762', '34', '1517905657', '0', '111.199.30.193', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-06 16:37登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('763', '4', '1517906314', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('764', '25', '1517906315', '0', '192.168.0.132', '中国-北京-北京', '0', '2', '2', '2.1.0', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('765', '35', '1517906333', '0', '192.168.0.132', '中国-北京-北京', '0', '2', '1', '2.1.0', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('766', '21', '1517906349', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('767', '35', '1517906523', '0', '192.168.0.132', '中国-北京-北京', '0', '2', '2', '2.1.0', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('768', '35', '1517906541', '0', '192.168.0.132', '中国-北京-北京', '0', '2', '1', '2.1.0', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('769', '34', '1517906844', '0', '111.199.30.193', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-06 16:24登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('770', '34', '1517907143', '0', '111.199.30.193', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-06 16:23登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('771', '21', '1517908018', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('772', '4', '1517908035', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('773', '4', '1517908150', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('774', '21', '1517908166', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('775', '21', '1517908887', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('776', '21', '1517908904', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('777', '35', '1517910009', '0', '192.168.0.132', '中国-北京-北京', '0', '2', '2', '2.1.0', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('778', '36', '1517910027', '0', '192.168.0.132', '中国-北京-北京', '0', '2', '1', '2.1.0', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('779', '36', '1517910088', '0', '192.168.0.132', '中国-北京-北京', '0', '2', '2', '2.1.0', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('780', '36', '1517910103', '0', '192.168.0.132', '中国-北京-北京', '0', '2', '1', '2.1.0', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('781', '36', '1517910135', '0', '192.168.0.132', '中国-北京-北京', '0', '2', '2', '2.1.0', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('782', '36', '1517910164', '0', '192.168.0.132', '中国-北京-北京', '0', '2', '1', '2.1.0', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('783', '36', '1517910177', '0', '192.168.0.132', '中国-北京-北京', '0', '2', '2', '2.1.0', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('784', '34', '1517910520', '0', '10.173.115.246', '中国-北京-北京', '0', '2', '2', '2.1.0', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('785', '33', '1517910671', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '2', '2.1.0', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('786', '34', '1517910688', '0', '192.168.0.104', '中国-北京-北京', '0', '2', '2', '2.1.0', 'unknown  Letv\nLetv X501', null);
+INSERT INTO `tzht_log` VALUES ('787', '21', '1517911005', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('788', '31', '1517911022', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('789', '31', '1517911029', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('790', '22', '1517911046', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('791', '22', '1517911064', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('792', '21', '1517911077', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('793', '4', '1517911086', '0', '111.199.30.193', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-06 17:06登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('794', '4', '1517911465', '0', '111.199.30.193', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-06 18:25登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('795', '33', '1517911823', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '1', '2.1.0', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('796', '4', '1517912062', '0', '111.199.30.193', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-06 18:22登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('797', '27', '1517912594', '0', '10.173.115.246', '中国-北京-北京', '0', '2', '1', '2.1.0', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('798', '33', '1517912595', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '2', '2.1.0', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('799', '32', '1517912610', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '1', '2.1.0', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('800', '32', '1517913013', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '2', '2.1.0', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('801', '4', '1517913032', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '1', '2.1.0', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('802', '21', '1517914194', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('803', '21', '1517914257', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('804', '4', '1517914270', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('805', '4', '1517914324', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('806', '21', '1517914343', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('807', '21', '1517914360', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('808', '4', '1517914388', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('809', '4', '1517914395', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('810', '21', '1517914407', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('811', '21', '1517917259', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('812', '4', '1517963495', '0', '111.199.31.196', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-07 08:35登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('813', '21', '1517963700', '0', '192.168.1.64', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('814', '4', '1517964412', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('815', '21', '1517964703', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('816', '31', '1517964739', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('817', '31', '1517964937', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('818', '21', '1517964951', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('819', '21', '1517965000', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('820', '4', '1517965017', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('821', '4', '1517965030', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('822', '31', '1517965045', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('823', '4', '1517965185', '0', '111.199.31.196', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-07 08:45登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('824', '31', '1517965513', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('825', '21', '1517965529', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('826', '21', '1517965540', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('827', '31', '1517965558', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('828', '31', '1517965566', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('829', '4', '1517965605', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('830', '4', '1517965626', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('831', '31', '1517965660', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('832', '31', '1517965709', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('833', '32', '1517966073', '0', '111.199.31.196', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户135****2050/13552832050您好！您使用了电脑2018-02-07 09:33登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('834', '22', '1517966387', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('835', '22', '1517966868', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('836', '21', '1517966879', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('837', '34', '1517967193', '0', '111.199.31.196', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-07 09:13登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('838', '38', '1517968188', '0', '192.168.0.104', '中国-北京-北京', '0', '2', '1', '2.1.0', 'unknown  Letv\nLetv X501', null);
+INSERT INTO `tzht_log` VALUES ('839', '38', '1517968212', '0', '192.168.0.104', '中国-北京-北京', '0', '2', '2', '2.1.0', 'unknown  Letv\nLetv X501', null);
+INSERT INTO `tzht_log` VALUES ('840', '36', '1517968239', '0', '192.168.0.104', '中国-北京-北京', '0', '2', '1', '2.1.0', 'unknown  Letv\nLetv X501', null);
+INSERT INTO `tzht_log` VALUES ('841', '21', '1517969058', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('842', '22', '1517969074', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('843', '22', '1517969116', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('844', '21', '1517969129', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('845', '21', '1517970232', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('846', '31', '1517970254', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('847', '31', '1517970303', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('848', '4', '1517970315', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('849', '4', '1517970408', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('850', '21', '1517970514', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('851', '4', '1517970919', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('852', '21', '1517970936', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('853', '21', '1517970944', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('854', '31', '1517970957', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('855', '34', '1517971206', '0', '111.199.31.196', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-07 10:06登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('856', '21', '1517971267', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('857', '21', '1517971282', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('858', '21', '1517971289', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('859', '4', '1517971310', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('860', '4', '1517971629', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('861', '21', '1517971644', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('862', '31', '1517971717', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('863', '4', '1517971734', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('864', '4', '1517971741', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('865', '31', '1517971754', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('866', '31', '1517971955', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('867', '4', '1517971968', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('868', '4', '1517971979', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('869', '31', '1517971992', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('870', '4', '1517972306', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '1', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('871', '4', '1517972315', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '2', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('872', '21', '1517972329', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '1', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('873', '21', '1517972419', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '2', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('874', '31', '1517972433', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '1', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('875', '31', '1517972551', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '2', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('876', '4', '1517973065', '0', '111.199.31.196', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-07 11:05登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('877', '21', '1517973627', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('878', '31', '1517973645', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('879', '31', '1517973673', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('880', '21', '1517973687', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('881', '27', '1517973909', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('882', '21', '1517974169', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('883', '32', '1517974205', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '1', '2.1.0', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('884', '38', '1517974411', '0', '111.199.31.196', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户186****9800/18601159800您好！您使用了电脑2018-02-07 11:31登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('885', '4', '1517974444', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('886', '4', '1517974916', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '1', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('887', '4', '1517975087', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('888', '21', '1517975204', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('889', '21', '1517975956', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('890', '31', '1517975972', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('891', '31', '1517975980', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('892', '4', '1517975997', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('893', '31', '1517976036', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('894', '4', '1517976050', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('895', '4', '1517976067', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('896', '21', '1517976080', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('897', '4', '1517976112', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('898', '31', '1517976125', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('899', '31', '1517976166', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('900', '21', '1517976178', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('901', '21', '1517976187', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('902', '4', '1517976207', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('903', '4', '1517976217', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('904', '21', '1517976228', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('905', '21', '1517976593', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('906', '31', '1517976609', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('907', '21', '1517976764', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('908', '21', '1517976780', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('909', '31', '1517976932', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('910', '22', '1517976989', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('911', '22', '1517978976', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('912', '31', '1517978989', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('913', '21', '1517979707', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('914', '31', '1517979718', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('915', '31', '1517980139', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('916', '21', '1517980152', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('917', '21', '1517980474', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('918', '31', '1517980489', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('919', '31', '1517980531', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('920', '4', '1517980548', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('921', '4', '1517981435', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('922', '21', '1517981448', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('923', '21', '1517981624', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('924', '31', '1517981644', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('925', '31', '1517981715', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('926', '21', '1517981729', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('927', '21', '1517981838', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('928', '4', '1517981866', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('929', '4', '1517981876', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('930', '31', '1517981891', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('931', '31', '1517981921', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('932', '21', '1517981933', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('933', '27', '1517982295', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('934', '34', '1517982319', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('935', '34', '1517982397', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('936', '27', '1517982417', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('937', '27', '1517982452', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('938', '21', '1517982463', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('939', '34', '1517982484', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('940', '34', '1517982744', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('941', '4', '1517982798', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('942', '4', '1517982989', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('943', '27', '1517983001', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('944', '27', '1517983005', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('945', '27', '1517983412', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('946', '4', '1517983576', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('947', '4', '1517983601', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('948', '21', '1517983621', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('949', '21', '1517983657', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('950', '31', '1517983675', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('951', '31', '1517983937', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('952', '21', '1517983959', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('953', '21', '1517983980', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('954', '31', '1517983997', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('955', '31', '1517984269', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('956', '21', '1517984308', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('957', '21', '1517984315', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('958', '31', '1517984347', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('959', '27', '1517984676', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('960', '34', '1517984692', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('961', '34', '1517984811', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('962', '34', '1517984891', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('963', '27', '1517984910', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('964', '31', '1517985317', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('965', '21', '1517985330', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('966', '34', '1517985689', '0', '111.199.31.196', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-07 14:29登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('967', '32', '1517986092', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '2', '2.1.1', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('968', '33', '1517986112', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '1', '2.1.1', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('969', '4', '1517986134', '0', '111.199.31.196', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-07 14:54登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('970', '34', '1517986299', '0', '111.199.31.196', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-07 14:39登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('971', '27', '1517986325', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('972', '27', '1517986346', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('973', '4', '1517986473', '0', '111.199.31.196', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-07 14:33登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('974', '34', '1517986716', '0', '111.199.31.196', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-07 14:36登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('975', '4', '1517987180', '0', '111.199.31.196', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-07 15:20登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('976', '34', '1517987926', '0', '111.199.31.196', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-07 15:46登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('977', '21', '1517988245', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('978', '27', '1517988266', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('979', '27', '1517988300', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('980', '39', '1517988338', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('981', '39', '1517988465', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('982', '21', '1517988518', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('983', '4', '1517988696', '0', '111.199.31.196', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-07 15:36登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('984', '34', '1517989267', '0', '111.199.31.196', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-07 15:07登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('985', '4', '1517991669', '0', '111.199.31.196', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-07 16:09登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('986', '21', '1517992325', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('987', '40', '1517992437', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('988', '4', '1517992449', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('989', '4', '1517992499', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('990', '21', '1517992510', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('991', '21', '1517992603', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('992', '4', '1517992618', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('993', '4', '1517992884', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('994', '21', '1517992899', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('995', '34', '1517994316', '0', '111.199.31.196', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-07 17:16登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('996', '21', '1517995118', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('997', '40', '1517995131', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('998', '40', '1517995527', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('999', '22', '1517995548', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1000', '22', '1517995954', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1001', '21', '1517995966', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1002', '21', '1517995967', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1003', '4', '1517996607', '0', '111.199.31.196', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-07 17:27登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1004', '21', '1517997801', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1005', '40', '1517997829', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1006', '40', '1517998721', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1007', '4', '1517998744', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1008', '4', '1517999322', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1009', '21', '1517999336', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1010', '33', '1518002065', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '2', '2.1.1', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('1011', '27', '1518002084', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('1012', '21', '1518002376', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1013', '4', '1518002397', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1014', '41', '1518002506', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('1015', '41', '1518002579', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '1', '2.1.1', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('1016', '4', '1518002713', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1017', '4', '1518002881', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1018', '41', '1518003357', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '2', '2.1.1', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('1019', '50', '1518003430', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '1', '2.1.1', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('1020', '50', '1518003443', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '2', '2.1.1', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('1021', '42', '1518003472', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '1', '2.1.1', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('1022', '44', '1518004686', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '1', '2.1.1', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('1023', '4', '1518004718', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1024', '45', '1518004748', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1025', '43', '1518007123', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.1', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('1026', '44', '1518007136', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '2', '2.1.1', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('1027', '51', '1518007163', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '1', '2.1.1', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('1028', '51', '1518007719', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '2', '2.1.1', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('1029', '44', '1518007756', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '1', '2.1.1', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('1030', '44', '1518008810', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '2', '2.1.1', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('1031', '38', '1518013192', '0', '192.168.1.100', '中国-北京-北京', '0', '2', '2', '2.1.1', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1032', '41', '1518013286', '0', '192.168.1.100', '中国-北京-北京', '0', '2', '1', '2.1.1', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1033', '4', '1518048317', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '2', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1034', '45', '1518048439', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '1', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1035', '45', '1518049830', '0', '192.168.1.64', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1036', '45', '1518049840', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '2', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1037', '45', '1518049863', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '1', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1038', '4', '1518052500', '0', '123.114.109.119', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-08 09:00登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1039', '49', '1518053827', '0', '192.168.1.52', '中国-北京-北京', '0', '2', '1', '2.1.1', 'sdm660  vivo\nvivo X20A', null);
+INSERT INTO `tzht_log` VALUES ('1040', '42', '1518053840', '0', '192.168.1.53', '中国-北京-北京', '0', '2', '1', '2.1.1', 'universal7420  samsung\nSM-G9200', null);
+INSERT INTO `tzht_log` VALUES ('1041', '34', '1518157701', '0', '123.123.101.198', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-09 14:21登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1042', '41', '1518170393', '0', '192.168.1.101', '中国-北京-北京', '0', '2', '2', '2.1.1', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1043', '53', '1518170924', '0', '192.168.1.101', '中国-北京-北京', '0', '2', '2', '2.1.1', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1044', '41', '1518171000', '0', '192.168.1.101', '中国-北京-北京', '0', '2', '1', '2.1.1', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1045', '45', '1519262239', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1046', '34', '1519262632', '0', '111.199.30.7', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-22 09:52登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1047', '4', '1519262949', '0', '111.199.30.7', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-22 09:09登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1048', '45', '1519263612', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1049', '34', '1519263725', '0', '111.199.30.7', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-22 09:05登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1050', '45', '1519263844', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1051', '34', '1519270383', '0', '111.199.30.7', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-22 11:03登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1052', '34', '1519350188', '0', '123.123.96.161', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-23 09:08登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1053', '4', '1519350278', '0', '123.123.96.161', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-23 09:38登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1054', '41', '1519350434', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.1', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1055', '34', '1519350829', '0', '123.123.96.161', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-23 09:49登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1056', '41', '1519350849', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.1', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1057', '34', '1519351094', '0', '123.123.96.161', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-23 09:14登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1058', '41', '1519351218', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.1', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1059', '4', '1519352458', '0', '123.123.96.161', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-23 10:58登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1060', '45', '1519352683', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1061', '4', '1519352702', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1062', '4', '1519356659', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1063', '45', '1519356682', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1064', '45', '1519357978', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '2', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1065', '46', '1519358007', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '1', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1066', '34', '1519364013', '0', '123.123.96.161', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-23 13:33登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1067', '34', '1519431958', '0', '123.114.107.168', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-24 08:58登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1068', '4', '1519436470', '0', '123.114.107.168', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-24 09:10登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1069', '45', '1519437106', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1070', '46', '1519437122', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1071', '46', '1519437152', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '2', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1072', '45', '1519437170', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '1', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1073', '46', '1519437214', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1074', '45', '1519437231', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1075', '45', '1519456555', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1076', '46', '1519456571', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1077', '46', '1519456685', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1078', '45', '1519456699', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1079', '44', '1519457623', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.1', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('1080', '44', '1519457784', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.1', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('1081', '4', '1519457809', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.1', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('1082', '45', '1519458965', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '2', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1083', '46', '1519458981', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '1', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1084', '45', '1519460081', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1085', '45', '1519460100', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1086', '45', '1519460110', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1087', '46', '1519460124', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1088', '46', '1519460351', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1089', '45', '1519460366', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1090', '45', '1519463671', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1091', '46', '1519463688', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1092', '46', '1519463699', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1093', '45', '1519463713', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1094', '4', '1519606159', '0', '123.114.101.73', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-26 08:19登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1095', '41', '1519606263', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.1', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1096', '41', '1519606279', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.1', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1097', '4', '1519607036', '0', '123.114.101.73', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-26 09:56登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1098', '4', '1519608642', '0', '123.114.101.73', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-26 09:42登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1099', '4', '1519611382', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '2', '2.1.1', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('1100', '44', '1519611439', '0', '192.168.0.131', '中国-北京-北京', '0', '2', '1', '2.1.1', 'unknown  Xiaomi\nRedmi Note 3', null);
+INSERT INTO `tzht_log` VALUES ('1101', '45', '1519613777', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1102', '45', '1519615525', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1103', '45', '1519626498', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1104', '45', '1519628902', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1105', '4', '1519628924', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1106', '4', '1519628937', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1107', '40', '1519629006', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1108', '40', '1519629038', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1109', '45', '1519629065', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1110', '45', '1519629177', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1111', '4', '1519629224', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1112', '4', '1519629229', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1113', '40', '1519629447', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1114', '40', '1519629458', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1115', '45', '1519629512', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1116', '45', '1519629518', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1117', '4', '1519629536', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1118', '4', '1519629550', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1119', '40', '1519629676', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1120', '40', '1519630074', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1121', '45', '1519630087', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1122', '45', '1519630092', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1123', '4', '1519630105', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1124', '4', '1519630113', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1125', '45', '1519630129', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1126', '45', '1519632650', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1127', '45', '1519636457', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1128', '4', '1519636472', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1129', '4', '1519636617', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1130', '45', '1519636661', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1131', '45', '1519637184', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1132', '45', '1519637206', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.1', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1133', '46', '1519693145', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '1', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1134', '46', '1519693315', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '2', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1135', '46', '1519693328', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '1', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1136', '46', '1519693426', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '2', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1137', '46', '1519693454', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '1', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1138', '4', '1519694126', '0', '123.114.107.176', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-27 09:26登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1139', '46', '1519694345', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '2', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1140', '47', '1519694375', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '1', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1141', '47', '1519694571', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '2', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1142', '46', '1519694584', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '1', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1143', '46', '1519694609', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '2', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1144', '46', '1519695275', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '1', '2.1.1', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1145', '4', '1519695471', '0', '123.114.107.176', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-27 09:51登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1146', '34', '1519700356', '0', '123.114.107.176', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-27 10:16登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1147', '34', '1519704012', '0', '123.114.107.176', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-27 12:12登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1148', '34', '1519712756', '0', '123.114.107.176', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-27 14:56登录地址为中国-北京-北京');
 
 -- ----------------------------
 -- Table structure for `tzht_message`
@@ -1036,7 +1945,7 @@ CREATE TABLE `tzht_message` (
   `content` text,
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '留言时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='留言表';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='留言表';
 
 -- ----------------------------
 -- Records of tzht_message
@@ -1048,6 +1957,8 @@ INSERT INTO `tzht_message` VALUES ('4', '21', '啦啦啦', '1516961133');
 INSERT INTO `tzht_message` VALUES ('5', '4', '58886', '1517221265');
 INSERT INTO `tzht_message` VALUES ('7', '27', '信息反馈', '1517381872');
 INSERT INTO `tzht_message` VALUES ('8', '31', '5555', '1517385606');
+INSERT INTO `tzht_message` VALUES ('9', '21', '296', '1517542865');
+INSERT INTO `tzht_message` VALUES ('10', '31', '2555', '1517641985');
 
 -- ----------------------------
 -- Table structure for `tzht_oauth_user`
@@ -1089,7 +2000,7 @@ CREATE TABLE `tzht_privilege` (
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态，1为显示，0为禁用',
   `sort` mediumint(8) NOT NULL DEFAULT '0' COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COMMENT='权限表';
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COMMENT='权限表';
 
 -- ----------------------------
 -- Records of tzht_privilege
@@ -1176,12 +2087,13 @@ CREATE TABLE `tzht_product` (
   `pic` varchar(100) NOT NULL DEFAULT '' COMMENT '宣传图片',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='企业产品表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='企业产品表';
 
 -- ----------------------------
 -- Records of tzht_product
 -- ----------------------------
 INSERT INTO `tzht_product` VALUES ('3', '4', '企业产品', 'http://xh.2188.com.cn/Product/add.html', '[\"\\/Uploads\\/product\\/2018-02-01\\/5a726feac5992.jpg\"]', '1517449198');
+INSERT INTO `tzht_product` VALUES ('4', '34', '网络服务', 'www.2188.com.cn', '[\"\\/Uploads\\/product\\/2018-02-06\\/5a797951a92b3.jpg\"]', '1517910355');
 
 -- ----------------------------
 -- Table structure for `tzht_role`
@@ -1213,7 +2125,7 @@ CREATE TABLE `tzht_rongcloudim` (
   `rongim` varchar(80) NOT NULL DEFAULT '' COMMENT '讨论组唯一标识',
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='融云讨论组表';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='融云讨论组表';
 
 -- ----------------------------
 -- Records of tzht_rongcloudim
@@ -1222,6 +2134,12 @@ INSERT INTO `tzht_rongcloudim` VALUES ('1', '2018数据驱动产业升级价值�
 INSERT INTO `tzht_rongcloudim` VALUES ('2', '公开会议讨论组', 'd2a189c5-9c9e-4cf8-b3aa-52d5a5473fd6', '1517025880');
 INSERT INTO `tzht_rongcloudim` VALUES ('3', 'GMIC 2018 北京 全球移动互联网大会讨论组', 'e66e3ca3-9308-40fa-88f1-43d693c8daf7', '1517282336');
 INSERT INTO `tzht_rongcloudim` VALUES ('4', '同舟鸿图年会(2018.1.30)讨论组', 'e9af4bcf-8ea4-4bc1-8112-dcfed620831c', '1517382265');
+INSERT INTO `tzht_rongcloudim` VALUES ('5', '同舟鸿图年会(2018.2.2)讨论组', '95415a6d-13a8-4d87-b8cd-a059d3ad9336', '1517537056');
+INSERT INTO `tzht_rongcloudim` VALUES ('6', '同舟鸿图公开会议(2018.2.2)讨论组', '5e355720-b0b5-41db-93e1-aca258549d78', '1517562008');
+INSERT INTO `tzht_rongcloudim` VALUES ('7', '同舟鸿图公开会议(2018.2.1)讨论组', '17d112df-1627-45b0-819d-15ad705e3892', '1517564548');
+INSERT INTO `tzht_rongcloudim` VALUES ('8', '同舟年会(2018.2.7)讨论组', '6cb8f1f5-5039-4f9f-ac60-645283a43cb5', '1517987121');
+INSERT INTO `tzht_rongcloudim` VALUES ('9', '同舟公开会议(2018.2.7)讨论组', 'f5febee7-ac82-425f-b279-b10407375119', '1517987443');
+INSERT INTO `tzht_rongcloudim` VALUES ('10', '中网深蓝公开会议(2018.2.7) 讨论组', '8d0a48ef-21a7-478b-a9c2-8cd7e0e29462', '1517987508');
 
 -- ----------------------------
 -- Table structure for `tzht_signjgpush`
@@ -1236,7 +2154,7 @@ CREATE TABLE `tzht_signjgpush` (
   `type` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '推送标识',
   `addtime` int(11) NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='签到推送消息表';
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8 COMMENT='签到推送消息表';
 
 -- ----------------------------
 -- Records of tzht_signjgpush
@@ -1245,17 +2163,39 @@ INSERT INTO `tzht_signjgpush` VALUES ('6', '49', '27', '刘卫国-北京同舟�
 INSERT INTO `tzht_signjgpush` VALUES ('7', '49', '21', '李洪亮-北京同舟鸿图文化创意有限公司', '李洪亮-北京同舟鸿图文化创意有限公司', '1', '1517358534');
 INSERT INTO `tzht_signjgpush` VALUES ('8', '50', '32', '陈江-北京同舟鸿图文化创意有限公司', '陈江-北京同舟鸿图文化创意有限公司', '1', '1517358567');
 INSERT INTO `tzht_signjgpush` VALUES ('9', '50', '27', '刘卫国-北京同舟鸿图文化创意有限公司 ', '刘卫国-北京同舟鸿图文化创意有限公司 ', '1', '1517358617');
-INSERT INTO `tzht_signjgpush` VALUES ('10', '50', '21', '李洪亮-北京同舟鸿图文化创意有限公司 ', '李洪亮-北京同舟鸿图文化创意有限公司 ', '1', '1517358635');
-INSERT INTO `tzht_signjgpush` VALUES ('11', '53', '21', '李洪亮-北京同舟鸿图文化创意有限公司', '李洪亮-北京同舟鸿图文化创意有限公司', '1', '1517359135');
-INSERT INTO `tzht_signjgpush` VALUES ('12', '54', '21', 'tzhtlhl888', 'tzhtlhl888', '1', '1517360759');
-INSERT INTO `tzht_signjgpush` VALUES ('13', '55', '21', 'tzhtlhl888签到消息', 'tzhtlhl888签到消息', '1', '1517361230');
-INSERT INTO `tzht_signjgpush` VALUES ('14', '55', '31', '2018.1.31签到提醒', '2018.1.31签到提醒', '1', '1517361564');
 INSERT INTO `tzht_signjgpush` VALUES ('15', '50', '33', '北京同舟鸿图文化创意有限公司 / candy123', '北京同舟鸿图文化创意有限公司 / candy123', '1', '1517363353');
 INSERT INTO `tzht_signjgpush` VALUES ('16', '57', '31', '2018.1.31签到提醒', '2018.1.31签到提醒', '1', '1517388748');
 INSERT INTO `tzht_signjgpush` VALUES ('17', '59', '27', 'tzhtlwg666 2018.2.1', 'tzhtlwg666 2018.2.1', '1', '1517395157');
-INSERT INTO `tzht_signjgpush` VALUES ('18', '59', '21', 'tzhtlhl888 2018.2.1', 'tzhtlhl888 2018.2.1', '1', '1517395180');
 INSERT INTO `tzht_signjgpush` VALUES ('19', '58', '27', ' tzhtlwg666 2018.2.1', ' tzhtlwg666 2018.2.1', '1', '1517395199');
-INSERT INTO `tzht_signjgpush` VALUES ('20', '58', '21', ' tzhtlhl888 2018.2.1', ' tzhtlhl888 2018.2.1', '1', '1517395207');
+INSERT INTO `tzht_signjgpush` VALUES ('21', '63', '27', 'tzhtlwg666 2018年2月2日', 'tzhtlwg666 2018年2月2日', '1', '1517480911');
+INSERT INTO `tzht_signjgpush` VALUES ('23', '62', '27', '同舟鸿图年会(2018年2月2日)', '同舟鸿图年会(2018年2月2日)', '1', '1517480984');
+INSERT INTO `tzht_signjgpush` VALUES ('25', '62', '33', 'candy123 2018年2月2日', 'candy123 2018年2月2日', '1', '1517532219');
+INSERT INTO `tzht_signjgpush` VALUES ('27', '69', '31', '同州 / 阳谷躺哈虎 2018.2.3', '同州 / 阳谷躺哈虎 2018.2.3', '1', '1517658343');
+INSERT INTO `tzht_signjgpush` VALUES ('28', '69', '33', '推送测试180203', '推送测试180203', '1', '1517659060');
+INSERT INTO `tzht_signjgpush` VALUES ('30', '71', '21', ' 公开会议测试123  hh', ' 公开会议测试123  hh', '1', '1517659746');
+INSERT INTO `tzht_signjgpush` VALUES ('31', '87', '35', '欢迎王老师', '王老师欢迎您参加会议，您的议程如下：1、\r\n2、\r\n3、\r\n你的住宿安排如下：\r\n', '1', '1517908067');
+INSERT INTO `tzht_signjgpush` VALUES ('32', '88', '35', '欢迎王老师1', '欢迎王老师一名称\r\n背板\r\n音响运输，人工费用\r\n易拉宝\r\n\r\n', '1', '1517909394');
+INSERT INTO `tzht_signjgpush` VALUES ('33', '32', '21', '北京同舟鸿图文化创意有限公司 / 冬日之恋 2018.2.6', '北京同舟鸿图文化创意有限公司 / 冬日之恋 2018.2.6', '1', '1517910381');
+INSERT INTO `tzht_signjgpush` VALUES ('35', '91', '21', '冬日之恋 2018.2.7 10：08', '冬日之恋 2018.2.7 10：08', '1', '1517969344');
+INSERT INTO `tzht_signjgpush` VALUES ('36', '92', '36', '年会5', '欢迎参见年会5！', '1', '1517972013');
+INSERT INTO `tzht_signjgpush` VALUES ('37', '94', '33', 'candy123 同舟公开会议(2018.2.7)', 'candy123 同舟公开会议(2018.2.7)', '1', '1517986583');
+INSERT INTO `tzht_signjgpush` VALUES ('38', '94', '27', 'tzhtlwg666同舟年会(2018.2.7)', 'tzhtlwg666同舟年会(2018.2.7)', '1', '1517986619');
+INSERT INTO `tzht_signjgpush` VALUES ('39', '93', '33', 'candy123 同舟公开会议(2018.2.7)', 'candy123 同舟公开会议(2018.2.7)', '1', '1517986647');
+INSERT INTO `tzht_signjgpush` VALUES ('40', '93', '32', '135****2050 同舟公开会议(2018.2.7)', '135****2050 同舟公开会议(2018.2.7)', '1', '1517986660');
+INSERT INTO `tzht_signjgpush` VALUES ('41', '93', '27', 'tzhtlwg666同舟公开会议(2018.2.7)', 'tzhtlwg666同舟公开会议(2018.2.7)', '1', '1517986671');
+INSERT INTO `tzht_signjgpush` VALUES ('42', '94', '21', '北京同舟鸿图文化创意有限公司 / 冬日之恋 2018.2.7', '北京同舟鸿图文化创意有限公司 / 冬日之恋 2018.2.7', '1', '1517987217');
+INSERT INTO `tzht_signjgpush` VALUES ('43', '93', '21', '北京同舟鸿图文化创意有限公司 / 冬日之恋 2018.2.7', '北京同舟鸿图文化创意有限公司 / 冬日之恋  2018.2.7', '1', '1517987811');
+INSERT INTO `tzht_signjgpush` VALUES ('44', '95', '33', 'candy123中网深蓝公开会议(2018.2.7) ', 'candy123中网深蓝公开会议(2018.2.7) ', '1', '1517987982');
+INSERT INTO `tzht_signjgpush` VALUES ('45', '95', '32', '135****2050中网深蓝公开会议(2018.2.7) ', '135****2050中网深蓝公开会议(2018.2.7) \r\n', '1', '1517987993');
+INSERT INTO `tzht_signjgpush` VALUES ('46', '95', '27', 'tzhtlwg666中网深蓝公开会议(2018.2.7) ', 'tzhtlwg666中网深蓝公开会议(2018.2.7) \r\n', '1', '1517988003');
+INSERT INTO `tzht_signjgpush` VALUES ('47', '96', '39', 'zwsllwg888 2018.2.7', 'zwsllwg888 2018.2.7', '1', '1517988391');
+INSERT INTO `tzht_signjgpush` VALUES ('48', '100', '21', '北京同舟鸿图文化创意有限公司 / 冬日之恋', '北京同舟鸿图文化创意有限公司 / 冬日之恋', '1', '1517994959');
+INSERT INTO `tzht_signjgpush` VALUES ('49', '100', '40', ' 176****8102', ' 176****8102', '1', '1517995282');
+INSERT INTO `tzht_signjgpush` VALUES ('50', '100', '40', '京同舟鸿图文化创意有限公司 / tzht159346', '京同舟鸿图文化创意有限公司 / tzht159346', '1', '1517995583');
+INSERT INTO `tzht_signjgpush` VALUES ('51', '101', '22', '北京同舟鸿图文化创意有限公司 / tzht159346', '北京同舟鸿图文化创意有限公司 / tzht159346', '1', '1517995735');
+INSERT INTO `tzht_signjgpush` VALUES ('52', '101', '21', '北京同舟鸿图文化创意有限公司 / 冬日之恋', '北京同舟鸿图文化创意有限公司 / 冬日之恋', '1', '1517996004');
+INSERT INTO `tzht_signjgpush` VALUES ('53', '102', '41', '2018年公司年会签到温馨消息', '王总发表年会祝福语，猪年大吉大利，新的一年更加辉煌。', '1', '1518052673');
+INSERT INTO `tzht_signjgpush` VALUES ('54', '105', '45', '北京同舟鸿图文化创意有限公司 / tzhtlhl2018 2018.2.22', '北京同舟鸿图文化创意有限公司 / tzhtlhl2018  2018.2.22', '1', '1519270861');
 
 -- ----------------------------
 -- Table structure for `tzht_system`
@@ -1287,7 +2227,7 @@ INSERT INTO `tzht_system` VALUES ('13', 'EMAIL_FROM_NAME', '同舟鸿图-幸会'
 INSERT INTO `tzht_system` VALUES ('14', 'COMMENT_REVIEW', '0');
 INSERT INTO `tzht_system` VALUES ('15', 'COMMENT_SEND_EMAIL', '0');
 INSERT INTO `tzht_system` VALUES ('16', 'EMAIL_RECEIVE', '');
-INSERT INTO `tzht_system` VALUES ('17', 'APP_VERSION', '1.1.5');
+INSERT INTO `tzht_system` VALUES ('17', 'APP_VERSION', '2.1.0');
 INSERT INTO `tzht_system` VALUES ('18', 'APP_PHONE', '010-63942568');
 INSERT INTO `tzht_system` VALUES ('19', 'APP_URL', 'http://xh.2188.com.cn');
 INSERT INTO `tzht_system` VALUES ('20', 'APP_COMPANY', '幸会APP');
@@ -1333,21 +2273,32 @@ CREATE TABLE `tzht_user` (
   `jpush` varchar(255) NOT NULL COMMENT '极光推送别名',
   `is_login` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否登录，0为退出，1为登录',
   `landline` varchar(20) NOT NULL COMMENT '座机号',
+  `nickname` varchar(100) NOT NULL COMMENT '昵称',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COMMENT='用户基础表';
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COMMENT='用户基础表';
 
 -- ----------------------------
 -- Records of tzht_user
 -- ----------------------------
-INSERT INTO `tzht_user` VALUES ('4', '', '', '189****6236', 'EFBFDBF3B9E7E4B3912ABC79A7692436AD22DBB2', '18911936236', '/./Uploads/Avatar/2018-01-17/5a5ec83f98c52.jpeg', '信息技术', '北京同舟鸿图文化创意有限公司', '部门经理', '北京市北京市朝阳区', '景阳宏昌大厦307-309', '', '0', '', '1', '2', '1516160158', '0', '127.0.0.1', '', 'rBUsAg/tLTcDWEquk4OEbMliGEQzHZkcn1MyOsaOWek8HprMJp2++42mlxtBJ99Y7wThXY6dnpnqTcEoqtTn7A==', 'www.tzht.net.cn', '公司集设计、开发、营销为一体的综合性公司，公司主要为大型企事业单位提供技术开发、技术咨询、技术服务等，同时在移动互联网创新领域方面有一定的研究，并且跟相关技术研究院等科研机构有比较广泛深入的战略合作。', '', '/App/Index/usercode/id/4.html', '0', '', '0', '4_xinghuiapp', '0', '010-63942568');
-INSERT INTO `tzht_user` VALUES ('15', '', '', 'admin123', '8BC5DE83CF1DAF79ED5B2F13F93D7C05D01D0388', '13717563625', '/Uploads/image/logo.png', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1516239872', '0', '127.0.0.1', '', '8KkR21D7uh8mrBsEBd6pDpIRREFK8oWTStcrEQuqMRrxHr6qR7xTnQWQjOOEfqm7VMdaz5T345NGZXlsl2ZFEg==', '', '', '', '/Home/Index/usercode/id/15.html', '4', '管理员', '2', '15_xinghuiapp', '0', '');
-INSERT INTO `tzht_user` VALUES ('21', '', '1601796593@qq.com', 'tzhtlhl888', '0E2260CA7E6A2449009437DDA311E4742A5E4E7C', '18810356923', '/./Uploads/Avatar/2018-01-30/5a702f781e41c.jpeg', '信息技术', '北京同舟鸿图文化创意有限公司', '', '广西壮族自治区百色市德保县', '11058585', '', '0', '', '1', '1', '1516246462', '0', '127.0.0.1', '', 'o3w7emoDrPckeDKsa2ZTkWLgkQ3O+7PFPxqmhyeRWfjsLI8G13yIUTwH6FxLmbBhcTIRu5X4m4k=', '', '', '啊咯DJ他她徒步不不不他', '/Home/Index/usercode/id/21.html', '4', '李洪亮', '2', '21_xinghuiapp', '1', '');
-INSERT INTO `tzht_user` VALUES ('22', '', '', 'tzht159346', '699DC06C6B17DFD27AC7FD1926F6137D2D2C3627', '18810356928', '/./Uploads/Avatar/2018-01-18/5a601732b3b35.jpg', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1516246503', '0', '127.0.0.1', '', '+NODVIdVjkEgXb07WpkeMsliGEQzHZkcn1MyOsaOWek8HprMJp2++woUkNOvWZlmkB427AEfDFTqTcEoqtTn7A==', '', '', '', '/Home/Index/usercode/id/22.html', '4', 'af', '2', '22_xinghuiapp', '0', '');
-INSERT INTO `tzht_user` VALUES ('25', '', '2295855@qq.com', '欣欣向荣', 'EFBFDBF3B9E7E4B3912ABC79A7692436AD22DBB2', '18601159800', '/./Uploads/Avatar/2018-01-22/5a65ce4f99d7d.jpg', '信息技术', '北京同舟鸿图文化创意有限公司', '总经理', '北京市北京市石景山区', '景阳宏昌307', '', '0', '', '1', '1', '1516621016', '0', '127.0.0.1', '', 'KNa0JXVBNwSRPJQXQcFObMliGEQzHZkcn1MyOsaOWek8HprMJp2+++8UUMB1hrlszw9LIrxR3KjqTcEoqtTn7A==', '', '', '欣欣向荣', '/App/Index/usercode/id/25.html', '4', '', '2', '25_xinghuiapp', '0', '');
-INSERT INTO `tzht_user` VALUES ('27', '', '', 'tzhtlwg666', 'D12C3508B546567FF41555CE54F33CB664D40989', '15652465039', '/./Uploads/Avatar/2018-01-31/5a719be335711.jpeg', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1517196361', '0', '127.0.0.1', '', 'B8h589gGSFeZtPfHg6v/1pIRREFK8oWTStcrEQuqMRrxHr6qR7xTnfUoAzbzGIMUeOZ1ll8o3+NGZXlsl2ZFEg==', '', '', '', '/Home/Index/usercode/id/27.html', '4', '刘为国', '2', '27_xinghuiapp', '1', '');
-INSERT INTO `tzht_user` VALUES ('31', '', '1601796563@qq.com', '睡醒的兔子', '0E2260CA7E6A2449009437DDA311E4742A5E4E7C', '17600898102', '/./Uploads/Avatar/2018-01-30/5a702a20c16d6.jpeg', '信息技术', '同州', '技术开发', '北京市北京市大兴区', '大街115号', '', '0', '', '1', '1', '1517300246', '0', '127.0.0.1', '', 'QyM3JHXBg7PgTkZt6oGtfsliGEQzHZkcn1MyOsaOWekgDWgIXlP1tjnfbIl3DPZCIi/WuQ+ERBjqTcEoqtTn7A==', '', '', '签名', '/App/Index/usercode/id/31.html', '0', '', '0', '31_xinghuiapp', '0', '');
-INSERT INTO `tzht_user` VALUES ('32', '', '', '135****2050', '8BC5DE83CF1DAF79ED5B2F13F93D7C05D01D0388', '13552832050', '/./Uploads/Avatar/2018-01-30/5a704b6d9c5d8.jpeg', '', '', '', '', '', '', '0', '', '1', '1', '1517308233', '0', '127.0.0.1', '', 'XIOUEz9/y/jHsETRLnbNHWLgkQ3O+7PFPxqmhyeRWfhtqPYOfBKwmvR/vVfNYBCtQcp3eaFxM3M=', '', '', '', '/xh2188comcn/App/Index/usercode/id/32.html', '0', '', '0', '32_xinghuiapp', '0', '');
-INSERT INTO `tzht_user` VALUES ('33', '', '', 'candy123', 'FC3706FD2D34DC69C09DBC8A94C2E60310665FC9', '18810356958', '/Uploads/image/logo.png', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1517363145', '0', '127.0.0.1', '', 'jB1wT9vJirHJuTyX/oQpp8liGEQzHZkcn1MyOsaOWekgDWgIXlP1tj+6ArQSDjbF9Hxf2gWT2xPqTcEoqtTn7A==', '', '', '', '/Home/Index/usercode/id/33.html', '4', 'candy', '2', '33_xinghuiapp', '0', '');
+INSERT INTO `tzht_user` VALUES ('4', '', '', '189****6236', 'EFBFDBF3B9E7E4B3912ABC79A7692436AD22DBB2', '18911936236', '/./Uploads/Avatar/2018-01-17/5a5ec83f98c52.jpeg', '信息技术', '北京同舟鸿图文化创意有限公司', '部门经理', '北京市北京市朝阳区', '景阳宏昌大厦307-309', '', '0', '', '1', '2', '1516160158', '0', '127.0.0.1', '', 'rBUsAg/tLTcDWEquk4OEbMliGEQzHZkcn1MyOsaOWek8HprMJp2++42mlxtBJ99Y7wThXY6dnpnqTcEoqtTn7A==', 'www.tzht.net.cn', '公司集设计、开发、营销为一体的综合性公司，公司主要为大型企事业单位提供技术开发、技术咨询、技术服务等，同时在移动互联网创新领域方面有一定的研究，并且跟相关技术研究院等科研机构有比较广泛深入的战略合作。', '', '/App/Index/usercode/id/4.html', '0', '', '0', '4_xinghuiapp', '0', '010-63942568', '');
+INSERT INTO `tzht_user` VALUES ('32', '', '', '135****2050', '8BC5DE83CF1DAF79ED5B2F13F93D7C05D01D0388', '13552832050', '/./Uploads/Avatar/2018-01-30/5a704b6d9c5d8.jpeg', '', '', '', '', '', '', '0', '', '1', '1', '1517308233', '0', '127.0.0.1', '', 'XIOUEz9/y/jHsETRLnbNHWLgkQ3O+7PFPxqmhyeRWfhtqPYOfBKwmvR/vVfNYBCtQcp3eaFxM3M=', '', '', '', '/App/Index/usercode/id/32.html', '0', '', '0', '32_xinghuiapp', '0', '', '');
+INSERT INTO `tzht_user` VALUES ('34', '', '', '156****5039', '321E18352A7BA2DB7EF14553F8F8E14904B3D36C', '15652465039', '/./Uploads/Avatar/2018-02-07/5a7a9c6216a7e.jpeg', '信息技术', '北京中网深蓝技术有限公司', '', '', '', '', '0', '', '1', '2', '1517646995', '0', '127.0.0.1', '', 'eubA0xvJWBkgXb07WpkeMsliGEQzHZkcn1MyOsaOWekgDWgIXlP1tu4559nud8y3ZZHqvRmMvWHqTcEoqtTn7A==', 'www.2188.com.cn', '', '', '/App/Index/usercode/id/34.html', '0', '', '0', '34_xinghuiapp', '0', '0106666666', '我的未来我做主');
+INSERT INTO `tzht_user` VALUES ('36', '', '', 'zwslsw01', '5C81FACCDA530A8079ACDEB1F04DF130EAC80B8A', '18600012222', '/./Uploads/Avatar/2018-02-24/5a9113d37fbd4.jpeg', '', '北京中网深蓝技术有限公司', '', '', '', '', '0', '', '1', '1', '1517909650', '0', '127.0.0.1', '', 'n0jnBBy0fLeHVGb2jk+Cf8liGEQzHZkcn1MyOsaOWekgDWgIXlP1tjh9N4mgZk5m2lXb0Rf1ZorqTcEoqtTn7A==', '', '', '', '/Home/Index/usercode/id/36.html', '34', '中网深蓝商务', '2', '36_xinghuiapp', '1', '', '');
+INSERT INTO `tzht_user` VALUES ('39', '', '', 'zwsllwg888', 'E89F915537E646C4D9125BD06652BB8FDF6C24B8', '18911936258', '/Uploads/image/logo.png', '', '北京中网深蓝技术有限公司', '', '', '', '', '0', '', '1', '1', '1517986382', '0', '127.0.0.1', '', 'gKn9O0X4lcF/d6InOUJ89pIRREFK8oWTStcrEQuqMRrxHr6qR7xTna6mrke8MMZ3ml/UUxaBgDpGZXlsl2ZFEg==', '', '', '', '/Home/Index/usercode/id/39.html', '34', '刘卫国', '2', '39_xinghuiapp', '0', '', '');
+INSERT INTO `tzht_user` VALUES ('40', '', '', '176****8102', '0E2260CA7E6A2449009437DDA311E4742A5E4E7C', '17600898102', '/Uploads/image/logo.png', '', '', '', '', '', '', '0', '', '1', '1', '1517992379', '0', '127.0.0.1', '', '/vYuz/boQ/Ny4z0IFF/xScliGEQzHZkcn1MyOsaOWekgDWgIXlP1tiLK0/V0opJXRkbcvNZOjAPqTcEoqtTn7A==', '', '', '', '/App/Index/usercode/id/40.html', '0', '', '0', '40_xinghuiapp', '0', '', '');
+INSERT INTO `tzht_user` VALUES ('41', '', '', 'tzhtwyg2018', 'EFBFDBF3B9E7E4B3912ABC79A7692436AD22DBB2', '18601159800', '/./Uploads/Avatar/2018-02-07/5a7b0d286ada9.jpeg', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518002440', '0', '127.0.0.1', '', 'd06IM2oUv2rHsETRLnbNHWLgkQ3O+7PFPxqmhyeRWfhohMKSEQoTXqnX0GnxQ5wYvX4pUdlSrUU=', '', '', '言善信，政善治', '/Home/Index/usercode/id/41.html', '4', '王总', '2', '41_xinghuiapp', '1', '', '欣欣向荣');
+INSERT INTO `tzht_user` VALUES ('43', '', '', 'tzhtlwg2018', 'AB0B8AA0D76D57B0D463A7209F52267ADF686184', '18911936235', '/./Uploads/Avatar/2018-02-08/5a7b25b0b1c68.jpeg', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518002935', '0', '127.0.0.1', '', 'swvWzb9jyu7fDl/0uubxzmLgkQ3O+7PFPxqmhyeRWfhohMKSEQoTXnnmPZ7jmzD17mkxtGsS5Lk=', '', '', '', '/Home/Index/usercode/id/43.html', '4', '刘为国', '2', '43_xinghuiapp', '1', '', '');
+INSERT INTO `tzht_user` VALUES ('44', '', '', 'tzhtcj2018', 'C114AE895D99BDC15E025880FD44A99B2427CD52', '13717563627', '/./Uploads/Avatar/2018-02-07/5a7aedb1e4dca.jpeg', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518002997', '0', '127.0.0.1', '', '/9/iXbSOCkHfDl/0uubxzmLgkQ3O+7PFPxqmhyeRWfhohMKSEQoTXq/X1iP9JorN+FaaOCSkvxw=', '', '', '', '/Home/Index/usercode/id/44.html', '4', '陈江', '2', '44_xinghuiapp', '1', '', '');
+INSERT INTO `tzht_user` VALUES ('45', '', '', 'tzhtlhl2018', '9D37FF541601DE56D952276F07082FBB0AE78B16', '18810356923', '/./Uploads/Avatar/2018-02-22/5a8e632a63865.jpeg', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518003074', '0', '127.0.0.1', '', 'w40L+qNEyn0S1t2gMU1eVmLgkQ3O+7PFPxqmhyeRWfhohMKSEQoTXuhzU4ia7gFbaSNcrwcfN0k=', '', '', '', '/Home/Index/usercode/id/45.html', '34', '李洪亮', '2', '45_xinghuiapp', '1', '', '睡醒的兔子');
+INSERT INTO `tzht_user` VALUES ('46', '', '', 'tzhtmn2018', '062C669DEC1DE6FA75598F3D0692622959C09AF7', '13311268626', '/./Uploads/Avatar/2018-02-26/5a93d301efb2c.jpeg', '', '北京同舟鸿图文化创意有限公司', '', '北京市北京市朝阳区', '', '', '0', '', '1', '1', '1518003123', '0', '127.0.0.1', '', '5Uq/VIyXsE6HVGb2jk+Cf8liGEQzHZkcn1MyOsaOWelEexqr/4o97d3HpC17uqr9SHigztD6D4rqTcEoqtTn7A==', '', '', '', '/Home/Index/usercode/id/46.html', '4', '马娜', '2', '46_xinghuiapp', '1', '', '菜花');
+INSERT INTO `tzht_user` VALUES ('47', '', '', 'tzhtlsa2018', 'F9D151D14A8555A9DEACC13FBDF28227ABEC3003', '13800138000', '/Uploads/image/logo.png', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518003189', '0', '127.0.0.1', '', 'fYtcPjzeXePg4jo/hqzlhcliGEQzHZkcn1MyOsaOWelEexqr/4o97a/r2enVlabWHJOalB0wzn3qTcEoqtTn7A==', '', '', '', '/Home/Index/usercode/id/47.html', '4', '刘思奥', '2', '47_xinghuiapp', '0', '', '');
+INSERT INTO `tzht_user` VALUES ('48', '', '', 'tzhtzyl2018', '8FBE4E08BEEB81D608617D6A9C787AFDDAB46D09', '13811176012', '/Uploads/image/logo.png', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518003250', '0', '127.0.0.1', '', 'RZI7BxgHViH/tBfbLpQhXsliGEQzHZkcn1MyOsaOWelEexqr/4o97da+5Zpfxxu4BOrKZkXxRjrqTcEoqtTn7A==', '', '', '', '/Home/Index/usercode/id/48.html', '4', '赵银玲', '2', '48_xinghuiapp', '0', '', '');
+INSERT INTO `tzht_user` VALUES ('49', '', '', 'tzhtwxq2018', 'E353DCC768D2D8529A9B8A91D1831487069B89B9', '13800138001', '/Uploads/image/logo.png', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518003288', '0', '127.0.0.1', '', 'pRWKTFqeE+Q8fG2QgB/WzMliGEQzHZkcn1MyOsaOWelEexqr/4o97aAUi8cJiLWD9IW5mgqsa2LqTcEoqtTn7A==', '', '', '', '/Home/Index/usercode/id/49.html', '4', '王小群', '2', '49_xinghuiapp', '1', '', '');
+INSERT INTO `tzht_user` VALUES ('50', '', '', 'tzhtdyx2018', '1292F0FCABC7A4D53506076ADD4D3B4819C6E2A5', '13693326383', '/Uploads/image/logo.png', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518003327', '0', '127.0.0.1', '', 'B7lr72gQNhuDIbe9u7/htMliGEQzHZkcn1MyOsaOWelEexqr/4o97VWIq6iB1uEg8RV1KD3q8LjqTcEoqtTn7A==', '', '', '', '/Home/Index/usercode/id/50.html', '4', '邓雅心', '2', '50_xinghuiapp', '0', '', '');
+INSERT INTO `tzht_user` VALUES ('51', '', '', 'admin123', 'F865B53623B121FD34EE5426C792E5C33AF8C227', '13717563626', '/Uploads/image/logo.png', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518007121', '0', '127.0.0.1', '', 'XGaGPXFWeUiOyanjEV1tzZIRREFK8oWTStcrEQuqMRrxHr6qR7xTndmSYOZ+IKG3gXhWFWoyPIBGZXlsl2ZFEg==', '', '', '', '/Home/Index/usercode/id/51.html', '4', 'admin123', '2', '51_xinghuiapp', '0', '', '');
+INSERT INTO `tzht_user` VALUES ('52', '', '', '133****0919', '945181A1A54BF7F7BB6D5ADF7F0EF671DA8D451A', '13391910919', '/Uploads/image/logo.png', '', '', '', '', '', '', '0', '', '1', '1', '1518059503', '0', '127.0.0.1', '', 'kW076EEbls7Aayl6zUG9v2LgkQ3O+7PFPxqmhyeRWfhohMKSEQoTXs2bd0Jpd1lkXzfzqMjHmP4=', '', '', '', '/App/Index/usercode/id/52.html', '0', '', '0', '52_xinghuiapp', '0', '', '');
+INSERT INTO `tzht_user` VALUES ('53', '', '', '186****9918', 'EE9D8F15F3904EE2D7384BC2AA21B4C361E78E96', '18618249918', '/./Uploads/Avatar/2018-02-09/5a7d72b806dab.jpeg', '文化传媒', '北京水云舟文化创意有限公司', '', '', '', '', '0', '', '1', '2', '1518170482', '0', '127.0.0.1', '', 'bYxeGKFbOMp7xnbJUSCND5IRREFK8oWTStcrEQuqMRrxHr6qR7xTnUroInnUmfyye/oEa94PsLZGZXlsl2ZFEg==', '', '', '', '/App/Index/usercode/id/53.html', '0', '', '0', '53_xinghuiapp', '0', '', '');
+INSERT INTO `tzht_user` VALUES ('55', '', '', 'candy1235', '7CFC900ADCFBF7ABDC417586B796636411943149', '13800138005', '/Uploads/image/logo.png', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1519697140', '0', '127.0.0.1', '', 'vScZBqZ63gfMMJSs8CkjfGLgkQ3O+7PFPxqmhyeRWfjaeI6fdtdo2xuvzJgX9dSyDKHNdhVgWjk=', '', '', '', '/Home/Index/usercode/id/55.html', '4', 'candy1235', '2', '55_xinghuiapp', '0', '', '');
 
 -- ----------------------------
 -- Table structure for `tzht_user_partners`

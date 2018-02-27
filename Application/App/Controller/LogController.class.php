@@ -40,7 +40,7 @@ class LogController extends PublicController{
 					Response::show(401,'登录失败');
 				}
 			}else{
-				Response::show(402,'数据不合法',$this->model->getError());
+				Response::show(402,$this->model->getError());
 			}
 			
 		}

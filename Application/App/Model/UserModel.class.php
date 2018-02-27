@@ -76,7 +76,7 @@ class UserModel extends BaseModel{
 	 //修改前
 	protected function _before_update(&$data, $option){
 		
-		$focus = D('Conference_focus');
+		$focus = M('Conference_focus');
 		$focus->where(array('conf_user_id'=>$option['where']['id']))->setField('state',1);
 		$id = I('post.id');
 		//修改头像，刷新融云用户
@@ -198,6 +198,42 @@ class UserModel extends BaseModel{
 		
 		
 	}
+	
+	//被关注人员
+	public  function refocuslist(){
+		
+		$where = [];
+		$where['conf_user_id'] = I('post.user_id');
+		
+		//翻页
+		$showrow = 15; //一页显示的行数
+		
+		$curpage = I('post.page',1);; //当前的页,还应该处理非数字的情况
+
+
+		$total = $this->alias('a')->where($where)->count();	
+
+
+		$page = new AppPage($total, $showrow);
+		if ($total > $showrow) {
+			$data['page'] =  $page->myde_write();
+		 }
+
+		$data['data'] = $this->alias('a')
+		->field('a.id,a.username,a.logo,a.companyname,a.dimecode,a.type,a.nickname,b.state')
+		->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.user_id=a.id
+		')
+		->where($where)
+		->limit(($curpage - 1) * $showrow.','.$showrow)
+		->order('id desc')
+		->select();
+		
+		return $data;	
+		
+		
+	}
+	
+	
 	
 	//搜索通讯录
 	public function searchFocus(){

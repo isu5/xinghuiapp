@@ -51,6 +51,22 @@ class CompanybullController extends PublicController{
 		}
 	}
 	
+	//获取群组公告内容
+	public function bullcont(){
+		$data['title'] = I('post.title');
+		$res = $this->model->field('content,bulltitle,pic,file')->where(array('title'=>$data['title']))->find();
+		
+		if(IS_POST){
+			if($res !== null){
+				Response::show(200,'获取数据成功!',$res);
+			}else{
+				Response::show(401,'没有公告!');
+			}
+			
+		}
+		
+	}
+	
 	
 	
 

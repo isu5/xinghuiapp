@@ -11,7 +11,6 @@ class ChatgroupController extends PublicController{
 	private $user = null;
 	public function _initialize(){
 		parent::_initialize();
-		
 		$this->chat = D('Chatgroup');
 		$this->user = D('User');
 	}
@@ -25,10 +24,8 @@ class ChatgroupController extends PublicController{
 				}else{
 					Response::show(401,'创建失败!');
 				}
-			}
-			
+			}	
 		}
-		
 	}
 	
 	//检测 群组是否存在
@@ -137,36 +134,21 @@ class ChatgroupController extends PublicController{
 	// 增加/修改 群组公告
 	public function editbull(){
 		$data['title'] = I('post.title');
-		$map['content'] = I('post.content');
+		
 		
 		if(IS_POST){
 			
-			if($this->chat->create()){
-				if($this->chat->where(array('title'=>$data['title']))->save($map)){
-					Response::show(200,'修改成功!',$map );
-				}else{
-					Response::show(401,'修改失败' );
-				}
-			}	
+			if($this->chat->where(array('title'=>$data['title']))->save()){
+				Response::show(200,'修改成功!',$data );
+			}else{
+				Response::show(401,'修改失败' );
+			}
+			
 		}
 			
 	}
 	
-	//获取群组公共内容
-	public function bullcont(){
-		$data['title'] = I('post.title');
-		$res = $this->chat->field('content')->where(array('title'=>$data['title']))->find();
-		
-		if(IS_POST){
-			if($res !== null){
-				Response::show(200,'获取数据成功!',$res);
-			}else{
-				Response::show(401,'没有公告!');
-			}
-			
-		}
-		
-	}
+	
 	
 	
 	

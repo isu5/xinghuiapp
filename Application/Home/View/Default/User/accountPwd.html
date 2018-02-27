@@ -122,7 +122,31 @@ $(function() {
 		showAllError:true,
 		ajaxPost:true,
 		
-		<!--  --> 
+		callback:function(data){ 
+			//成功
+			if(data.status == 1){ 
+				layer.msg(data.info, { icon: 1, time: 3000 ,shade: 0.5},function(){
+					window.location.href= "{:U('User/accountList')}";
+						
+				});
+			
+			}else if(data.status == 4){ 
+			
+				layer.msg(data.info, {icon: 1, time: 3000,shade: 0.5 },function(){
+					window.location.reload();
+					});
+			} else if(data.status == 5){ 
+				layer.msg(data.info, {icon: 2, time: 3000,shade: 0.5 },function(){
+					window.location.reload();
+					});
+			} else {
+				layer.msg(data.info, { icon: 2, time: 3000 ,shade: 0.5},function(){
+					window.location.reload();
+						
+				});
+				
+			}
+		} 
 	});
 	
 })		

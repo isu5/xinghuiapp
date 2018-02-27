@@ -227,6 +227,18 @@ class ConferenceController extends PublicController{
 	public function auditlist(){
 	
 		$data = $this->user->auditPartici();
+		
+		//p($data);die;
+		$this->assign(array(
+			'data' => $data['data'],
+			'page' => $data['page']
+			));
+
+		$this->display();
+	}
+	
+	public function signList(){
+		$data = $this->user->signList();
 		//p($data);die;
 		$this->assign(array(
 			'data' => $data['data'],

@@ -113,10 +113,9 @@ $(function() {
 					window.location.href= "{:U('User/accountList')}";
 						
 				});
-			} else if(data.status == 0){ 
-				layer.msg(data.info, { icon: 2, time: 3000 ,shade: 0.5},function(){
-					window.location.href= "{:U('User/accountList')}";
-						
+			} else if(data.status == 2){ 
+				layer.confirm(data.info, { btn: ['确定','取消']},function(){
+					window.location.href= "{:U('User/accountList')}";	
 				});
 			} else if(data.status == 3){ 
 			
@@ -134,8 +133,10 @@ $(function() {
 					window.location.reload();
 					});
 			} else {
-				layer.confirm(data.info, { btn: ['确定','取消']},function(){
-					window.location.href= "{:U('User/accountList')}";	
+				
+				layer.msg(data.info, { icon: 2, time: 3000 ,shade: 0.5},function(){
+					window.location.href= "{:U('User/accountList')}";
+						
 				});
 				
 			}
