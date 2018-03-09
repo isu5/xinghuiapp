@@ -145,7 +145,7 @@ class ConferenceModel extends RelationModel{
 			//$data['page'] =  $page->myde_write();
 		 }
 		$data['data'] = $this->alias('a')
-		->field('a.id,a.title,a.ctime,a.etime,a.qtime,a.address,a.xxaddress,a.companypic,a.is_user,a.is_private,a.click,c.catename,d.pic,d.bullurl')
+		->field('a.id,a.title,a.ctime,a.etime,a.qtime,a.address,a.xxaddress,a.companypic,a.is_user,a.is_private,c.catename,d.pic,d.bullurl')
 		->join('LEFT JOIN __CONFERENCE_CATE__ c on c.id=a.cid
 			LEFT JOIN __CONFERENCE_PIC__ d on d.conf_id=a.id
 			')
@@ -166,15 +166,15 @@ class ConferenceModel extends RelationModel{
 		
 		//搜索
 		$where = array();
-		$m = M('Conference');
-		$map['id'] = I('post.id');
-		$m->where(array('id'=>$map['id']))->setInc('click'); // 用户的点击量加1
+		//$where['a.uid'] = I('post.uid');
+		
+		$where['id'] = I('post.id');
+		
 		
 		$data['data'] = $this
-		->where($map)
+		->where($where)
 		->order('id desc')
 		->find();
-		
 		//p($this->getLastSql());
 		return $data;
 	}
@@ -300,7 +300,7 @@ class ConferenceModel extends RelationModel{
 		
 		
 		$data['data'] = $this
-		->field('id,title,ctime,etime,qtime,address,xxaddress,is_user,is_private,companypic,click')
+		->field('id,title,ctime,etime,qtime,address,xxaddress,is_user,is_private,companypic')
 		/*
 		->join('LEFT JOIN __CERTIFY__ b ON a.uid=b.uid 
 				LEFT JOIN __CONFERENCE_CATE__ c ON c.id=a.cid 
@@ -354,7 +354,7 @@ class ConferenceModel extends RelationModel{
 		}
 		
 		$data['data'] = $this->alias('a')
-		->field('a.id,a.title,a.ctime,a.etime,a.qtime,a.companypic,a.address,a.xxaddress,a.is_user,a.is_private,a.click,e.status')
+		->field('a.id,a.title,a.ctime,a.etime,a.qtime,a.companypic,a.address,a.xxaddress,a.is_user,a.is_private,e.status')
 		->join('LEFT JOIN __CONFERENCE_CATE__ c on c.id=a.cid
 			LEFT JOIN __CONFERENCE_PIC__ d on d.conf_id=a.id
 			LEFT JOIN __CONFERENCE_AUDITLIST__ e on e.conf_id=a.id
@@ -422,7 +422,7 @@ WHERE uid='.$where['uid'].' and is_private=1 ORDER BY id desc LIMIT '.$limit);
 	
 	//二级账户会议列表删除后的列表
 	public function delAccountConfOne(){
-		$data['uid'] = I('post.uid');
+		$data['uid'] = I('post.user_id');
 		$user = D('User');
 		$map = $user->field('id,pid')->where(array('id'=>$data['uid']))->find();
 		//p($map);
@@ -432,11 +432,11 @@ WHERE uid='.$where['uid'].' and is_private=1 ORDER BY id desc LIMIT '.$limit);
 		$state = I('post.state');
 		switch ( $state ) {
 			case 1:
-			$where['statuses'] =  array('eq',1);
-			break;  
+			$where["'statuses'"] =  array('eq',1);
+			break;
 			case 0:
-			$where['statuses'] =  array('eq',0);
-			break;		
+			$where["'statuses'"] =  array('eq',0);
+			break;
 			default:
 			
 		}
@@ -453,20 +453,16 @@ WHERE uid='.$where['uid'].' and is_private=1 ORDER BY id desc LIMIT '.$limit);
 		
 		$page = new AppPage($total, $showrow);
 		if ($total > $showrow) {
-			$data['page'] =  $page->myde_write();
+			//$data['page'] =  $page->myde_write();
 		}
-		
 		$sql = 'SELECT conf_id FROM tzht_conference_del WHERE user_id = '.$data['uid'];
 		$limit = ($curpage - 1) * $showrow.','.$showrow;
-		$m= M();
-		$data['data'] = $m->query('SELECT a.status,b.id,b.title,b.ctime,b.etime,b.qtime,b.address,b.xxaddress,b.is_user,b.is_private,b.companypic FROM tzht_conference_auditlist a
+		 
+		 $data['data'] = $this->query('SELECT a.status,b.id,b.title,b.ctime,b.etime,b.qtime,b.address,b.xxaddress,b.is_user,b.is_private,b.companypic FROM tzht_conference_auditlist a
  LEFT JOIN tzht_conference b on b.id=a.conf_id 
+WHERE uid='.$where['uid'].' and is_private=1 and e.conf_id not in ('.$sql.') GROUP BY a.id ORDER BY id desc LIMIT '.$limit);
 
-WHERE uid='.$where['uid'].' and is_private =1 and  a.conf_id not in ('.$sql.') group by b.id ORDER BY id desc LIMIT '.$limit);
-			
-		//p($this->_Sql());die;
 		return $data;
-		
 		
 	}
 	

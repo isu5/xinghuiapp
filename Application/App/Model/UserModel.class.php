@@ -167,7 +167,7 @@ class UserModel extends BaseModel{
 	
 	
 	//通讯录
-	public function focus($pagesize=15){
+	public function focus(){
 		$where = [];
 		$where['user_id'] = I('post.user_id');
 		

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-02-27 17:00:10
+Date: 2018-03-09 17:56:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,7 +35,7 @@ CREATE TABLE `tzht_admin` (
 -- ----------------------------
 -- Records of tzht_admin
 -- ----------------------------
-INSERT INTO `tzht_admin` VALUES ('1', 'admin123', '1eea36fbd4f4919251e3192dce2da380', '', '', '1', '123.114.107.176', '1519695165', '243');
+INSERT INTO `tzht_admin` VALUES ('1', 'admin123', '1eea36fbd4f4919251e3192dce2da380', '', '', '1', '61.51.164.136', '1520563221', '250');
 INSERT INTO `tzht_admin` VALUES ('2', 'ylnmp123', '8edae303e1cf6bdacef40e84a36ed7ce', 'zhangsan@qq.com', '', '1', '0.0.0.0', '1482720707', '8');
 INSERT INTO `tzht_admin` VALUES ('14', 'admin22', '25f9e794323b453885f5181f1b624d0b', 'admin22@qq.com', '', '1', '111.199.25.75', '1502350333', '4');
 INSERT INTO `tzht_admin` VALUES ('15', 'rzmanage', '7fef6171469e80d32c0559f88b377245', '123@qq.com', '认证管理', '1', '123.114.108.22', '1517394686', '7');
@@ -160,7 +160,6 @@ CREATE TABLE `tzht_certify` (
 -- ----------------------------
 INSERT INTO `tzht_certify` VALUES ('2', '4', '', '', '', '', '北京同舟鸿图文化创意有限公司', '9111010758589247XH', '/./Uploads/Certificate/2018-01-17/5a5ec5c191f36.JPG', '1516160449', '2', '2');
 INSERT INTO `tzht_certify` VALUES ('3', '14', '', '', '', '', '北京同舟鸿图文化创意有限公司', '9111010758589247XH', '/./Uploads/Certificate/2018-01-18/5a5ff7914a55d.jpg', '1516238737', '2', '4');
-INSERT INTO `tzht_certify` VALUES ('4', '25', '王永刚', '140202197411302510', '/./Uploads/Idcard/2018-01-22/5a65cd6089ef6.JPG', '/./Uploads/Idcard/2018-01-22/5a65cd6091c15.JPG', '', '', '', '1516621152', '1', '1');
 INSERT INTO `tzht_certify` VALUES ('10', '34', '', '', '', '', '北京中网深蓝技术有限公司', '911101070717459231', '/./Uploads/Certificate/2018-02-06/5a79484f00f92.jpg', '1517897577', '2', '2');
 INSERT INTO `tzht_certify` VALUES ('12', '53', '', '', '', '', '北京水云舟文化创意有限公司', '110107018519145', '/./Uploads/Certificate/2018-02-09/5a7d7235152d4.jpg', '1518170677', '2', '2');
 
@@ -178,7 +177,7 @@ CREATE TABLE `tzht_chatgroup` (
   `rongid` varchar(80) NOT NULL DEFAULT '' COMMENT '融云群组标识',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '群组添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='群组表';
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='群组表';
 
 -- ----------------------------
 -- Records of tzht_chatgroup
@@ -187,10 +186,14 @@ INSERT INTO `tzht_chatgroup` VALUES ('3', '26', '4', '1596', '', '群组公告',
 INSERT INTO `tzht_chatgroup` VALUES ('8', '31', '22,21', '2018校友会', '', '群组公告', '0aaa0e69-9b3a-4b46-9e33-a4ea3d6b5a52', '1517806129');
 INSERT INTO `tzht_chatgroup` VALUES ('10', '41', '51,50,49,48,46,45,44,43,42', '幸会小团队', '', '未设eerrt置', 'f939f733-c20c-4187-a8ec-27fc843eb1a8', '1518048115');
 INSERT INTO `tzht_chatgroup` VALUES ('11', '45', '44,39', '开发部群组', '', '个人群组公告', '7c0afc35-9ee0-4e68-b76f-9b063dd8e627', '1518051477');
-INSERT INTO `tzht_chatgroup` VALUES ('12', '45', '49,47,46', '2018科技盛会', '', '未设置', 'eb283076-151e-42bb-8719-c54bcd5d9b27', '1519356834');
-INSERT INTO `tzht_chatgroup` VALUES ('13', '45', '47,46,49', '2018AI智能', '', '', '9a58292d-3fd0-42a8-83d7-035f9ff3e007', '1519459973');
-INSERT INTO `tzht_chatgroup` VALUES ('14', '45', '49,47,46', '2018人工智能', '', '未设置', '466fb602-ff0b-4906-a07a-78b79189229e', '1519605397');
+INSERT INTO `tzht_chatgroup` VALUES ('13', '45', '47,46,49,53', '2018AI智能', '', '', '9a58292d-3fd0-42a8-83d7-035f9ff3e007', '1519459973');
+INSERT INTO `tzht_chatgroup` VALUES ('14', '45', '49,47,46,53', '2018人工智能', '', '未设置', '466fb602-ff0b-4906-a07a-78b79189229e', '1519605397');
 INSERT INTO `tzht_chatgroup` VALUES ('15', '45', '49,47,46', '2018智能物联', '', '未设置', '26fc1c2a-00ac-430f-bd9c-99cac3a97faf', '1519614398');
+INSERT INTO `tzht_chatgroup` VALUES ('16', '45', '47,46,53', '2018公众媒体', '', '未设置', 'd7e4a0d9-c6ff-4122-baf9-bde52006c86a', '1519885911');
+INSERT INTO `tzht_chatgroup` VALUES ('17', '41', '51,50,49,48', '测试', '', '未设置', '9558e603-4b15-4459-9d62-6157e161cb2e', '1519907086');
+INSERT INTO `tzht_chatgroup` VALUES ('18', '45', '47,46,53', '2018城市大脑', '', '未设置', 'cc58100c-5eb3-4ee4-866f-0fd11198b9ae', '1519957959');
+INSERT INTO `tzht_chatgroup` VALUES ('19', '45', '47,46', '2018科技博览', '', '未设置', '7d0ecddb-4ead-481b-9464-b8a38355b6d8', '1520481504');
+INSERT INTO `tzht_chatgroup` VALUES ('20', '41', '45,43,44', '技术组', '', '未设置', '2ad293fd-5be1-4908-a014-8f16592cdcc8', '1520559526');
 
 -- ----------------------------
 -- Table structure for `tzht_chatgroup_bull`
@@ -206,16 +209,34 @@ CREATE TABLE `tzht_chatgroup_bull` (
   `content` text,
   `addtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '企业公告添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='群组公告表';
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COMMENT='群组公告表';
 
 -- ----------------------------
 -- Records of tzht_chatgroup_bull
 -- ----------------------------
-INSERT INTO `tzht_chatgroup_bull` VALUES ('2', '0', '55', '2018科技盛会', '[\"\\/Uploads\\/Companybull\\/20180224\\/1519460997\\/img_1519460938919.jpg\",\"\\/Uploads\\/Companybull\\/20180224\\/1519460997\\/img_1519460939000.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180224\\/1519460997\\/A+Byte+of+Python-1.pdf\"]', '55', '1519460997');
-INSERT INTO `tzht_chatgroup_bull` VALUES ('3', '0', '588', '2018AI智能', '[\"\\/Uploads\\/Companybull\\/20180224\\/1519464464\\/img_1519464405297.jpg\",\"\\/Uploads\\/Companybull\\/20180224\\/1519464464\\/img_1519464405419.jpg\",\"\\/Uploads\\/Companybull\\/20180224\\/1519464464\\/img_1519464405528.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180224\\/1519464464\\/A+Byte+of+Python-1.pdf\",\"\\/Uploads\\/Companybull\\/file\\/20180224\\/1519464464\\/A+Byte+of+Python-2.pdf\"]', '585', '1519464464');
-INSERT INTO `tzht_chatgroup_bull` VALUES ('4', '0', '2018人工智能', '2018人工智能', '[\"\\/Uploads\\/Companybull\\/20180226\\/1519605443\\/img_1519605381499.jpg\",\"\\/Uploads\\/Companybull\\/20180226\\/1519605443\\/img_1519605381584.jpg\",\"\\/Uploads\\/Companybull\\/20180226\\/1519605443\\/img_1519605381685.jpg\",\"\\/Uploads\\/Companybull\\/20180226\\/1519605443\\/img_1519605381748.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180226\\/1519605443\\/A+Byte+of+Python-1.pdf\",\"\\/Uploads\\/Companybull\\/file\\/20180226\\/1519605443\\/A+Byte+of+Python-2.pdf\"]', '公告', '1519605443');
-INSERT INTO `tzht_chatgroup_bull` VALUES ('5', '0', '582', '', '[\"\\/Uploads\\/Companybull\\/20180226\\/1519632724\\/img_1519632660481.jpg\",\"\\/Uploads\\/Companybull\\/20180226\\/1519632724\\/img_1519632660588.jpg\",\"\\/Uploads\\/Companybull\\/20180226\\/1519632724\\/img_1519632660649.jpg\",\"\\/Uploads\\/Companybull\\/20180226\\/1519632724\\/img_1519632660735.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180226\\/1519632724\\/A+Byte+of+Python-1.pdf\"]', '塔读', '1519632724');
-INSERT INTO `tzht_chatgroup_bull` VALUES ('6', '0', '58282', '', '[\"\\/Uploads\\/Companybull\\/20180226\\/1519632758\\/img_1519632690765.jpg\",\"\\/Uploads\\/Companybull\\/20180226\\/1519632758\\/img_1519632690862.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180226\\/1519632758\\/A+Byte+of+Python-2.pdf\",\"\\/Uploads\\/Companybull\\/file\\/20180226\\/1519632758\\/A+Byte+of+Python-1.pdf\"]', '塔读扶她', '1519632758');
+INSERT INTO `tzht_chatgroup_bull` VALUES ('30', '0', '2018人工智能', '2018人工智能', '[\"\\/Uploads\\/Companybull\\/20180301\\/1519886167\\/img_1519886104401.jpg\",\"\\/Uploads\\/Companybull\\/20180301\\/1519886167\\/img_1519886104468.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180301\\/1519886167\\/A+Byte+of+Python-2.pdf\",\"\\/Uploads\\/Companybull\\/file\\/20180301\\/1519886167\\/Android1_0_0-1.pdf\"]', '2018人工值得你', '1519886167');
+INSERT INTO `tzht_chatgroup_bull` VALUES ('31', '0', '2018ai智能', '2018AI智能', '[\"\\/Uploads\\/Companybull\\/20180301\\/1519886227\\/img_1519886164506.jpg\",\"\\/Uploads\\/Companybull\\/20180301\\/1519886227\\/img_1519886164574.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180301\\/1519886227\\/A+Byte+of+Python-2.pdf\"]', '2018AI智能', '1519886227');
+INSERT INTO `tzht_chatgroup_bull` VALUES ('32', '0', '1qer', '2018公众媒体', 'null', 'null', 'rwww', '1519954573');
+INSERT INTO `tzht_chatgroup_bull` VALUES ('33', '0', '588', '2018城市大脑', '[\"\\/Uploads\\/Companybull\\/20180302\\/1519957997\\/img_1519957929939.jpg\",\"\\/Uploads\\/Companybull\\/20180302\\/1519957997\\/img_1519957930012.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180302\\/1519957997\\/A+Byte+of+Python-2.pdf\",\"\\/Uploads\\/Companybull\\/file\\/20180302\\/1519957997\\/Android1_0_0-1.pdf\"]', '城市大脑', '1519957997');
+INSERT INTO `tzht_chatgroup_bull` VALUES ('34', '0', '大家好！', '幸会小团队', '[\"\\/Uploads\\/Companybull\\/20180302\\/1519968251\\/img_1519968250301.jpg\"]', 'null', '测试公告', '1519968251');
+
+-- ----------------------------
+-- Table structure for `tzht_collection`
+-- ----------------------------
+DROP TABLE IF EXISTS `tzht_collection`;
+CREATE TABLE `tzht_collection` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `uid` int(10) unsigned NOT NULL COMMENT '用户id',
+  `cid` int(10) unsigned NOT NULL COMMENT '会议id',
+  `addtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='会员收藏表';
+
+-- ----------------------------
+-- Records of tzht_collection
+-- ----------------------------
+INSERT INTO `tzht_collection` VALUES ('2', '45', '116', '1520588009');
+INSERT INTO `tzht_collection` VALUES ('3', '45', '114', '1520588995');
 
 -- ----------------------------
 -- Table structure for `tzht_company_bull`
@@ -231,7 +252,7 @@ CREATE TABLE `tzht_company_bull` (
   `content` text NOT NULL COMMENT '内容',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '企业公告添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COMMENT='企业公告表';
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8 COMMENT='企业公告表';
 
 -- ----------------------------
 -- Records of tzht_company_bull
@@ -248,8 +269,15 @@ INSERT INTO `tzht_company_bull` VALUES ('46', '4', '企业公告标题123', '', 
 INSERT INTO `tzht_company_bull` VALUES ('47', '32', 'bdhdndj', 'null', 'null', '', 'hdjjd', '1517912742');
 INSERT INTO `tzht_company_bull` VALUES ('48', '4', '默默无闻', 'null', 'null', '', '5454997', '1517913102');
 INSERT INTO `tzht_company_bull` VALUES ('49', '4', '你也一样', '[\"\\/Uploads\\/Companybull\\/20180206\\/1517913156\\/img_1517913154806.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180206\\/1517913156\\/bmcclog20171211225210.txt\"]', '', '心热呀', '1517913156');
-INSERT INTO `tzht_company_bull` VALUES ('50', '41', '1', '[\"\\/Uploads\\/Companybull\\/20180207\\/1518013609\\/img_1518013605695.jpg\"]', 'null', '', '谢谢大家关注', '1518013609');
-INSERT INTO `tzht_company_bull` VALUES ('51', '45', '公告', '[\"\\/Uploads\\/Companybull\\/20180222\\/1519262432\\/img_1519262358747.jpg\",\"\\/Uploads\\/Companybull\\/20180222\\/1519262432\\/img_1519262375689.jpg\",\"\\/Uploads\\/Companybull\\/20180222\\/1519262432\\/img_1519262375784.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180222\\/1519262432\\/.dev_id.txt\",\"\\/Uploads\\/Companybull\\/file\\/20180222\\/1519262432\\/microlog.txt\"]', '', '5855566', '1519262432');
+INSERT INTO `tzht_company_bull` VALUES ('53', '45', '5ｸﾞｯ!(๑•̀ㅂ•́)و✧', '[\"\\/Uploads\\/Companybull\\/20180301\\/1519885800\\/img_1519885716281.jpg\",\"\\/Uploads\\/Companybull\\/20180301\\/1519885800\\/img_1519885716344.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180301\\/1519885800\\/A+Byte+of+Python-2.pdf\",\"\\/Uploads\\/Companybull\\/file\\/20180301\\/1519885800\\/Android1_0_0.pdf\"]', '', '他他他8不', '1519885800');
+INSERT INTO `tzht_company_bull` VALUES ('54', '45', '828822828', '[\"\\/Uploads\\/Companybull\\/20180301\\/1519885846\\/img_1519885782549.jpg\",\"\\/Uploads\\/Companybull\\/20180301\\/1519885846\\/img_1519885782612.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180301\\/1519885846\\/A+Byte+of+Python-2.pdf\",\"\\/Uploads\\/Companybull\\/file\\/20180301\\/1519885846\\/Android1_0_0-1.pdf\",\"\\/Uploads\\/Companybull\\/file\\/20180301\\/1519885846\\/Android1_0_0.pdf\"]', '', '夸夸土巴兔', '1519885846');
+INSERT INTO `tzht_company_bull` VALUES ('55', '45', 'GDP的公告', '[\"\\/Uploads\\/Companybull\\/20180301\\/1519886035\\/img_1519885972699.jpg\",\"\\/Uploads\\/Companybull\\/20180301\\/1519886035\\/img_1519885972765.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180301\\/1519886035\\/A+Byte+of+Python-2.pdf\",\"\\/Uploads\\/Companybull\\/file\\/20180301\\/1519886035\\/Android1_0_0-1.pdf\"]', '', '4年么虎', '1519886035');
+INSERT INTO `tzht_company_bull` VALUES ('56', '45', '我的工号', '[\"\\/Uploads\\/Companybull\\/20180301\\/1519886289\\/img_1519886226747.jpg\",\"\\/Uploads\\/Companybull\\/20180301\\/1519886289\\/img_1519886226817.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180301\\/1519886289\\/A+Byte+of+Python-2.pdf\",\"\\/Uploads\\/Companybull\\/file\\/20180301\\/1519886289\\/Android1_0_0-1.pdf\"]', '', '同步', '1519886289');
+INSERT INTO `tzht_company_bull` VALUES ('60', '46', '公告', '[\"\\/Uploads\\/Companybull\\/20180302\\/1519958978\\/img_1519958986423.jpg\",\"\\/Uploads\\/Companybull\\/20180302\\/1519958978\\/img_1519958986613.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180302\\/1519958978\\/幸会后台管理系统数据库数据表结构-1.xlsx\",\"\\/Uploads\\/Companybull\\/file\\/20180302\\/1519958978\\/幸会后台管理系统数据库数据表结构-2.xlsx\"]', '', '公告内容', '1519958978');
+INSERT INTO `tzht_company_bull` VALUES ('65', '45', '2888828', '[\"\\/Uploads\\/Companybull\\/20180307\\/1520409107\\/img_1520409008621.jpg\",\"\\/Uploads\\/Companybull\\/20180307\\/1520409107\\/img_1520409008770.jpg\",\"\\/Uploads\\/Companybull\\/20180307\\/1520409107\\/img_1520409008869.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180307\\/1520409107\\/幸会APP系统用户手册.doc\",\"\\/Uploads\\/Companybull\\/file\\/20180307\\/1520409107\\/幸会APP系统需求分析说明书.doc\"]', '', '拉土不啊', '1520409107');
+INSERT INTO `tzht_company_bull` VALUES ('66', '41', '注意点', 'null', '[\"\\/Uploads\\/Companybull\\/file\\/20180307\\/1520413186\\/03100160021177642829.pdf\"]', '', '附件中是文件', '1520413186');
+INSERT INTO `tzht_company_bull` VALUES ('67', '41', '多文件', '[\"\\/Uploads\\/Companybull\\/20180307\\/1520413391\\/img_1520413384004.jpg\",\"\\/Uploads\\/Companybull\\/20180307\\/1520413391\\/img_1520413384052.jpg\",\"\\/Uploads\\/Companybull\\/20180307\\/1520413391\\/img_1520413384143.jpg\",\"\\/Uploads\\/Companybull\\/20180307\\/1520413391\\/img_1520413384209.jpg\",\"\\/Uploads\\/Companybull\\/20180307\\/1520413391\\/img_1520413384265.jpg\"]', '[\"\\/Uploads\\/Companybull\\/file\\/20180307\\/1520413391\\/03100160021177642829.pdf\",\"\\/Uploads\\/Companybull\\/file\\/20180307\\/1520413391\\/03100160021177642829(1).pdf\",\"\\/Uploads\\/Companybull\\/file\\/20180307\\/1520413391\\/媒资信息管理系统操作手册.doc\",\"\\/Uploads\\/Companybull\\/file\\/20180307\\/1520413391\\/IOS客户端功能修复(8月6日).docx\"]', '', '多文件', '1520413391');
+INSERT INTO `tzht_company_bull` VALUES ('71', '53', '业务联系', '', '', '', '<p style=\"line-height: 150%\"><span style=\"font-size:19px;line-height:150%;font-family:宋体\">&nbsp;</span><span style=\"font-size:20px;line-height:150%;font-family:宋体\">北京水云舟有文化创意限公司是专业从事平面设计、新媒体运营的专业机构，向各个行业提供面设计宣传方案及专业咨询服务。公司员工主要由高级及资深设计人员组成，具有很高的专业水准和业务素养。本公司拥有丰富创新精神、优秀的团队。这些优秀的人才使公司充满活力与生机。公司以创新求发展，本着“立足诚信、服务大众，以人为本”的企业宗旨，秉承“以客户为中心、变革创新、交流协作”的经营理念，弘扬“创新高效和谐共赢”的企业精神，以雄厚的技术实力为客户提供优质服务。</span></p><p><br/></p>', '1520573876');
 
 -- ----------------------------
 -- Table structure for `tzht_conference`
@@ -279,21 +307,23 @@ CREATE TABLE `tzht_conference` (
   `guide` text COMMENT '参会指南',
   `brief` text COMMENT '会议简介',
   `is_private` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否公开，0为公开，1为内部',
+  `click` int(11) NOT NULL DEFAULT '0' COMMENT '点击量',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8 COMMENT='会议表';
+) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8 COMMENT='会议表';
 
 -- ----------------------------
 -- Records of tzht_conference
 -- ----------------------------
-INSERT INTO `tzht_conference` VALUES ('32', 'GMIC 2018 北京 全球移动互联网大会', '2018-01-23 00:00:00', '2018-02-28 00:00:00', '2018-02-07 00:00:00', '北京北京市石景山区', '景阳宏昌', '[\"\\/Uploads\\/image\\/2018-01-30\\/5a6fbe9a723e0.jpg\"]', '北京同舟鸿图文化创意有限公司', 'Candy', '18810356923', '/Uploads/file/20180130/1517272730/A+Byte+of+Python.pdf###', '4', '2', '1516682898', '564', '1', '0', '', '', '', '<p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\"><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\">亲爱的吉米客们（GMICers）：</strong></p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">GMIC北京2017大会5万人参与的景象犹在眼前，GMIC北京2018又拉开了启动大幕。2018年4月26日-28日，我们又将相会在国家会议中心，共同见证中国<a href=\"https://m.huodongjia.com/tag/437/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">互联网</a>和<a href=\"https://m.huodongjia.com/tag/1192/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">科技</a>领域的进步与发展。</p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">站在AlphaGo Zero、量子技术、<a href=\"https://m.huodongjia.com/tag/17374/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">区块链</a>等各种新技术持续爆发的时代关口，我们有必要回顾一下中国互联网与科技的<a href=\"https://m.huodongjia.com/tag/926/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">历史</a>，从时代的角度来剖析中国互联网与科技的未来：<br/><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\">1998年-2007年 中国PC互联网的黄金十年</strong></p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">1998年，是中国互联网企业值得纪念的一年，这一年，腾讯、新浪、京东、搜狐都纷纷成立，奠定了中国互联网在全球市场的地位，直至今日，这些即将迎来20年诞辰的企业仍屹立在行业之巅。以网易、新浪、搜、腾讯为代表的“四大门户”共同拉开了中国互联网高速发展的帷幕，深刻影响了中国的<a href=\"https://m.huodongjia.com/tag/909/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">经济</a>、<a href=\"https://m.huodongjia.com/tag/1742/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">社会</a>的发展。</p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\"><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\">2008年-2017年 中国<a href=\"https://m.huodongjia.com/tag/966/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">移动互联网</a>的黄金十年</strong></p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">2008年，iPhone的入华标志着中国互联网进入到了移动互联网时代，微博、小米、微信、美团等明向企业纷纷崛起，成为大众的生活中不可缺少的重要工具。而随着移动互联网的崛起，在市场、资本等力量的共同作用下，中国互联网的发展也超越了欧美等传统科技强国，实现了从“copy to China”到“copy from China”的逆转，成就了新的全球经济奇迹。</p><p><br/></p>', '0');
-INSERT INTO `tzht_conference` VALUES ('86', ' 年会2', '2018-02-06 17:10:00', '2018-02-06 17:30:00', '2018-02-06 16:55:00', '北京北京市石景山区', '晋阳', '[\"\"]', '北京中网深蓝技术有限公司', '李经理', '18618249918', '', '34', '10', '1517907284', '10', '1', '1', '', '', '', '<p>内部会议</p>', '1');
-INSERT INTO `tzht_conference` VALUES ('87', '年会3', '2018-02-06 17:10:00', '2018-02-06 17:20:00', '2018-02-06 17:10:00', '北京北京市石景山区', 'crd', '[\"\"]', '北京中网深蓝技术有限公司', '李经理', '18618249918', '', '34', '10', '1517907797', '10', '1', '1', '', '', '', '<p>年会3</p>', '1');
-INSERT INTO `tzht_conference` VALUES ('88', '年会4', '2018-02-06 17:30:00', '2018-02-06 17:36:00', '2018-02-06 17:35:00', '北京北京市石景山区', 'crd', '[\"\"]', '北京中网深蓝技术有限公司', '了李经理', '18618249918', '', '34', '10', '1517909335', '10', '0', '1', '', '', '', '<p>年会3</p>', '1');
-INSERT INTO `tzht_conference` VALUES ('92', '年会5', '2018-02-07 11:00:00', '2018-02-07 11:15:00', '2018-02-07 11:15:00', '北京北京市石景山区', 'crd', '[\"\"]', '北京中网深蓝技术有限公司', '李经理', '18601159800', '', '34', '10', '1517971955', '10', '1', '1', '', '', '', '<p>年会5</p>', '1');
-INSERT INTO `tzht_conference` VALUES ('95', '中网深蓝公开会议(2018.2.7) ', '2018-02-07 15:00:00', '2018-02-07 18:00:00', '2018-02-07 15:30:00', '北京北京市石景山区', '景阳宏昌309', '[\"\\/Uploads\\/product\\/2018-02-07\\/5a7a9fe6ee348.jpg\"]', '北京中网深蓝技术有限公司', '李洪亮', '18810356923', '/Uploads/file/20180207/1517985771/A+Byte+of+Python.pdf###', '34', '2', '1517985776', '13', '1', '1', '', '', '', '<p><span style=\"color: rgb(51, 51, 51); font-family: \"Segoe UI\", \"Lucida Grande\", Helvetica, Arial, \"Microsoft YaHei\", FreeSans, Arimo, \"Droid Sans\", \"wenquanyi micro hei\", \"Hiragino Sans GB\", \"Hiragino Sans GB W3\", FontAwesome, sans-serif; font-size: 14px; font-weight: bold; text-align: center; background-color: rgb(255, 255, 255);\">会议简介</span></p>', '0');
-INSERT INTO `tzht_conference` VALUES ('96', '中网深蓝年会(2018.2.7)', '2018-02-07 15:00:00', '2018-02-07 18:33:00', '2018-02-07 15:30:00', '北京北京市石景山区', '景阳宏昌309', '[\"\\/Uploads\\/product\\/2018-02-07\\/5a7aa055290f7.jpg\"]', '北京中网深蓝技术有限公司', '李洪亮', '18810356923', '/Uploads/file/20180207/1517985881/A+Byte+of+Python.pdf###', '34', '3', '1517985886', '13', '1', '1', '', '', '', '<p><span style=\"color: rgb(51, 51, 51); font-family: \"Segoe UI\", \"Lucida Grande\", Helvetica, Arial, \"Microsoft YaHei\", FreeSans, Arimo, \"Droid Sans\", \"wenquanyi micro hei\", \"Hiragino Sans GB\", \"Hiragino Sans GB W3\", FontAwesome, sans-serif; font-size: 14px; font-weight: bold; text-align: center; background-color: rgb(255, 255, 255);\">会议简介</span></p>', '1');
-INSERT INTO `tzht_conference` VALUES ('102', '2018年北京同舟鸿图公司年会', '2018-02-08 10:00:00', '2018-02-08 17:00:00', '2018-02-08 09:40:00', '北京北京市石景山区', '石景山路23号中础大厦院内', '[\"\\/Uploads\\/product\\/2018-02-07\\/5a7ad45861822.jpg\"]', '北京同舟鸿图文化创意有限公司', '刘为国', '18911936236', '', '4', '2', '1518000796', '15', '0', '1', '<p>1.年会举办时间：2018年2月8日（星期四）上午9:00-17:00。<br/>2.年会举办地点：北京石景山区八角游乐园中出大厦（格丹轰趴馆）。<br/>3.年会内容主要包括领导讲话、娱乐节目、聚餐等项目，望在2月8日上午9点准时在格丹轰趴馆集合，以<br/>便年会准时开始。</p>', '<p style=\"text-align: left;\"><strong>年会嘉宾:</strong></p><p style=\"text-align: left;\">公司总经理：王永刚</p><p style=\"text-align: left;\">公司经理：陈少华</p><p style=\"text-align: left;\">公司高级设计师：赵银玲</p><p style=\"text-align: left;\">公司高级设计师：邓雅心</p><p style=\"text-align: left;\">公司运营策划部经理：马娜</p><p style=\"text-align: left;\">公司新媒体策划编辑：刘思奥</p><p style=\"text-align: left;\">公司财务部主管：王小群<br/></p><p style=\"text-align: left;\">公司开发部经理：刘为国</p><p style=\"text-align: left;\">公司PHP高级开发工程师：陈江</p><p style=\"text-align: left;\">公司Android高级开发工程师：李洪亮</p>', '<p><span class=\"dn_label\">公交站点：</span> &nbsp;京原路口东 &nbsp;京原路口东 &nbsp;京原路口西 &nbsp;京原路口西 &nbsp;老山南路 &nbsp;老山西街 &nbsp;老山西街 &nbsp;体育场南路东口 &nbsp;体育场南路东口 &nbsp;衙门口桥北 &nbsp;</p><p><span class=\"dn_label\">公交线路：</span> &nbsp;325路 &nbsp;337路 &nbsp;436路 &nbsp;597路 &nbsp;598路 &nbsp;663路 &nbsp;941路 &nbsp;472路 &nbsp;527路 &nbsp;545路 &nbsp;598区间 &nbsp;专46路 &nbsp;965路 &nbsp;914路 &nbsp;574路 &nbsp;专91路 &nbsp;959路 &nbsp;专86环行 &nbsp;373路 &nbsp;快速直达专线27 &nbsp;327路 &nbsp;958路 &nbsp;夜5路 &nbsp;385路&nbsp; <br/></p><p>一号线八角游乐园地铁：A口出右侧中础大厦院内格丹轰趴馆</p><p><br/></p><p><br/></p>', '<p>2017年已经过去，迎来了2018年。为了感谢大家一年来的辛苦和为公司做出的贡献，更为了公司在2018年<br/>公司各项工作顺利的开展，经公司领导研究决定将于本月举办公司年会。</p><p>现将年会相关事宜通知如下：<br/>1.年会举办时间：2018年2月8日（星期四）上午9:00-17:00。<br/>2.年会举办地点：北京石景山区八角游乐园中出大厦（格丹轰趴馆）。<br/>3.年会内容主要包括领导讲话、娱乐节目、聚餐等项目，望在2月8日上午9点准时在格丹轰趴馆集合，以便年会准时开始。<br/>同时，希望大家提前准备一些好玩的节目，到时会有给大家展示才艺的机会，以增加年会的气氛。<br/>关于公司年会具体事宜如上，请大家按通知的内容去做，望大家能够积极配合和支持！</p><p><img src=\"/Uploads/ueditor/image/20180207/1518001265.jpg\" title=\"1518001265.jpg\" alt=\"QQ截图20180207181901.jpg\"/></p><p><img src=\"/Uploads/ueditor/image/20180207/1518001273.jpg\" title=\"1518001273.jpg\" alt=\"QQ截图20180207182111.jpg\"/><img src=\"/Uploads/ueditor/image/20180207/1518001280.jpg\" title=\"1518001280.jpg\" alt=\"QQ截图20180207182156.jpg\"/><img src=\"/Uploads/ueditor/image/20180207/1518001305.jpg\" title=\"1518001305.jpg\" alt=\"QQ截图20180207181939.jpg\"/></p>', '1');
-INSERT INTO `tzht_conference` VALUES ('105', '会议测试', '2018-02-22 11:39:27', '2018-02-22 13:00:00', '2018-02-22 12:13:00', '北京北京市石景山区', '景阳宏昌309', '[\"\\/Uploads\\/product\\/2018-02-22\\/5a8e3b90c0dd2.jpg\"]', '北京中网深蓝技术有限公司', '李洪亮', '18810356923', '/Uploads/file/20180222/1519270804/A+Byte+of+Python.pdf###', '34', '4', '1519270813', '12', '1', '1', '', '', '', '<p><span style=\"color: rgb(51, 51, 51); font-family: \"Segoe UI\", \"Lucida Grande\", Helvetica, Arial, \"Microsoft YaHei\", FreeSans, Arimo, \"Droid Sans\", \"wenquanyi micro hei\", \"Hiragino Sans GB\", \"Hiragino Sans GB W3\", FontAwesome, sans-serif; font-size: 14px; font-weight: 700; text-align: center; background-color: rgb(255, 255, 255);\">会议简介</span></p>', '0');
+INSERT INTO `tzht_conference` VALUES ('32', 'GMIC 2018 北京 全球移动互联网大会', '2018-01-23 00:00:00', '2018-02-28 00:00:00', '2018-02-07 00:00:00', '北京北京市石景山区', '景阳宏昌', '[\"\\/Uploads\\/image\\/2018-01-30\\/5a6fbe9a723e0.jpg\"]', '北京同舟鸿图文化创意有限公司', 'Candy', '18810356923', '/Uploads/file/20180130/1517272730/A+Byte+of+Python.pdf###', '4', '2', '1516682898', '564', '1', '1', '', '', '', '<p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\"><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\">亲爱的吉米客们（GMICers）：</strong></p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">GMIC北京2017大会5万人参与的景象犹在眼前，GMIC北京2018又拉开了启动大幕。2018年4月26日-28日，我们又将相会在国家会议中心，共同见证中国<a href=\"https://m.huodongjia.com/tag/437/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">互联网</a>和<a href=\"https://m.huodongjia.com/tag/1192/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">科技</a>领域的进步与发展。</p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">站在AlphaGo Zero、量子技术、<a href=\"https://m.huodongjia.com/tag/17374/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">区块链</a>等各种新技术持续爆发的时代关口，我们有必要回顾一下中国互联网与科技的<a href=\"https://m.huodongjia.com/tag/926/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">历史</a>，从时代的角度来剖析中国互联网与科技的未来：<br/><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\">1998年-2007年 中国PC互联网的黄金十年</strong></p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">1998年，是中国互联网企业值得纪念的一年，这一年，腾讯、新浪、京东、搜狐都纷纷成立，奠定了中国互联网在全球市场的地位，直至今日，这些即将迎来20年诞辰的企业仍屹立在行业之巅。以网易、新浪、搜、腾讯为代表的“四大门户”共同拉开了中国互联网高速发展的帷幕，深刻影响了中国的<a href=\"https://m.huodongjia.com/tag/909/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">经济</a>、<a href=\"https://m.huodongjia.com/tag/1742/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">社会</a>的发展。</p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\"><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\">2008年-2017年 中国<a href=\"https://m.huodongjia.com/tag/966/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration: none;\">移动互联网</a>的黄金十年</strong></p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">2008年，iPhone的入华标志着中国互联网进入到了移动互联网时代，微博、小米、微信、美团等明向企业纷纷崛起，成为大众的生活中不可缺少的重要工具。而随着移动互联网的崛起，在市场、资本等力量的共同作用下，中国互联网的发展也超越了欧美等传统科技强国，实现了从“copy to China”到“copy from China”的逆转，成就了新的全球经济奇迹。</p><p><br/></p>', '0', '0');
+INSERT INTO `tzht_conference` VALUES ('96', '中网深蓝年会(2018.2.7)', '2018-02-07 15:00:00', '2018-02-07 18:33:00', '2018-02-07 15:30:00', '北京北京市石景山区', '景阳宏昌309', '[\"\\/Uploads\\/product\\/2018-02-07\\/5a7aa055290f7.jpg\"]', '北京中网深蓝技术有限公司', '李洪亮', '18810356923', '/Uploads/file/20180207/1517985881/A+Byte+of+Python.pdf###', '34', '3', '1517985886', '13', '1', '1', '', '', '', '<p><span style=\"color: rgb(51, 51, 51); font-family: \"Segoe UI\", \"Lucida Grande\", Helvetica, Arial, \"Microsoft YaHei\", FreeSans, Arimo, \"Droid Sans\", \"wenquanyi micro hei\", \"Hiragino Sans GB\", \"Hiragino Sans GB W3\", FontAwesome, sans-serif; font-size: 14px; font-weight: bold; text-align: center; background-color: rgb(255, 255, 255);\">会议简介</span></p>', '1', '5');
+INSERT INTO `tzht_conference` VALUES ('106', '人工智能中国论坛2018', '2018-02-28 12:57:36', '2018-02-28 18:00:00', '2018-02-28 14:00:00', '山西省太原市其它区', '太原市高新区长治路226号高新动力港19层1902室', '[\"\\/Uploads\\/product\\/2018-02-28\\/5a96373bf290d.jpg\"]', '北京同舟鸿图文化创意有限公司', '李洪亮', '18810356923', '/Uploads/file/20180228/1519793984/A+Byte+of+Python.pdf###', '4', '2', '1519793999', '1213', '1', '1', '', '', '', '<p><span style=\"color: rgb(51, 51, 51); font-family: \">会议简介</span></p>', '0', '0');
+INSERT INTO `tzht_conference` VALUES ('107', '2018区块链世界论坛（BlockChain World Forum）', '2018-02-28 15:28:33', '2018-02-28 18:00:00', '2018-02-28 17:00:00', '上海上海市长宁区', '长宁区延安西路1116号 ‎', '[\"\\/Uploads\\/product\\/2018-02-28\\/5a965a9d12c0f.jpg\"]', '北京同舟鸿图文化创意有限公司', '李洪亮', '18810356923', '', '4', '2', '1519803044', '432', '1', '1', '', '', '', '<p><span style=\"color: rgb(51, 51, 51); font-family: \"Segoe UI\", \"Lucida Grande\", Helvetica, Arial, \"Microsoft YaHei\", FreeSans, Arimo, \"Droid Sans\", \"wenquanyi micro hei\", \"Hiragino Sans GB\", \"Hiragino Sans GB W3\", FontAwesome, sans-serif; font-size: 14px; font-weight: 700; text-align: center; background-color: rgb(255, 255, 255);\">会议简介</span></p>', '0', '0');
+INSERT INTO `tzht_conference` VALUES ('109', '第十四届中华易学大会暨2018中国智慧论坛', '2018-03-01 10:54:20', '2018-03-01 21:00:00', '2018-03-01 13:00:00', '四川省成都市其它区', '四川省成都市总府街31号', '[\"\\/Uploads\\/product\\/2018-03-01\\/5a976c0907ae6.jpg\"]', '北京中网深蓝技术有限公司', '李洪亮', '18810356923', '', '34', '8', '1519873040', '2563', '1', '1', '', '', '', '<p><span style=\"color: rgb(51, 51, 51); font-family: \"Segoe UI\", \"Lucida Grande\", Helvetica, Arial, \"Microsoft YaHei\", FreeSans, Arimo, \"Droid Sans\", \"wenquanyi micro hei\", \"Hiragino Sans GB\", \"Hiragino Sans GB W3\", FontAwesome, sans-serif; font-size: 14px; font-weight: 700; text-align: center; background-color: rgb(255, 255, 255);\">会议简介</span></p>', '0', '5');
+INSERT INTO `tzht_conference` VALUES ('111', '2018自驾游大会 合.聚.变', '2018-03-05 16:02:00', '2018-03-07 16:02:00', '2018-03-06 16:02:00', '上海市上海市嘉定区', '白银路159号', '[\"\\/Uploads\\/Conference\\/20180305\\/1520237216\\/240.jpg\"]', '北京同舟鸿图文化创意有限公司', '李洪亮', '18810356923', '/Uploads/file/20180305/1520241311/幸会APP业务功能操作流程文档说明.docx###', '4', '2', '1520237216', '3094', '1', '1', '', '', '', '<p>会议链接</p>', '0', '4');
+INSERT INTO `tzht_conference` VALUES ('112', '测试会议', '2018-03-08 13:25:00', '2018-03-09 13:25:00', '2018-03-08 13:25:00', '北京市北京市石景山区', '景阳', '[\"\\/Uploads\\/Conference\\/20180306\\/1520314077\\/magazine-unlock-05-2.3.909-_eac4ecc7a655425a8df1fe3b74a7414e.jpg\"]', '北京水云舟文化创意有限公司', '陈老师', '68656650', '', '53', '2', '1520314077', '1', '1', '1', null, null, null, '为了测试会议', '0', '36');
+INSERT INTO `tzht_conference` VALUES ('114', 'GMIC 2018 北京 全球移动互联网大会', '2018-03-08 11:34:20', '2018-03-10 00:00:00', '2018-03-09 10:00:00', '北京北京市石景山区', '北京国家会议中心', '[\"\\/Uploads\\/product\\/2018-03-08\\/5aa0af68e1f21.jpg\"]', '北京中网深蓝技术有限公司', '李洪亮', '18810356923', '/Uploads/file/20180308/1520486278/幸会客户端接口文档.pdf###', '34', '2', '1520480137', '2000', '1', '0', '<p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); text-align: center; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\"><span style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; color: rgb(255, 255, 255); line-height: 24px; margin: 0px !important;\"><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><span style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; color: rgb(102, 102, 102); line-height: 24px; background-color: rgb(255, 140, 0); margin: 0px !important;\">G-Summit全球</span></strong></span><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><span style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; line-height: 24px; background-color: rgb(255, 140, 0); margin: 0px !important;\"><span style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; color: rgb(255, 255, 255); line-height: 24px; margin: 0px !important;\">科学</span>创新峰会</span></strong></p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">混沌世界，需要明火。蒙昧城墙，需要怯魅。 新普罗米修斯火种，将由 100 位顶尖科学家、创新企业领袖及前瞻投资人共同传递。 G-Summit是长城会推出的科学创新邀请制闭门峰会。大会将邀请人工智能、生物<a href=\"https://m.huodongjia.com/tag/1214/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration-line: none;\">医药</a>、<a href=\"https://m.huodongjia.com/tag/993/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration-line: none;\">材料</a>科学等前沿领域享有世界声誉的顶尖科学家汇聚一堂，共同预见未来。</p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">&nbsp;</p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); text-align: center; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\"><span style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; color: rgb(255, 255, 255); line-height: 24px; margin: 0px !important;\"><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><span style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; color: rgb(102, 102, 102); line-height: 24px; background-color: rgb(255, 140, 0); margin: 0px !important;\">全球领袖峰会</span></strong></span></p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">AI、<a href=\"https://m.huodongjia.com/tag/1018/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration-line: none;\">环保</a>及其他技术的大爆发为人类社会带来了剧烈的冲击力，影响了人类社会的运转方式，也正在为长期以来棘手的重大问题（如重大疾病、环境、贫穷、<a href=\"https://m.huodongjia.com/tag/877/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration-line: none;\">食品</a>安全等）带来全新的解决方案。未来它们将带领我们走向何处？全球走在科技最前端的企业家、科学家、投资者、创业公司领导者将带来对科技驱动下的未来的解读。</p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">&nbsp;</p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); text-align: center; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\"><span style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; color: rgb(255, 255, 255); line-height: 24px; margin: 0px !important;\"><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><span style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; color: rgb(102, 102, 102); line-height: 24px; background-color: rgb(255, 140, 0); margin: 0px !important;\">全球未来娱乐峰会</span></strong></span></p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">移动互联网思维改造下的游戏、<a href=\"https://m.huodongjia.com/tag/6955/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration-line: none;\">影视</a>、文学、<a href=\"https://m.huodongjia.com/tag/865/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration-line: none;\">动漫</a>、营销的模式互动，探讨移动互联网改变全球娱乐产业的新案例新成果，展现数字娱乐和全球化营销行业的新趋势。同期还颁发全球未来数字娱乐和全球化大奖。</p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">&nbsp;</p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); text-align: center; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\"><span style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; color: rgb(255, 255, 255); line-height: 24px; margin: 0px !important;\"><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><span style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; color: rgb(102, 102, 102); line-height: 24px; background-color: rgb(255, 140, 0); margin: 0px !important;\">全球移动营销峰会</span></strong></span></p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">新消费环境下，移动互联网致力于推动人、生活与商业的完美融合，以用户为本的新兴广告模式融合了最新的技术，最潮最In的创意，运用大数据，LBS的方式实现精准又有趣的营销触达，互动与效果的完美统一，推动智慧新生活、未来新商业的达成。</p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">&nbsp;</p><p><br/></p>', '<p><img src=\"http://pic.huodongjia.com/event/2018-02-23/1519366315.89.png\" alt=\"GMIC 2018 北京 全球移动互联网大会\"/></p>', '<h3 class=\"first_title\" style=\"padding: 0px; margin: 0px 0px 10px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; text-align: center; color: rgb(51, 51, 51); font-size: 18px; white-space: normal; background-color: rgb(255, 255, 255);\">-会议门票-</h3><table class=\"price-table table\" width=\"728\"><tbody style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><tr style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\" class=\"firstRow\"><th style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><p style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; width: 200px; color: rgb(102, 102, 102); line-height: 24px; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">&nbsp;</p></th><th style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><p style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; width: 133px; color: rgb(102, 102, 102); line-height: 24px; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">VIP门票</p></th><th style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><p style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; width: 133px; color: rgb(102, 102, 102); line-height: 24px; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">金牌门票</p></th><th style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><p style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; width: 121px; color: rgb(102, 102, 102); line-height: 24px; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">银牌门票</p></th><th style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><p style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; width: 122px; color: rgb(102, 102, 102); line-height: 24px; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">展览门票</p></th><th style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><br/></th><th style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><br/></th></tr><tr style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 200px; color: rgb(102, 102, 102); line-height: 24px; font-size: 14px !important;\"><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\">价格</strong></p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 133px; color: rgb(102, 102, 102); line-height: 24px; text-align: center; font-size: 14px !important;\"><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\">￥15,000</strong></p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 133px; color: rgb(102, 102, 102); line-height: 24px; text-align: center; font-size: 14px !important;\"><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\">￥10,000</strong></p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 121px; color: rgb(102, 102, 102); line-height: 24px; text-align: center; font-size: 14px !important;\"><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\">￥3,000</strong></p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 122px; color: rgb(102, 102, 102); line-height: 24px; text-align: center; font-size: 14px !important;\"><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\">￥200</strong></p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td></tr><tr style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 200px; color: rgb(102, 102, 102); line-height: 24px; font-size: 14px !important;\">VIP欢迎晚宴</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 133px; color: rgb(102, 102, 102); line-height: 24px; text-align: center; font-size: 14px !important;\">✔</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td></tr><tr style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 200px; color: rgb(102, 102, 102); line-height: 24px; font-size: 14px !important;\">VIP午餐</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 133px; color: rgb(102, 102, 102); line-height: 24px; text-align: center; font-size: 14px !important;\">✔</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td></tr><tr style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 200px; color: rgb(102, 102, 102); line-height: 24px; font-size: 14px !important;\">VIP休息室</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 133px; color: rgb(102, 102, 102); line-height: 24px; text-align: center; font-size: 14px !important;\">✔</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td></tr><tr style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 200px; color: rgb(102, 102, 102); line-height: 24px; font-size: 14px !important;\">主会场</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 133px; color: rgb(102, 102, 102); line-height: 24px; text-align: center; font-size: 14px !important;\">✔</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 133px; color: rgb(102, 102, 102); line-height: 24px; text-align: center; font-size: 14px !important;\">✔</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td></tr><tr style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 200px; color: rgb(102, 102, 102); line-height: 24px; font-size: 14px !important;\">所有分会场<span style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; color: rgb(252, 190, 82); line-height: 24px; font-size: 12px; margin: 0px !important;\">(*1)</span></p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 133px; color: rgb(102, 102, 102); line-height: 24px; text-align: center; font-size: 14px !important;\">✔</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 133px; color: rgb(102, 102, 102); line-height: 24px; text-align: center; font-size: 14px !important;\">✔</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 121px; color: rgb(102, 102, 102); line-height: 24px; text-align: center; font-size: 14px !important;\">✔</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td></tr><tr style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 200px; color: rgb(102, 102, 102); line-height: 24px; font-size: 14px !important;\">展览区</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 133px; color: rgb(102, 102, 102); line-height: 24px; text-align: center; font-size: 14px !important;\">✔</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 133px; color: rgb(102, 102, 102); line-height: 24px; text-align: center; font-size: 14px !important;\">✔</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 121px; color: rgb(102, 102, 102); line-height: 24px; text-align: center; font-size: 14px !important;\">✔</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 122px; color: rgb(102, 102, 102); line-height: 24px; text-align: center; font-size: 14px !important;\">✔</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td></tr><tr style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 200px; color: rgb(102, 102, 102); line-height: 24px; font-size: 14px !important;\">App商务社交</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 133px; color: rgb(102, 102, 102); line-height: 24px; text-align: center; font-size: 14px !important;\">✔</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 133px; color: rgb(102, 102, 102); line-height: 24px; text-align: center; font-size: 14px !important;\">✔</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 121px; color: rgb(102, 102, 102); line-height: 24px; text-align: center; font-size: 14px !important;\">✔</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 122px; color: rgb(102, 102, 102); line-height: 24px; text-align: center; font-size: 14px !important;\">✔</p></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td><td style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><br/></td></tr><tr style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\"><td colspan=\"7\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; word-break: break-word;\" width=\"NaN\"><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 722px; color: rgb(102, 102, 102); line-height: 24px; font-size: 14px !important;\">*1 不包括邀请制分会场及其他特殊说明的分会场</p><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 722px; color: rgb(102, 102, 102); line-height: 24px; font-size: 14px !important;\">*2 VIP门票不参与打折</p><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 722px; color: rgb(102, 102, 102); line-height: 24px; font-size: 14px !important;\">*3 展览门票不提供发票</p><p style=\"box-sizing: border-box; list-style: none; max-width: 768px; width: 722px; color: rgb(102, 102, 102); line-height: 24px; font-size: 14px !important;\">*4 关于GMIC大会门票，其中各项权益以（主办方）最终通知版为准。优惠码，胸卡的最终解释权归主办方长城会所有。</p></td></tr></tbody></table><h3 class=\"first_title\" style=\"padding: 0px; margin: 0px 0px 10px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; text-align: center; color: rgb(51, 51, 51); font-size: 18px; white-space: normal; background-color: rgb(255, 255, 255);\">-场馆介绍-</h3><p><img src=\"https://pic.huodongjia.com/event/2015-02-12/event1423713616.89.jpg\" width=\"200\" alt=\"北京国家会议中心\"/><span style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\">北京国家会议中心</span></p><p style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">交通指南：</p><p style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">&nbsp; &nbsp; 首都国际机场 距酒店19.1公里 南苑机场 距酒店23.1公里 北京北站 距酒店7.1公里 北京火车站 距酒店11.2公里 北京西站 距酒店13.0公里 北京东火车站 距酒店13.5公里 北京南站 距酒店15.1公里</p><p style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\"><br/></p><p style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\"><br/></p><p style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">国家会议中心位于鸟巢和水立方之北，是一座八层楼、近400米的长形建筑。2008年奥运会期间，由击剑馆、国际广播中心组成，主新闻中心（MPC）是文字记者和摄影记者进驻的工作区，共有1000多个记者工作席位及硬件配套设施。国际广播中心建筑面积14万平方米，是奥运会历史上最大的国际广播中心，来自全世界16000名广播记者都在此工作。 奥运之后，国家会议中心经过一年多的改造投入经营，至今已走过五年历程 ，创造了无数辉煌，这座曾经的奥运场馆正以骄人的成绩，成为中国乃至亚洲快速成长的会展业第一品牌 。大量具有国际影响力的会议 、展览项目陆续在国家会议中心成功举办，让这个中国会议业的旗舰场馆向世界展示了其多平台、复合型、高质量的强大综合实力，创造出了良好的经济效益和社会效益。 2014年11月5日—10日，来自21个经济体以及这 21个经济体以外的17个国家和地区的领导人、高级官员和工商界人士相继出席APEC会议周。国家会议中心作为本次APEC会议的“主力场馆”承担着为期7天的领导人会议周中6天的接待任务，为210场规模不等的会议和活动、165场餐饮和约9.1万人次提供了专业、细致、高效的会议服务。国家会议中心再次成为世界瞩目的焦点。国家会议中心借此成为一个重大外事国务活动的接待场所，也变成了世界级的会展品牌。 附近酒店：北京北辰洲际酒店、凯迪克·北京格兰云天大酒店、西藏大厦 交通：特13路新闻中心站下车 ，步行380米。</p><p><br/></p>', '<p><span style=\"color: rgb(51, 51, 51); font-family: \"Segoe UI\", \"Lucida Grande\", Helvetica, Arial, \"Microsoft YaHei\", FreeSans, Arimo, \"Droid Sans\", \"wenquanyi micro hei\", \"Hiragino Sans GB\", \"Hiragino Sans GB W3\", FontAwesome, sans-serif; font-size: 14px; font-weight: 700; text-align: center; background-color: rgb(255, 255, 255);\">会议简介</span></p>', '0', '58');
+INSERT INTO `tzht_conference` VALUES ('115', 'GOPS 2018全球运维大会 • 深圳站', '2018-03-08 15:15:22', '2018-03-10 00:00:00', '2018-03-09 14:00:00', '浙江省杭州市萧山区', '萧绍路999号', '[\"\\/Uploads\\/product\\/2018-03-08\\/5aa0e35291f35.jpg\"]', '北京中网深蓝技术有限公司', '李洪亮', '18810356923', '/Uploads/file/20180308/1520493399/A+Byte+of+Python.pdf###', '34', '2', '1520493532', '2000', '0', '0', '<p><img src=\"/Uploads/ueditor/image/20180308/1520493430.jpg\" alt=\"GOPS 2018全球运维大会 • 深圳站\"/></p>', '', '<h3 class=\"first_title\" style=\"padding: 0px; margin: 0px 0px 10px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; text-align: center; color: rgb(51, 51, 51); font-size: 18px; white-space: normal; background-color: rgb(255, 255, 255);\">会议门票-</h3><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\"><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\">大会标准票（4月13日-14日） ：3200元</strong></p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">门票说明：</p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">1、可参加4月13-14日所有的技术演讲；</p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">2、含<a href=\"https://m.huodongjia.com/tag/892/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration-line: none;\"></a><a href=\"https://m.huodongjia.com/tag/892/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration-line: none;\">酒店</a>价值600元的自助餐；</p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">3、门票2张以上每张优惠100元</p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\"><br/></p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\"><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\">会前精品课程（4月12日） ：3200元</strong><br/></p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">门票说明：</p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">1、可参加4月12日的全天深度课程。</p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">2、含餐。<br/></p><p style=\"padding: 0px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; white-space: normal; background-color: rgb(255, 255, 255); margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">3、门票2张以上每张优惠100元</p><p><br/></p>', '<h3 class=\"first_title\" style=\"padding: 0px; margin: 0px 0px 10px; font-family: 微软雅黑; box-sizing: border-box; list-style: none; max-width: 768px; text-align: center; color: rgb(51, 51, 51); font-size: 18px; white-space: normal; background-color: rgb(255, 255, 255);\">会议内容-</h3><p style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">GOPS 全球<a href=\"https://m.huodongjia.com/tag/1610/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration-line: none;\">运维</a>大会由高效运维社区（GreatOPS）和开放运维联盟（OOPSA）联合主办，指导单位为工信部信通院数据中心联盟（DCA）。全球运维大会是国内第一个运维行业大会，面向<a href=\"https://m.huodongjia.com/tag/437/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration-line: none;\">互联网</a>及传统行业、广大运维技术人员，传播先进技术思想和理念，分享业内最佳实践。</p><p style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">迄今为止，GOPS 已经举行了八次，大会参会嘉宾累计突破2万人次，国内每一站均为本地区最大规模的高端运维盛会，满意度和推荐度高达95%以上。</p><p style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\"><br/></p><p style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\"><span style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; color: rgb(192, 0, 0); line-height: 24px; margin: 0px !important;\"><strong style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px;\">第九届 GOPS 全球运维大会将于2018年4月13日-14日在深圳召开。</strong></span>大会为期2天，侧重方向是&nbsp;<a href=\"https://m.huodongjia.com/tag/27998/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration-line: none;\">AI</a>Ops、运维自动化和 DevOps。</p><p style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\"><br/></p><p style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">此外还有一些特色专场如：金牌运维专场、<a href=\"https://m.huodongjia.com/tag/969/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration-line: none;\">大数据</a>运维专场、<a href=\"https://m.huodongjia.com/tag/807/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration-line: none;\">金融</a>案例、基础<a href=\"https://m.huodongjia.com/tag/4863/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration-line: none;\">架构</a>、运维管理及容器与微服务专场。</p><p style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\"><br/></p><p style=\"padding: 0px; box-sizing: border-box; list-style: none; max-width: 768px; width: 728px; color: rgb(102, 102, 102); line-height: 24px; margin-top: 0px !important; margin-bottom: 0px !important; font-size: 14px !important;\">主要面向运维行业的中高端技术人员。目的在于为了帮助运维人员系统学习了解相关知识体系，让创新技术推动<a href=\"https://m.huodongjia.com/tag/1742/\" style=\"padding: 0px; margin: 0px; box-sizing: border-box; list-style: none; max-width: 768px; text-decoration-line: none;\">社会</a>进步。你将会看到国内外知名企业的相关案例，也能与国内顶尖的技术专家探讨技术实践，使企业可以根据最佳实践确定自己的选型方案，并提前预估相关的风险和收益，实现技术落地。</p><p><br/></p>', '0', '5');
+INSERT INTO `tzht_conference` VALUES ('116', '行业展', '2018-03-31 13:18:00', '2018-04-15 13:18:00', '2018-03-31 12:00:00', '北京市北京市石景山区', '格丹', '[\"\\/Uploads\\/Conference\\/20180309\\/1520572865\\/magazine-unlock-01-2.3.904-_8f60084eb5f142f89c3b1820ad419285.jpg\"]', '北京水云舟文化创意有限公司', '王经理', '18618249918', '/Uploads/file/20180309/1520572903/公司奖金政策.docx###/Uploads/file/20180309/1520572952/操作手册电子版.pdf###', '53', '2', '1520572865', '1', '0', '0', '', '', '', '<p>讨论行业发展</p>', '0', '19');
 
 -- ----------------------------
 -- Table structure for `tzht_conference_audit`
@@ -308,15 +338,21 @@ CREATE TABLE `tzht_conference_audit` (
 -- ----------------------------
 -- Records of tzht_conference_audit
 -- ----------------------------
-INSERT INTO `tzht_conference_audit` VALUES ('102', '44', '5');
-INSERT INTO `tzht_conference_audit` VALUES ('102', '51', '5');
-INSERT INTO `tzht_conference_audit` VALUES ('102', '41', '5');
-INSERT INTO `tzht_conference_audit` VALUES ('102', '45', '5');
-INSERT INTO `tzht_conference_audit` VALUES ('102', '43', '5');
-INSERT INTO `tzht_conference_audit` VALUES ('102', '49', '5');
-INSERT INTO `tzht_conference_audit` VALUES ('102', '42', '5');
-INSERT INTO `tzht_conference_audit` VALUES ('88', '45', '5');
-INSERT INTO `tzht_conference_audit` VALUES ('105', '45', '5');
+INSERT INTO `tzht_conference_audit` VALUES ('106', '45', '5');
+INSERT INTO `tzht_conference_audit` VALUES ('106', '46', '5');
+INSERT INTO `tzht_conference_audit` VALUES ('106', '47', '5');
+INSERT INTO `tzht_conference_audit` VALUES ('109', '46', '5');
+INSERT INTO `tzht_conference_audit` VALUES ('109', '45', '5');
+INSERT INTO `tzht_conference_audit` VALUES ('111', '34', '5');
+INSERT INTO `tzht_conference_audit` VALUES ('111', '46', '5');
+INSERT INTO `tzht_conference_audit` VALUES ('112', '36', '5');
+INSERT INTO `tzht_conference_audit` VALUES ('112', '41', '5');
+INSERT INTO `tzht_conference_audit` VALUES ('112', '45', '5');
+INSERT INTO `tzht_conference_audit` VALUES ('114', '46', '2');
+INSERT INTO `tzht_conference_audit` VALUES ('114', '47', '1');
+INSERT INTO `tzht_conference_audit` VALUES ('114', '45', '1');
+INSERT INTO `tzht_conference_audit` VALUES ('114', '53', '3');
+INSERT INTO `tzht_conference_audit` VALUES ('114', '40', '3');
 
 -- ----------------------------
 -- Table structure for `tzht_conference_auditlist`
@@ -331,15 +367,21 @@ CREATE TABLE `tzht_conference_auditlist` (
 -- ----------------------------
 -- Records of tzht_conference_auditlist
 -- ----------------------------
-INSERT INTO `tzht_conference_auditlist` VALUES ('102', '44', '5');
-INSERT INTO `tzht_conference_auditlist` VALUES ('102', '51', '5');
-INSERT INTO `tzht_conference_auditlist` VALUES ('102', '41', '5');
-INSERT INTO `tzht_conference_auditlist` VALUES ('102', '45', '5');
-INSERT INTO `tzht_conference_auditlist` VALUES ('102', '43', '5');
-INSERT INTO `tzht_conference_auditlist` VALUES ('102', '49', '5');
-INSERT INTO `tzht_conference_auditlist` VALUES ('102', '42', '5');
-INSERT INTO `tzht_conference_auditlist` VALUES ('88', '45', '5');
-INSERT INTO `tzht_conference_auditlist` VALUES ('105', '45', '5');
+INSERT INTO `tzht_conference_auditlist` VALUES ('106', '45', '5');
+INSERT INTO `tzht_conference_auditlist` VALUES ('106', '46', '5');
+INSERT INTO `tzht_conference_auditlist` VALUES ('106', '47', '5');
+INSERT INTO `tzht_conference_auditlist` VALUES ('109', '46', '5');
+INSERT INTO `tzht_conference_auditlist` VALUES ('109', '45', '5');
+INSERT INTO `tzht_conference_auditlist` VALUES ('111', '34', '5');
+INSERT INTO `tzht_conference_auditlist` VALUES ('111', '46', '5');
+INSERT INTO `tzht_conference_auditlist` VALUES ('112', '36', '5');
+INSERT INTO `tzht_conference_auditlist` VALUES ('112', '41', '5');
+INSERT INTO `tzht_conference_auditlist` VALUES ('112', '45', '5');
+INSERT INTO `tzht_conference_auditlist` VALUES ('114', '46', '2');
+INSERT INTO `tzht_conference_auditlist` VALUES ('114', '47', '1');
+INSERT INTO `tzht_conference_auditlist` VALUES ('114', '45', '1');
+INSERT INTO `tzht_conference_auditlist` VALUES ('114', '53', '3');
+INSERT INTO `tzht_conference_auditlist` VALUES ('114', '40', '3');
 
 -- ----------------------------
 -- Table structure for `tzht_conference_bull`
@@ -354,7 +396,7 @@ CREATE TABLE `tzht_conference_bull` (
   `content` text NOT NULL COMMENT '内容',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '公告添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='会议公告表';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='会议公告表';
 
 -- ----------------------------
 -- Records of tzht_conference_bull
@@ -365,6 +407,7 @@ INSERT INTO `tzht_conference_bull` VALUES ('5', '87', '34', '公告1', '', '<p>�
 INSERT INTO `tzht_conference_bull` VALUES ('6', '94', '4', ' 公告01', '', '<p style=\"line-height: 16px;\"><img src=\"http://xh.2188.com.cn/Public/statics/ueditor/dialogs/attachment/fileTypeImages/icon_pdf.gif\"/><a style=\"font-size:12px; color:#0066cc;\" href=\"/Uploads/ueditor/file/20180207/1517985522.pdf\" title=\"A+Byte+of+Python.pdf\">A+Byte+of+Python.pdf</a></p><p><img src=\"/Uploads/ueditor/image/20180207/1517985543.jpg\" title=\"1517985543.jpg\" alt=\"36.jpg\" width=\"532\" height=\"433\"/></p>', '1517985564');
 INSERT INTO `tzht_conference_bull` VALUES ('7', '93', '4', ' 公告01', '', '<p style=\"line-height: 16px;\"><img src=\"http://xh.2188.com.cn/Public/statics/ueditor/dialogs/attachment/fileTypeImages/icon_pdf.gif\"/><a style=\"font-size:12px; color:#0066cc;\" href=\"/Uploads/ueditor/file/20180207/1517985638.pdf\" title=\"A+Byte+of+Python.pdf\">A+Byte+of+Python.pdf</a></p><p><img src=\"/Uploads/ueditor/image/20180207/1517985658.jpg\" title=\"1517985658.jpg\" alt=\"240.jpg\"/></p>', '1517985660');
 INSERT INTO `tzht_conference_bull` VALUES ('8', '96', '34', ' 公告01', '', '<p style=\"line-height: 16px;\"><img src=\"http://xh.2188.com.cn/Public/statics/ueditor/dialogs/attachment/fileTypeImages/icon_pdf.gif\"/><a style=\"font-size:12px; color:#0066cc;\" href=\"/Uploads/ueditor/file/20180207/1517985938.pdf\" title=\"A+Byte+of+Python.pdf\">A+Byte+of+Python.pdf</a></p><p><img src=\"/Uploads/ueditor/image/20180207/1517985947.jpg\" title=\"1517985947.jpg\" alt=\"240.jpg\" width=\"510\" height=\"265\"/></p>', '1517985955');
+INSERT INTO `tzht_conference_bull` VALUES ('9', '106', '4', '人工智能中国论坛2018', '', '<p><span style=\"color: rgb(141, 179, 226); font-size: 14px;\">成都总府皇冠假日酒店位处成都市总府街，坐落于各购物中心和办公大楼之间，毗邻春熙路商业圈、四川省展览馆、省市政府、时代广场、城市之心、冠城广场、中环广场、川信大厦等商务楼宇。地理位置优越，交通便利，距双流国际机场约40分钟车程、火车北站或东站20分钟车程，步行至天府广场只需10分钟。从酒店出发，您亦可直达新国际会展中心、城南高新科技园、武侯祠、锦里、杜甫草堂、寛窄巷子、<img src=\"http://img.baidu.com/hi/jx2/j_0020.gif\"/><img src=\"http://img.baidu.com/hi/jx2/j_0024.gif\"/><img src=\"http://img.baidu.com/hi/jx2/j_0002.gif\"/>大熊猫繁育研究基等地标及旅游购物热点。 酒店楼高27层，设计堂皇华丽，环境宁谧舒适。共设客房402间，其中豪华套房62间。房间柔和的主调配以和鲜明的点缀，祥和中亦见朝气。宽阔的空间、惬意的卫浴间、舒适的豪华大床、视听器材、高速宽带网络等设施一应俱全。酒店特设“无烟楼层”和残障人士专用客房。入住行政楼层的住客，可于行政酒廊免费享用精美早餐、免费饮料及小吃，还可使用专属会议室及其他贵宾设施。让您尽享繁嚣商城中高雅温馨的悠然国度。 酒店拥有11个多功能会议厅及1个可容纳550人会议或400晚宴的豪华宴会厅。全部配备先进的音乐系统、视听投影器材及完善的会议设施，适合举办各类宴会活动及会议。</span></p><p style=\"line-height: 16px;\"><img src=\"http://xh.2188.com.cn/Public/statics/ueditor/dialogs/attachment/fileTypeImages/icon_pdf.gif\"/><a style=\"font-size:12px; color:#0066cc;\" href=\"/Uploads/ueditor/file/20180301/1519873706.pdf\" title=\"A+Byte+of+Python.pdf\">A+Byte+of+Python.pdf</a></p><p><img src=\"/Uploads/ueditor/image/20180301/1519873719.jpg\" title=\"1519873719.jpg\" alt=\"240.jpg\" width=\"499\" height=\"303\"/></p>', '1519873840');
 
 -- ----------------------------
 -- Table structure for `tzht_conference_cate`
@@ -402,7 +445,7 @@ CREATE TABLE `tzht_conference_del` (
   `conf_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '会议id',
   `deltime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COMMENT='我的会议删除中间表';
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COMMENT='我的会议删除中间表';
 
 -- ----------------------------
 -- Records of tzht_conference_del
@@ -410,6 +453,7 @@ CREATE TABLE `tzht_conference_del` (
 INSERT INTO `tzht_conference_del` VALUES ('30', '45', '103', '1519268488');
 INSERT INTO `tzht_conference_del` VALUES ('31', '45', '88', '1519271069');
 INSERT INTO `tzht_conference_del` VALUES ('32', '45', '105', '1519280825');
+INSERT INTO `tzht_conference_del` VALUES ('33', '45', '106', '1520228685');
 
 -- ----------------------------
 -- Table structure for `tzht_conference_focus`
@@ -431,8 +475,8 @@ INSERT INTO `tzht_conference_focus` VALUES ('26', '4', '1', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('29', '4', '1', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('30', '4', '1', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('27', '31', '0', '0');
-INSERT INTO `tzht_conference_focus` VALUES ('34', '4', '1', '0');
-INSERT INTO `tzht_conference_focus` VALUES ('27', '34', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('34', '4', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('27', '34', '1', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('31', '21', '1', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('31', '25', '1', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('21', '33', '1', '0');
@@ -454,30 +498,31 @@ INSERT INTO `tzht_conference_focus` VALUES ('31', '34', '1', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('21', '31', '0', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('38', '21', '1', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('38', '36', '1', '0');
-INSERT INTO `tzht_conference_focus` VALUES ('40', '4', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('40', '4', '0', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('41', '43', '0', '0');
-INSERT INTO `tzht_conference_focus` VALUES ('41', '44', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('41', '44', '0', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('41', '45', '1', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('41', '42', '0', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('41', '48', '0', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('41', '49', '0', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('41', '50', '0', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('41', '51', '0', '0');
-INSERT INTO `tzht_conference_focus` VALUES ('41', '46', '1', '0');
-INSERT INTO `tzht_conference_focus` VALUES ('41', '34', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('41', '46', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('41', '34', '1', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('52', '41', '1', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('41', '52', '0', '0');
-INSERT INTO `tzht_conference_focus` VALUES ('53', '34', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('53', '34', '1', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('53', '41', '1', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('45', '47', '0', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('41', '36', '0', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('36', '41', '1', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('41', '53', '0', '0');
-INSERT INTO `tzht_conference_focus` VALUES ('45', '53', '0', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('45', '53', '1', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('45', '4', '0', '0');
-INSERT INTO `tzht_conference_focus` VALUES ('45', '41', '0', '0');
-INSERT INTO `tzht_conference_focus` VALUES ('45', '46', '1', '0');
 INSERT INTO `tzht_conference_focus` VALUES ('46', '45', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('4', '45', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('40', '34', '1', '0');
+INSERT INTO `tzht_conference_focus` VALUES ('53', '4', '0', '0');
 
 -- ----------------------------
 -- Table structure for `tzht_conference_pic`
@@ -492,7 +537,7 @@ CREATE TABLE `tzht_conference_pic` (
   `pic` varchar(100) NOT NULL DEFAULT '' COMMENT '宣传图片',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='会议详情图片表';
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='会议详情图片表';
 
 -- ----------------------------
 -- Records of tzht_conference_pic
@@ -507,6 +552,9 @@ INSERT INTO `tzht_conference_pic` VALUES ('14', '34', '96', '产品01', ' http:/
 INSERT INTO `tzht_conference_pic` VALUES ('16', '4', '102', '2', 'https://www.dianping.com/search/keyword/2/0_%E6%A0%BC%E4%B8%B9%E8%BD%B0%E8%B6%B4%E9%A6%86', '[\"\\/Uploads\\/conference\\/2018-02-07\\/5a7adb11cbde2.jpg\"]', '1518000915');
 INSERT INTO `tzht_conference_pic` VALUES ('17', '4', '102', '3', 'https://www.dianping.com/search/keyword/2/0_%E6%A0%BC%E4%B8%B9%E8%BD%B0%E8%B6%B4%E9%A6%86', '[\"\\/Uploads\\/conference\\/2018-02-07\\/5a7adb2c4a18f.jpg\"]', '1518000941');
 INSERT INTO `tzht_conference_pic` VALUES ('18', '4', '102', '3', 'https://www.dianping.com/search/keyword/2/0_%E6%A0%BC%E4%B8%B9%E8%BD%B0%E8%B6%B4%E9%A6%86', '[\"\\/Uploads\\/conference\\/2018-02-07\\/5a7adb71ae248.jpg\"]', '1518001010');
+INSERT INTO `tzht_conference_pic` VALUES ('19', '34', '109', '第十四届中华易学大会暨2018中国智慧论坛', 'http://xh.2188.com.cn', '[\"\\/Uploads\\/conference\\/2018-03-01\\/5a976cf0b2ce3.jpg\"]', '1519873265');
+INSERT INTO `tzht_conference_pic` VALUES ('20', '4', '106', '北京同舟鸿图文化创意有限公司', 'http://xh.2188.com.cn', '[\"\\/Uploads\\/conference\\/2018-03-01\\/5a976f641df27.jpg\"]', '1519873893');
+INSERT INTO `tzht_conference_pic` VALUES ('21', '4', '106', '北京同舟鸿图文化创意有限公司 / 冬日之恋', 'http://xh.2188.com.cn', '[\"\\/Uploads\\/conference\\/2018-03-01\\/5a976f7b4dbd8.jpg\"]', '1519873915');
 
 -- ----------------------------
 -- Table structure for `tzht_conference_sign`
@@ -592,6 +640,10 @@ INSERT INTO `tzht_conference_sign` VALUES ('102', '42');
 INSERT INTO `tzht_conference_sign` VALUES ('103', '45');
 INSERT INTO `tzht_conference_sign` VALUES ('104', '45');
 INSERT INTO `tzht_conference_sign` VALUES ('105', '45');
+INSERT INTO `tzht_conference_sign` VALUES ('106', '45');
+INSERT INTO `tzht_conference_sign` VALUES ('106', '46');
+INSERT INTO `tzht_conference_sign` VALUES ('109', '46');
+INSERT INTO `tzht_conference_sign` VALUES ('112', '36');
 
 -- ----------------------------
 -- Table structure for `tzht_del_jgpush`
@@ -603,7 +655,7 @@ CREATE TABLE `tzht_del_jgpush` (
   `jp_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '平台消息id',
   `deltime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COMMENT='平台消息删除中间表';
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COMMENT='平台消息删除中间表';
 
 -- ----------------------------
 -- Records of tzht_del_jgpush
@@ -628,6 +680,8 @@ INSERT INTO `tzht_del_jgpush` VALUES ('34', '41', '6', '1518048207');
 INSERT INTO `tzht_del_jgpush` VALUES ('35', '41', '5', '1518048210');
 INSERT INTO `tzht_del_jgpush` VALUES ('36', '0', '5', '1519262088');
 INSERT INTO `tzht_del_jgpush` VALUES ('37', '45', '5', '1519372750');
+INSERT INTO `tzht_del_jgpush` VALUES ('38', '45', '6', '1520243336');
+INSERT INTO `tzht_del_jgpush` VALUES ('39', '45', '7', '1520497015');
 
 -- ----------------------------
 -- Table structure for `tzht_download`
@@ -640,13 +694,14 @@ CREATE TABLE `tzht_download` (
   `downfile` varchar(1000) NOT NULL DEFAULT '' COMMENT '文件资料',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='企业资料表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='企业资料表';
 
 -- ----------------------------
 -- Records of tzht_download
 -- ----------------------------
 INSERT INTO `tzht_download` VALUES ('2', '4', '企业交流会资料', '[\"\\/Uploads\\/file\\/20180129\\/1517207441\\/A+Byte+of+Python.pdf\"]', '1517207442');
 INSERT INTO `tzht_download` VALUES ('3', '34', '产品已', '[\"\\/Uploads\\/file\\/20180206\\/1517910979\\/42类.docx\"]', '1517910987');
+INSERT INTO `tzht_download` VALUES ('4', '53', '新媒体案例', '[\"\\/Uploads\\/file\\/20180309\\/1520574019\\/2018年1月份策划.xls\",\"\\/Uploads\\/file\\/20180309\\/1520574019\\/水云舟媒体制作报价.xlsx\"]', '1520574022');
 
 -- ----------------------------
 -- Table structure for `tzht_jgpush`
@@ -682,7 +737,7 @@ CREATE TABLE `tzht_jgpushperson` (
   `type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '推送标识',
   `addtime` int(11) NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8 COMMENT='极光推送个人消息表';
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8 COMMENT='极光推送个人消息表';
 
 -- ----------------------------
 -- Records of tzht_jgpushperson
@@ -711,58 +766,18 @@ INSERT INTO `tzht_jgpushperson` VALUES ('35', '0', '21', '北京同舟鸿图文�
 INSERT INTO `tzht_jgpushperson` VALUES ('36', '0', '21', '北京同舟鸿图文化创意有限公司 / 冬日之恋', '北京同舟鸿图文化创意有限公司 / 冬日之恋', '0', '1517997656');
 INSERT INTO `tzht_jgpushperson` VALUES ('39', '0', '41', '春节快乐！', '春节快乐！', '0', '1519352496');
 INSERT INTO `tzht_jgpushperson` VALUES ('40', '0', '45', '1', '1', '0', '1519365160');
-INSERT INTO `tzht_jgpushperson` VALUES ('41', '0', '45', '121', '1', '0', '1519431981');
-INSERT INTO `tzht_jgpushperson` VALUES ('42', '0', '45', '10', '1', '0', '1519432007');
-INSERT INTO `tzht_jgpushperson` VALUES ('44', '0', '45', '1', '1', '0', '1519432103');
-INSERT INTO `tzht_jgpushperson` VALUES ('45', '0', '45', '3', '3', '0', '1519432149');
 INSERT INTO `tzht_jgpushperson` VALUES ('47', '0', '45', 'r', 'r', '0', '1519432278');
 INSERT INTO `tzht_jgpushperson` VALUES ('48', '0', '45', 'r', 'r', '0', '1519432297');
-INSERT INTO `tzht_jgpushperson` VALUES ('49', '0', '45', 'd', '大', '0', '1519432683');
-INSERT INTO `tzht_jgpushperson` VALUES ('50', '0', '45', 's', 's', '0', '1519433378');
-INSERT INTO `tzht_jgpushperson` VALUES ('51', '0', '45', '123131', '1', '0', '1519434200');
 INSERT INTO `tzht_jgpushperson` VALUES ('52', '0', '45', 'r', 'r', '0', '1519434258');
 INSERT INTO `tzht_jgpushperson` VALUES ('53', '0', '45', 'r', 'r', '0', '1519434295');
-INSERT INTO `tzht_jgpushperson` VALUES ('54', '0', '45', 't', 't', '0', '1519434313');
 INSERT INTO `tzht_jgpushperson` VALUES ('55', '0', '45', 'f', 'f', '0', '1519434350');
-INSERT INTO `tzht_jgpushperson` VALUES ('56', '0', '45', 'f', 'f', '0', '1519434363');
-INSERT INTO `tzht_jgpushperson` VALUES ('57', '0', '45', 'f', 'f', '0', '1519434378');
-INSERT INTO `tzht_jgpushperson` VALUES ('58', '0', '45', 't', 't', '0', '1519434559');
 INSERT INTO `tzht_jgpushperson` VALUES ('59', '0', '45', 't', 't', '0', '1519434576');
-INSERT INTO `tzht_jgpushperson` VALUES ('60', '0', '45', 't', 't', '0', '1519434590');
-INSERT INTO `tzht_jgpushperson` VALUES ('61', '0', '45', 'f', 'f', '0', '1519435055');
-INSERT INTO `tzht_jgpushperson` VALUES ('62', '0', '45', 'f', 'a', '0', '1519435071');
-INSERT INTO `tzht_jgpushperson` VALUES ('63', '0', '45', 'aaf', 'af', '0', '1519435083');
-INSERT INTO `tzht_jgpushperson` VALUES ('64', '0', '45', 'ar', 'ar', '0', '1519435143');
-INSERT INTO `tzht_jgpushperson` VALUES ('65', '0', '45', 'Aar', 'ar', '0', '1519435153');
-INSERT INTO `tzht_jgpushperson` VALUES ('66', '0', '45', 's', 'sf', '0', '1519435632');
 INSERT INTO `tzht_jgpushperson` VALUES ('68', '0', '45', 'f', 'f', '0', '1519435697');
-INSERT INTO `tzht_jgpushperson` VALUES ('70', '0', '45', 'tzhtlhl2018', 'tzhtlhl2018', '0', '1519623255');
-INSERT INTO `tzht_jgpushperson` VALUES ('71', '0', '45', 'r', 'r', '0', '1519623553');
-INSERT INTO `tzht_jgpushperson` VALUES ('72', '0', '45', 'r', 'r', '0', '1519623567');
-INSERT INTO `tzht_jgpushperson` VALUES ('73', '0', '45', 'f', 'f', '0', '1519623653');
-INSERT INTO `tzht_jgpushperson` VALUES ('74', '0', '45', 'f', 'f', '0', '1519623810');
-INSERT INTO `tzht_jgpushperson` VALUES ('75', '0', '45', 'f', 'f', '0', '1519623821');
-INSERT INTO `tzht_jgpushperson` VALUES ('76', '0', '45', 'Af', 'af', '0', '1519623912');
-INSERT INTO `tzht_jgpushperson` VALUES ('77', '0', '45', 'af', 'af', '0', '1519623926');
-INSERT INTO `tzht_jgpushperson` VALUES ('78', '0', '45', 'af', 'af', '0', '1519623937');
-INSERT INTO `tzht_jgpushperson` VALUES ('79', '0', '45', 'd', 'd', '0', '1519624080');
-INSERT INTO `tzht_jgpushperson` VALUES ('80', '0', '45', 'D', 'D', '0', '1519624142');
-INSERT INTO `tzht_jgpushperson` VALUES ('81', '0', '45', 'D', 'D', '0', '1519624151');
-INSERT INTO `tzht_jgpushperson` VALUES ('82', '0', '45', 'D', 'D', '0', '1519624167');
-INSERT INTO `tzht_jgpushperson` VALUES ('83', '0', '45', 'f', 'f', '0', '1519624450');
-INSERT INTO `tzht_jgpushperson` VALUES ('84', '0', '45', 'd', 'd', '0', '1519624478');
-INSERT INTO `tzht_jgpushperson` VALUES ('86', '0', '45', 'f', 'f', '0', '1519624706');
-INSERT INTO `tzht_jgpushperson` VALUES ('88', '0', '45', 'f', 'f', '0', '1519625017');
-INSERT INTO `tzht_jgpushperson` VALUES ('90', '0', '45', 'fa', 'af', '0', '1519625356');
-INSERT INTO `tzht_jgpushperson` VALUES ('97', '0', '45', 'F', 'F', '0', '1519626955');
-INSERT INTO `tzht_jgpushperson` VALUES ('98', '0', '45', 'F', 'AF', '0', '1519626996');
-INSERT INTO `tzht_jgpushperson` VALUES ('100', '0', '45', 'Aeae', 'aewe', '0', '1519627165');
-INSERT INTO `tzht_jgpushperson` VALUES ('101', '0', '45', 'fe', 'ef', '0', '1519627321');
-INSERT INTO `tzht_jgpushperson` VALUES ('102', '0', '45', 'f', 'sf', '0', '1519627457');
-INSERT INTO `tzht_jgpushperson` VALUES ('103', '0', '45', 'f', 'f', '0', '1519627501');
-INSERT INTO `tzht_jgpushperson` VALUES ('104', '0', '45', 'faf', 'afaf', '0', '1519627698');
-INSERT INTO `tzht_jgpushperson` VALUES ('106', '0', '45', 'f', 'f', '0', '1519628070');
-INSERT INTO `tzht_jgpushperson` VALUES ('107', '0', '45', 'faff', 'f', '0', '1519628087');
+INSERT INTO `tzht_jgpushperson` VALUES ('108', '0', '45', '/ tzhtlhl2018', '/ tzhtlhl2018', '0', '1519793704');
+INSERT INTO `tzht_jgpushperson` VALUES ('111', '0', '46', '以色列，特拉维夫希尔顿酒店', '以色列，特拉维夫希尔顿酒店', '0', '1519874013');
+INSERT INTO `tzht_jgpushperson` VALUES ('113', '0', '36', '欢迎词！', '欢迎中网深蓝科技有限公司！', '0', '1520318138');
+INSERT INTO `tzht_jgpushperson` VALUES ('114', '0', '45', 'zao', 'zao', '0', '1520558865');
+INSERT INTO `tzht_jgpushperson` VALUES ('115', '0', '41', 'zao', 'zao', '0', '1520558881');
 
 -- ----------------------------
 -- Table structure for `tzht_log`
@@ -782,7 +797,7 @@ CREATE TABLE `tzht_log` (
   `appinfo` varchar(60) NOT NULL DEFAULT '' COMMENT '手机设备信息',
   `log` text COMMENT '登录信息',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1149 DEFAULT CHARSET=utf8 COMMENT='登录日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=1352 DEFAULT CHARSET=utf8 COMMENT='登录日志表';
 
 -- ----------------------------
 -- Records of tzht_log
@@ -1934,6 +1949,209 @@ INSERT INTO `tzht_log` VALUES ('1145', '4', '1519695471', '0', '123.114.107.176'
 INSERT INTO `tzht_log` VALUES ('1146', '34', '1519700356', '0', '123.114.107.176', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-27 10:16登录地址为中国-北京-北京');
 INSERT INTO `tzht_log` VALUES ('1147', '34', '1519704012', '0', '123.114.107.176', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-27 12:12登录地址为中国-北京-北京');
 INSERT INTO `tzht_log` VALUES ('1148', '34', '1519712756', '0', '123.114.107.176', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-02-27 14:56登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1149', '4', '1519725664', '0', '123.114.107.176', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-27 18:04登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1150', '4', '1519782881', '0', '125.33.87.161', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-28 09:41登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1151', '4', '1519783907', '0', '125.33.87.161', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-28 10:47登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1152', '4', '1519788620', '0', '125.33.87.161', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-28 11:20登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1153', '4', '1519797244', '0', '125.33.87.161', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-02-28 13:04登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1154', '4', '1519863905', '0', '123.123.103.222', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-03-01 08:05登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1155', '34', '1519872495', '0', '123.123.103.222', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-03-01 10:15登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1156', '4', '1519873616', '0', '123.123.103.222', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-03-01 11:56登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1157', '45', '1519887353', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1158', '34', '1519887386', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1159', '34', '1519951274', '0', '111.199.18.121', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-03-02 08:14登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1160', '34', '1519951601', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1161', '45', '1519951630', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1162', '46', '1519957575', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1163', '46', '1519957765', '0', '192.168.0.135', '中国-北京-北京', '0', '2', '1', '2.1.2', 'msm8953  samsung\nSM-C7010', null);
+INSERT INTO `tzht_log` VALUES ('1164', '46', '1519958886', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.1', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1165', '46', '1519959032', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1166', '4', '1519959044', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1167', '46', '1519969481', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1168', '41', '1519970935', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1169', '4', '1519971121', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1170', '46', '1519971312', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1171', '46', '1519973723', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1172', '46', '1519975277', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1173', '4', '1519993310', '0', '192.168.3.22', '中国-北京-北京', '0', '2', '2', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1174', '41', '1519993328', '0', '192.168.3.22', '中国-北京-北京', '0', '2', '1', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1175', '45', '1520234394', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1176', '34', '1520234430', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1177', '34', '1520236420', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1178', '45', '1520236503', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1179', '34', '1520236641', '0', '111.199.19.64', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-03-05 15:21登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1180', '45', '1520237008', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1181', '4', '1520237030', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1182', '4', '1520237237', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1183', '45', '1520237250', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1184', '46', '1520237273', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1185', '34', '1520237298', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1186', '34', '1520237341', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1187', '46', '1520237368', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1188', '45', '1520237522', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1189', '4', '1520237536', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1190', '4', '1520237584', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1191', '45', '1520237597', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1192', '4', '1520240571', '0', '111.199.19.64', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-03-05 17:51登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1193', '43', '1520240683', '0', '192.168.0.127', '中国-北京-北京', '0', '2', '2', '2.1.2', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('1194', '45', '1520240773', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1195', '4', '1520240785', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1196', '4', '1520241011', '0', '111.199.19.64', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-03-05 17:11登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1197', '46', '1520241373', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1198', '46', '1520241388', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1199', '4', '1520241753', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1200', '45', '1520241791', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1201', '40', '1520242145', '0', '111.199.19.64', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户176****8102/17600898102您好！您使用了电脑2018-03-05 17:05登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1202', '34', '1520302493', '0', '111.199.29.138', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-03-06 10:53登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1203', '41', '1520303416', '0', '192.168.1.100', '中国-北京-北京', '0', '2', '2', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1204', '45', '1520303511', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1205', '34', '1520303536', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1206', '34', '1520306859', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1207', '45', '1520306871', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1208', '41', '1520310761', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1209', '41', '1520311092', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1210', '53', '1520314291', '0', '111.199.29.138', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户186****9918/18618249918您好！您使用了电脑2018-03-06 13:31登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1211', '4', '1520314499', '0', '111.199.29.138', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-03-06 13:59登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1212', '53', '1520315033', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1213', '41', '1520315048', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1214', '41', '1520315166', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1215', '53', '1520315193', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1216', '45', '1520317777', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1217', '34', '1520317812', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1218', '34', '1520325662', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1219', '40', '1520325723', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1220', '40', '1520326484', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1221', '34', '1520326514', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1222', '46', '1520326573', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1223', '34', '1520326601', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1224', '34', '1520327818', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1225', '40', '1520327845', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1226', '53', '1520333869', '0', '10.147.113.105', '中国-北京-北京', '0', '2', '2', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1227', '41', '1520333884', '0', '10.147.113.105', '中国-北京-北京', '0', '2', '1', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1228', '41', '1520333897', '0', '10.147.113.105', '中国-北京-北京', '0', '2', '2', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1229', '53', '1520333913', '0', '10.147.113.105', '中国-北京-北京', '0', '2', '1', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1230', '40', '1520386279', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1231', '34', '1520386310', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1232', '4', '1520386578', '0', '123.114.108.160', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户189****6236/18911936236您好！您使用了电脑2018-03-07 09:18登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1233', '43', '1520386892', '0', '192.168.0.127', '中国-北京-北京', '0', '2', '1', '2.1.2', 'hi6250  HUAWEI\nPRA-AL00', null);
+INSERT INTO `tzht_log` VALUES ('1234', '34', '1520387273', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1235', '40', '1520387314', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1236', '40', '1520393234', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1237', '34', '1520393254', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1238', '34', '1520394977', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1239', '40', '1520394989', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1240', '40', '1520395046', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1241', '34', '1520395070', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1242', '34', '1520402991', '0', '123.114.108.160', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-03-07 14:51登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1243', '34', '1520405615', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1244', '40', '1520405628', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1245', '40', '1520406270', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1246', '45', '1520406284', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1247', '45', '1520412778', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1248', '34', '1520412810', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1249', '53', '1520413003', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1250', '41', '1520413018', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1251', '41', '1520413465', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1252', '53', '1520413482', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1253', '34', '1520474284', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1254', '45', '1520474315', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1255', '45', '1520475248', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1256', '40', '1520475257', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1257', '40', '1520478226', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1258', '45', '1520478239', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1259', '45', '1520478934', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1260', '40', '1520478952', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1261', '34', '1520479837', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1262', '46', '1520479854', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1263', '40', '1520479879', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1264', '34', '1520479916', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1265', '34', '1520479959', '0', '123.123.101.60', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-03-08 11:39登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1266', '46', '1520480169', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1267', '47', '1520480186', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1268', '34', '1520480616', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1269', '45', '1520480629', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1270', '45', '1520485436', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1271', '34', '1520485461', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1272', '34', '1520487375', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1273', '40', '1520487400', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1274', '40', '1520487924', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1275', '34', '1520487944', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1276', '34', '1520489666', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1277', '40', '1520489703', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1278', '40', '1520491109', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1279', '34', '1520491149', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1280', '34', '1520491171', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1281', '34', '1520491788', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1282', '34', '1520493012', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1283', '45', '1520493040', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1284', '45', '1520493203', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1285', '46', '1520493219', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1286', '46', '1520496430', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1287', '45', '1520496445', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1288', '45', '1520497809', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1289', '45', '1520498177', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1290', '45', '1520502229', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1291', '34', '1520502259', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1292', '34', '1520502808', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1293', '45', '1520502823', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1294', '45', '1520502837', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1295', '34', '1520502857', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1296', '34', '1520503316', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1297', '45', '1520503331', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1298', '45', '1520503336', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1299', '34', '1520503359', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1300', '34', '1520504028', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1301', '40', '1520504071', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1302', '40', '1520504402', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1303', '45', '1520504416', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1304', '45', '1520504481', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1305', '34', '1520504500', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1306', '34', '1520557417', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1307', '45', '1520557444', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1308', '53', '1520558615', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1309', '41', '1520558629', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1310', '34', '1520558718', '0', '61.51.164.136', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-03-09 09:18登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1311', '53', '1520558771', '0', '61.51.164.136', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户186****9918/18618249918您好！您使用了电脑2018-03-09 09:11登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1312', '45', '1520559770', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1313', '45', '1520560418', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1314', '45', '1520560454', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1315', '34', '1520560476', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1316', '34', '1520561882', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1317', '45', '1520561910', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1318', '45', '1520562519', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1319', '34', '1520562539', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1320', '47', '1520562567', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '2', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1321', '40', '1520562586', '0', '192.168.0.153', '中国-北京-北京', '0', '2', '1', '2.1.2', 'MSM8974  samsung\nSM-N9009', null);
+INSERT INTO `tzht_log` VALUES ('1322', '34', '1520562802', '0', '61.51.164.136', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-03-09 10:22登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1323', '34', '1520565354', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1324', '45', '1520565367', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1325', '45', '1520565808', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1326', '34', '1520565830', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1327', '34', '1520572292', '0', '61.51.164.136', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户156****5039/15652465039您好！您使用了电脑2018-03-09 13:32登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1328', '41', '1520572646', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1329', '53', '1520572671', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1330', '53', '1520572887', '0', '61.51.164.136', '中国-北京-北京', '0', '1', '1', '', '', '登录成功!尊敬的用户186****9918/18618249918您好！您使用了电脑2018-03-09 13:27登录地址为中国-北京-北京');
+INSERT INTO `tzht_log` VALUES ('1331', '34', '1520572960', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1332', '45', '1520572976', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1333', '53', '1520573164', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '2', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1334', '41', '1520573177', '0', '192.168.0.130', '中国-北京-北京', '0', '2', '1', '2.1.2', 'ALP  HUAWEI\nALP-TL00', null);
+INSERT INTO `tzht_log` VALUES ('1335', '45', '1520573263', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1336', '34', '1520573280', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1337', '34', '1520573304', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1338', '34', '1520573335', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1339', '34', '1520573351', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1340', '40', '1520573388', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1341', '40', '1520573404', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1342', '45', '1520573437', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1343', '45', '1520573480', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1344', '34', '1520573500', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1345', '34', '1520573521', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1346', '45', '1520573555', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1347', '45', '1520575975', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1348', '34', '1520575997', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1349', '34', '1520577197', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1350', '45', '1520577220', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '1', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
+INSERT INTO `tzht_log` VALUES ('1351', '45', '1520589133', '0', '192.168.0.176', '中国-北京-北京', '0', '2', '2', '2.1.2', 'QC_Reference_Phone  Xiaomi\nRedmi 4A', null);
 
 -- ----------------------------
 -- Table structure for `tzht_message`
@@ -1945,7 +2163,7 @@ CREATE TABLE `tzht_message` (
   `content` text,
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '留言时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='留言表';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='留言表';
 
 -- ----------------------------
 -- Records of tzht_message
@@ -1959,6 +2177,7 @@ INSERT INTO `tzht_message` VALUES ('7', '27', '信息反馈', '1517381872');
 INSERT INTO `tzht_message` VALUES ('8', '31', '5555', '1517385606');
 INSERT INTO `tzht_message` VALUES ('9', '21', '296', '1517542865');
 INSERT INTO `tzht_message` VALUES ('10', '31', '2555', '1517641985');
+INSERT INTO `tzht_message` VALUES ('12', '46', '233638', '1519871029');
 
 -- ----------------------------
 -- Table structure for `tzht_oauth_user`
@@ -2087,13 +2306,14 @@ CREATE TABLE `tzht_product` (
   `pic` varchar(100) NOT NULL DEFAULT '' COMMENT '宣传图片',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='企业产品表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='企业产品表';
 
 -- ----------------------------
 -- Records of tzht_product
 -- ----------------------------
 INSERT INTO `tzht_product` VALUES ('3', '4', '企业产品', 'http://xh.2188.com.cn/Product/add.html', '[\"\\/Uploads\\/product\\/2018-02-01\\/5a726feac5992.jpg\"]', '1517449198');
 INSERT INTO `tzht_product` VALUES ('4', '34', '网络服务', 'www.2188.com.cn', '[\"\\/Uploads\\/product\\/2018-02-06\\/5a797951a92b3.jpg\"]', '1517910355');
+INSERT INTO `tzht_product` VALUES ('5', '53', '产品1', 'www.2188.com.cn', '[\"\\/Uploads\\/product\\/2018-03-09\\/5aa220754f2dc.jpg\"]', '1520574585');
 
 -- ----------------------------
 -- Table structure for `tzht_role`
@@ -2125,7 +2345,7 @@ CREATE TABLE `tzht_rongcloudim` (
   `rongim` varchar(80) NOT NULL DEFAULT '' COMMENT '讨论组唯一标识',
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='融云讨论组表';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='融云讨论组表';
 
 -- ----------------------------
 -- Records of tzht_rongcloudim
@@ -2140,6 +2360,8 @@ INSERT INTO `tzht_rongcloudim` VALUES ('7', '同舟鸿图公开会议(2018.2.1)�
 INSERT INTO `tzht_rongcloudim` VALUES ('8', '同舟年会(2018.2.7)讨论组', '6cb8f1f5-5039-4f9f-ac60-645283a43cb5', '1517987121');
 INSERT INTO `tzht_rongcloudim` VALUES ('9', '同舟公开会议(2018.2.7)讨论组', 'f5febee7-ac82-425f-b279-b10407375119', '1517987443');
 INSERT INTO `tzht_rongcloudim` VALUES ('10', '中网深蓝公开会议(2018.2.7) 讨论组', '8d0a48ef-21a7-478b-a9c2-8cd7e0e29462', '1517987508');
+INSERT INTO `tzht_rongcloudim` VALUES ('11', '人工智能中国论坛2018讨论组', 'eeae10f7-bb52-4523-bdc8-c18169da7378', '1519794757');
+INSERT INTO `tzht_rongcloudim` VALUES ('12', '测试会议讨论组', 'c37bb17e-1c2a-4049-bb8a-4b7de20ed436', '1520499123');
 
 -- ----------------------------
 -- Table structure for `tzht_signjgpush`
@@ -2154,7 +2376,7 @@ CREATE TABLE `tzht_signjgpush` (
   `type` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '推送标识',
   `addtime` int(11) NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8 COMMENT='签到推送消息表';
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COMMENT='签到推送消息表';
 
 -- ----------------------------
 -- Records of tzht_signjgpush
@@ -2196,6 +2418,9 @@ INSERT INTO `tzht_signjgpush` VALUES ('51', '101', '22', '北京同舟鸿图文�
 INSERT INTO `tzht_signjgpush` VALUES ('52', '101', '21', '北京同舟鸿图文化创意有限公司 / 冬日之恋', '北京同舟鸿图文化创意有限公司 / 冬日之恋', '1', '1517996004');
 INSERT INTO `tzht_signjgpush` VALUES ('53', '102', '41', '2018年公司年会签到温馨消息', '王总发表年会祝福语，猪年大吉大利，新的一年更加辉煌。', '1', '1518052673');
 INSERT INTO `tzht_signjgpush` VALUES ('54', '105', '45', '北京同舟鸿图文化创意有限公司 / tzhtlhl2018 2018.2.22', '北京同舟鸿图文化创意有限公司 / tzhtlhl2018  2018.2.22', '1', '1519270861');
+INSERT INTO `tzht_signjgpush` VALUES ('56', '106', '46', 'tzhtmn2018', 'tzhtmn2018', '1', '1519794659');
+INSERT INTO `tzht_signjgpush` VALUES ('57', '109', '46', '北京同舟鸿图文化创意有限公司 / tzhtmn2018', '北京同舟鸿图文化创意有限公司 / tzhtmn2018', '1', '1519873156');
+INSERT INTO `tzht_signjgpush` VALUES ('58', '112', '36', '欢迎北京中网深蓝参会！', '欢迎您参加我们的会议！你的资料请在会议资料栏目中下载！你的住宿房间号是309，请到前台出示身份证领钥匙。如有会务事宜咨询请致电65686680.或者在讨论组中联系管理人员！', '1', '1520318386');
 
 -- ----------------------------
 -- Table structure for `tzht_system`
@@ -2217,7 +2442,7 @@ INSERT INTO `tzht_system` VALUES ('3', 'WEB_DESCRIPTION', '幸会会议APP， �
 INSERT INTO `tzht_system` VALUES ('4', 'WEB_URL', 'http://xh.2188.com.cn');
 INSERT INTO `tzht_system` VALUES ('5', 'WEB_STATUS', '1');
 INSERT INTO `tzht_system` VALUES ('6', 'WEB_CLOSE_WORD', '网站维护中，请稍后访问！');
-INSERT INTO `tzht_system` VALUES ('7', 'COPYRIGHT_WORD', '©2017 幸会');
+INSERT INTO `tzht_system` VALUES ('7', 'COPYRIGHT_WORD', '©2017 -2020幸会');
 INSERT INTO `tzht_system` VALUES ('8', 'WEB_ICP_NUMBER', '京ICP备12040646号-1');
 INSERT INTO `tzht_system` VALUES ('9', 'WEB_STATISTICS', '');
 INSERT INTO `tzht_system` VALUES ('10', 'EMAIL_SMTP', 'smtp.163.com');
@@ -2273,32 +2498,34 @@ CREATE TABLE `tzht_user` (
   `jpush` varchar(255) NOT NULL COMMENT '极光推送别名',
   `is_login` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否登录，0为退出，1为登录',
   `landline` varchar(20) NOT NULL COMMENT '座机号',
+  `bphone` char(11) NOT NULL,
   `nickname` varchar(100) NOT NULL COMMENT '昵称',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COMMENT='用户基础表';
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COMMENT='用户基础表';
 
 -- ----------------------------
 -- Records of tzht_user
 -- ----------------------------
-INSERT INTO `tzht_user` VALUES ('4', '', '', '189****6236', 'EFBFDBF3B9E7E4B3912ABC79A7692436AD22DBB2', '18911936236', '/./Uploads/Avatar/2018-01-17/5a5ec83f98c52.jpeg', '信息技术', '北京同舟鸿图文化创意有限公司', '部门经理', '北京市北京市朝阳区', '景阳宏昌大厦307-309', '', '0', '', '1', '2', '1516160158', '0', '127.0.0.1', '', 'rBUsAg/tLTcDWEquk4OEbMliGEQzHZkcn1MyOsaOWek8HprMJp2++42mlxtBJ99Y7wThXY6dnpnqTcEoqtTn7A==', 'www.tzht.net.cn', '公司集设计、开发、营销为一体的综合性公司，公司主要为大型企事业单位提供技术开发、技术咨询、技术服务等，同时在移动互联网创新领域方面有一定的研究，并且跟相关技术研究院等科研机构有比较广泛深入的战略合作。', '', '/App/Index/usercode/id/4.html', '0', '', '0', '4_xinghuiapp', '0', '010-63942568', '');
-INSERT INTO `tzht_user` VALUES ('32', '', '', '135****2050', '8BC5DE83CF1DAF79ED5B2F13F93D7C05D01D0388', '13552832050', '/./Uploads/Avatar/2018-01-30/5a704b6d9c5d8.jpeg', '', '', '', '', '', '', '0', '', '1', '1', '1517308233', '0', '127.0.0.1', '', 'XIOUEz9/y/jHsETRLnbNHWLgkQ3O+7PFPxqmhyeRWfhtqPYOfBKwmvR/vVfNYBCtQcp3eaFxM3M=', '', '', '', '/App/Index/usercode/id/32.html', '0', '', '0', '32_xinghuiapp', '0', '', '');
-INSERT INTO `tzht_user` VALUES ('34', '', '', '156****5039', '321E18352A7BA2DB7EF14553F8F8E14904B3D36C', '15652465039', '/./Uploads/Avatar/2018-02-07/5a7a9c6216a7e.jpeg', '信息技术', '北京中网深蓝技术有限公司', '', '', '', '', '0', '', '1', '2', '1517646995', '0', '127.0.0.1', '', 'eubA0xvJWBkgXb07WpkeMsliGEQzHZkcn1MyOsaOWekgDWgIXlP1tu4559nud8y3ZZHqvRmMvWHqTcEoqtTn7A==', 'www.2188.com.cn', '', '', '/App/Index/usercode/id/34.html', '0', '', '0', '34_xinghuiapp', '0', '0106666666', '我的未来我做主');
-INSERT INTO `tzht_user` VALUES ('36', '', '', 'zwslsw01', '5C81FACCDA530A8079ACDEB1F04DF130EAC80B8A', '18600012222', '/./Uploads/Avatar/2018-02-24/5a9113d37fbd4.jpeg', '', '北京中网深蓝技术有限公司', '', '', '', '', '0', '', '1', '1', '1517909650', '0', '127.0.0.1', '', 'n0jnBBy0fLeHVGb2jk+Cf8liGEQzHZkcn1MyOsaOWekgDWgIXlP1tjh9N4mgZk5m2lXb0Rf1ZorqTcEoqtTn7A==', '', '', '', '/Home/Index/usercode/id/36.html', '34', '中网深蓝商务', '2', '36_xinghuiapp', '1', '', '');
-INSERT INTO `tzht_user` VALUES ('39', '', '', 'zwsllwg888', 'E89F915537E646C4D9125BD06652BB8FDF6C24B8', '18911936258', '/Uploads/image/logo.png', '', '北京中网深蓝技术有限公司', '', '', '', '', '0', '', '1', '1', '1517986382', '0', '127.0.0.1', '', 'gKn9O0X4lcF/d6InOUJ89pIRREFK8oWTStcrEQuqMRrxHr6qR7xTna6mrke8MMZ3ml/UUxaBgDpGZXlsl2ZFEg==', '', '', '', '/Home/Index/usercode/id/39.html', '34', '刘卫国', '2', '39_xinghuiapp', '0', '', '');
-INSERT INTO `tzht_user` VALUES ('40', '', '', '176****8102', '0E2260CA7E6A2449009437DDA311E4742A5E4E7C', '17600898102', '/Uploads/image/logo.png', '', '', '', '', '', '', '0', '', '1', '1', '1517992379', '0', '127.0.0.1', '', '/vYuz/boQ/Ny4z0IFF/xScliGEQzHZkcn1MyOsaOWekgDWgIXlP1tiLK0/V0opJXRkbcvNZOjAPqTcEoqtTn7A==', '', '', '', '/App/Index/usercode/id/40.html', '0', '', '0', '40_xinghuiapp', '0', '', '');
-INSERT INTO `tzht_user` VALUES ('41', '', '', 'tzhtwyg2018', 'EFBFDBF3B9E7E4B3912ABC79A7692436AD22DBB2', '18601159800', '/./Uploads/Avatar/2018-02-07/5a7b0d286ada9.jpeg', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518002440', '0', '127.0.0.1', '', 'd06IM2oUv2rHsETRLnbNHWLgkQ3O+7PFPxqmhyeRWfhohMKSEQoTXqnX0GnxQ5wYvX4pUdlSrUU=', '', '', '言善信，政善治', '/Home/Index/usercode/id/41.html', '4', '王总', '2', '41_xinghuiapp', '1', '', '欣欣向荣');
-INSERT INTO `tzht_user` VALUES ('43', '', '', 'tzhtlwg2018', 'AB0B8AA0D76D57B0D463A7209F52267ADF686184', '18911936235', '/./Uploads/Avatar/2018-02-08/5a7b25b0b1c68.jpeg', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518002935', '0', '127.0.0.1', '', 'swvWzb9jyu7fDl/0uubxzmLgkQ3O+7PFPxqmhyeRWfhohMKSEQoTXnnmPZ7jmzD17mkxtGsS5Lk=', '', '', '', '/Home/Index/usercode/id/43.html', '4', '刘为国', '2', '43_xinghuiapp', '1', '', '');
-INSERT INTO `tzht_user` VALUES ('44', '', '', 'tzhtcj2018', 'C114AE895D99BDC15E025880FD44A99B2427CD52', '13717563627', '/./Uploads/Avatar/2018-02-07/5a7aedb1e4dca.jpeg', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518002997', '0', '127.0.0.1', '', '/9/iXbSOCkHfDl/0uubxzmLgkQ3O+7PFPxqmhyeRWfhohMKSEQoTXq/X1iP9JorN+FaaOCSkvxw=', '', '', '', '/Home/Index/usercode/id/44.html', '4', '陈江', '2', '44_xinghuiapp', '1', '', '');
-INSERT INTO `tzht_user` VALUES ('45', '', '', 'tzhtlhl2018', '9D37FF541601DE56D952276F07082FBB0AE78B16', '18810356923', '/./Uploads/Avatar/2018-02-22/5a8e632a63865.jpeg', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518003074', '0', '127.0.0.1', '', 'w40L+qNEyn0S1t2gMU1eVmLgkQ3O+7PFPxqmhyeRWfhohMKSEQoTXuhzU4ia7gFbaSNcrwcfN0k=', '', '', '', '/Home/Index/usercode/id/45.html', '34', '李洪亮', '2', '45_xinghuiapp', '1', '', '睡醒的兔子');
-INSERT INTO `tzht_user` VALUES ('46', '', '', 'tzhtmn2018', '062C669DEC1DE6FA75598F3D0692622959C09AF7', '13311268626', '/./Uploads/Avatar/2018-02-26/5a93d301efb2c.jpeg', '', '北京同舟鸿图文化创意有限公司', '', '北京市北京市朝阳区', '', '', '0', '', '1', '1', '1518003123', '0', '127.0.0.1', '', '5Uq/VIyXsE6HVGb2jk+Cf8liGEQzHZkcn1MyOsaOWelEexqr/4o97d3HpC17uqr9SHigztD6D4rqTcEoqtTn7A==', '', '', '', '/Home/Index/usercode/id/46.html', '4', '马娜', '2', '46_xinghuiapp', '1', '', '菜花');
-INSERT INTO `tzht_user` VALUES ('47', '', '', 'tzhtlsa2018', 'F9D151D14A8555A9DEACC13FBDF28227ABEC3003', '13800138000', '/Uploads/image/logo.png', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518003189', '0', '127.0.0.1', '', 'fYtcPjzeXePg4jo/hqzlhcliGEQzHZkcn1MyOsaOWelEexqr/4o97a/r2enVlabWHJOalB0wzn3qTcEoqtTn7A==', '', '', '', '/Home/Index/usercode/id/47.html', '4', '刘思奥', '2', '47_xinghuiapp', '0', '', '');
-INSERT INTO `tzht_user` VALUES ('48', '', '', 'tzhtzyl2018', '8FBE4E08BEEB81D608617D6A9C787AFDDAB46D09', '13811176012', '/Uploads/image/logo.png', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518003250', '0', '127.0.0.1', '', 'RZI7BxgHViH/tBfbLpQhXsliGEQzHZkcn1MyOsaOWelEexqr/4o97da+5Zpfxxu4BOrKZkXxRjrqTcEoqtTn7A==', '', '', '', '/Home/Index/usercode/id/48.html', '4', '赵银玲', '2', '48_xinghuiapp', '0', '', '');
-INSERT INTO `tzht_user` VALUES ('49', '', '', 'tzhtwxq2018', 'E353DCC768D2D8529A9B8A91D1831487069B89B9', '13800138001', '/Uploads/image/logo.png', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518003288', '0', '127.0.0.1', '', 'pRWKTFqeE+Q8fG2QgB/WzMliGEQzHZkcn1MyOsaOWelEexqr/4o97aAUi8cJiLWD9IW5mgqsa2LqTcEoqtTn7A==', '', '', '', '/Home/Index/usercode/id/49.html', '4', '王小群', '2', '49_xinghuiapp', '1', '', '');
-INSERT INTO `tzht_user` VALUES ('50', '', '', 'tzhtdyx2018', '1292F0FCABC7A4D53506076ADD4D3B4819C6E2A5', '13693326383', '/Uploads/image/logo.png', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518003327', '0', '127.0.0.1', '', 'B7lr72gQNhuDIbe9u7/htMliGEQzHZkcn1MyOsaOWelEexqr/4o97VWIq6iB1uEg8RV1KD3q8LjqTcEoqtTn7A==', '', '', '', '/Home/Index/usercode/id/50.html', '4', '邓雅心', '2', '50_xinghuiapp', '0', '', '');
-INSERT INTO `tzht_user` VALUES ('51', '', '', 'admin123', 'F865B53623B121FD34EE5426C792E5C33AF8C227', '13717563626', '/Uploads/image/logo.png', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518007121', '0', '127.0.0.1', '', 'XGaGPXFWeUiOyanjEV1tzZIRREFK8oWTStcrEQuqMRrxHr6qR7xTndmSYOZ+IKG3gXhWFWoyPIBGZXlsl2ZFEg==', '', '', '', '/Home/Index/usercode/id/51.html', '4', 'admin123', '2', '51_xinghuiapp', '0', '', '');
-INSERT INTO `tzht_user` VALUES ('52', '', '', '133****0919', '945181A1A54BF7F7BB6D5ADF7F0EF671DA8D451A', '13391910919', '/Uploads/image/logo.png', '', '', '', '', '', '', '0', '', '1', '1', '1518059503', '0', '127.0.0.1', '', 'kW076EEbls7Aayl6zUG9v2LgkQ3O+7PFPxqmhyeRWfhohMKSEQoTXs2bd0Jpd1lkXzfzqMjHmP4=', '', '', '', '/App/Index/usercode/id/52.html', '0', '', '0', '52_xinghuiapp', '0', '', '');
-INSERT INTO `tzht_user` VALUES ('53', '', '', '186****9918', 'EE9D8F15F3904EE2D7384BC2AA21B4C361E78E96', '18618249918', '/./Uploads/Avatar/2018-02-09/5a7d72b806dab.jpeg', '文化传媒', '北京水云舟文化创意有限公司', '', '', '', '', '0', '', '1', '2', '1518170482', '0', '127.0.0.1', '', 'bYxeGKFbOMp7xnbJUSCND5IRREFK8oWTStcrEQuqMRrxHr6qR7xTnUroInnUmfyye/oEa94PsLZGZXlsl2ZFEg==', '', '', '', '/App/Index/usercode/id/53.html', '0', '', '0', '53_xinghuiapp', '0', '', '');
-INSERT INTO `tzht_user` VALUES ('55', '', '', 'candy1235', '7CFC900ADCFBF7ABDC417586B796636411943149', '13800138005', '/Uploads/image/logo.png', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1519697140', '0', '127.0.0.1', '', 'vScZBqZ63gfMMJSs8CkjfGLgkQ3O+7PFPxqmhyeRWfjaeI6fdtdo2xuvzJgX9dSyDKHNdhVgWjk=', '', '', '', '/Home/Index/usercode/id/55.html', '4', 'candy1235', '2', '55_xinghuiapp', '0', '', '');
+INSERT INTO `tzht_user` VALUES ('4', '', '', '189****6236', 'EFBFDBF3B9E7E4B3912ABC79A7692436AD22DBB2', '18911936236', '/./Uploads/Avatar/2018-01-17/5a5ec83f98c52.jpeg', '信息技术', '北京同舟鸿图文化创意有限公司', '部门经理', '北京市北京市朝阳区', '景阳宏昌大厦307-309', '', '0', '', '1', '2', '1516160158', '0', '127.0.0.1', '', 'rBUsAg/tLTcDWEquk4OEbMliGEQzHZkcn1MyOsaOWek8HprMJp2++42mlxtBJ99Y7wThXY6dnpnqTcEoqtTn7A==', 'www.tzht.net.cn', '公司集设计、开发、营销为一体的综合性公司，公司主要为大型企事业单位提供技术开发、技术咨询、技术服务等，同时在移动互联网创新领域方面有一定的研究，并且跟相关技术研究院等科研机构有比较广泛深入的战略合作。', '', '/App/Index/usercode/id/4.html', '0', '', '0', '4_xinghuiapp', '0', '010-63942568', '', '');
+INSERT INTO `tzht_user` VALUES ('32', '', '', '135****2050', '8BC5DE83CF1DAF79ED5B2F13F93D7C05D01D0388', '', '/./Uploads/Avatar/2018-01-30/5a704b6d9c5d8.jpeg', '', '', '', '', '', '', '0', '', '1', '1', '1517308233', '0', '127.0.0.1', '', 'XIOUEz9/y/jHsETRLnbNHWLgkQ3O+7PFPxqmhyeRWfhtqPYOfBKwmvR/vVfNYBCtQcp3eaFxM3M=', '', '', '', '/App/Index/usercode/id/32.html', '0', '', '0', '32_xinghuiapp', '0', '', '13552832050', '');
+INSERT INTO `tzht_user` VALUES ('34', '', '', '156****5039', '321E18352A7BA2DB7EF14553F8F8E14904B3D36C', '15652465039', '/./Uploads/Avatar/2018-02-07/5a7a9c6216a7e.jpeg', '信息技术', '北京中网深蓝技术有限公司', '', '', '', '', '0', '', '1', '2', '1517646995', '0', '127.0.0.1', '', 'eubA0xvJWBkgXb07WpkeMsliGEQzHZkcn1MyOsaOWekgDWgIXlP1tu4559nud8y3ZZHqvRmMvWHqTcEoqtTn7A==', 'www.2188.com.cn', '', '', '/App/Index/usercode/id/34.html', '0', '', '0', '34_xinghuiapp', '0', '0106666666', '', '我的未来我做主');
+INSERT INTO `tzht_user` VALUES ('36', '', '', 'zwslsw01', '5C81FACCDA530A8079ACDEB1F04DF130EAC80B8A', '18600012222', '/./Uploads/Avatar/2018-02-24/5a9113d37fbd4.jpeg', '', '北京中网深蓝技术有限公司', '', '', '', '', '0', '', '1', '1', '1517909650', '0', '127.0.0.1', '', 'n0jnBBy0fLeHVGb2jk+Cf8liGEQzHZkcn1MyOsaOWekgDWgIXlP1tjh9N4mgZk5m2lXb0Rf1ZorqTcEoqtTn7A==', '', '', '', '/Home/Index/usercode/id/36.html', '34', '中网深蓝商务', '2', '36_xinghuiapp', '1', '', '', '');
+INSERT INTO `tzht_user` VALUES ('39', '', '', 'zwsllwg888', 'E89F915537E646C4D9125BD06652BB8FDF6C24B8', '18911936258', '/Uploads/image/logo.png', '', '北京中网深蓝技术有限公司', '', '', '', '', '0', '', '1', '1', '1517986382', '0', '127.0.0.1', '', 'gKn9O0X4lcF/d6InOUJ89pIRREFK8oWTStcrEQuqMRrxHr6qR7xTna6mrke8MMZ3ml/UUxaBgDpGZXlsl2ZFEg==', '', '', '', '/Home/Index/usercode/id/39.html', '34', '刘卫国', '2', '39_xinghuiapp', '0', '', '', '');
+INSERT INTO `tzht_user` VALUES ('40', '', '', '176****8102', '0E2260CA7E6A2449009437DDA311E4742A5E4E7C', '17600898102', '/./Uploads/Avatar/2018-03-08/5aa0d51243306.jpeg', '信息技术', '', '', '广东省潮州市潮安县', '', '', '0', '', '1', '1', '1517992379', '0', '127.0.0.1', '', '/vYuz/boQ/Ny4z0IFF/xScliGEQzHZkcn1MyOsaOWekgDWgIXlP1tiLK0/V0opJXRkbcvNZOjAPqTcEoqtTn7A==', '', '', '', '/App/Index/usercode/id/40.html', '0', '', '0', '40_xinghuiapp', '0', '', '', '不忘初心');
+INSERT INTO `tzht_user` VALUES ('41', '', '', 'tzhtwyg2018', 'EFBFDBF3B9E7E4B3912ABC79A7692436AD22DBB2', '18601159800', '/./Uploads/Avatar/2018-02-07/5a7b0d286ada9.jpeg', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518002440', '0', '127.0.0.1', '', 'd06IM2oUv2rHsETRLnbNHWLgkQ3O+7PFPxqmhyeRWfhohMKSEQoTXqnX0GnxQ5wYvX4pUdlSrUU=', '', '', '言善信，政善治', '/Home/Index/usercode/id/41.html', '4', '王总', '2', '41_xinghuiapp', '1', '', '', '欣欣向荣');
+INSERT INTO `tzht_user` VALUES ('43', '', '', 'tzhtlwg2018', 'AB0B8AA0D76D57B0D463A7209F52267ADF686184', '18911936235', '/./Uploads/Avatar/2018-02-08/5a7b25b0b1c68.jpeg', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518002935', '0', '127.0.0.1', '', 'swvWzb9jyu7fDl/0uubxzmLgkQ3O+7PFPxqmhyeRWfhohMKSEQoTXnnmPZ7jmzD17mkxtGsS5Lk=', '', '', '', '/Home/Index/usercode/id/43.html', '4', '刘为国', '2', '43_xinghuiapp', '1', '', '', '');
+INSERT INTO `tzht_user` VALUES ('44', '', '', 'tzhtcj2018', 'C114AE895D99BDC15E025880FD44A99B2427CD52', '13717563627', '/./Uploads/Avatar/2018-02-07/5a7aedb1e4dca.jpeg', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518002997', '0', '127.0.0.1', '', '/9/iXbSOCkHfDl/0uubxzmLgkQ3O+7PFPxqmhyeRWfhohMKSEQoTXq/X1iP9JorN+FaaOCSkvxw=', '', '', '', '/Home/Index/usercode/id/44.html', '4', '陈江', '2', '44_xinghuiapp', '1', '', '', '');
+INSERT INTO `tzht_user` VALUES ('45', '', '', 'tzhtlhl2018', '9D37FF541601DE56D952276F07082FBB0AE78B16', '18810356923', '/./Uploads/Avatar/2018-02-22/5a8e632a63865.jpeg', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518003074', '0', '127.0.0.1', '', 'w40L+qNEyn0S1t2gMU1eVmLgkQ3O+7PFPxqmhyeRWfhohMKSEQoTXuhzU4ia7gFbaSNcrwcfN0k=', '', '', '', '/Home/Index/usercode/id/45.html', '34', '李洪亮', '2', '45_xinghuiapp', '0', '', '', '睡醒的兔子');
+INSERT INTO `tzht_user` VALUES ('46', '', '18810356923@163.com', 'tzhtmn2018', '062C669DEC1DE6FA75598F3D0692622959C09AF7', '13311268626', '/./Uploads/Avatar/2018-02-26/5a93d301efb2c.jpeg', '金融保险', '北京同舟鸿图文化创意有限公司', '', '北京市北京市朝阳区', '', '', '0', '', '1', '1', '1518003123', '0', '127.0.0.1', '', '5Uq/VIyXsE6HVGb2jk+Cf8liGEQzHZkcn1MyOsaOWelEexqr/4o97d3HpC17uqr9SHigztD6D4rqTcEoqtTn7A==', '', '', '个人签名', '/Home/Index/usercode/id/46.html', '4', '马娜', '2', '46_xinghuiapp', '0', '', '', '阳光沙滩');
+INSERT INTO `tzht_user` VALUES ('47', '', '', 'tzhtlsa2018', 'F9D151D14A8555A9DEACC13FBDF28227ABEC3003', '13800138000', '/Uploads/image/logo.png', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518003189', '0', '127.0.0.1', '', 'fYtcPjzeXePg4jo/hqzlhcliGEQzHZkcn1MyOsaOWelEexqr/4o97a/r2enVlabWHJOalB0wzn3qTcEoqtTn7A==', '', '', '', '/Home/Index/usercode/id/47.html', '4', '刘思奥', '2', '47_xinghuiapp', '0', '', '', '');
+INSERT INTO `tzht_user` VALUES ('48', '', '', 'tzhtzyl2018', '8FBE4E08BEEB81D608617D6A9C787AFDDAB46D09', '13811176012', '/Uploads/image/logo.png', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518003250', '0', '127.0.0.1', '', 'RZI7BxgHViH/tBfbLpQhXsliGEQzHZkcn1MyOsaOWelEexqr/4o97da+5Zpfxxu4BOrKZkXxRjrqTcEoqtTn7A==', '', '', '', '/Home/Index/usercode/id/48.html', '4', '赵银玲', '2', '48_xinghuiapp', '0', '', '', '');
+INSERT INTO `tzht_user` VALUES ('49', '', '', 'tzhtwxq2018', 'E353DCC768D2D8529A9B8A91D1831487069B89B9', '13800138001', '/Uploads/image/logo.png', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518003288', '0', '127.0.0.1', '', 'pRWKTFqeE+Q8fG2QgB/WzMliGEQzHZkcn1MyOsaOWelEexqr/4o97aAUi8cJiLWD9IW5mgqsa2LqTcEoqtTn7A==', '', '', '', '/Home/Index/usercode/id/49.html', '4', '王小群', '2', '49_xinghuiapp', '1', '', '', '');
+INSERT INTO `tzht_user` VALUES ('50', '', '', 'tzhtdyx2018', '1292F0FCABC7A4D53506076ADD4D3B4819C6E2A5', '13693326383', '/Uploads/image/logo.png', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518003327', '0', '127.0.0.1', '', 'B7lr72gQNhuDIbe9u7/htMliGEQzHZkcn1MyOsaOWelEexqr/4o97VWIq6iB1uEg8RV1KD3q8LjqTcEoqtTn7A==', '', '', '', '/Home/Index/usercode/id/50.html', '4', '邓雅心', '2', '50_xinghuiapp', '0', '', '', '');
+INSERT INTO `tzht_user` VALUES ('51', '', '', 'admin123', 'F865B53623B121FD34EE5426C792E5C33AF8C227', '13717563626', '/Uploads/image/logo.png', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1518007121', '0', '127.0.0.1', '', 'XGaGPXFWeUiOyanjEV1tzZIRREFK8oWTStcrEQuqMRrxHr6qR7xTndmSYOZ+IKG3gXhWFWoyPIBGZXlsl2ZFEg==', '', '', '', '/Home/Index/usercode/id/51.html', '4', 'admin123', '2', '51_xinghuiapp', '0', '', '', '');
+INSERT INTO `tzht_user` VALUES ('52', '', '', '133****0919', '945181A1A54BF7F7BB6D5ADF7F0EF671DA8D451A', '13391910919', '/Uploads/image/logo.png', '', '', '', '', '', '', '0', '', '1', '1', '1518059503', '0', '127.0.0.1', '', 'kW076EEbls7Aayl6zUG9v2LgkQ3O+7PFPxqmhyeRWfhohMKSEQoTXs2bd0Jpd1lkXzfzqMjHmP4=', '', '', '', '/App/Index/usercode/id/52.html', '0', '', '0', '52_xinghuiapp', '0', '', '', '');
+INSERT INTO `tzht_user` VALUES ('53', '', '', '186****9918', 'EFBFDBF3B9E7E4B3912ABC79A7692436AD22DBB2', '18618249918', '/./Uploads/Avatar/2018-02-09/5a7d72b806dab.jpeg', '文化传媒', '北京水云舟文化创意有限公司', '', '', '', '', '0', '', '1', '2', '1518170482', '0', '127.0.0.1', '', 'bYxeGKFbOMp7xnbJUSCND5IRREFK8oWTStcrEQuqMRrxHr6qR7xTnUroInnUmfyye/oEa94PsLZGZXlsl2ZFEg==', '', '', '', '/App/Index/usercode/id/53.html', '0', '', '0', '53_xinghuiapp', '0', '', '', '');
+INSERT INTO `tzht_user` VALUES ('57', '', '', 'candy1235', '88A2C89B711FF4F38523BCD0E6D2E14EF68092C5', '13552832050', '/Uploads/image/logo.png', '', '北京同舟鸿图文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1519787432', '0', '127.0.0.1', '', 'AG262bfnI0J/mA8HxL3hZpIRREFK8oWTStcrEQuqMRrxHr6qR7xTndp0raT5x4C2Y/TNmfuf4fBGZXlsl2ZFEg==', '', '', '', '/Home/Index/usercode/id/57.html', '4', 'candy1235', '2', '57_xinghuiapp', '0', '', '', '');
+INSERT INTO `tzht_user` VALUES ('58', '', '', 'syzsw1', '77BDD7687B818827705160E0898891C3CF3B3B08', '13910013322', '/Uploads/image/logo.png', '', '北京水云舟文化创意有限公司', '', '', '', '', '0', '', '1', '1', '1520574198', '0', '127.0.0.1', '', 'NeWYCafWvvMPgP4nuNHb9GLgkQ3O+7PFPxqmhyeRWfj/bbavo7pNSp7GDhZjLs0MRqXt3sMlNaY=', '', '', '', '/Home/Index/usercode/id/58.html', '53', '水云舟商务', '2', '58_xinghuiapp', '0', '', '', '');
 
 -- ----------------------------
 -- Table structure for `tzht_user_partners`
@@ -2319,7 +2546,7 @@ CREATE TABLE `tzht_user_partners` (
   `profile` text NOT NULL COMMENT '公司简介',
   `type` tinyint(1) NOT NULL DEFAULT '2' COMMENT '用户类型，2表示企业',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='合作伙伴表';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='合作伙伴表';
 
 -- ----------------------------
 -- Records of tzht_user_partners
@@ -2329,3 +2556,5 @@ INSERT INTO `tzht_user_partners` VALUES ('2', '35', 'web@isu5.cn', '13718601024'
 INSERT INTO `tzht_user_partners` VALUES ('4', '32', '1601796593@qq.com', '18810356923', '\"\\/Uploads\\/userc\\/2018-01-29\\/5a6e8da9e9cdd.jpg\"', 'a', '北京北京市石景山区', 'a', '1517194666', '1517194666', 'a', 'a', '2');
 INSERT INTO `tzht_user_partners` VALUES ('5', '32', 'web@isu5.cn', '13718601024', '/Uploads/userc/2018-01-29/5a6e8e3023c28.jpg', '北京联达动力信息科技股份有限公司', '北京北京市石景山区', '海淀大街甲38号银科大厦2206-08室', '1517194855', '1517194855', 'http://www.lkpower.com', '12312', '2');
 INSERT INTO `tzht_user_partners` VALUES ('6', '47', '18810356954@qq.com', '18810356524', '/Uploads/userc/2018-01-30/5a7039190b61b.jpg', '天猫', '北京北京市石景山区', '天猫', '1517304113', '1517304113', 'http://xh.2188.com.cn/index.php/Admin/Index/index.html', '天猫', '2');
+INSERT INTO `tzht_user_partners` VALUES ('7', '109', '1601796596@qq.com', '18601159800', '/Uploads/userc/2018-03-01/5a976d227aa84.jpg', 'Escom Events', '北京北京市石景山区', '成都 四川省成都市总府街31号', '1519873382', '1519873382', 'http://xh.2188.com.cn', '成都 四川省成都市总府街31号', '2');
+INSERT INTO `tzht_user_partners` VALUES ('8', '106', '16017965693@qq.com', '18810356955', '/Uploads/userc/2018-03-01/5a976fa0b8353.jpg', '上海必矿企业管理咨询有限公司', '北京北京市石景山区', '以色列，特拉维夫希尔顿酒店', '1519873987', '1519873987', '以色列，特拉维夫希尔顿酒店', '以色列，特拉维夫希尔顿酒店', '2');

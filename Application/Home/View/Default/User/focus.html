@@ -1,0 +1,91 @@
+<layout name="layout" />
+
+
+	<div class="page-content">
+			
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			
+			<!-- END STYLE CUSTOMIZER -->
+			<!-- BEGIN PAGE HEADER-->
+			<h3 class="page-title">
+			二级账户管理
+			</h3>
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li>
+						<i class="fa fa-home"></i>
+						<a href="#">首页</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						二级账户管理
+					
+					</li>
+					
+				</ul>
+				
+			</div>
+			
+			<!--中间部分-->
+			<!-- BEGIN PAGE CONTENT-->
+			 <div class="tabbable-custom tabbable-full-width">
+			 
+						<ul class="nav nav-tabs">
+							<li class="active">
+								<a href="JavaScript:;" ><i class="fa fa-tags"></i>关注的用户</a>
+							</li>
+							
+						</ul>
+						
+	                 
+                	<div class="portlet-body form" >
+                     <p class="col-md-12 text-center "></p>  
+					<table class="table table-striped  table-bordered table-hover"  >
+					<thead>
+					<tr>
+						<th style="width:25px;">id</th>
+						<th  style="width:120px;">关注的用户名称</th>
+						<th  style="width:120px;">关注的用户备注</th>
+						<th  style="width:120px;">关注的用户手机号</th>
+						<th  style="width:80px;">注册时间</th>
+					</tr>
+					</thead>
+					<tbody id="checked"> 
+						<empty name="data">
+						<tr class=" alert alert-danger" >
+						<td colspan="5">您查看的二级账户还没有关注用户</td>
+						</tr>
+						
+						<else />
+						<volist name="data" id="v" >
+						<tr>
+							<td>{$v.id}</td>
+							<td>{$v.username}</td>
+							<td>{$v.remark}</td>
+							<td>{$v.phone}</td>
+							<td>{$v.ctime|date='Y-m-d H:i',###}</td>
+							
+						</tr>	
+						</volist>
+						</empty>
+					</tbody>
+					</table>
+					{$page}
+					</div>
+				
+			<!-- END PAGE CONTENT-->
+            <!--中间部分-->
+          
+		</div>
+	</div>
+	<!-- END CONTENT -->
+	
+</div>
+
+<include file='Public/footer' />
+
+
+	
+	
+	
+	
