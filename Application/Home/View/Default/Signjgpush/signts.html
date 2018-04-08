@@ -1,5 +1,8 @@
 <layout name="layout" />
-
+<?php 
+	$uid = I('get.user_id');
+	$id = I('get.conf_id');
+?>
 
 <div class="page-content">
 		
@@ -9,6 +12,11 @@
 				<ul class="nav nav-tabs">
 					<li class="active">
 						<a href="JavaScript:;" ><i class="fa fa-tags"></i>签到推送</a>
+						
+					</li>
+					<li class="">
+						<a href="{:U('Signjgpush/edit',array('conf_id'=>$id,'user_id'=>$uid))}"><i class="fa fa-tags"></i>签到推送编辑</a>
+						
 					</li>
 				</ul>
 					 

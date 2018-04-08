@@ -34,16 +34,18 @@ class ChatgroupBullController extends PublicController{
 	
 	//获取群组公告内容
 	public function bullcont(){
-		$data['bulltitle'] = I('post.title');
-		$res = $this->model->field('content,title,bulltitle,pic,file')->where(array('bulltitle'=>$data['bulltitle']))->find();
 		
-		if(IS_POST){
-			if($res !== null){
-				Response::show(200,'获取数据成功!',$res);
-			}else{
-				Response::show(401,'没有公告!');
-			}
+		//$res = $this->model->field('content,title,bulltitle,pic,file')->where(array('bulltitle'=>$data['bulltitle']))->find();
+		$data = $this->model->chatList();
+		$data = array(
+			'result' => $data['data'],
+			//'page' => $data['page']
+			);
+		if(!empty($data['result'])){
 			
+			Response::show(200,'数据返回成功',$data);
+		}else{
+			Response::show(401,'没有数据');
 		}
 		
 	}

@@ -262,6 +262,8 @@ class ConferenceController extends PublicController{
 		$this->display();
 		
 	}
+	
+	
 
 
 

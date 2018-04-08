@@ -63,6 +63,8 @@
 									<label class="col-md-3 control-label">绑定手机号</label>
 									<div class="col-md-9">
 										<input type="text" class="form-control"  name="phone" value="" datatype="m"  nullmsg="手机号不能为空" errormsg="请正确输入二级账户手机号">
+										<!-- 
+										<input type="text" class="form-control"  name="phone" value="" > -->
 										<span style="color:red"></span>
 									</div>
 								</div>
@@ -123,10 +125,9 @@ $(function() {
 					window.location.reload();
 					});
 			}else if(data.status == 4){ 
-			
-				layer.msg(data.info, {icon: 1, time: 3000,shade: 0.5 },function(){
-					window.location.reload();
-					});
+				layer.confirm(data.info, { btn: ['确定','取消']},function(){
+					window.location.href= "{:U('User/accountList')}";	
+				});
 			} else if(data.status == 5){ 
 			
 				layer.msg(data.info, {icon: 2, time: 3000,shade: 0.5 },function(){
@@ -134,7 +135,7 @@ $(function() {
 					});
 			} else {
 				
-				layer.msg(data.info, { icon: 2, time: 3000 ,shade: 0.5},function(){
+				layer.msg(data.info, { icon: 2, time: 30000 ,shade: 0.5},function(){
 					window.location.href= "{:U('User/accountList')}";
 						
 				});

@@ -45,7 +45,7 @@ input,button,submit,textarea,option,textarea{font-family:'微软雅黑';}
 					<a href="JavaScript:;" ><i class="fa fa-tags"></i>新建合作伙伴</a>
 				</li>
 				<li class="">
-					<a href="{:U('Userpartners/index')}" ><i class="fa fa-tags"></i>合作伙伴列表</a>
+					<a href="{:U('Userpartners/index',array('conf_id'=>I('get.id')))}" ><i class="fa fa-tags"></i>合作伙伴列表</a>
 				</li>
 		</ul>
 	
@@ -91,13 +91,13 @@ input,button,submit,textarea,option,textarea{font-family:'微软雅黑';}
 			<form class="form-horizontal" action="" method="post" id="myform" enctype='multipart/form-data'>
 				<input type="hidden" name="conf_id" value="<?php echo I('get.id')?>"/>
 				<div class="form-body">
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label class="col-md-3 control-label">邮箱</label>
 						<div class="col-md-5">
 							<input type="text" class="form-control"  name="email" id="email" value="" datatype="e" nullmsg="请输入邮箱" errormsg="请输入输入正确的邮箱">
 							
 						</div>
-					</div>
+					</div> -->
 					<div class="form-group">
 						<label class="col-md-3 control-label">电话</label>
 						<div class="col-md-5">
@@ -260,7 +260,20 @@ $(function(){
 
 	//获取添加的数据到表单中
    function addinput(id){
-		var usercompanyname = $('#usercompanyname'+id).text();
+		$.post("{:U('Userpartners/sendData')}",{user_id:id},function(data){
+			//alert(data);
+			if(data.status == 1){
+				layer.msg(data.info, { icon: 1, time: 3000 ,shade: 0.5},function(){
+					window.location.href= "{:U('Userpartners/index')}";
+				});
+			} else{
+				layer.msg(data.info, { icon: 2, time: 3000 ,shade: 0.5},function(){
+				
+					window.location.reload();
+				});
+			}
+		})
+		/* var usercompanyname = $('#usercompanyname'+id).text();
 		var userphone = $('#userphone'+id).text();
 		var useremail = $('#useremail'+id).text();
 		var userlogo = $('#userlogo'+id).text();
@@ -280,8 +293,9 @@ $(function(){
 		$("#imghead").attr({'src':userlogo}).show();
 		$("input[name=logo]").attr({'value':userlogo});
 		//清除上传插件
-		$("#webupload_logo").empty();
-		//alert(usercompanyname);
+		$("#webupload_logo").empty(); -->
+		//alert(usercompanyname);*/
+		
 	}
 
 </script>

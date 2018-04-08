@@ -1,6 +1,9 @@
 <layout name="layout" />
 
-
+<?php 
+	$uid = I('get.user_id');
+	$id = I('get.conf_id');
+?>
 <div class="page-content">
 		
 		<!--中间部分-->
@@ -9,6 +12,9 @@
 				<ul class="nav nav-tabs">
 					<li class="active">
 						<a href="JavaScript:;" ><i class="fa fa-tags"></i>个性推送</a>
+					</li>
+					<li class="">
+						<a href="{:U('Jgpushperson/personlist',array('conf_id'=>$id,'user_id'=>$uid))}" ><i class="fa fa-tags"></i>个性推送历史消息</a>
 					</li>
 				</ul>
 					 

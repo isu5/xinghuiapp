@@ -53,7 +53,7 @@ class UserController extends PublicController{
 		$comiscert = $cert->field('company,certificate,certificateimg,certtime,type,is_cert')->where(array('uid'=>$data['uid']))->find();
 		
 		//个人
-		$personcert = $cert->field('uid,realname,idcard,front,back,certtime,type,is_cert')->where(array('uid'=>$data['uid']))->find();
+		$personcert = $cert->field('uid,realname,idcard,front,back,certtime,type,is_cert,is_image')->where(array('uid'=>$data['uid']))->find();
 		if(IS_POST){
 			if($iscert['is_cert'] == 3){
 				Response::show(401,'您的申请已提交，正在审核中，请耐心等待!');
@@ -103,7 +103,7 @@ class UserController extends PublicController{
 		die;  */
 		$id = I('post.id');
 		
-		$data = $this->model->where(array('id' => $id))->find();
+		$data = $this->model->alias('a')->field('a.*,b.note')->join('left join tzht_conference_focus b on b.user_id=a.id')->where(array('id' => $id))->find();
 		if(IS_POST){
 			if($data){
 				Response::show(200,'获取数据成功',$data);

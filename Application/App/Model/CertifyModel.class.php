@@ -35,6 +35,7 @@ class CertifyModel extends BaseModel{
 			$ret = uploadOne('front','Idcard',array());
 			if($ret['ok'] == 1){
 				$data['front'] = $ret['images'][0];
+				$data['is_image'] = 1; //1为身份证
 			}else{
 				$this->error = $ret['error'];
 				return FALSE;
@@ -44,6 +45,7 @@ class CertifyModel extends BaseModel{
 			$ret = uploadOne('back','Idcard',array());
 			if($ret['ok'] == 1){
 				$data['back'] = $ret['images'][0];
+				$data['is_image'] = 2; //2为名片
 			}else{
 				$this->error = $ret['error'];
 				return FALSE;
@@ -68,8 +70,15 @@ class CertifyModel extends BaseModel{
 	//个人认证修改
 	public function editp(){
 		$uid = I('post.uid');
-		$front = I('post.front');
-		$back = I('post.back');
+		$data = $this->field('back,front,is_image')->where('uid='.$uid)->find();
+		//身份证
+		if($data['is_image'] == 1){
+			$front = I('post.front');
+		}
+		//名片
+		if($data['is_image'] == 2){
+			$back = I('post.back');
+		}
 		$realname = I('post.realname');
 		$iscert = 3;
 		$this->where(array('uid'=>$uid))->save(array('realname'=>$realname,'front'=>$front,'back'=>$back,'is_cert'=>$iscert));

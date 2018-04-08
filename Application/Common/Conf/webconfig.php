@@ -8,7 +8,7 @@ return array(
 	'WEB_NAME'                  =>  '幸会会议APP - 您的专用会议APP！',             //网站名：
     'WEB_KEYWORDS'              =>  '幸会会议,幸会会议APP',         //网站关键字
     'WEB_DESCRIPTION'           =>  '幸会会议APP， 您的专用会议APP！客服联系电话010-63942568.',      //网站描述
-	'COPYRIGHT_WORD'            =>  '©2017 幸会',       //文章保留版权提示
+	'COPYRIGHT_WORD'            =>  '©2017 -2020幸会',       //文章保留版权提示
     'WEB_ICP_NUMBER'            =>  '京ICP备12040646号-1',       // 网站ICP备案号
 	'WEB_STATISTICS'            =>  '',       // 第三方统计代码
 
@@ -33,5 +33,5 @@ return array(
 
 	'ACCOUNT_NUM' => '15',	
 //***********************************建立合作伙伴数量************************************************
-	'PARTNERS_NUM'=> '2',
+	'PARTNERS_NUM'=> '3',
 );

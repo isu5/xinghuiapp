@@ -23,7 +23,7 @@
 		<ul class="nav nav-tabs">
 				
 				<li class="active">
-					<a href="{:U('Userpartners/index')}" ><i class="fa fa-tags"></i>合作伙伴列表</a>
+					<a href="{:U('Userpartners/index',array('id'=>I('get.id')))}" ><i class="fa fa-tags"></i>合作伙伴列表</a>
 				</li>
 			</ul>
   		<div class="tab-content" >
@@ -48,7 +48,7 @@
 					<tr>
 						<th >id</th>
 						<th>公司名称</th>
-						<th>所属会议</th>
+						
 						<th>邮箱</th>
 						<th>电话</th>
 						<th>公司地址</th>
@@ -66,20 +66,21 @@
 						<tr>
 							<td>{$v.id}</td>
 							<td>
+								
 								{$v.companyname}
+								
+								{$v.company}
 							</td>
-							<td>
-								<a href="{:U('Conference/show',array('id'=>$v['conf_id']))}">{$v.title}</a>
-							</td>
+							
 							<td>
 								{$v.email}
 							</td>
 							<td>
-								{$v.phone}
+								{$v.phone}{$v.iphone}
 							</td>
 							
 							
-							<td>{$v.address}{$v.area}</td>
+							<td>{$v.address}{$v.dizhi}{$v.area}{$v.xxdizhi}</td>
 							
                             <td class="center">{$v.ctime|date="Y-m-d H:i",###}</td>
 							

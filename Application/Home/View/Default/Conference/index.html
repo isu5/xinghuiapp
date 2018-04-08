@@ -1,6 +1,6 @@
 <layout name="layout" />
 
-
+<?php $user_id = cookie(userid);?>
 <div class="page-content">
 	<h3 class="page-title">会议管理</h3>
 	<div class="page-bar">
@@ -111,21 +111,21 @@
 										</li>
 										<li>
 											<a href="{:U('Confbull/add',array(id=>$v['id']))}" >
-												新增会议公告
+												会议公告
 											</a> 
 										</li>
 										<li>
 											<a href="{:U('Confpic/add',array(id=>$v['id']))}">
-												新增会议图片
+												会议图片
 											</a> 
 										</li>
 										<li>
-											<a href="{:U('Userpartners/add',array(id=>$v['id']))}">
-											新增合作伙伴 </a>
+											<a href="{:U('Userpartners/partList',array(conf_id=>$v['id'],'uid'=>$user_id))}">
+											合作伙伴 </a>
 										</li>
 										<li>
 											<a href="{:U('Conference/auditlist',array(id=>$v['id'],type=>1,sign=>1))}">
-											参会人员审核 </a>
+											人员审核 </a>
 										</li>
 										<li>
 											<a href="{:U('Conference/auditlist',array(id=>$v['id'],type=>0))}">

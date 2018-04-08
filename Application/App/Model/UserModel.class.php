@@ -133,7 +133,7 @@ class UserModel extends BaseModel{
 		 }
 
 		$data['data'] = $this->alias('a')
-		->field('a.id,a.logo,a.companyname,a.username,a.phone,a.type,a.nickname')
+		->field('a.id,a.logo,a.companyname,a.username,a.phone,a.type,a.nickname,a.level')
 		->join('LEFT JOIN __CONFERENCE_AUDIT__ b on b.user_id=a.id
 		')
 		->where($where)
@@ -177,22 +177,27 @@ class UserModel extends BaseModel{
 		$curpage = I('post.page',1);; //当前的页,还应该处理非数字的情况
 
 
-		$total = $this->alias('a')->where($where)->count();	
+		$total = $this->alias('a')->where($where)->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.conf_user_id=a.id
+		')->count();	
 
 
 		$page = new AppPage($total, $showrow);
 		if ($total > $showrow) {
 			$data['page'] =  $page->myde_write();
 		 }
-
+		
+		
 		$data['data'] = $this->alias('a')
-		->field('a.id,a.username,a.logo,a.companyname,a.dimecode,a.type,a.nickname,b.state')
+		->field('a.id,a.username,a.logo,a.companyname,a.dimecode,a.type,a.nickname,a.level,b.state,b.note,c.is_cert')
 		->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.conf_user_id=a.id
+			LEFT JOIN __CERTIFY__ c on c.uid=a.id
 		')
 		->where($where)
 		->limit(($curpage - 1) * $showrow.','.$showrow)
 		->order('id desc')
 		->select();
+		
+		
 		
 		return $data;	
 		
@@ -220,8 +225,9 @@ class UserModel extends BaseModel{
 		 }
 
 		$data['data'] = $this->alias('a')
-		->field('a.id,a.username,a.logo,a.companyname,a.dimecode,a.type,a.nickname,b.state')
+		->field('a.id,a.username,a.logo,a.companyname,a.dimecode,a.type,a.nickname,a.level,b.state,c.is_cert')
 		->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.user_id=a.id
+		LEFT JOIN __CERTIFY__ c on c.uid=a.id
 		')
 		->where($where)
 		->limit(($curpage - 1) * $showrow.','.$showrow)
@@ -264,8 +270,10 @@ class UserModel extends BaseModel{
 			$data['page'] =  $page->myde_write();
 		 }
 		$data['data'] = $this->alias('a')
-		->field('a.id,a.username,a.logo,a.companyname,a.dimecode,a.type,a.nickname,b.state')
+		->field('a.id,a.username,a.logo,a.companyname,a.dimecode,a.type,a.nickname,a.level,b.state,b.note,c.is_cert')
 		->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.conf_user_id=a.id
+		LEFT JOIN __CERTIFY__ c on c.uid=a.id
+		
 		')
 		->where($where)
 		->limit(($curpage - 1) * $showrow.','.$showrow)
@@ -282,7 +290,7 @@ class UserModel extends BaseModel{
 		$where = array();
 		$companyname = I('post.companyname');
 		//不能搜索到自己
-		$where['id']  = array('neq',I('post.user_id'));
+		$where['a.id']  = array('neq',I('post.user_id'));
 		//$where['pid'] = 0;
 		
 		
@@ -304,8 +312,10 @@ class UserModel extends BaseModel{
 		if ($total > $showrow) {
 			$data['page'] =  $page->myde_write();
 		 }
-		$data['data'] = $this
-		->field('id,username,logo,companyname,type,phone,dimecode,nickname')
+		$data['data'] = $this->alias('a')
+		->field('a.id,a.username,a.logo,a.companyname,a.type,a.phone,a.dimecode,a.nickname,a.level,c.is_cert')
+		->join('LEFT JOIN __CERTIFY__ c on c.uid=a.id
+		')
 		->where($where)
 		->limit(($curpage - 1) * $showrow.','.$showrow)
 		->order('id desc')
@@ -367,11 +377,11 @@ class UserModel extends BaseModel{
 	////未拉取的群组列表
 	public function nogrouplists(){
 		$where = [];
-		$title = I('post.title');
+		$rongid = I('post.rongid');
 		$c_id = I('post.c_id');
 		
 		// 查群组中s_id 有哪些用户，
-		$str = D('Chatgroup')->where(array('title'=>$title))->find();
+		$str = D('Chatgroup')->where(array('rongid'=>$rongid))->find();
 		
 		//查询不到自己
 		if($c_id){
@@ -415,12 +425,12 @@ class UserModel extends BaseModel{
 		$uid = I('post.id');
 		$type = I('post.type');
 		if($type==0){
-			$user = $this->field('id,pid,logo,username,nickname,remark,type')->where()->select();
+			$user = $this->field('id,pid,logo,username,nickname,remark,type,level')->where()->select();
 			$level = findson($user,$uid);  //查找所有pid下的子id
 		}else{
 			$user = $this->field('pid')->where(array('id'=>$uid))->find();
 			$where['id'] = array('neq',$uid);
-			$mmp = $this->field('id,pid,logo,username,nickname,remark,type')->where($where)->select();
+			$mmp = $this->field('id,pid,logo,username,nickname,remark,type,level')->where($where)->select();
 			if($uid){
 				$level = findson($mmp,$user['pid']);
 			}

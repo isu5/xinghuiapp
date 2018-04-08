@@ -54,8 +54,9 @@ class ConferenceauditModel extends BaseModel{
 		
 		$where['conf_id'] = $map['id'];
 		$data['data'] = $this->alias('a')
-		->field('a.conf_id,b.id,b.companyname,b.username,b.logo,b.type,b.nickname')
+		->field('a.conf_id,b.id,b.companyname,b.username,b.logo,b.type,b.nickname,c.is_cert')
 		->join('LEFT JOIN __USER__ b on b.id=a.user_id
+			LEFT JOIN __CERTIFY__ c on c.uid=b.id
 		')
 		->where($where)
 		->order('id desc')
@@ -96,7 +97,7 @@ class ConferenceauditModel extends BaseModel{
 		 }
 
 		$data['data'] = $this->alias('a')
-		->field('b.id,b.logo,b.companyname,b.username,b.phone,b.type,b.nickname')
+		->field('b.id,b.logo,b.companyname,b.username,b.phone,b.type,b.nickname,b.level')
 		->join('LEFT JOIN __USER__ b on b.id=a.user_id
 		')
 		->where($condition)

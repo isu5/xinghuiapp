@@ -12,9 +12,9 @@ class ChatgroupModel extends BaseModel{
 	//是否存在讨论组
 	public function rongchat(){
 		$where = [];
-		$title = I('post.title');
+		$rongid = I('post.rongid');
 		
-		$where['title'] = $title; 
+		$where['rongid'] = $rongid; 
 		
 		$data['data'] = $this
 		->where($where)
@@ -57,9 +57,9 @@ class ChatgroupModel extends BaseModel{
 	//群组人员列表
 	public function grouplists(){
 		$where = [];
-		$title = I('post.title');
-		
-		$str = $this->where(array('title'=>$title))->find();
+		$rongid = I('post.rongid');
+		$user = D('User');
+		$str = $this->where(array('rongid'=>$rongid))->find();
 		//p($str);
 		if($str){
 			$where['id'] = array('in',$str['s_id']);
@@ -73,15 +73,15 @@ class ChatgroupModel extends BaseModel{
 		
 		$curpage = I('post.page',1); //当前的页,还应该处理非数字的情况
 
-		$total = D('User')->where($where)->count();	
+		$total = $user->where($where)->count();	
 
 		$page = new AppPage($total, $showrow);
 		if ($total > $showrow) {
 			$data['page'] =  $page->myde_write();
 		}
 		
-		$data['data'] = D('User')
-		->field('id,logo,companyname,username,phone,type,nickname')
+		$data['data'] = $user
+		->field('id,logo,companyname,username,phone,type,nickname,level')
 		->where($where)->limit(($curpage - 1) * $showrow.','.$showrow)->order('id desc')
 		
 		->select();
@@ -94,8 +94,8 @@ class ChatgroupModel extends BaseModel{
 	//群组人员列表人数
 	public function grouplistsCount(){
 		$where = [];
-		$title = I('post.title');
-		$str = $this->where(array('title'=>$title))->find();
+		$rongid = I('post.rongid');
+		$str = $this->where(array('rongid'=>$rongid))->find();
 		//p($str);
 		if($str){
 			$where['id'] = array('in',$str['s_id']);

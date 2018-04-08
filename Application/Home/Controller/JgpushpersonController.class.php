@@ -23,11 +23,41 @@ class JgpushpersonController extends PublicController{
 					$this->error('推送失败');
 				}
 			}else{
-				$this->error($this->model->getError());
+				$this->error($this->jgpush->getError());
 			}
 		}
 		
 		$this->display();
 	}
+	
+	//推送消息列表
+	public function personlist(){
+		$data = $this->jgpush->searchFront();
+		//p($data);
+    	/* p($this->jgpush->getlastsql());
+    	
+    	 */
+		$this->assign(array(
+			'data' => $data['data'],
+			'page' => $data['page']
+			));
+
+
+		$this->display();
+		
+	}
+	
+	//删除历史消息
+	public function delete(){
+		$id = I('get.id',0);
+		if($this->jgpush->delete($id) !== FALSE){
+			$code = array('status'=>'y','info'=>'删除成功');
+		}else{
+			$this->error($this->jgpush->getError());
+			$code = array('status'=>'n','info'=>'删除失败');
+		}
+		$this->ajaxReturn($code);
+	}
+	
 
 }

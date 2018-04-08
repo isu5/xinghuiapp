@@ -89,10 +89,10 @@ $id = I('get.id');
 									<!--<a href="{:U('Jgpushperson/gexingts',array('id'=>I('get.id'),'uid'=>$v['id']))}">
 										<button type="button" class="btn btn-danger">推送</button>
 									</a>-->
-									<a href="{:U('Jgpushperson/gexingts',array('id'=>I('get.id'),'uid'=>$v['id']))}">
+									<a href="{:U('Jgpushperson/gexingts',array('conf_id'=>I('get.id'),'user_id'=>$v['id']))}">
 										<button type="button" class="btn btn-danger">推送</button>
 									</a>
-									<a href="{:U('Signjgpush/signts',array('id'=>I('get.id'),'uid'=>$v['id']))}">
+									<a href="{:U('Signjgpush/signts',array('conf_id'=>I('get.id'),'user_id'=>$v['id']))}">
 										<button type="button" class="btn btn green">签到推送</button>
 									</a>
 								<?php } ?>

@@ -13,7 +13,7 @@ class UserpartnersModel extends BaseModel{
 	protected $_validate=array(
 		
 		array('phone','','手机号已经存在！请重新提交！',0,'unique',1), // 在新增的时候验证name字段是否唯一
-		array('email','','邮箱已经存在!请重新提交！',0,'unique',1), // 在新增的时候验证name字段是否唯一
+		//array('email','','邮箱已经存在!请重新提交！',0,'unique',1), // 在新增的时候验证name字段是否唯一
 	
 	);
 	
@@ -21,7 +21,7 @@ class UserpartnersModel extends BaseModel{
 	public function _before_insert(&$data, $option){
 		$data['ctime'] = time();
 		$data['utime'] = time();
-		
+		$data['conf_user_id'] = cookie('userid');
 		$data['logo'] = I('post.logo');
 	
 	}
@@ -34,6 +34,11 @@ class UserpartnersModel extends BaseModel{
 			$where['companyname'] = array('like',"%$companyname%");
 		}
 		
+		
+		//查询该会议id的，插入到表
+		$where['conf_user_id'] = cookie(userid);
+		$title = $this->field('id,conf_id')->where(array('conf_user_id'=>$where['conf_user_id']))->select();
+		
 		//翻页
 		$count = $this->where($where)->count();
 		$page = new \Think\Page($count,$pagesize);
@@ -42,19 +47,65 @@ class UserpartnersModel extends BaseModel{
 		$page->setConfig('next', '下一页');
 		$data['page'] = $page->show();
 		$data['data'] = $this->alias('a')
-		->field('a.*,b.title')
+		->field('a.*,b.title,c.companyname as company,c.phone as iphone,c.address as dizhi,c.area as xxdizhi,c.email')
 		->join('
 			LEFT JOIN __CONFERENCE__ b on b.id=a.conf_id
+			LEFT JOIN __USER__ c on c.id=a.user_id
 			')
 		->where($where)
 		->limit($page->firstRow.','.$page->listRows)
 		->order('id desc')
 		->select();
-		
+		//p($this->getLastSql());
 		return $data;
 	}
+	//选取合作伙伴列表
+	public function partList($pagesize=15){
+		$where = array();
+		$companyname = I('get.companyname');
+		if ($companyname) {
+			$where['companyname'] = array('like',"%$companyname%");
+		}
+		
+		$where['conf_id'] = I('get.conf_id');
+		//查询该会议id的，插入到表
+		$where['conf_user_id'] = cookie(userid);
+		$title = $this->field('id,conf_id')->where(array('conf_user_id'=>$where['conf_user_id']))->select();
+		
+		if($where['conf_user_id']){
+			foreach($title as $v){
+				//p($v);
+				$this->where(array('id'=>$v['id']))->setField(array(
+					'conf_id'=>$where['conf_id']
+				));
+			}
+		}
+		
+		//翻页
+		$count = $this->where($where)->count();
+		$page = new \Think\Page($count,$pagesize);
+		//配置分页
+		$page->setConfig('prev', '上一页');
+		$page->setConfig('next', '下一页');
+		$data['page'] = $page->show();
+		$data['data'] = $this->alias('a')
+		->field('a.*,b.title,c.companyname as company,c.phone as iphone,c.address as dizhi,c.area as xxdizhi,c.email')
+		->join('
+			LEFT JOIN __CONFERENCE__ b on b.id=a.conf_id
+			LEFT JOIN __USER__ c on c.id=a.user_id
+			')
+		->where($where)
+		->limit($page->firstRow.','.$page->listRows)
+		->order('id desc')
+		->select();
+		//p($this->getLastSql());
+		return $data;
+	}
+	
+	
+	
 	//搜索用户
-	public function searchUser($pagesize=3){
+	public function searchUser($pagesize=5){
 		$user = D('User');
 		$where = array();
 		$companyname = I('get.companyname');
@@ -63,7 +114,7 @@ class UserpartnersModel extends BaseModel{
 		}
 		//企业
 		$where['type']=2;
-		
+		$where['id'] = array('neq',cookie(userid));
 		/* //翻页
 		$showrow = 3; //一页显示的行数
 		

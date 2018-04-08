@@ -137,7 +137,7 @@ class UserModel extends BaseModel{
 		$where = [];
 		$where['conf_id'] = I('get.id');
 		
-		 //$uid = cookie(userid);
+		//$uid = cookie(userid);
 		/*if($uid){
 			//
 			$where['id'] =  array('neq',$uid);

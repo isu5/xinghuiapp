@@ -19,22 +19,39 @@ class UserpartnersController extends PublicController{
 	public function index(){
 		$data = $this->part->search();
 		//p($data);
-    	/* p($this->model->getlastsql());
+    	//p($this->part->getlastsql());
     	
-    	p($_COOKIE);die; */
+    	//p($_COOKIE);die;
 		$this->assign(array(
 			'data' => $data['data'],
 			'page' => $data['page']
 			));
 		$this->display();
 	}
+	//用合作伙伴中选取
+	public function partList(){
+		$data = $this->part->partList();
+		//p($data);
+    	//p($this->part->getlastsql());
+    	
+    	//p($_COOKIE);die;
+		$this->assign(array(
+			'data' => $data['data'],
+			'page' => $data['page']
+			));
+		$this->display();
+		
+	}
+	
+	
+	
 	//添加
 	public function add(){
 		
 		
 		$id = I('get.id');
 		$count = $this->part->where(array('conf_id'=>$id))->count();
-		
+
 		if(IS_POST){
 			
 			if (C('PARTNERS_NUM') > $count) {
@@ -68,10 +85,40 @@ class UserpartnersController extends PublicController{
 		if(IS_AJAX){
 			$data = $this->part->searchUser();
 			$code = array('data'=>$data['data'],'page'=>$data['page']);
+			//p($data);
 			echo json_encode($code);
 		}
 	}
 	
+	//搜索后的用户直接提交到数据库
+	public function sendData(){
+		$data['user_id'] = I('post.user_id');
+		$data['conf_user_id'] = cookie(userid);
+		
+		$map = $this->part->where(array('user_id'=>$data['user_id'],'conf_user_id'=>cookie(userid)))->find();
+		if(IS_POST){
+			//p($data);
+			if($map){
+				$code = array('status'=>2,'info'=>'您已添加过该公司，请勿重复添加!');
+			}else{
+				
+				if($this->part->create(I('post.',1))){
+					
+					if($this->part->add($data)){
+						$code = array('status'=>1,'info'=>'添加成功');
+					
+					}else{
+						$code = array('status'=>0,'info'=>'添加失败');
+					
+					}
+				}else{
+					$code = array('status'=>3,'info'=>$this->part->getError());
+					
+				}
+			}
+			$this->ajaxReturn($code);
+		}
+	}
 	
 	
 	//删除

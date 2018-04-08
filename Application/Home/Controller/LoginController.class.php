@@ -44,30 +44,34 @@ class LoginController extends Controller{
 			$user = $this->model->where("phone='{$username}' OR username='{$username}' OR email='{$username}'")->find();
 			
 			if ($user) {
-				
-				if(!empty($user['email_check_code'])) {
+				if($user['itype'] ==1){
+					$code = ['code'=>4];
+				}else{
+					if(!empty($user['email_check_code'])) {
 				//必须验证邮箱才可登录
 					$code = ['code'=>3];
 					exit;
-				
-				}elseif($user['level']==2){
-					$code = ['code'=>4];
-				}elseif($user['password'] == $password){
-					// 登录成功存cookie
 					
-					cookie("userid",$user['id']);
-					cookie("username",$user['username']);
-					cookie("useremail",$user['email']);
-					cookie("userphone",$user['phone']);
-					//登录成功
-					$code = ['code'=>1]; 
-					//添加日志
-					addlog('登录成功!');
-				}else{
-					//用户名或者密码错误
-				//	p($user['level']);	
-					$code = ['code'=>0]; //用户名或密码错误
+					}elseif($user['level']==2){
+						$code = ['code'=>4];
+					}elseif($user['password'] == $password){
+						// 登录成功存cookie
+						
+						cookie("userid",$user['id']);
+						cookie("username",$user['username']);
+						cookie("useremail",$user['email']);
+						cookie("userphone",$user['phone']);
+						//登录成功
+						$code = ['code'=>1]; 
+						//添加日志
+						addlog('登录成功!');
+					}else{
+						//用户名或者密码错误
+					//	p($user['level']);	
+						$code = ['code'=>0]; //用户名或密码错误
+					}
 				}
+				
 			
 			}else{
 				//用户名或者密码错误

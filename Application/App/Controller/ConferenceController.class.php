@@ -189,10 +189,12 @@ class ConferenceController extends PublicController{
 		if(IS_POST){
 			if($user){
 				$rest['is_att'] = 1;
+				$rest['note'] = $user['note'];
 				return Response::show(401,'您已关注该企业，请勿重复关注!',$rest);
 				
 			}else{
 				$rest['is_att'] = 0;
+				$rest['note'] = $user['note'];
 				return Response::show(200,'您未关注该企业',$rest);
 			}
 		}
@@ -200,6 +202,21 @@ class ConferenceController extends PublicController{
 		
 	}
 	
+	//修改用户备注名称
+	public function remarkNote(){
+		$data['user_id'] = I('post.user_id');
+		$data['conf_user_id'] = I('post.conf_user_id');
+		$map['note'] = I('post.note');
+		$focus = D('Conference_focus');
+		if(IS_POST){
+			$id = $focus->where(array('user_id'=>$data['user_id'],'conf_user_id'=>$data['conf_user_id']))->save($map);
+			if($id){
+				Response::show(200,'备注成功!');
+			}else{
+				Response::show(401,'备注失败!');
+			}
+		}
+	}
 	
 	
 	
@@ -217,10 +234,10 @@ class ConferenceController extends PublicController{
 					return Response::show(401,'您已关注该企业，请勿重复关注!');
 					
 				}else{
-					$userid = $this->user->where(array('id'=>$data['user_id'],'pid'=>$data['conf_user_id']))->find();
+					/* $userid = $this->user->where(array('id'=>$data['user_id'],'pid'=>$data['conf_user_id']))->find();
 					if($userid){
 						Response::show(202,'二级账户不能关注自己企业!');
-					}else{
+					}else{ */
 						if($focus->add($data)){
 					
 						Response::show(200,'关注成功!');
@@ -229,7 +246,7 @@ class ConferenceController extends PublicController{
 						}else{
 							Response::show(201,'关注失败!');
 						}
-					}
+					/* } */
 					
 				
 				}
@@ -430,6 +447,18 @@ class ConferenceController extends PublicController{
 			}else{
 				
 				Response::show(402,$this->model->getError());
+			}
+		}
+	}
+	
+	//会议修改上传文件接口
+	public function editDownfile(){
+		$data = $this->model->editDownfiles();
+		if(IS_POST){
+			if($data){
+				Response::show(200,'修改成功');
+			}else{
+				Response::show(401,'修改失败');
 			}
 		}
 	}
@@ -797,7 +826,7 @@ class ConferenceController extends PublicController{
 		$jpush = M('Conference_del');
 		if(IS_POST){
 			if($jpush->add($data)){
-			Response::show(200,'删除成功!');
+				Response::show(200,'删除成功!');
 			}else{
 				Response::show(401,'删除失败!');
 			}
@@ -809,8 +838,129 @@ class ConferenceController extends PublicController{
 	}
 	
 	
+	//会议资料下载存储
+	public function confDown(){
+		$data['user_id'] = I('post.user_id');
+		$data['conf_id'] = I('post.conf_id');
+		$data['filename'] = I('post.filename');
+		$data['downtime'] = time();
+		$m = M('Conference_down');
+		if(IS_POST){
+			if($m->add($data)){
+				Response::show(200,'下载成功!');
+			}else{
+				Response::show(401,'下载失败!');
+			}
+		}else{
+			Response::show(402,$m->getError());
+		}
+		
+	}
+	
+	//返回下载文件的公司名称
+	public function getDownCompany(){
+		$res = $this->model->getDownListCompany();
+		if(IS_POST){
+			
+			$data = array('result' => $res['data']);
+			
+			if($data['result'] == null ){
+				Response::show(401,'获取失败!');
+				
+			}else{
+				Response::show(200,'获取成功',$data);
+			}
+			
+		}
+	}
 	
 	
+	
+	//获取会议资料
+	public function getDownfile(){
+		$data['user_id'] = I('post.user_id');
+		$data['conf_id'] = I('post.conf_id');
+		$m = M('Conference_down');
+		$file = $this->model->field('downfile')->where(array('id'=>$data['conf_id']))->find();
+		//p($file['downfile']);die;
+		$down = array_filter(explode('###',$file['downfile']));
+		
+		$info = $m->field('filename')->where(array('conf_id'=>$data['conf_id']))->find();
+		/* print_r($down);
+		print_r($info['filename']);
+		 */
+		
+		$parm = array(
+			'file' => '',
+			'is_down' => ''
+		);
+		
+		if(IS_POST){
+			
+			 foreach($down as $k=>$v){
+				//if(strpos($v,$info['filename']) !==false ){
+				if($v !==false){
+					if(strpos($v,$info['filename']) !== false ){
+						$parm['file'] = $v;
+						$parm['is_down'] = 1;
+						//echo $v;
+						//return Response::show(200,'已下载!',$parm);
+						//print_r($parm);
+						//$code = json_encode($parm,JSON_UNESCAPED_UNICODE);
+						
+					}else{
+						$parm['file'] = $v;
+						$parm['is_down'] = 0;
+						//print_r($parm);
+						//$code = json_encode($parm,JSON_UNESCAPED_UNICODE);
+						//return Response::show(401,'未下载!',$parm);
+					}
+					//print_r($parm);
+				
+				$resArr = json_encode($parm,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
+				echo $resArr;
+					//return Response::show(401,'未下载!',$parm);
+				}
+				
+			}
+			//echo $code;
+			
+			
+						
+			/* $fileone = '/Uploads/file/20180319/1521440571/Android1_0_0-1.pdf';
+			if(in_array($fileone,$down)){
+				$pro['file'] = $fileone;
+				$pro['is_down'] = 1;
+				Response::show(200,'已下载!',$pro);
+			}else{
+				$pro['file'] = $down;
+				$pro['is_down'] = 0;
+				Response::show(401,'未下载!',$pro);
+			}		 */
+			
+		}
+	}
+	
+	
+	//企业产品查看统计
+	public function productStats(){
+		$m = M('Product_stats');
+		$data['user_id'] = I('post.user_id');
+		$data['conf_user_id'] = I('post.conf_user_id');
+		$data['pro_id'] = I('post.pro_id');
+		$data['statstime'] = time();
+		
+		if(IS_POST){
+			if($m->add($data)){
+				Response::show(200,'添加成功!');
+			}else{
+				Response::show(401,'添加失败!');
+			}
+		}
+		
+		
+		
+	}
 	
 	
 	

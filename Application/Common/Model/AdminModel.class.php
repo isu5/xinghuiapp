@@ -39,7 +39,7 @@ class AdminModel extends BaseModel{
 		->group('a.id')
 		->limit($page->firstRow.','.$page->listRows)
 		->select();
-		p($this->getLastSql());
+		//p($this->getLastSql());
 		return $data;
 	} 
 

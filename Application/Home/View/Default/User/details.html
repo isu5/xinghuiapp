@@ -55,6 +55,7 @@
 						<div class="col-md-9">
 						<switch name="info[0]['is_cert']">
 							<case value="2">
+							<input type="hidden" class="form-control"   name="companyname"  value="{$data.companyname}">
 							<input type="text" class="form-control"   name="companyname" disabled value="{$data.companyname}">
 							<small style="color:red">审核认证后，公司名称不可编辑</small>
 							</case>

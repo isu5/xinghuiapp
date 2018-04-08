@@ -119,7 +119,7 @@ class ConferenceModel extends RelationModel{
 		$data['data'] = $this
 		->where($where)
 		->limit(($curpage - 1) * $showrow.','.$showrow)
-		->order('id desc')
+		->order('ctime asc')
 		->select();
 		//p($this->_Sql());
 		return $data;
@@ -231,6 +231,8 @@ class ConferenceModel extends RelationModel{
 		$data['addtime'] = time();
 		//app 上传图片
 		$data['companypic'] = json_encode(app_upload_image("/Uploads/Conference"));
+		$down = json_encode(app_upload_bull('/Uploads/file'),JSON_UNESCAPED_UNICODE);
+		$data['downfile'] = str_replace("\\/","/",trim($down,'[""]')).'###';
 	}
 	
 	
@@ -238,8 +240,22 @@ class ConferenceModel extends RelationModel{
 	public function _before_update(&$data, $option){
 		//app 修改上传图片
 		$data['companypic'] = json_encode(app_upload_image("/Uploads/Conference"));
+		$down = json_encode(app_upload_bull('/Uploads/file'),JSON_UNESCAPED_UNICODE);
+		$data['downfile'] = str_replace("\\/","/",trim($down,'[""]')).'###';
+		
 		//p($data);
 	}
+	
+	//编辑会议接口里上传文件
+	public function editDownfiles(){
+		$id = I('post.id');
+		$down = json_encode(app_upload_bull('/Uploads/file'),JSON_UNESCAPED_UNICODE);
+		$data['downfile']  = str_replace("\\/","/",trim($down,'[""]')).'###'; 
+		
+		return $this->where(array('id'=>$id))->save($data);
+	}
+	
+	
 	
 	//筛选条件查询
 	public function filterCert(){
@@ -307,7 +323,7 @@ class ConferenceModel extends RelationModel{
 			') */
 		->limit(($curpage - 1) * $showrow.','.$showrow)
 		->where($where)
-		->order('id desc')
+		->order('ctime asc')
 		->select();
 		
 		//p($this->getLastSql());die;
@@ -361,7 +377,7 @@ class ConferenceModel extends RelationModel{
 			')
 		->where($where)
 		->limit(($curpage - 1) * $showrow.','.$showrow)
-		->order('a.id desc')
+		->order('a.ctime desc')
 		->group('a.id')
 		->select();
 		return $data;
@@ -480,6 +496,34 @@ WHERE uid='.$where['uid'].' and is_private =1 and  a.conf_id not in ('.$sql.') g
 		return $data;
 	}
 	
+	//返回下载文件的公司名称
+	public function getDownListCompany(){
+		
+		$where['user_id'] = I('post.user_id');
+		
+		$showrow = 10; //一页显示的行数
+		
+		$curpage = I('post.page',1);; //当前的页,还应该处理非数字的情况
+	
+		$total = $this->where($where)->count();	
+		
+		
+		$page = new AppPage($total, $showrow);
+		if ($total > $showrow) {
+			$data['page'] =  $page->myde_write();
+		}
+		
+		$data['data'] = $this->alias('a')
+		->field('a.companyname,b.filename')
+		->join('LEFT JOIN __CONFERENCE_DOWN__ b on b.conf_id=a.id')
+		->where($where)
+		->limit(($curpage - 1) * $showrow.','.$showrow)
+		->order('a.id desc')
+		->select();
+		return $data;
+		
+		
+	}
 	
 	
 

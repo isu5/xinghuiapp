@@ -70,7 +70,7 @@ class Response{
 			'data' => $data
 			);
 		echo json_encode($result);
-		exit;
+		
 	}
 	
 	/**

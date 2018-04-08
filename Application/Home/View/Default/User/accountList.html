@@ -32,7 +32,7 @@
 			 
 						<ul class="nav nav-tabs">
 							<li class="active">
-								<a href="JavaScript:;" ><i class="fa fa-tags"></i>添加二级账户</a>
+								<a href="JavaScript:;" ><i class="fa fa-tags"></i>二级账户列表</a>
 							</li>
 							
 						</ul>
@@ -69,13 +69,13 @@
 										
 										<li>
 											<a href="{:U('User/accountPwd',array('id'=>$v['id']))}" >
-											修改信息
+											修改绑定
 											</a>  
 										</li>	 
 									</ul>
 								</div>
 								
-                                <button type="button" class="btn btn-danger" onClick="showalert('询问','您确定要 <strong>删除绑定</strong> 吗?','{:U('User/accountDel',array(id=>$v['id']))}')" >删除账号</button>
+                                 <button type="button" class="btn btn-danger" onClick="showalert('询问','您确定要 <strong>删除绑定</strong> 吗?','{:U('User/accountDel',array(id=>$v['id']))}')" >删除账号</button> 
                                 <a type="button" class="btn btn-primary" href="{:U('User/focus',array(id=>$v['id']))}" >关注列表</a>
                             </td>
 						</tr>
