@@ -135,7 +135,6 @@ class ChatgroupController extends PublicController{
 	public function editbull(){
 		$data['title'] = I('post.title');
 		
-		
 		if(IS_POST){
 			
 			if($this->chat->where(array('title'=>$data['title']))->save()){
@@ -146,6 +145,28 @@ class ChatgroupController extends PublicController{
 			
 		}
 			
+	}
+	//移除群组成员
+	public function delGroupman(){
+		$rongid	= I('post.rongid');
+		$uid = I('post.uid');
+		$chat = M('Chatgroup');
+		$map = $this->chat->field('id,s_id')->where(array('rongid'=>$rongid))->find();
+		//print_r($map['s_id']);
+		$sid = explode(',',$map['s_id']);
+		$s_id = str_replace($uid,'',$sid);
+		$data = implode(',',$s_id);
+		
+		if(IS_POST){
+			$res = $chat->where(array('id'=>$map['id']))->setField('s_id',$data);
+			
+			if($res){
+				
+				Response::show(200,'移除成功!' );
+			}else{
+				Response::show(401,'移除失败!' );
+			}
+		}
 	}
 	
 	
