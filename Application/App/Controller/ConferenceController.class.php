@@ -984,7 +984,7 @@ class ConferenceController extends PublicController{
 		
 	}
 	//签到推送
-	pulic function signjppush(){
+	public function signjppush(){
 		
 		if(IS_POST){
 			if($this->signjgpush->create(I('post.',1))){
