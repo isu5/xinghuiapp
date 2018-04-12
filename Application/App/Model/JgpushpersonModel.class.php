@@ -7,6 +7,27 @@ use Common\Model\BaseModel;
 use Common\Third\AppPage;
 class JgpushpersonModel extends BaseModel{
 	
+	//添加前
+	public function _before_insert(&$data, $option){
+		$data['addtime'] = time();
+		$data['user_id'] =  I('post.user_id');
+		$data['conf_id'] =  I('post.conf_id');
+		$data['title'] = I('post.title');
+		$data['content'] = I('post.content');
+	
+	}
+	
+	//发布之后推送所有用户信息
+	public function _after_insert($data,$option){
+		//
+		$uid = I('post.user_id');
+		$jpush = D('User')->where('id='.$uid)->find();
+		if(!jgpushgx($jpush['jpush'],$data['title'],$data['content'])){
+			$this->error = '该用户没有登录app客户端，不能推送';
+		}
+		
+		
+	}
 	//极光推送信息列表
 	public function search(){
 		$where = [];

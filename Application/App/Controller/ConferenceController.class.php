@@ -11,6 +11,8 @@ class ConferenceController extends PublicController{
 	private $cate = null;
 	private $user = null;
 	private $im = null;
+	private $jgpush = null;
+	private $signjgpush = null;
 	public function _initialize(){
 		parent::_initialize();
 		$this->model = D('Conference'); 
@@ -18,6 +20,8 @@ class ConferenceController extends PublicController{
 		$this->cate = D('Conferencecate');
 		$this->user = D('User');
 		$this->im = D('Rongcloudim');
+		$this->jgpush = D('Jgpushperson');
+		$this->signjgpush = D('Signjgpush');
 	}
 
 	
@@ -958,6 +962,46 @@ class ConferenceController extends PublicController{
 			}
 		}
 		
+		
+		
+	}
+	
+	//个性推送
+	public function jgpushperson(){
+		if(IS_POST){
+			if($this->jgpush->create(I('post.',1))){
+				if($this->jgpush->add()){
+					Response::show(200,'推送成功!');
+			
+				}else{
+					Response::show(401,'添加失败!');
+				}
+			}else{
+				Response::show(402,$this->jgpush->getError());
+				
+			}
+		}
+		
+	}
+	//签到推送
+	pulic function signjppush(){
+		
+		if(IS_POST){
+			if($this->signjgpush->create(I('post.',1))){
+				if($this->signjgpush->add()){
+					
+				Response::show(200,'保存成功!');
+				
+				}else{
+					Response::show(401,'保存失败');
+				
+				}
+			}else{
+				Response::show(402,$this->signjgpush->getError());
+			}
+		
+			
+		}
 		
 		
 	}

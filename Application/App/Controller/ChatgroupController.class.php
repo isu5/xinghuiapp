@@ -154,10 +154,13 @@ class ChatgroupController extends PublicController{
 		$map = $this->chat->field('id,s_id')->where(array('rongid'=>$rongid))->find();
 		//print_r($map['s_id']);
 		$sid = explode(',',$map['s_id']);
+		
 		$s_id = str_replace($uid,'',$sid);
-		$data = implode(',',$s_id);
+		$str = implode(',',$s_id);
+		$data = trim($str,',');
 		
 		if(IS_POST){
+			
 			$res = $chat->where(array('id'=>$map['id']))->setField('s_id',$data);
 			
 			if($res){
@@ -166,9 +169,11 @@ class ChatgroupController extends PublicController{
 			}else{
 				Response::show(401,'移除失败!' );
 			}
-		}
+		} 
+		
+		
 	}
-	
+	 
 	
 	
 	

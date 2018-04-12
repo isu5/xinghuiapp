@@ -7,6 +7,16 @@ use Common\Model\BaseModel;
 use Common\Third\AppPage;
 class SignjgpushModel extends BaseModel{
 	
+	
+	//添加前
+	public function _before_insert(&$data, $option){
+		$data['addtime'] = time();
+		$data['user_id'] =  I('get.user_id');
+		$data['conf_id'] =  I('get.conf_id');
+		$data['title'] = I('post.title');
+		$data['content'] = I('post.content');
+	}
+	
 	//签到后的极光推送信息列表
 	public function search(){
 		$where = [];
