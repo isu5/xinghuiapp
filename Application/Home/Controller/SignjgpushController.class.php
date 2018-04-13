@@ -19,9 +19,8 @@ class SignjgpushController extends PublicController{
 			if($this->jgpush->create(I('post.',1))){
 				if($this->jgpush->add()){
 					
-				$this->success('保存成功',U('Conference/auditlist',array('id'=>I('get.id'))));
-					exit;
-					
+				$this->success('保存成功',U('Signjgpush/index',array('conf_id'=>I('get.conf_id'),'user_id'=>I('get.user_id'))));
+				
 				}else{
 					$this->error('保存失败');
 				
@@ -38,7 +37,20 @@ class SignjgpushController extends PublicController{
 	
 	//签到推送列表
 	public function index(){
+		$id = I('get.conf_id');
+		$uid = I('get.user_id');
+		//如果已扫码签到就不能修改
 		
+		$sign = M('Conference_sign');
+		$signOne = $sign->where(array('conf_id'=>$id,'user_id'=>$uid))->find();
+		$data = $this->jgpush->where(array('user_id'=>$uid,'conf_id'=>$id))->order('addtime desc')->limit(1)->find();
+		
+		//p($data);
+		$this->assign(array(
+			'data'=>$data,
+			'sign'=>$signOne
+		));
+		$this->display();
 	}
 	
 	//签到推送列表编辑

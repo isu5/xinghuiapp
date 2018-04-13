@@ -4,6 +4,9 @@
 
 <link rel="stylesheet" type="text/css" href="__HOME_CSS__/amazeui.min.css"/>
 <link rel="stylesheet" type="text/css" href="__HOME_CSS__/amazeui.address.css" />
+<link rel="stylesheet" type="text/css" href="__HOME_JS__/select2/select2.css" />
+<script type="text/javascript" src="__HOME_JS__/select2/select2.js"></script>
+<script type="text/javascript" src="__HOME_JS__/select2/select2_locale_zh-CN.js"></script>
 <!-- css样式开始 -->
 <style type="text/css">
 .demo,.demo1{width:900px;margin:10px auto;}
@@ -42,6 +45,7 @@ laydate.render({
   type: 'datetime',
   format: 'yyyy-MM-dd HH:mm:ss'
 });
+
 
 
 </script>
@@ -134,6 +138,40 @@ laydate.render({
 						<div class="col-md-5">
 							<input type="text" class="form-control"  name="companyname" value="{$cert.company}">
 							
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">合作伙伴</label>
+						
+							<?php 
+								foreach ($partid as $k => $v): 
+									$user = M('Conference')->where('part_id='.$v)->select();
+									
+									if($v){
+									$check = 'selected="selected"';
+									}else {
+										$check = '';
+									}
+									
+							?>
+							<?php endforeach; ?>
+							
+						<div class="col-md-5">
+							<select class="form-control"  id="partselect" name="part_id[]" multiple="multiple">
+								
+								<empty name="parts">
+									<p style="font-size:14px;color:red">暂时没有合作伙伴，请添加后选择</p>
+								<else/>
+									<volist name="parts" id="p">
+									
+									<option value="{$p.id}" {$check}>{$p.companyname}</option>
+									</volist>
+								
+								</empty>
+							 </select>
+						</div>
+						<div class="col-md-4">
+							<span style="color:red;font-size:12px">可删除、搜索、添加3个合作伙伴</span>
 						</div>
 					</div>
 					<div class="form-group">
@@ -299,8 +337,19 @@ laydate.render({
 	<!-- END CONTENT -->
 	
 </div>
+<script>
+$(function(){
+	//点击取消checkbox的value属性
+	$("#partid input[type=checkbox]").click(function(index, domEle) {
+		consol
+	});
+	
+	
+});
+
+</script>
 <script type="text/javascript">
-$(function() {     
+$(function() {
 
 	var demo = $("#myform").Validform({
 		tiptype:4,
@@ -516,6 +565,15 @@ $(function(){
 })
 </script>
 
+<script type="text/javascript">
+$(function() { 
+	$('#partselect').select2({
+		placeholder: '请选择合作伙伴',
+		maximumSelectionSize: 3,   //最多添加3个
+		maximumSelectionLength :10,   //限制搜索的个数
+	});
+});
+</script>
 
 	
 	

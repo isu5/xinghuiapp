@@ -92,8 +92,17 @@ class UserpartnersController extends PublicController{
 	
 	//搜索后的用户直接提交到数据库
 	public function sendData(){
+		$part = M('User_partners');
 		$data['user_id'] = I('post.user_id');
 		$data['conf_user_id'] = cookie(userid);
+		$pro = $this->user->field()->where('id='.$data['user_id'])->find();
+		//p($pro);
+		$data['companyname'] = $pro['companyname'];
+		$data['email'] = $pro['email'];
+		$data['phone'] = $pro['phone'];
+		$data['logo'] = $pro['logo'];
+		$data['ctime'] = time();
+		$data['utime'] = time();
 		
 		$map = $this->part->where(array('user_id'=>$data['user_id'],'conf_user_id'=>cookie(userid)))->find();
 		if(IS_POST){
@@ -102,18 +111,15 @@ class UserpartnersController extends PublicController{
 				$code = array('status'=>2,'info'=>'您已添加过该公司，请勿重复添加!');
 			}else{
 				
-				if($this->part->create(I('post.',1))){
+				//if($this->part->create(I('post.',1))){
 					
-					if($this->part->add($data)){
+					if($part->add($data)){
 						$code = array('status'=>1,'info'=>'添加成功');
 					
 					}else{
 						$code = array('status'=>0,'info'=>'添加失败');
 					
-					}
-				}else{
-					$code = array('status'=>3,'info'=>$this->part->getError());
-					
+					//}
 				}
 			}
 			$this->ajaxReturn($code);

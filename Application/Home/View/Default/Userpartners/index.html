@@ -21,9 +21,11 @@
 			<!--table-->
     <div class="tabbable-custom tabbable-full-width">
 		<ul class="nav nav-tabs">
-				
+				<li class="">
+					<a href="{:U('Userpartners/add')}" ><i class="fa fa-tags"></i>新建合作伙伴</a>
+				</li>
 				<li class="active">
-					<a href="{:U('Userpartners/index',array('id'=>I('get.id')))}" ><i class="fa fa-tags"></i>合作伙伴列表</a>
+					<a href="{:U('Userpartners/index')}" ><i class="fa fa-tags"></i>合作伙伴列表</a>
 				</li>
 			</ul>
   		<div class="tab-content" >
@@ -66,17 +68,24 @@
 						<tr>
 							<td>{$v.id}</td>
 							<td>
-								
-								{$v.companyname}
-								
+								<empty name="v.companyname">
 								{$v.company}
+								<else/>
+								{$v.companyname}
+								</empty>
+								
 							</td>
 							
 							<td>
 								{$v.email}
 							</td>
 							<td>
-								{$v.phone}{$v.iphone}
+								<empty name="v.phone">
+								{$v.iphone}
+								<else/>
+								{$v.phone}
+								</empty>
+								
 							</td>
 							
 							

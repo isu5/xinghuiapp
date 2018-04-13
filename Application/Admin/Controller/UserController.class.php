@@ -37,6 +37,14 @@ class UserController extends CommonController{
 		$this->display();
 	}
 	
+	//显示二级账户下的所有账号
+	public function showAll(){
+		$data = $this->user->account();
+		//p($data);
+		$this->assign('data',$data);
+		$this->display();
+	}
+	
 	//删除用户
 	public function delete(){
 		if($this->user->delete(I('get.id', 0)) !== FALSE){

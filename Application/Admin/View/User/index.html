@@ -34,7 +34,7 @@ laydate.render({
 		<select name="utype" class="select">
 			<option value="1" <?php $utype =  I('get.utype');if($utype==1){?> selected="selected" <?php }?>>个人</option>
 			<option value="2" <?php $utype =  I('get.utype');if($utype==2){?> selected="selected" <?php }?>>企业</option>
-			<option value="3" <?php $utype =  I('get.utype');if($utype==3){?> selected="selected" <?php }?>>二级账户</option>
+			
 		</select>
 	</span>
 	日期范围：
@@ -101,10 +101,12 @@ laydate.render({
 				<td>{$v.email}</td>
 				<td>{$v.companyname}</td>
 				<td class="text-l">
-					<if condition="($v['type'] eq 1) AND ($v['level'] eq 2)">
-						二级账户
-					<elseif condition="$v['type'] eq 2"/>
-						企业
+				
+					<if condition="($v['type'] eq 2) OR ($v['level'] eq 2)">
+					企业  
+						
+							<a class="label label-primary radius" onclick="member_show('会员详情','{:U('User/showAll',array('id'=>$v['id']))}','{$v.id}','1100',)">二级账户</a>
+						
 					<else />
 						个人
 					</if>

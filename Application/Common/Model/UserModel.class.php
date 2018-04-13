@@ -21,12 +21,10 @@ class UserModel extends BaseModel{
 		//按用户类型搜索
 		$utype = I('get.utype');
 		if($utype ==1)
-			
 			$where['type'] = array('eq',1);
 		elseif($utype ==2)
 			$where['type'] = array('eq',2);
-		elseif($utype ==3)
-			$where['level'] = array('eq',2);
+		
 		
 		//按时间搜索
 		$ctimes = I('get.ctime');
@@ -42,7 +40,8 @@ class UserModel extends BaseModel{
 		elseif ($etime)
 			$where['ctime'] = array('elt', $etime);  
 		
-		
+		//不列出二级账户
+		$where['level'] = array('neq',2);
 		
 		//翻页
 		$count = $this->where($where)->count();
@@ -54,6 +53,15 @@ class UserModel extends BaseModel{
 		$data['data'] = $this->where( $where)->limit($page->firstRow.','.$page->listRows)->order('id desc')->select();
 		//p($this->getLastSql());
 		return $data;
+	}
+	
+	//二级账户显示
+	public function account(){
+		$uid = I('get.id');
+		$user = $this->field('id,pid,logo,username,ctime,companyname,nickname,remark,type,level')->where()->select();
+		$level = findson($user,$uid);  //查找所有pid下的子id
+	
+		return $level;
 	}
 
 

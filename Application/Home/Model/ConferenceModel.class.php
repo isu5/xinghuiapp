@@ -101,11 +101,15 @@ class ConferenceModel extends BaseModel{
 		$data['companypic'] = '['.json_encode(I('post.companypic')).']';
 		$data['uid'] = cookie(userid);
 		$data['addtime'] = time();
+		
 		//处理ueditor 转义字符，正常插入数据库
 		$data['brief'] = htmlspecialchars_decode($_POST['brief']);
 		$data['agenda'] = htmlspecialchars_decode($_POST['agenda']);
 		$data['guests'] = htmlspecialchars_decode($_POST['guests']);
 		$data['guide'] = htmlspecialchars_decode($_POST['guide']);
+		//处理合作伙伴id
+		$partid = I('post.part_id');
+		$data['part_id'] = implode(',',$partid);
 		//p($data);die;
 	}
 	
@@ -126,6 +130,8 @@ class ConferenceModel extends BaseModel{
 		$agenda = htmlspecialchars_decode(I('post.agenda'));
 		$guests = htmlspecialchars_decode(I('post.guests'));
 		$guide = htmlspecialchars_decode(I('post.guide'));
+		$partid = I('post.part_id');
+		$partids = implode(',',$partid);
 		/* //如果修改时间的话，修改会议的状态
 		$conf = M('Conference');
 		$audit = M('Conference_audit');
@@ -149,6 +155,7 @@ class ConferenceModel extends BaseModel{
 			'agenda'=>$agenda,
 			'guests'=>$guests,
 			'guide'=>$guide,
+			'part_id'=>$partids,
 		));
 		
 		return true;
