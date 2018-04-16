@@ -1006,6 +1006,88 @@ class ConferenceController extends PublicController{
 		
 	}
 	
+	//个人推送历史记录
+	
+	public function personlist(){
+		$data = $this->jgpush->searchFront();
+		//p($data);
+    	/* p($this->jgpush->getlastsql());
+    	
+    	 */
+		if(IS_POST){
+			
+			$data = array('result' => $data['data']);
+		
+			if($data['result'] == null ){
+				Response::show(401,'获取失败!');
+				
+			}else{
+				Response::show(200,'获取成功',$data);
+			}
+			
+		}
+		
+		
+	}
+	
+	//签到消息
+	public function signlist(){
+		$id = I('post.conf_id');
+		$uid = I('post.user_id');
+		$data = $this->signjgpush->where(array('user_id'=>$uid,'conf_id'=>$id))->order('addtime desc')->limit(1)->find();
+		//p($data);
+		if(IS_POST){
+			if($data == null ){
+				Response::show(401,'获取失败!');
+				
+			}else{
+				Response::show(200,'获取成功',$data);
+			}
+		}
+	}
+	//编辑签到消息
+	public function signjgpushedit(){
+		
+		if(IS_POST){
+			if($this->signjgpush->create(I('post.',2))){
+				//p($_POST);die;
+				if($this->signjgpush->save() !== FALSE){
+					Response::show(200,'修改成功');
+						
+				}else{
+					Response::show(401,'修改失败!');
+				
+				}
+			}
+		
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 

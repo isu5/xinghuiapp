@@ -152,7 +152,7 @@ class ConferenceController extends PublicController{
 		//获取合作伙伴
 		//$parts = $this->part->field('id,companyname')->where(array('conf_user_id'=>$uid))->select();
 		$parts = $this->part->alias('a')->field('a.id,a.companyname,b.part_id')
-		->join('left join tzht_user_part b on b.user_id=a.conf_user_id')->where(array('conf_user_id'=>$uid))->select();
+		->join('left join tzht_user_part b on b.user_id=a.conf_user_id')->where(array('conf_user_id'=>$uid,'a.id'=>array('in' , $data['part_id'])))->select();
 		//$parts = array_column($parts,'id');
 		
 		//p($parts);

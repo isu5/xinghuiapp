@@ -71,7 +71,7 @@ class SignjgpushController extends PublicController{
 					exit;
 						
 				}else{
-					$this->jgpush->getLastSql();
+					//$this->jgpush->getLastSql();
 					$this->error('修改失败');
 				
 				}
