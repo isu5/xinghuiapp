@@ -420,6 +420,42 @@ class UserModel extends BaseModel{
 		return $data;
 	} 
 	
+	
+	//更新未拉取的群组列表
+	public function nogrouplistsTest(){
+		$where = [];
+		$rongid = I('post.rongid');
+		$c_id = I('post.c_id');
+		$chatgm = M('Chatgroup_member');
+		// 查群组中s_id 有哪些用户，
+		$str = D('Chatgroup')->where(array('rongid'=>$rongid))->find();
+		$s_id = $chatgm->where(array('chat_id'=>$str['id']))->select();
+		$sids = array_column($s_id, 's_id');
+		//查通讯录中的用户->group('user_id')  二维数组转一维数组$names = array_column($msg, 'name');
+		$tongxun = M('Conference_focus')->field('conf_user_id')->where(array('user_id'=>$c_id,'conf_user_id'=>array('not in',$sids)))->select();
+		$user = array_column($tongxun, 'conf_user_id');
+		//翻页
+		
+		$showrow = 15; //一页显示的行数
+		
+		$curpage = I('post.page',1); //当前的页,还应该处理非数字的情况
+
+		$total =  $this->where($where)->count();	
+
+		$page = new AppPage($total, $showrow);
+		if ($total > $showrow) {
+			$data['page'] =  $page->myde_write();
+		}
+		
+		$data['data'] = $this
+		 ->field('id,logo,companyname,username,phone,type,nickname')->where(array('id'=>array('in',$user)))
+		 ->limit(($curpage - 1) * $showrow.','.$showrow)->order('id desc')
+		 ->select();
+		//p($this->_Sql());
+		
+		return $data;
+	}
+	
 	//二级账户显示
 	public function account(){
 		$uid = I('post.id');

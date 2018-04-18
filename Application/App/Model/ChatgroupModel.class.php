@@ -51,7 +51,6 @@ class ChatgroupModel extends BaseModel{
 	public function _before_insert(&$data,$option){
 		$data['addtime'] = time();
 		
-
 	}
 	
 	//群组人员列表
@@ -60,12 +59,7 @@ class ChatgroupModel extends BaseModel{
 		$rongid = I('post.rongid');
 		$user = D('User');
 		$str = $this->where(array('rongid'=>$rongid))->find();
-		//p($str);
-		if($str){
-			$where['id'] = array('in',$str['s_id']);
-		}else{
-			return false;
-		}
+		$where['b.chat_id'] = $str['id'];
 		
 		//翻页
 		
@@ -73,15 +67,22 @@ class ChatgroupModel extends BaseModel{
 		
 		$curpage = I('post.page',1); //当前的页,还应该处理非数字的情况
 
-		$total = $user->where($where)->count();	
+		$total = $this->alias('a')
+		->field('c.id,c.logo,c.companyname,c.username,c.phone,c.type,c.nickname,c.level')
+		->join('left join __CHATGROUP_MEMBER__ b on b.chat_id=a.id
+			left join __USER__ c on c.id = b.s_id
+		')->where($where)->count();	
 
 		$page = new AppPage($total, $showrow);
 		if ($total > $showrow) {
 			$data['page'] =  $page->myde_write();
 		}
 		
-		$data['data'] = $user
-		->field('id,logo,companyname,username,phone,type,nickname,level')
+		$data['data'] = $this->alias('a')
+		->field('c.id,c.logo,c.companyname,c.username,c.phone,c.type,c.nickname,c.level')
+		->join('left join __CHATGROUP_MEMBER__ b on b.chat_id=a.id
+			left join __USER__ c on c.id = b.s_id
+		')
 		->where($where)->limit(($curpage - 1) * $showrow.','.$showrow)->order('id desc')
 		
 		->select();
@@ -91,7 +92,7 @@ class ChatgroupModel extends BaseModel{
 		return $data;	
 		
 	}
-	//群组人员列表人数
+	//群组人员列表人数统计
 	public function grouplistsCount(){
 		$where = [];
 		$rongid = I('post.rongid');
@@ -105,6 +106,20 @@ class ChatgroupModel extends BaseModel{
 		
 		$total = D('User')->where($where)->count();	
 		//p($total);
+		p($this->_Sql());
+		return $total;
+	}
+	//更新群组人员列表人数统计
+	public function grouplistsCountTest(){
+		$where = [];
+		$rongid = I('post.rongid');
+		$chatgm = M('Chatgroup_member');
+		$str = $this->where(array('rongid'=>$rongid))->find();
+		$s_id = $chatgm->where(array('chat_id'=>$str['id']))->select();
+		$sids = array_column($s_id, 's_id');
+		$sid = implode(',',$sids);
+		$total = M('User')->where(array('id'=>array('in',$sid)))->count();	
+		//print_r($total);
 		//p($this->_Sql());
 		return $total;
 	}
@@ -115,8 +130,8 @@ class ChatgroupModel extends BaseModel{
 	//新增群组成员
 	public function addGroup(){
 		
-		$s_id = I('post.s_id');
 		$id = I('post.id');
+		$chatgm = M('Chatgroup_member');
 		//$data = $this->where(array('id'=>$id))->find();
 		/* $sid = explode(',',$s_id);
 		$sids = implode(',',$sid); */
@@ -134,24 +149,37 @@ class ChatgroupModel extends BaseModel{
 		//update table set user=concat(user,$user) where xx=xxx; 
 		
 		//$this->query('update  tzht_chatgroup set s_id=concat(s_id,",'.$s_id.'") where id='.$id.'');
-		$data=array();
+		/* $data=array();
 		//保持原有数据不变，增加新值到字段里
 		$data['s_id'] = array('exp','concat(s_id,",'.$s_id.'")');
 		
 		$this->where(array('id'=>$id))->save($data);
 		//p($this->_Sql());
+		return true; */
+		$data = $this->where(array('id'=>$id))->find();
+		if($data['id']){
+			$s_id = explode(',',I('post.s_id'));
+			$arr = [];
+			foreach($s_id as $v){
+				$arr['chat_id'] = $id;
+				$arr['c_id'] = $data['c_id'];
+				$arr['s_id'] = $v;
+				$chatgm->add($arr);
+			}
+		}
 		return true;
+		
 	}
 	
 	
 	//未拉取的群组列表
 	public function nogrouplists(){
 		$where = [];
-		$title = I('post.title');
+		$title = I('post.rongid');
 		$c_id = I('post.c_id');
 		
 		// 查群组中s_id 有哪些用户，
-		$str = $this->where(array('title'=>$title))->find();
+		$str = $this->where(array('rongid'=>$title))->find();
 		
 		if($str){
 			$where['id'] = array('in',$str['s_id']);

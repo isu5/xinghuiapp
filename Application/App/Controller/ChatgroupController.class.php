@@ -27,6 +27,30 @@ class ChatgroupController extends PublicController{
 			}	
 		}
 	}
+	//更新创建群组
+	public function addtest(){
+		$chatgm = M('Chatgroup_member');
+		//循环传入的群组成员id 保存到中间表中
+		if(IS_POST){
+			if($this->chat->create(I('post.',1))){
+				if($id = $this->chat->add()){
+					if($id){
+						$s_id = explode(',',I('post.s_id'));
+						$arr = [];
+						foreach($s_id as $v){
+							$arr['chat_id'] = $id;
+							$arr['c_id'] = I('post.c_id');
+							$arr['s_id'] = $v;
+							$chatgm->add($arr);
+						}
+					}
+					Response::show(200,'创建成功!');
+				}else{
+					Response::show(401,'创建失败!');
+				}
+			}	
+		}
+	}
 	
 	//检测 群组是否存在
 	public function ischat(){
@@ -77,8 +101,9 @@ class ChatgroupController extends PublicController{
 	}
 	//群组人员列表人数
 	public function groupListCount(){
-		$res = $this->chat->grouplistsCount();
-		if($res == false ){
+		$res = $this->chat->grouplistsCountTest();
+		
+		if($res === false ){
 			Response::show(401,'没有查询到群组人数!');
 			
 		}else{
@@ -103,6 +128,7 @@ class ChatgroupController extends PublicController{
 	//新增群组成员
 	public function addGroupUser(){
 		$res = $this->chat->addGroup();
+		
 		if($res){
 			Response::show(200,'新增群组成员成功!');
 		}else{
@@ -118,6 +144,22 @@ class ChatgroupController extends PublicController{
 	public function noGroupList(){
 		//$focus = D('Conferencefocus');
 		$res = $this->user->nogrouplists();
+		$data = array(
+				'result' => $res['data'],	
+				//'page' => $res['page'],	
+			);
+		//p($res);die;
+		if($data['result'] == null ){
+			Response::show(401,'没有可添加的好友了!');
+			
+		}else{
+			Response::show(200,'获取数据成功!',$data);
+		}
+	}
+	//更新未拉取的群组列表
+	public function noGroupListTest(){
+		//$focus = D('Conferencefocus');
+		$res = $this->user->nogrouplistsTest();
 		$data = array(
 				'result' => $res['data'],	
 				//'page' => $res['page'],	
@@ -173,7 +215,31 @@ class ChatgroupController extends PublicController{
 		
 		
 	}
-	 
+	 //更新移除群组成员
+	public function delGroupmantest(){
+		$rongid	= I('post.rongid');
+		$uid = I('post.uid');
+		$map = $this->chat->field('id')->where(array('rongid'=>$rongid))->find();
+		$chatgm = M('Chatgroup_member');
+		$s_id = explode(',',$uid);
+		
+		$where = array(
+			'id' => $map['id'],
+			's_id'=>array('in',$s_id),
+		);
+		
+		if(IS_POST){
+			if($chatgm->where($where)->delete() ===false){
+				
+				Response::show(401,'移除失败!' );
+			}else{
+				Response::show(200,'移除成功!' );
+			}
+		} 
+		
+		
+		
+	}
 	
 	
 	
