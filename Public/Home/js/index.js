@@ -201,7 +201,7 @@ function refusedalert(Info,Title,url,btn){
     });
 }
 //end #demo_7
-///删除
+//删除
 function showalert(Info,Title,url,btn){
 	if(btn){
 	  btnname=btn;	
@@ -231,6 +231,35 @@ function showalert(Info,Title,url,btn){
     });
 }
 
+//启用，停用操作
+function stopalert(Info,Title,url,btn){
+	if(btn){
+	  btnname=btn;	
+	}else{
+	  btnname="确认";	
+	}
+    bootbox.dialog({
+        message: Title,
+        title: Info,
+        buttons: {
+           
+            danger: {
+                label: btnname,
+                className: "red",
+                callback: function() {
+                  ajaxget(url);
+                }
+            },
+			 success: {
+                label: "取消",
+                className: "green",
+                callback: function() {
+                   // alert("great success");
+                }
+            }
+        }
+    });
+}
 
 //ajax get 方式
 function ajaxget(url){

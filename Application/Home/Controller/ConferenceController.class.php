@@ -143,6 +143,7 @@ class ConferenceController extends PublicController{
 		$pic = json_decode($data['companypic']);
 		
 		$partid = explode(',',$data['part_id']);
+		//dump($partid);
 		//p($partid);
 		//p($row['downfileArr']);
 		//p($row);
@@ -150,9 +151,9 @@ class ConferenceController extends PublicController{
 		$cert = D('Certify')->field('company')->where('uid='.$uid)->find();
 		//p($cert);
 		//获取合作伙伴
-		//$parts = $this->part->field('id,companyname')->where(array('conf_user_id'=>$uid))->select();
-		$parts = $this->part->alias('a')->field('a.id,a.companyname,b.part_id')
-		->join('left join tzht_user_part b on b.user_id=a.conf_user_id')->where(array('conf_user_id'=>$uid,'a.id'=>array('in' , $data['part_id'])))->select();
+		$parts = $this->part->field('id,companyname')->where(array('conf_user_id'=>$uid))->select();
+		//$parts = $this->part->alias('a')->field('a.id,a.companyname,b.part_id')
+		//->join('left join tzht_user_part b on b.user_id=a.conf_user_id')->where(array('conf_user_id'=>$uid,'a.id'=>array('in' , $data['part_id'])))->select();
 		//$parts = array_column($parts,'id');
 		
 		//p($parts);

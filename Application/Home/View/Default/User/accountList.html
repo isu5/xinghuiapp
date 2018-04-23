@@ -61,23 +61,17 @@
 							<td>{$v.ctime|date='Y-m-d H:i',###}</td>
 							
 							<td>
-								 <div class="btn-group">
-									<button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
-									操作 <i class="fa fa-angle-down"></i>
-									</button>
-									<ul class="dropdown-menu" role="menu">
-										
-										<li>
-											<a href="{:U('User/accountPwd',array('id'=>$v['id']))}" >
-											修改绑定
-											</a>  
-										</li>	 
-									</ul>
-								</div>
-								
+								<a type="button" class="btn btn-primary" href="{:U('User/accountPwd',array('id'=>$v['id']))}" >修改绑定</a>
                                  <button type="button" class="btn btn-danger" onClick="showalert('询问','您确定要 <strong>删除绑定</strong> 吗?','{:U('User/accountDel',array(id=>$v['id']))}')" >删除账号</button> 
                                 <a type="button" class="btn btn-primary" href="{:U('User/focus',array(id=>$v['id']))}" >关注列表</a>
-                            </td>
+                               <if condition="$v['itype'] eq 1">
+							    <button type="button" class="btn btn-success" onClick="stopalert('询问','您确定要 <strong>启用账号</strong> 吗?','{:U('User/startacc',array(id=>$v['id']))}')" >启用账号</button>
+                          
+							   <else />
+							     <button type="button" class="btn btn-danger" onClick="stopalert('询问','您确定要 <strong>停用账号</strong> 吗?','{:U('User/stopacc',array(id=>$v['id']))}')" >停用账号</button>
+                          
+							   </if>
+							</td>
 						</tr>
 						</volist>
 					</tbody>

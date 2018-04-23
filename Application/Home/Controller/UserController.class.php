@@ -117,56 +117,35 @@ class UserController extends PublicController{
 		
 		//将个人账户id，及添加的二级账户id保存到中间表
 		$z = M('User_account');
-		
+		$var = session('check_code');
 		if (IS_POST) {
-			//判断用户名是否存在
-			if($acc['username'] == $data['username']){
-				$code = array('status'=>3,'info'=>'对不起，您填写的用户名已存在');
-			//判断是否为已经注册过的企业手机号
-			}elseif($acc1['type'] == 2){
-				$code = array('status'=>5,'info'=>'对不起，您填写的手机号为企业账户手机号，无法绑定！');
-			}elseif($acc1['phone'] == $data['phone'] && $acc1['type'] == 1){
-				//判断手机号是否存在, 把原来的个人账号itype设为1（不允许登录）并保存到新字段值中
-				
-				
-				$map = array('itype'=>1);
-				$user-> where('id='.$acc1['id'])->setField($map);
-				
-				$result = $user->add($data);
-				if ($result) {
-					$id = $result;
-				
-					//将个人账户id，及添加的二级账户id保存到中间表
-					$por = array(
-						'user_id'=>$acc1['id'],
-						'acc_id'=>$id
-					);
-					$z->add($por);
-					
-					//融云token值
-					getRongcloudToken($id);
-					
-					//生产二维码链接
-					$dimecode = U('/Home/Index/usercode',array('id'=>$id));
-					//$dimecode = scQRcode($id);
-					//极光推送别名
-					$jpush = $id . '_' . 'xinghuiapp';
-					
-					//p($dimecode);die;
-					//更新别名，及二维码链接到数据库字段
-					$this->model->where(array('id'=>$id))->setField('dimecode',$dimecode);
-					$this->model->where(array('id'=>$id))->setField('jpush',$jpush);
-					}else{
-						$code = array('status'=>0,'info'=>'二级账户添加失败！');
-						
-					}
-				$code = array('status'=>4,'info'=>'您填写的手机号已是个人注册账号,确定要绑定吗!');
+			if($var != I('post.check_code')){
+				$code = array('status'=>6,'info'=>'您填写的短信验证码不正确！请重新填写');
 			}else{
+				//判断用户名是否存在
+				if($acc['username'] == $data['username']){
+					$code = array('status'=>3,'info'=>'对不起，您填写的用户名已存在');
+				//判断是否为已经注册过的企业手机号
+				}elseif($acc1['type'] == 2){
+					$code = array('status'=>5,'info'=>'对不起，您填写的手机号为企业账户手机号，无法绑定！');
+				}elseif($acc1['phone'] == $data['phone'] && $acc1['type'] == 1){
+					//判断手机号是否存在, 把原来的个人账号itype设为1（不允许登录）并保存到新字段值中
 					
-				if (C('ACCOUNT_NUM') > $count) {
+					
+					$map = array('itype'=>1);
+					$user-> where('id='.$acc1['id'])->setField($map);
+					
 					$result = $user->add($data);
 					if ($result) {
 						$id = $result;
+					
+						//将个人账户id，及添加的二级账户id保存到中间表
+						$por = array(
+							'user_id'=>$acc1['id'],
+							'acc_id'=>$id
+						);
+						$z->add($por);
+						
 						//融云token值
 						getRongcloudToken($id);
 						
@@ -175,33 +154,58 @@ class UserController extends PublicController{
 						//$dimecode = scQRcode($id);
 						//极光推送别名
 						$jpush = $id . '_' . 'xinghuiapp';
-						//表中没有用户名及手机号的，新添加的二级账户id，及用户id相同，保存到中间表
-						$por = array(
-							'user_id'=>$id,
-							'acc_id'=>$id
-						);
-						
-						$z->add($por);
-						//创建的二级账户同时关注企业主账户
-						$accountR = array(
-							'conf_user_id' => $data['pid'],
-							'user_id' => $id,
-						);
-						$focus->add($accountR);
 						
 						//p($dimecode);die;
 						//更新别名，及二维码链接到数据库字段
 						$this->model->where(array('id'=>$id))->setField('dimecode',$dimecode);
 						$this->model->where(array('id'=>$id))->setField('jpush',$jpush);
+						}else{
+							$code = array('status'=>0,'info'=>'二级账户添加失败！');
+							
+						}
+					$code = array('status'=>4,'info'=>'您填写的手机号已是个人注册账号,确定要绑定吗!');
+				}else{
 						
-						$code = array('status'=>1,'info'=>'二级账户添加成功！');
+					if (C('ACCOUNT_NUM') > $count) {
+						$result = $user->add($data);
+						if ($result) {
+							$id = $result;
+							//融云token值
+							getRongcloudToken($id);
+							
+							//生产二维码链接
+							$dimecode = U('/Home/Index/usercode',array('id'=>$id));
+							//$dimecode = scQRcode($id);
+							//极光推送别名
+							$jpush = $id . '_' . 'xinghuiapp';
+							//表中没有用户名及手机号的，新添加的二级账户id，及用户id相同，保存到中间表
+							$por = array(
+								'user_id'=>$id,
+								'acc_id'=>$id
+							);
+							
+							$z->add($por);
+							//创建的二级账户同时关注企业主账户
+							$accountR = array(
+								'conf_user_id' => $data['pid'],
+								'user_id' => $id,
+							);
+							$focus->add($accountR);
+							
+							//p($dimecode);die;
+							//更新别名，及二维码链接到数据库字段
+							$this->model->where(array('id'=>$id))->setField('dimecode',$dimecode);
+							$this->model->where(array('id'=>$id))->setField('jpush',$jpush);
+							
+							$code = array('status'=>1,'info'=>'二级账户添加成功！');
+						}else{
+							$code = array('status'=>0,'info'=>'二级账户添加失败！');
+							
+						}
 					}else{
-						$code = array('status'=>0,'info'=>'二级账户添加失败！');
+						$code = array('status'=>2,'info'=>'您添加的二级账户已达限额了，如需再添加账户请联系平台！客服电话：010-63942568');
 						
 					}
-				}else{
-					$code = array('status'=>2,'info'=>'您添加的二级账户已达限额了，如需再添加账户请联系平台！客服电话：010-63942568');
-					
 				}
 			}
 			$this->ajaxReturn($code);
@@ -212,12 +216,35 @@ class UserController extends PublicController{
 	}
 	
 	
-	
+	//手机号验证
+	public function checkphone(){
+		
+		$data['check_code'] = rand('1000','9999');
+		$data['phone'] = I('post.phone');
+		
+		if(IS_POST){
+			 /* print_r($_POST);
+			print_r($data);die;  */
+			if(yunsendSMS($data['check_code'],$data['phone'])){
+				session('check_code',$data['check_code']);
+				$this->ajaxReturn(1);  //发送成功
+			}else{
+				$this->ajaxReturn(0);
+			}
+		}
+		//yunsendSMS('1236','13552832050');
+	}
+	//短信验证获取验证码
+	public function checkcode(){
+		$var = session('check_code');
+		p($var);
+	}
 
 	//二级账户列表
 	public function accountList(){
 
 		$data = $this->model->accountAli();
+		//p($data);
 		$this->assign('data',$data);
 		$this->display();
 	}
@@ -246,48 +273,53 @@ class UserController extends PublicController{
 		
 		//添加的二级账户id保存到中间表
 		$z = M('User_account');
-		
+		$var = session('check_code');
 		if (IS_POST) {
-			//p($data);die;
-			if($accph['phone'] == $data['phone'] && $accph['type'] == 2){
-				$code = array('status'=>5,'info'=>'对不起，您填写的手机号为企业账户手机号，无法绑定！');
-			}elseif( $accph['phone'] == $data['phone'] && $acc1['type'] == 1 && $accph['level'] ==0){
-				/* //如果个人手机号存在，把该手机号的id保存在对应的中间表中*/
-				
-				$map = array(
-					'user_id'=>$accph['id'],
-					'acc_id'=>$id
-				);
-				$z->where('acc_id='.$acc1['id'])->setField($map); 
-				//1把之前绑定的手机号的id账户，状态itype设置0（可能登录状态）
-				if($acc1['user_id']){
-					
-					$map2 = array('itype'=>0);
-					$user-> where('id='.$acc1['user_id'])->setField($map2);
-				}
-				//2把绑定的存在的新手机号的id itype 值为1
-				$map3 = array('itype'=>1);
-				
-				$user-> where('id='.$accph['id'])->setField($map3);
-				
-				//3 更新当前绑定的二级账户信息
-				$user->where('id='.$acc1['id'])->data($data)->save();
-				
-				
-				$code = array('status'=>4,'info'=>'您填写的手机号已是个人注册账号,确定要绑定吗!');
-				
-			}elseif($accph['phone'] == $data['phone'] && $acc1['type'] == 1 && $accph['level']==2 ){
-			//如果是二级账户不允许绑定
-				$code = array('status'=>3,'info'=>'对不起，您填写的手机号为二级账户手机号，无法绑定！');
+			if($var != I('post.check_code')){
+				$code = array('status'=>6,'info'=>'您填写的短信验证码不正确！请重新填写');
 			}else{
-				if($user->where(array('id'=>$id))->data($data)->save()){
-					$map3 = array('itype'=>0);
-					$user-> where('id='.$acc1['user_id'])->setField($map3);
-					$code = array('status'=>1,'info'=>'绑定修改成功');
+				//p($data);die;
+				if($accph['phone'] == $data['phone'] && $accph['type'] == 2){
+					$code = array('status'=>5,'info'=>'对不起，您填写的手机号为企业账户手机号，无法绑定！');
+				}elseif( $accph['phone'] == $data['phone'] && $acc1['type'] == 1 && $accph['level'] ==0){
+					/* //如果个人手机号存在，把该手机号的id保存在对应的中间表中*/
+					
+					$map = array(
+						'user_id'=>$accph['id'],
+						'acc_id'=>$id
+					);
+					$z->where('acc_id='.$acc1['id'])->setField($map); 
+					//1把之前绑定的手机号的id账户，状态itype设置0（可能登录状态）
+					if($acc1['user_id']){
+						
+						$map2 = array('itype'=>0);
+						$user-> where('id='.$acc1['user_id'])->setField($map2);
+					}
+					//2把绑定的存在的新手机号的id itype 值为1
+					$map3 = array('itype'=>1);
+					
+					$user-> where('id='.$accph['id'])->setField($map3);
+					
+					//3 更新当前绑定的二级账户信息
+					$user->where('id='.$acc1['id'])->data($data)->save();
+					
+					
+					$code = array('status'=>4,'info'=>'您填写的手机号已是个人注册账号,确定要绑定吗!');
+					
+				}elseif($accph['phone'] == $data['phone'] && $acc1['type'] == 1 && $accph['level']==2 ){
+				//如果是二级账户不允许绑定
+					$code = array('status'=>3,'info'=>'对不起，您填写的手机号为二级账户手机号，无法绑定！');
 				}else{
-					$code = array('status'=>0,'info'=>'绑定修改失败');
+					if($user->where(array('id'=>$id))->data($data)->save()){
+						$map3 = array('itype'=>0);
+						$user-> where('id='.$acc1['user_id'])->setField($map3);
+						$code = array('status'=>1,'info'=>'绑定修改成功');
+					}else{
+						$code = array('status'=>0,'info'=>'绑定修改失败');
+					}
 				}
 			}
+			
 				$this->ajaxReturn($code); 
 		}
 			
@@ -328,6 +360,35 @@ class UserController extends PublicController{
 		$this->ajaxReturn($code);
 	}
 	
+	
+	//停用二级账户
+	public function stopacc(){
+		$id = I('get.id', 0);
+		$map = array(
+			'itype' => 1
+		);
+		$pack = $this->model->where(array('id'=>$id))->setField($map);
+		if($pack){
+			$code = array('status'=>'y','info'=>'二级账户停用成功');
+		}else{
+			$code = array('status'=>'n','info'=>'二级账户停用成功');
+		}
+		$this->ajaxReturn($code);
+	}
+	//启用二级账户
+	public function startacc(){
+		$id = I('get.id', 0);
+		$map = array(
+			'itype' => 0
+		);
+		$pack = $this->model->where(array('id'=>$id))->setField($map);
+		if($pack){
+			$code = array('status'=>'y','info'=>'二级账户启用成功');
+		}else{
+			$code = array('status'=>'n','info'=>'二级账户启用成功');
+		}
+		$this->ajaxReturn($code);
+	}
 	
 	
 	

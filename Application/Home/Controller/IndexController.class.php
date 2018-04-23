@@ -36,6 +36,14 @@ class IndexController extends Controller {
 		
 	}
 	
+	public function sms(){
+		$ol = yunsendSMS('1236','13552832050');
+		if($ol){
+			echo 'ok';
+		}else{
+			echo '0000';
+		}
+	}
 
 	
 	//app 用户指南页面显示

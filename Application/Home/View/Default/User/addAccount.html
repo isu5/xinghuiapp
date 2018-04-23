@@ -33,10 +33,7 @@
 							<li class="active">
 								<a href="JavaScript:;" ><i class="fa fa-tags"></i>添加二级账户</a>
 							</li>
-							
 						</ul>
-						
-	                     
                 	<div class="portlet-body form" >
                      
 						<form class="form-horizontal"   action="" method="post" id="myform" enctype='multipart/form-data'>
@@ -63,9 +60,20 @@
 									<label class="col-md-3 control-label">绑定手机号</label>
 									<div class="col-md-9">
 										<input type="text" class="form-control"  name="phone" value="" datatype="m"  nullmsg="手机号不能为空" errormsg="请正确输入二级账户手机号">
-										<!-- 
-										<input type="text" class="form-control"  name="phone" value="" > -->
-										<span style="color:red"></span>
+										
+									</div>
+									<div class="col-md-4">
+									 <input id="btnSendCode" type="button" class="btn btn-default" value="发送验证码" onclick="sendMessage()" />
+									</div>
+								</div>
+								<div class="form-group">
+								
+									<label class="col-md-3 control-label">短信验证码</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control"  name="check_code" value="" datatype="*"  nullmsg="验证码不能为空" errormsg="请正确输入验证码">
+										
+										
+										
 									</div>
 								</div>
 								<div class="form-group">
@@ -104,7 +112,6 @@
 </div>
 <script type="text/javascript">
 $(function() {     
-
 	$("#myform").Validform({
 		tiptype:4,
 		showAllError:true,
@@ -135,16 +142,75 @@ $(function() {
 					});
 			} else {
 				
-				layer.msg(data.info, { icon: 2, time: 30000 ,shade: 0.5},function(){
-					window.location.href= "{:U('User/accountList')}";
-						
-				});
+				layer.msg(data.info, { icon: 2, time: 3000 ,shade: 0.5});
 				
 			}
 		} 
 	});
 	
 })		
+</script>
+<script type="text/javascript">
+
+var InterValObj; //timer变量，控制时间
+var count = 60; //间隔函数，1秒执行
+var curCount;//当前剩余秒数
+
+function sendMessage() {
+	
+	var telephone=$("input[name='phone']").val();
+	//验证手机号格式
+	var mobile = /^1([3456789]\d|4[57])\d{8}$/;
+	if(telephone && mobile.test(telephone)){
+		curCount = count;
+		　　//设置button效果，开始计时
+		     $("#btnSendCode").attr("disabled", "true");
+		     $("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+		     InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+		　　  //向后台发送处理数据
+		     $.ajax({
+		     　　type: "POST", //用POST方式传输
+		     　　dataType: "JSON", //数据格式:JSON
+		     　　url: "{:U('User/checkphone')}", //目标地址
+		    　　 data: {phone:telephone},
+		    　　 error: function (XMLHttpRequest, textStatus, errorThrown) {
+					console.log(XMLHttpRequest);
+					console.log(textStatus);
+					console.log(errorThrown);
+				},
+		     　　success: function (msg){
+					if(msg == null){
+						layer.msg('服务器错误');
+						return ;
+					}
+					if(msg !== 1){
+						layer.msg('发送失败');
+						return;
+					}
+					layer.msg('发送成功');
+				}
+		     });
+	}else{
+		console.log('请输入手机号');
+		$("[name='phone']").focus();
+		return false;
+	}
+	
+  　
+}
+
+//timer处理函数
+function SetRemainTime() {
+	if (curCount == 0) {                
+		window.clearInterval(InterValObj);//停止计时器
+		$("#btnSendCode").removeAttr("disabled");//启用按钮
+		$("#btnSendCode").val("重新发送验证码");
+	}
+	else {
+		curCount--;
+		$("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+	}
+}
 </script>
 <include file="Public/footer" />
 

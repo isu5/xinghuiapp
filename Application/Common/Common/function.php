@@ -2,6 +2,63 @@
 Vendor('JpushClient.autoload');
 use JPush\Client as JPushClient;
 use Common\Third\Jpush;
+use Common\Third\Ucpaas;
+
+
+/*
+	云之讯短信
+*/
+function yunsendSMS($param='',$mobile='',$uid=''){
+	//初始化必填
+	//填写在开发者控制台首页上的Account Sid
+	$options['accountsid']= C("YUNSMS.Accountsid");
+	//填写在开发者控制台首页上的Auth Token
+	$options['token']= C("YUNSMS.Token");
+
+	//初始化 $options必填
+	$ucpass = new Ucpaas($options);
+	$appid =  C("YUNSMS.Appid");	//应用的ID，可在开发者控制台内的短信产品下查看
+	$templateid = C("YUNSMS.Templateid");    //可在后台短信产品→选择接入的应用→短信模板-模板ID，查看该模板ID
+	/* $param = ''; //多个参数使用英文逗号隔开（如：param=“a,b,c”），如为参数则留空
+	$mobile = '';
+	$uid = ""; */
+	return $ucpass->SendSms($appid,$templateid,$param,$mobile,$uid);
+}
+
+
+/**
+ * 网易云发送模板短信
+ * @param  $mobiles      [手机号]
+ * @return $result      [返回array数组对象]
+ */
+function sendSMS($mobile=''){
+
+    $AppKey = C("SMS.AppKey");
+    $AppSecret = C("SMS.AppSecret");
+    $templateid =  C("SMS.TemplateId");
+    $RequestType = 'curl';
+    
+    $p = new ServerAPI($AppKey,$AppSecret,$RequestType);
+    return $p->sendSMSTemplate($templateid,$mobile);
+}
+
+/**
+ * 网易云检测短信验证码
+ * @param  $mobile       [手机号]
+ * @param  $code         [验证码]
+ * @return $result      [返回array数组对象]
+ */
+function checkSMS($mobile='',$code=''){
+    $AppKey = C("SMS.AppKey");
+    $AppSecret = C("SMS.AppSecret");
+    $RequestType = 'curl';
+    //vendor('wangyiSms.ServerAPI');
+    $p = new ServerAPI($AppKey,$AppSecret,$RequestType);
+    return $p->checkSMS($mobile,$code);
+}
+
+
+
 /**
 * 打印函数
 */
@@ -680,39 +737,6 @@ function readjson($arr){
 	return $data;
 	
 }
-
-/**
- * 手机号验证，发起一个post请求到指定接口
- * 
- * @param string $api 请求的接口
- * @param array $params post参数
- * @param int $timeout 超时时间
- * @return string 请求结果
- */
-function postRequest( $api, array $params = array(), $timeout = 30 ) {
-	$ch = curl_init();
-	curl_setopt( $ch, CURLOPT_URL, $api );
-	// 以返回的形式接收信息
-	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-	// 设置为POST方式
-	curl_setopt( $ch, CURLOPT_POST, 1 );
-	curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query( $params ) );
-	// 不验证https证书
-	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0 );
-	curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, 0 );
-	curl_setopt( $ch, CURLOPT_TIMEOUT, $timeout );
-	curl_setopt( $ch, CURLOPT_HTTPHEADER, array(
-		'Content-Type: application/x-www-form-urlencoded;charset=UTF-8',
-		'Accept: application/json',
-	) ); 
-	// 发送数据
-	$response = curl_exec( $ch );
-	// 不要忘记释放资源
-	curl_close( $ch );
-	return $response;
-}
-
-
 
 /**
 * 上传单张图片

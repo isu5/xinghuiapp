@@ -224,7 +224,7 @@ class UserModel extends BaseModel{
 	//二级账户
 	public function accountAli(){
 		$uid = cookie(userid);
-		$user = $this->field('id,pid,username,remark,phone,ctime')->where()->select();
+		$user = $this->field('id,pid,username,remark,phone,ctime,itype')->where()->select();
 		$level = findson($user,$uid);  //查找所有pid下的子id
 		return $level;
 

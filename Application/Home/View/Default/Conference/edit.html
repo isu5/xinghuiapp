@@ -143,19 +143,6 @@ laydate.render({
 					<div class="form-group">
 						<label class="col-md-3 control-label">合作伙伴</label>
 						
-							<?php 
-								foreach ($partid as $k => $v): 
-									$user = M('Conference')->where('part_id='.$v)->select();
-									
-									if($v){
-									$check = 'selected="selected"';
-									}else {
-										$check = '';
-									}
-									
-							?>
-							<?php endforeach; ?>
-							
 						<div class="col-md-5">
 							<select class="form-control"  id="partselect" name="part_id[]" multiple="multiple">
 								
@@ -164,14 +151,14 @@ laydate.render({
 								<else/>
 									<volist name="parts" id="p">
 									
-									<option value="{$p.id}" {$check}>{$p.companyname}</option>
+									<option value="{$p.id}" <if condition="in_array($p['id'] , $partid)">selected="selected"</if>>{$p.companyname}</option>
 									</volist>
 								
 								</empty>
 							 </select>
 						</div>
 						<div class="col-md-4">
-							<span style="color:red;font-size:12px">可删除、搜索、添加3个合作伙伴</span>
+							<span style="color:red;font-size:12px">可删除、搜索、添加合作伙伴</span>
 						</div>
 					</div>
 					<div class="form-group">
@@ -569,7 +556,7 @@ $(function(){
 $(function() { 
 	$('#partselect').select2({
 		placeholder: '请选择合作伙伴',
-		maximumSelectionSize: 3,   //最多添加3个
+		//maximumSelectionSize: 3,   //最多添加3个
 		maximumSelectionLength :10,   //限制搜索的个数
 	});
 });
