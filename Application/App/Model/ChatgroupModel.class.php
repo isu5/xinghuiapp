@@ -61,6 +61,10 @@ class ChatgroupModel extends BaseModel{
 		$str = $this->where(array('rongid'=>$rongid))->find();
 		$where['b.chat_id'] = $str['id'];
 		
+		$uid = I('post.uid'); //传入当前用户id
+		
+		//屏蔽当前用户
+		$where['b.s_id'] = array('neq',$uid);
 		//翻页
 		
 		$showrow = 15; //一页显示的行数

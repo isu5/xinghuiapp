@@ -473,11 +473,13 @@ class ConferenceController extends PublicController{
 		$data['id'] = I('post.id');
 		$oldfile = I('post.oldfile'); //接收的文件路径
 		$downfile = app_upload_file('/Uploads/file');  //上传文件
+		
 		$data['downfile'] = $downfile['pic']."###"; //新上传的文件 和数据库保持文件一致，加###
 		$info = $this->model->field('downfile')->where(array('id'=>$data['id']))->find();
 		
 		$row = str_replace($oldfile,$data['downfile'],$info['downfile']);
 		if(IS_POST){
+			
 			$res = M('Conference')->where(array('id'=>$data['id']))->setField('downfile',$row);
 			
 			if($res){
