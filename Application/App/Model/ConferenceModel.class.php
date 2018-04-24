@@ -233,6 +233,7 @@ class ConferenceModel extends RelationModel{
 		$data['companypic'] = json_encode(app_upload_image("/Uploads/Conference"));
 		$down = json_encode(app_upload_bull('/Uploads/file'),JSON_UNESCAPED_UNICODE);
 		$data['downfile'] = str_replace("\\/","/",trim($down,'[""]')).'###';
+		
 	}
 	
 	

@@ -23,7 +23,7 @@
 		
 		
 		<switch name="info[0]['is_cert']">
-		<case value="3">
+		<case value="5">
 		<li class="">
 			<a href="javascript:;">
 			<i class="fa fa-file-text-o"></i>
@@ -52,6 +52,103 @@
 			</ul>
 		</li>	
 		
+		</case>
+		<case value="3">
+		
+		
+		<li class="">
+			<a href="javascript:;">
+			<i class="fa fa-file-text-o"></i>
+			<span class="title">会议管理</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub-menu">
+				<li class="start ">
+					<a href="{:U('Conference/add')}">
+					<i class="fa fa-magic"></i>
+					<span class="title">新建会议</span>
+					
+					</a>
+				</li>
+				<li class="current " >
+					<a href="{:U('Conference/index')}">
+					<i class="fa fa-tags"></i>
+					已发布会议</a>
+				</li>
+				<li  class="current">
+					<a href="{:U('Conference/myaudit')}">
+					<i class="fa fa-tag"></i>
+					我参加的会议</a>
+				</li>
+				
+				
+			</ul>
+		</li>
+		<li class=" ">
+			<a href="javascript:;">
+			<i class="fa fa-file-text-o"></i>
+			<span class="title">企业管理</span>
+			<span class="arrow "></span>
+			</a>
+			
+			<ul class="sub-menu">
+				<li class=" ">
+					<a href="{:U('Product/index')}">
+					<i class="fa fa-magic"></i>
+					<span class="title">企业产品</span>
+					
+					</a>
+				</li>
+				<li class="start ">
+					<a href="{:U('Companybull/index')}">
+					<i class="fa fa-magic"></i>
+					<span class="title">企业公告</span>
+					
+					</a>
+				</li>
+				<li>
+					<a href="{:U('Download/index')}">
+					<i class="fa fa-magic"></i>
+					<span class="title">企业资料</span>
+					
+					</a>
+				
+				</li>
+				<li>
+					<a href="{:U('Userpartners/add')}">
+					<i class="fa fa-magic"></i>
+					<span class="title">合作伙伴</span>
+					
+					</a>
+				
+				</li>
+				
+			</ul>
+		</li>		
+		
+		<li class="">
+			<a href="javascript:;">
+			<i class="fa fa-file-text-o"></i>
+			<span class="title">二级账户管理</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub-menu">
+				<li>
+					<a href="{:U('User/addAccount')}">
+					<i class="fa fa-magic"></i>
+					<span class="title">添加二级账户</span>
+					
+					</a>
+				</li>	
+				<li class="current" >
+					<a href="{:U('User/accountList')}">
+					<i class="fa fa-file-powerpoint-o"></i>
+					二级账户列表</a>
+				</li>
+			
+			</ul>
+		</li>
+			
 		</case>
 		<case value="2">
 		
@@ -230,7 +327,7 @@
 			<!--是否认证--->
 			
 			<switch name="info[0]['is_cert']">
-				<case value="3">
+				<case value="5">
 					<ul class="sub-menu">
 						<li class="current" >
 							<a href="{:U('Certify/message')}">
@@ -240,32 +337,48 @@
 						
 					</ul>
 				</case>
-			<case value="2">
-				<ul class="sub-menu">
-					<li class="current" >
-						<a href="{:U('Certify/index')}">
-						<i class="fa fa-file-powerpoint-o"></i>
-						我的认证</a>
-					</li>
-					
-				</ul>
-			</case>
-			<case value="1">
-				<ul class="sub-menu">
-					<li class="current" >
-						<a href="{:U('Certify/person')}">
-						<i class="fa fa-file-powerpoint-o"></i>
-						我的认证</a>
-					</li>
-					
-				</ul>
-			</case>
+				<case value="3">
+					<ul class="sub-menu">
+						<li class="current" >
+							<a href="{:U('Certify/publish')}">
+							<i class="fa fa-file-powerpoint-o"></i>
+							我的认证</a>
+						</li>
+						
+					</ul>
+				</case>
+				<case value="2">
+					<ul class="sub-menu">
+						<li class="current" >
+							<a href="{:U('Certify/index')}">
+							<i class="fa fa-file-powerpoint-o"></i>
+							我的认证</a>
+						</li>
+						
+					</ul>
+				</case>
+				
+				<case value="1">
+					<ul class="sub-menu">
+						<li class="current" >
+							<a href="{:U('Certify/person')}">
+							<i class="fa fa-file-powerpoint-o"></i>
+							我的认证</a>
+						</li>
+						
+					</ul>
+				</case>
 			<default />
 				<ul class="sub-menu">
 					<li class="current" >
 						<a href="{:U('Certify/person')}">
 						<i class="fa fa-file-powerpoint-o"></i>
 						个人实名认证</a>
+					</li>
+					<li class="current" >
+						<a href="{:U('Certify/publishcert')}">
+						<i class="fa fa-file-powerpoint-o"></i>
+						个人会议发布认证</a>
 					</li>
 					<li class="current" >
 						<a href="{:U('Certify/index')}">

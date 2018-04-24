@@ -21,7 +21,7 @@ class CertifyModel extends BaseModel{
 		}
 		//审核列表audit
 		if(ACTION_NAME == "audit"){
-			$where['a.is_cert'] = 3;
+			$where['a.is_cert'] = 5;
 		}
 		//个人认证
 		if(ACTION_NAME == "person"){
@@ -30,6 +30,10 @@ class CertifyModel extends BaseModel{
 		//企业认证
 		if(ACTION_NAME == "index"){
 			$where['a.is_cert'] = 2;
+		}
+		//个人发布认证
+		if(ACTION_NAME == "publish"){
+			$where['a.is_cert'] = 3;
 		}
 		//翻页
 		$count = $this->alias('a')->where($where)->count();

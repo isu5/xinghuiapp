@@ -7,8 +7,8 @@ use Common\Model\BaseModel;
 
 class AdvertModel extends BaseModel{
 
-	private $insertFields = array('title','url','img','click','sort','status');
-	private $updateFields = array('id','title','url','img','click','sort','status');
+	private $insertFields = array('title','bullurl','pic','click','sort','status');
+	private $updateFields = array('id','title','bullurl','pic','click','sort','status');
 
 	/**
 	 *  翻页
@@ -74,7 +74,7 @@ class AdvertModel extends BaseModel{
 			$this->error = '不支持批量删除';
 			return FALSE;
 		}
-		$images = $this->field('img')->find($option['where']['id']);
+		$images = $this->field('pic')->find($option['where']['id']);
 		deleteImage($images);
 	}
 

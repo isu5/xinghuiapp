@@ -45,7 +45,9 @@
 					<li class="active">
 						<a href="{:U('Certify/person')}" ><i class="fa fa-tags"></i>个人认证</a>
 					</li>
-				
+					<li class="">
+						<a href="{:U('Certify/publishcert')}" ><i class="fa fa-tags"></i>个人会议发布认证</a>
+					</li>
 					<li  class=" ">
 						<a href="{:U('Certify/index')}"><i class="fa fa-tag"></i> 企业认证 </a>
 					</li>
@@ -107,7 +109,7 @@
 				 
 				 </case>
 				 <default />
-				 <p class="col-md-12 text-center alert alert-danger">完成企业认证即可发布会议，请慎重填写！</p>
+				 <p class="col-md-12 text-center alert alert-danger">完成个人会议发布认证或者企业认证即可发布会议，请慎重填写！</p>
 					<form class="form-horizontal "   action="__SELF__" method="post" id="registerform" enctype='multipart/form-data'>
 						<div class="form-body">
 							<div class="form-group">
@@ -147,7 +149,7 @@
 				                        <img id="fileUploadView" border="0" src="__HOME_IMG__/photo_icon.png" width="160" height="100" onclick="$('#fileUploadImg').click();">
 				                     </div> 
 									 <a href="javascript:;" class="fileUploadImage" style="position:absolute; margin-left:200px; margin-top:-65px;">上传图片
-										<input type="file" name="back" onchange="fileUploadImage(this)"  id="fileUploadImg" datatype="*" nullmsg="请上传身份证正面图片" errormsg="请上传身份证正面图片" >
+										<input type="file" name="back" onchange="fileUploadImage(this)"  id="fileUploadImg" datatype="*" nullmsg="请上传身份证反面图片" errormsg="请上传身份证反面图片" >
 									</a>									 
 				                    
 								</div>

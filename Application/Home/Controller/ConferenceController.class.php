@@ -50,9 +50,9 @@ class ConferenceController extends PublicController{
 		$uid = cookie(userid);
 		$info = $this->cert->field('is_cert,uid,type')->where(array('uid'=>$uid))->select();
 		//p($info);
-		//is_cert 为空，或者大于=3的时候，提示要实名认证
-		if($info[0]['is_cert'] >= 3 || empty($info[0]['is_cert'])){
-			$this->error('请先企业验证，认证审核通过后即可发布会议',U('Certify/index'));
+		//is_cert 为空，或者!=2(企业) !=5(个人会议发布认证)的时候，提示要实名认证
+		if($info[0]['is_cert'] > 3 && $info[0]['is_cert'] !=4){
+			$this->error('请先个人会议发布认证或者企业认证，认证审核通过后即可发布会议',U('Certify/index'));
 		}
       }  
 	

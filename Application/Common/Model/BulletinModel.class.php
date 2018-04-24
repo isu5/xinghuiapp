@@ -39,6 +39,12 @@ class BulletinModel extends BaseModel{
 		$data['content'] = htmlspecialchars_decode($_POST['content']);
 
 	}
+	
+	public function _before_update(&$data,$option){
+		
+		$data['content'] = htmlspecialchars_decode($_POST['content']);
+
+	}
 
 
 

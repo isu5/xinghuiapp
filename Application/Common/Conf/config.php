@@ -70,21 +70,21 @@ return array(
 	
 	//**********************************极光推送api 设置**************
 	 'JPUSH' => array(
-        'APP_KEY' => '3712b3258b73d7823f868165',
+        'APP_KEY' => '',
         'MASTER_SECRET' => ''
     ),
 	//**********************************网易云短信 设置未接入**************
 	'SMS' => array(
-		'AppKey'	=> 'd5275854a775369121a2e80536a5884b',
+		'AppKey'	=> '',
 		'AppSecret'	=> '',
-		'TemplateId'=> '3992639'
+		'TemplateId'=> ''
 	),
 	//**********************************云之讯短信 设置**************
 	'YUNSMS' => array(
 		'Accountsid'	=> '',
 		'Token'	=> '',
 		'Appid' => '',
-		'Templateid'=> '00000'
+		'Templateid'=> ''
 	),
 	
 

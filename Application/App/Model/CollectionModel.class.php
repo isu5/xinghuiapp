@@ -17,10 +17,16 @@ class CollectionModel extends BaseModel{
 		$showrow = 15; //一页显示的行数
 		
 		$curpage = I('post.page',1);; //当前的页,还应该处理非数字的情况
-
-
-		$total = $this->alias('a')->where($where)->count();	
-
+		
+		$map = $this->where(array('uid'=>$where['a.uid']))->select();
+		$maps = array_column($map,'cid');
+		//p($maps);
+		$where['b.id'] = array('in',$maps);
+		$total = $this->alias('a')->field('b.id,b.title,b.ctime,b.qtime,b.etime,b.address,b.xxaddress,b.is_user,b.is_private,b.click,b.companypic')
+		->join('LEFT JOIN __CONFERENCE__ b on b.id=a.cid
+		')->where($where)->count();	
+		
+		
 
 		$page = new AppPage($total, $showrow);
 		if ($total > $showrow) {

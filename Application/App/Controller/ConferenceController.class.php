@@ -64,10 +64,10 @@ class ConferenceController extends PublicController{
 		//判断用户是否是二级账户
 		
 		//p($info);
-		//is_cert 为空，或者大于=3的时候，提示要实名认证
-		if($info[0]['is_cert'] > 3 || empty($info[0]['is_cert'])){
+		//is_cert 为空，或者!=2(企业) !=5(个人会议发布认证)的时候，提示要实名认证
+		if($info[0]['is_cert'] > 3 && $info[0]['is_cert'] !=4 ){
 			
-			Response::show(401,'请先企业验证!');
+			Response::show(401,'请先个人会议发布认证或者企业认证!');
 		}
       }  
 	
@@ -95,7 +95,7 @@ class ConferenceController extends PublicController{
 					Response::show(401,'添加失败!');
 				}
 			}else{
-				Response::show(402,'添加数据不合法!',$this->model->getError());
+				Response::show(402,$this->model->getError());
 			}
 
 		}

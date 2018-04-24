@@ -65,7 +65,25 @@ class CertifyController extends PublicController{
 		$this->assign('cert',$cert);
 		$this->display(); */
 	}
-
+	
+	//个人发布会议认证
+	public function publishcert(){
+		if(IS_POST){
+			/* p($_POST);
+			p($_FILES);
+			DIE; */
+			if($this->model->create(I('post.',1))){
+				if ($this->model->add()) {
+					Response::show(200,'提交成功，请等待审核!');
+				}else{
+					Response::show(401,$this->model->getError());
+				}
+			}else{
+				Response::show(402,$this->model->getError());
+			}
+			
+		}
+	}
 	
 	
 	//个人认证修改

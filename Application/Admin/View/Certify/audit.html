@@ -27,6 +27,7 @@
 				<th width="40">身份证号</th>
 				<th width="90">身份证正面</th>
 				<th width="90">身份证反面</th>
+				<th width="90">手执身份证</th>
 				<th width="150">企业名称</th>
 				<th width="40">证件号码</th>
 				<th width="90">证件照片</th>
@@ -53,6 +54,11 @@
 					{:showImg($v['back'],60,back.$v['id'])} <a onclick="f_img_preview('back{$v.id}',this.src)">点击查看</a>
 				</if>
 				</td>
+				<td class="text-l">
+				<if condition='$v["zhicard"]'>
+					{:showImg($v['zhicard'],60,zhicard.$v['id'])} <a onclick="f_img_preview('zhicard{$v.id}',this.src)">点击查看</a>
+				</if>
+				</td>
 				<td class="text-l">{$v.company}</td>
 				<td class="text-l">{$v.certificate}</td>
 				<td class="text-l">
@@ -68,7 +74,7 @@
 				</td>
 				<td>{$v.certtime|date="Y-m-d H:i",###}</td>
 				<td class="td-status">
-					<eq name="v.is_cert" value="3">
+					<eq name="v.is_cert" value="5">
 						
 						<span class="label label-default radius" >审核中</span>
 					</eq>
@@ -84,7 +90,9 @@
 					<case value="2">
 					<a style="text-decoration:none" onClick="member_companyCert(this,{$v.id})" href="javascript:;" title="同意"><b class="btn btn-success size-S radius">同意</b></a>
 					</case>	
-					
+					<case value="3">
+					<a style="text-decoration:none" onClick="member_publishcert(this,{$v.id})" href="javascript:;" title="同意"><b class="btn btn-success size-S radius">同意</b></a>
+					</case>
 					</switch>
 					<a style="text-decoration:none" onClick="member_stop(this,{$v.id})" href="javascript:;" title="拒绝"><b class="btn btn-warning size-S radius">拒绝</b></a>
 				
@@ -195,7 +203,28 @@ function member_companyCert(obj,id){
 		})
 	});
 }
+/*用户-发布认证审核通过*/
+function member_publishcert(obj,id){
+	layer.confirm('确认给予审核通过吗？',{
+		icon: 3,
+		title: '提示信息',
+		btn: ['是的','取消'], //按钮
+		shade: [0.4, '#393D49']
+	},function(){
+		$.get("{:U('Certify/publishcert')}", { "id": id },function(data){
+			if (data == 3) {
+				layer.msg('已审核!',{icon: 6,time:1000},function(index){
+					$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="admin_stop(this,id)" href="javascript:;" title="未通过"><i class="Hui-iconfont">&#xe6de;</i></a>');
+					$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已审核</span>');
+					$(obj).remove();
+					location.reload();
 
+					
+				}, "json");
+			}
+		})
+	});
+}
 
 
 

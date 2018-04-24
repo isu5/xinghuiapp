@@ -65,6 +65,29 @@ class CertifyController extends PublicController{
 		$this->assign('cert',$cert);
 		$this->display();
 	}
+	//个人会议发布认证
+	public function publishcert(){
+		if(IS_POST){
+			/* p($_POST);
+			p($_FILES);
+			DIE; */
+			if($this->model->create(I('post.',1))){
+				if ($this->model->add()) {
+					redirect('message',3,'提交跳转中...');
+				}else{
+					$this->error($this->model->getError());
+				}
+			}
+			//$this->ajaxReturn($code);
+			exit;
+			
+		}
+		$uid = cookie(userid);
+		$cert = $this->model->where(array('uid'=>$uid))->find();
+		
+		$this->assign('cert',$cert);
+		$this->display();
+	}
 
 	public function message(){
 		$this->display();

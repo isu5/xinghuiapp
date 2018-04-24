@@ -51,7 +51,16 @@ class CertifyModel extends BaseModel{
 				return FALSE;
 			}
 		}
-		
+		if (isset($_FILES['zhicard']) && $_FILES['zhicard']['error'] == 0) {
+			$ret = uploadOne('zhicard','Idcard',array());
+			if($ret['ok'] == 1){
+				$data['zhicard'] = $ret['images'][0];
+				$data['is_image'] = 3; //手执身份证
+			}else{
+				$this->error = $ret['error'];
+				return FALSE;
+			}
+		}
 		//企业认证图片
 		if (isset($_FILES['certificateimg']) && $_FILES['certificateimg']['error'] == 0) {
 			$ret = uploadOne('certificateimg','Certificate',array());
@@ -62,9 +71,6 @@ class CertifyModel extends BaseModel{
 				return FALSE;
 			}
 		}
-		
-		
-		
 	}
 	
 	//个人认证修改

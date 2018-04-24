@@ -858,7 +858,7 @@ function app_upload_bull($path,$maxSize=524288000){
         'savePath'  =>'./'.$path.'/',   
         'exts'      => array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'txt','pdf'),
         'maxSize'   => $maxSize,
-		'saveName'  =>  '',     // 上传文件的保存规则，支持数组和字符串方式定义
+		'saveName'  => '',   // 上传文件的保存规则，支持数组和字符串方式定义
         'autoSub'   => true,
 		'subName'	=> 	array('date','Ymd/'.time()),  //生成保存的子目录
         );
