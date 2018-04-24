@@ -466,6 +466,17 @@ class ConferenceController extends PublicController{
 			}
 		}
 	}
+	//会议修改上传图片接口
+	public function editpic(){
+		$data = $this->model->editPic();
+		if(IS_POST){
+			if($data){
+				Response::show(200,'修改成功');
+			}else{
+				Response::show(401,'修改失败');
+			}
+		}
+	}
 	
 	
 	//修改会议资料

@@ -236,7 +236,7 @@ class ConferenceModel extends RelationModel{
 	}
 	
 	
-	//修改之前
+	/* //修改之前
 	public function _before_update(&$data, $option){
 		//app 修改上传图片
 		$data['companypic'] = json_encode(app_upload_image("/Uploads/Conference"));
@@ -244,7 +244,7 @@ class ConferenceModel extends RelationModel{
 		$data['downfile'] = str_replace("\\/","/",trim($down,'[""]')).'###';
 		
 		//p($data);
-	}
+	} */
 	
 	//编辑会议接口里上传文件
 	public function editDownfiles(){
@@ -255,7 +255,14 @@ class ConferenceModel extends RelationModel{
 		return $this->where(array('id'=>$id))->save($data);
 	}
 	
+	//编辑会议接口里上传图片
 	
+	public function editPic(){
+		$id = I('post.id');
+		$data['companypic'] = json_encode(app_upload_image('/Uploads/Conference'),JSON_UNESCAPED_UNICODE);
+		
+		return $this->where(array('id'=>$id))->save($data);
+	}
 	
 	//筛选条件查询
 	public function filterCert(){
