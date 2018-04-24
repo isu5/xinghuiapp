@@ -52,13 +52,13 @@ return array(
     ),
 	//***********************************其他设置**********************************
     'RONG_IS_DEV'            => true,//是否是在开发中
-    'RONG_DEV_APP_KEY'       => '82hegw5u83l8x', //融云开发环境下的key       仅供测试使用
-    'RONG_DEV_APP_SECRET'    => '3NHUMv9zRPrdA5', //融云开发环境下的SECRET     仅供测试使用
-    'RONG_PRO_APP_KEY'       => 'e0x9wycfehqeq', //融云生产环境下的key
-    'RONG_PRO_APP_SECRET'    => 'hUwjXsBLM0', //融云生产环境下的SECRET
+    'RONG_DEV_APP_KEY'       => '', //融云开发环境下的key       仅供测试使用
+    'RONG_DEV_APP_SECRET'    => '', //融云开发环境下的SECRET     仅供测试使用
+    'RONG_PRO_APP_KEY'       => '', //融云生产环境下的key
+    'RONG_PRO_APP_SECRET'    => '', //融云生产环境下的SECRET
 	
-    'GEETEST_ID'             => '034b9cc862456adf05398821cefc94eb',//极验id  仅供测试使用
-    'GEETEST_KEY'            => 'b7f064b9ae813699de794303f0b0e76f',//极验key 仅供测试使用
+    'GEETEST_ID'             => '',//极验id  仅供测试使用
+    'GEETEST_KEY'            => '',//极验key 仅供测试使用
     'UMENG_IOS_APP_KEY'      => '', //友盟ios AppKey
     'UMENG_IOS_SECRET'       => '', //友盟ios App Master Secret
     'UMENG_ANDROID_APP_KEY'  => '', //友盟android AppKey
@@ -71,20 +71,20 @@ return array(
 	//**********************************极光推送api 设置**************
 	 'JPUSH' => array(
         'APP_KEY' => '3712b3258b73d7823f868165',
-        'MASTER_SECRET' => 'ea74160088aabd9a3d583807'
+        'MASTER_SECRET' => ''
     ),
 	//**********************************网易云短信 设置未接入**************
 	'SMS' => array(
 		'AppKey'	=> 'd5275854a775369121a2e80536a5884b',
-		'AppSecret'	=> 'a3a5477f8b97',
+		'AppSecret'	=> '',
 		'TemplateId'=> '3992639'
 	),
 	//**********************************云之讯短信 设置**************
 	'YUNSMS' => array(
-		'Accountsid'	=> 'f105a32dcd8bc368fffb4b2501c9c4ac',
-		'Token'	=> '102ad7bc0b93cc89963ad5ff0c87077a',
-		'Appid' => 'e540b654b48145249b36cd5cf715e6de',
-		'Templateid'=> '310246'
+		'Accountsid'	=> '',
+		'Token'	=> '',
+		'Appid' => '',
+		'Templateid'=> '00000'
 	),
 	
 
