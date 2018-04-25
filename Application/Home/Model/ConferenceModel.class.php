@@ -109,7 +109,10 @@ class ConferenceModel extends BaseModel{
 		$data['guide'] = htmlspecialchars_decode($_POST['guide']);
 		//处理合作伙伴id
 		$partid = I('post.part_id');
+		if($partid){
+			
 		$data['part_id'] = implode(',',$partid);
+		}
 		//p($data);die;
 	}
 	
@@ -130,8 +133,12 @@ class ConferenceModel extends BaseModel{
 		$agenda = htmlspecialchars_decode(I('post.agenda'));
 		$guests = htmlspecialchars_decode(I('post.guests'));
 		$guide = htmlspecialchars_decode(I('post.guide'));
-		$partid = I('post.part_id');
-		$partids = implode(',',$partid);
+		
+		$partid= I('post.part_id');
+		if($partid ){
+			
+			$partids = implode(',',$partid);
+		}
 		/* //如果修改时间的话，修改会议的状态
 		$conf = M('Conference');
 		$audit = M('Conference_audit');

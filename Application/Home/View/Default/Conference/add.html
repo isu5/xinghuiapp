@@ -110,7 +110,7 @@ laydate.render({
 					<div class="form-group">
 						<label class="col-md-3 control-label">会议类型</label>
 						<div class="col-md-9">
-							<select class="form-control input-medium" name="cid">
+							<select class="form-control input-medium" name="cid" datatype="*" nullmsg="请选择！" errormsg="请选择！">
 								<option value="">请选择</option>
 								<volist name="cate" id="v">
 									<if condition="$v.id eq 1">
@@ -125,7 +125,7 @@ laydate.render({
 					<div class="form-group">
 						<label class="col-md-3 control-label">是否公开</label>
 						<div class="col-md-5">
-							<select class="form-control input-medium" name="is_private">
+							<select class="form-control input-medium" name="is_private" datatype="*" nullmsg="请选择！" errormsg="请选择！">
 								<option value="0" selected="selected">公开</option>
 								<option value="1">内部</option>
 							 </select>
@@ -255,7 +255,7 @@ laydate.render({
 					<div class="form-group">
 						<label class="col-md-3 control-label">审核权限</label>
 						<div class="col-md-9">
-							<select class="form-control input-medium" name="is_user">
+							<select class="form-control input-medium" name="is_user" datatype="*" nullmsg="请选择！" errormsg="请选择！">
 								<option value="0">否</option>
 								<option value="1">是</option>
 								
@@ -321,11 +321,11 @@ $(function() {
 			datetimepicker:{}
 		},
 	});
-	demo.addRule([{
-		ele:"select",
-		datatype:"*",
-	}
-	]);
+	//- demo.addRule([{
+	//    ele:"select",
+		//datatype:"*",
+	//}
+	//]); 
 });		
 </script>
 

@@ -79,12 +79,15 @@ class ConferenceController extends PublicController{
 					if($id){
 						$part = $this->model->field('part_id')->where(array('id'=>$id))->find();
 						//添加成功把当前用户，合作伙伴id，会议id，添加到中间表
-						$pro = array(
+						if($part){
+							$pro = array(
 							'user_id'=>$uid,
 							'conf_id'=>$id,
 							'part_id'=>$part['part_id']
-						);
-						$user_part->add($pro);
+							);
+							$user_part->add($pro);
+						}
+						
 					}
 					
 					$this->error('添加成功',U('Conference/index'));
@@ -125,7 +128,10 @@ class ConferenceController extends PublicController{
 				if(FALSE !== $this->model->updateConf()){
 					//修改中间表中数据
 					$part = $this->model->field('part_id')->where('id='.$id)->find();
-					$user_part->where('user_id='.$uid)->data($part)->save();
+					if($part){
+						$user_part->where('user_id='.$uid)->data($part)->save();
+					}
+					
 					$this->success('修改成功！', U('show', array('id' => $id)));
 				}
 			}
