@@ -14,7 +14,7 @@ class PublicController extends Controller{
 		$cert = D('Certify');
 		$uid = cookie(userid);
 		$info = $cert->field('is_cert,uid,type')->where(array('uid'=>$uid))->select();
-		
+		//p($info);
 		$this->assign('info',$info);
 	}
 

@@ -165,10 +165,10 @@ class ConferenceModel extends BaseModel{
 	//修改前
 	public function _before_update(&$data, $option){
 		
-		if($_POST['downfile'] == ''){
+		if($_POST['downfile']){
 			$data['downfile'] = I('post.downfile');
 		}
-		if($_POST['companypic'] == ''){
+		if($_POST['companypic']){
 			
 			$data['companypic'] = '['.json_encode(I('post.companypic')).']';
 		}

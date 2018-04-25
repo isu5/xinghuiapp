@@ -65,7 +65,7 @@ class ConferenceController extends PublicController{
 		
 		//p($info);
 		//is_cert 为空，或者!=2(企业) !=5(个人会议发布认证)的时候，提示要实名认证
-		if($info[0]['is_cert'] > 3 && $info[0]['is_cert'] !=4 ){
+		if($info[0]['is_cert'] > 3 && $info[0]['is_cert'] <> 4 || empty($info[0]['is_cert']) ){
 			
 			Response::show(401,'请先个人会议发布认证或者企业认证!');
 		}
