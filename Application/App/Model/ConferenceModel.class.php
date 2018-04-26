@@ -232,6 +232,7 @@ class ConferenceModel extends RelationModel{
 		//app 上传图片
 		$data['companypic'] = json_encode(app_upload_image("/Uploads/Conference"));
 		$down = json_encode(app_upload_bull('/Uploads/file'),JSON_UNESCAPED_UNICODE);
+		//$data['downfile'] = str_replace("\\/","/",trim($down,'[""]')).'###';
 		$data['downfile'] = str_replace(',','###', str_replace('"','',str_replace('\\','',str_replace('"]','',str_replace('["','',$down)))))."###";
 		
 	}
@@ -247,6 +248,7 @@ class ConferenceModel extends RelationModel{
 		//p($data);
 	} */
 	
+
 	//编辑会议接口里上传文件
 	public function editDownfiles(){
 		$id = I('post.id');
@@ -264,6 +266,7 @@ class ConferenceModel extends RelationModel{
 		
 		return $this->where(array('id'=>$id))->save($data);
 	}
+	
 	
 	//筛选条件查询
 	public function filterCert(){

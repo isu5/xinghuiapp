@@ -56,9 +56,12 @@ class UserController extends PublicController{
 		$personcert = $cert->field('uid,realname,idcard,front,back,certtime,type,is_cert,is_image')->where(array('uid'=>$data['uid']))->find();
 		//个人发布
 		$publishcert = $cert->field('uid,realname,idcard,front,back,zhicard,certtime,type,is_cert,is_image')->where(array('uid'=>$data['uid']))->find();
+		
+		//审核中数据
+		$auditdata = $cert->where(array('uid'=>$data['uid']))->find();
 		if(IS_POST){
 			if($iscert['is_cert'] == 5){
-				Response::show(401,'您的申请已提交，正在审核中，请耐心等待!');
+				Response::show(401,'您的申请已提交，正在审核中，请耐心等待!',$auditdata);
 				
 			}elseif($iscert['is_cert'] == 2){
 				Response::show(200,'恭喜您，您已通过企业认证审核!',$comiscert);

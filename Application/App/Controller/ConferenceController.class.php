@@ -109,10 +109,6 @@ class ConferenceController extends PublicController{
 		$this->assign('data',$data); */
 		
 	}
-	
-	
-	
-	
 	//意见反馈
 	public function message(){
 	//p($_POST);die;

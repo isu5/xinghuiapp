@@ -113,7 +113,20 @@ class CertifyController extends PublicController{
 		
 		
 	}
-	
+	//个人发布会议认证修改
+	public function editpublish(){
+		
+		
+		if(IS_POST){
+			if(!$this->model->editpublish()){
+				Response::show(401,'修改失败',$this->model->getError());
+			}else{
+				Response::show(200,'修改成功');
+			}
+		}
+		
+		
+	}
 	
 	
 	

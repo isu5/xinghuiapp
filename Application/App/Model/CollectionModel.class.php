@@ -20,30 +20,37 @@ class CollectionModel extends BaseModel{
 		
 		$map = $this->where(array('uid'=>$where['a.uid']))->select();
 		$maps = array_column($map,'cid');
-		//p($maps);
-		$where['b.id'] = array('in',$maps);
-		$total = $this->alias('a')->field('b.id,b.title,b.ctime,b.qtime,b.etime,b.address,b.xxaddress,b.is_user,b.is_private,b.click,b.companypic')
-		->join('LEFT JOIN __CONFERENCE__ b on b.id=a.cid
-		')->where($where)->count();	
+		$uid = array_column($map,'uid');
 		
-		
+		if(in_array($where['a.uid'],$uid)){
+			//p($maps);
+			$where['b.id'] = array('in',$maps);
+			$total = $this->alias('a')->field('b.id,b.title,b.ctime,b.qtime,b.etime,b.address,b.xxaddress,b.is_user,b.is_private,b.click,b.companypic')
+			->join('LEFT JOIN __CONFERENCE__ b on b.id=a.cid
+			')->where($where)->count();	
+			
+			
 
-		$page = new AppPage($total, $showrow);
-		if ($total > $showrow) {
-			$data['page'] =  $page->myde_write();
-		 }
+			$page = new AppPage($total, $showrow);
+			if ($total > $showrow) {
+				$data['page'] =  $page->myde_write();
+			 }
 
-		$data['data'] = $this->alias('a')
-		->field('b.id,b.title,b.ctime,b.qtime,b.etime,b.address,b.xxaddress,b.is_user,b.is_private,b.click,b.companypic')
-		->join('LEFT JOIN __CONFERENCE__ b on b.id=a.cid
-		')
-		->where($where)
-		->limit(($curpage - 1) * $showrow.','.$showrow)
-		->order('id desc')
-		->select();
+			$data['data'] = $this->alias('a')
+			->field('b.id,b.title,b.ctime,b.qtime,b.etime,b.address,b.xxaddress,b.is_user,b.is_private,b.click,b.companypic')
+			->join('LEFT JOIN __CONFERENCE__ b on b.id=a.cid
+			')
+			->where($where)
+			->limit(($curpage - 1) * $showrow.','.$showrow)
+			->order('id desc')
+			->select();
+			
+			//p($this->_Sql());
+			return $data;
+		}else{
+			return false;
+		}
 		
-		//p($this->_Sql());
-		return $data;
 	}
 
 	public function _before_insert(&$data,$option){

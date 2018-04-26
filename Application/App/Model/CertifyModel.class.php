@@ -86,7 +86,7 @@ class CertifyModel extends BaseModel{
 			$back = I('post.back');
 		}
 		$realname = I('post.realname');
-		$iscert = 3;
+		$iscert = 5;
 		$this->where(array('uid'=>$uid))->save(array('realname'=>$realname,'front'=>$front,'back'=>$back,'is_cert'=>$iscert));
 		
 		return true;
@@ -98,8 +98,22 @@ class CertifyModel extends BaseModel{
 		$certificateimg = I('post.certificateimg');
 		$certificate = I('post.certificate');
 		$company = I('post.company');
-		$iscert = 3;
+		$iscert = 5;
 		$this->where(array('uid'=>$uid))->save(array('certificateimg'=>$certificateimg,'certificate'=>$certificate,'company'=>$company,'is_cert'=>$iscert));
+		
+		return true;
+	}
+	
+	//个人发布认证修改
+	public function editpublish(){
+		$uid = I('post.uid');	
+		$front = I('post.front');
+		$idcard = I('post.idcard');
+		$back = I('post.back');
+		$zhicard = I('post.zhicard');
+		$realname = I('post.realname');
+		$iscert = 5;
+		$this->where(array('uid'=>$uid))->save(array('idcard'=>$idcard,'realname'=>$realname,'zhicard'=>$zhicard,'front'=>$front,'back'=>$back,'is_cert'=>$iscert));
 		
 		return true;
 	}
@@ -121,6 +135,15 @@ class CertifyModel extends BaseModel{
 			$ret = uploadOne('back','Idcard',array());
 			if($ret['ok'] == 1){
 				$data['back'] = $ret['images'][0];
+			}else{
+				$this->error = $ret['error'];
+				return FALSE;
+			}
+		}
+		if (isset($_FILES['zhicard']) && $_FILES['zhicard']['error'] == 0) {
+			$ret = uploadOne('zhicard','Idcard',array());
+			if($ret['ok'] == 1){
+				$data['zhicard'] = $ret['images'][0];
 			}else{
 				$this->error = $ret['error'];
 				return FALSE;
