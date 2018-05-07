@@ -10,17 +10,17 @@ class CertifyModel extends BaseModel{
 	/**
 	 * 后台数据
 	 */
-	public function search($pagesize=15){
+	public function search(){
 
-		
+		$where = array();
 		//审核列表audit
 		if(ACTION_NAME == "audit"){
 			$where['a.is_cert'] = 5;
 		}
 		
 		//翻页
-		$where = array();
-		$showrow = 1; //一页显示的行数
+		
+		$showrow = 15; //一页显示的行数
 		
 		$curpage = I('post.page',1);; //当前的页,还应该处理非数字的情况
 	
@@ -34,14 +34,14 @@ class CertifyModel extends BaseModel{
 		 }
 		
 		$data['data'] = $this->alias('a')
-		->field('a.*,b.username')
+		->field('a.*,b.username,b.logo')
 		->join('LEFT JOIN __USER__ b ON a.uid=b.id 
 			')
 		->where($where)
 		->limit(($curpage - 1) * $showrow.','.$showrow)
 		->order('id desc')
 		->select();
-		
+		//p($this->_Sql());
 		return $data;
 	}
 

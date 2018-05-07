@@ -13,7 +13,6 @@ class CertifyController extends CommonController{
 		$this->model = D('Certify');
 		$this->user = D('User');
 		$this->conf = D('Conference');
-			
 	}
 	
 	//审核列表
@@ -88,7 +87,7 @@ class CertifyController extends CommonController{
 	//企业审核通过
 	public function companyCert(){
 		$id = I('get.id');
-		//把is_cert的值更新为1
+		//把is_cert的值更新为2
 		$status = $this->model->where('id='.$id)->setField('is_cert',2);
 		//审核认证后的公司名称，保存到用户表中的公司名称字段中且不可更改
 		$cert = $this->model->field('id,uid,company')->where('id='.$id)->find();

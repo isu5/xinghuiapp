@@ -136,8 +136,37 @@ class LoginController extends Controller{
 			redirect(U('Login/index'));
 		}
 
-
-
+	
+	public function RecoveryPwd(){
+		
+		if(IS_POST){
+			p($_POST);
+		}
+		
+		
+		$this->display();
+	}
+	//忘记密码
+	//检测手机验证码
+	public function checkPcCode(){
+		$data['check_code'] = rand('1000','9999');
+		$data['phone'] = I('post.phone');
+		
+		if(IS_POST){
+			 /* print_r($_POST);
+			print_r($data);die;  */
+			if(yunsendSMS($data['check_code'],$data['phone'])){
+				session('check_code',$data['check_code']);
+				session('phone',$data['phone']);
+				$code = array('code'=>1,);
+				$this->ajaxReturn(1);  //发送成功
+			}else{
+				$this->ajaxReturn(0);
+			}
+			
+		}
+		
+	}
 
 	
 

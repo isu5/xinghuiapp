@@ -101,16 +101,16 @@
 							</div>
 							
 						</div>
-						<div class="col-md-9">
+						<!-- <div class="col-md-9">
 							<div class="form-control-static">
-							<!-- 手机号不为空可以更换手机号（显示手机号），否则显示绑定手机号 -->
+							<!-- 手机号不为空可以更换手机号（显示手机号），否则显示绑定手机号 
 								<if condition="$data.phone neq ''">
 									<button type="button" class="btn btn-default" onclick="javascript:void(0);">更换手机号</button>
 									<else /> 
 									<button type="button" class="btn btn-default" onclick="javascript:void(0);">绑定手机号</button>
 								</if>
 							</div>
-						</div>
+						</div> -->
 					</div>
 					
 					<div class="form-group">
@@ -119,8 +119,11 @@
 							
 							<p class="form-control-static">
 								<switch name="info[0]['is_cert']">
-									<case value="3">
+									<case value="5">
 									<span class="label label-success radius" >认证审核中</span>
+									</case>
+									<case value="3">
+									<span class="label label-success radius" >已个人会议发布认证</span>
 									</case>
 									<case value="2">
 									<span class="label label-success radius" >已企业认证</span>

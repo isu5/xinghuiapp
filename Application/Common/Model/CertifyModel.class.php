@@ -84,6 +84,16 @@ class CertifyModel extends BaseModel{
 			}
 		}
 		
+		//个人会议发布认证图片
+		if (isset($_FILES['zhicard']) && $_FILES['zhicard']['error'] == 0) {
+			$ret = uploadOne('zhicard','Certificate',array());
+			if($ret['ok'] == 1){
+				$data['zhicard'] = $ret['images'][0];
+			}else{
+				$this->error = $ret['error'];
+				return FALSE;
+			}
+		}
 		//企业认证图片
 		if (isset($_FILES['certificateimg']) && $_FILES['certificateimg']['error'] == 0) {
 			$ret = uploadOne('certificateimg','Certificate',array());
@@ -97,7 +107,7 @@ class CertifyModel extends BaseModel{
 		
 		$data['certtime'] = time();
 		$data['uid'] = cookie(userid);
-		$data['is_cert'] = 3;  // 状态为3时，为审核中 1为个人认证，2为企业认证
+		$data['is_cert'] = 5;  // 状态为5时，为审核中 1为个人认证，2为企业认证，3为个人会议发布认证
 		
 		//认证之前把公司名称添加到新建会议的表中
 		$cert = D('Conference');

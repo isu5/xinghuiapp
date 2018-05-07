@@ -165,6 +165,8 @@ class ConferenceModel extends BaseModel{
 			'part_id'=>$partids,
 		));
 		
+		
+		
 		return true;
 		
 	}

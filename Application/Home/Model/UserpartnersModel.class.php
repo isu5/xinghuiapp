@@ -67,14 +67,19 @@ class UserpartnersModel extends BaseModel{
 			$where['companyname'] = array('like',"%$companyname%");
 		}
 		
+		$where['b.conf_id'] = I('get.conf_id');
 		//查询该会议id的，插入到表
 		$where['a.conf_user_id'] = cookie(userid);
 		$part_id = M('Conference')->where(array('id'=>I('get.conf_id')))->getField('part_id');
-		$where['a.id'] = array('in' , $part_id);
-		
+		if($part_id){
+			$where['a.id'] = array('in' , $part_id);
+		}
 		
 		//翻页
-		$count = $this->alias('a')->where($where)->count();
+		$count = $this->alias('a')->join('
+			left join __USER_PART__ b on b.user_id = a.conf_user_id
+			LEFT JOIN __USER__ c on c.id=a.user_id
+			')->where($where)->count();
 		$page = new \Think\Page($count,$pagesize);
 		//配置分页
 		$page->setConfig('prev', '上一页');
@@ -83,11 +88,13 @@ class UserpartnersModel extends BaseModel{
 		$data['data'] = $this->alias('a')
 		->field('a.*,c.companyname as company,c.phone as iphone,c.address as dizhi,c.area as xxdizhi,c.email')
 		->join('
+			left join __USER_PART__ b on b.user_id = a.conf_user_id
 			LEFT JOIN __USER__ c on c.id=a.user_id
 			')
 		->where($where)
 		->limit($page->firstRow.','.$page->listRows)
 		->order('id desc')
+		->group('id')
 		->select();
 		//p($this->getLastSql());
 		return $data;

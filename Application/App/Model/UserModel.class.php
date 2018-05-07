@@ -75,12 +75,16 @@ class UserModel extends BaseModel{
 	}
 	 //修改前
 	protected function _before_update(&$data, $option){
+		$id = I('post.id');
 		
 		$focus = M('Conference_focus');
-		$focus->where(array('conf_user_id'=>$option['where']['id']))->setField('state',1);
-		$id = I('post.id');
+		$focus->where(array('conf_user_id'=>$id))->setField('state',1);
+		//p($this->_Sql);
+		
+		
 		//修改头像，刷新融云用户
 		refreshRongcloud_token($id);
+		
 		if (isset($_FILES['logo']) && $_FILES['logo']['error'] == 0) {
 			
 			$ret = uploadOne('logo','Avatar',array());
@@ -98,6 +102,31 @@ class UserModel extends BaseModel{
 		
 		
 	} 
+	//修改后  catename:所属行业 address:公司地址 area:详细地址   把以上数据保存到二级账户中
+	protected function _after_update($data,$option) {  
+		/* $mmp = $this->field('id,pid,logo,username,type,level')->where(array('id'=> $option['where']['id']))->select();
+		if($mmp['level'] ==0 ){
+			$this->error = '您查看的用户没有二级账户';
+		}else{
+			
+		}
+		$level = findson($mmp,$option['where']['id']);
+		//p($level);
+		if($level){
+			$sunid = array_column($level,'id');
+			
+			}
+			$map['catename'] = I('post.catename');
+			$map['address'] = I('post.address');
+			$map['area'] = I('post.area');
+			//p($sunid);
+			$mm['id'] = array('in',$sunid);
+			//$this->where($mm)->save($map);
+			
+		//p($sunid);die; */
+		
+		
+    }  
 	
 	
 	//参会人员列表

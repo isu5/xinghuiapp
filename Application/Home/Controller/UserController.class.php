@@ -145,7 +145,12 @@ class UserController extends PublicController{
 							'acc_id'=>$id
 						);
 						$z->add($por);
-						
+						//创建的二级账户同时关注企业主账户
+						$accountR = array(
+							'conf_user_id' => $data['pid'],
+							'user_id' => $id,
+						);
+						$focus->add($accountR);
 						//融云token值
 						getRongcloudToken($id);
 						
@@ -389,6 +394,7 @@ class UserController extends PublicController{
 		}
 		$this->ajaxReturn($code);
 	}
+	
 	
 	
 	

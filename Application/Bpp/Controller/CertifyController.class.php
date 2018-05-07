@@ -105,9 +105,6 @@ class CertifyController extends Controller{
 		}
 		
 		
-		
-		
-		
 	}
 	
 

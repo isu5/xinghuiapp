@@ -232,11 +232,9 @@ class ConferenceModel extends RelationModel{
 		//app 上传图片
 		$data['companypic'] = json_encode(app_upload_image("/Uploads/Conference"));
 		$down = json_encode(app_upload_bull('/Uploads/file'),JSON_UNESCAPED_UNICODE);
-		//$data['downfile'] = str_replace("\\/","/",trim($down,'[""]')).'###';
 		$data['downfile'] = str_replace(',','###', str_replace('"','',str_replace('\\','',str_replace('"]','',str_replace('["','',$down)))))."###";
 		
 	}
-	
 	
 	/* //修改之前
 	public function _before_update(&$data, $option){

@@ -216,7 +216,7 @@ laydate.render({
 					<div class="form-group">
 						<label class="col-md-3 control-label">联系电话</label>
 						<div class="col-md-5">
-							<input type="text" class="form-control"  name="phone" value="{$data.phone}" placeholder="请填写联系人手机号"  datatype="m" nullmsg="联系人电话不能为空" errormsg="请填写正确的联系人手机号码">
+							<input type="text" class="form-control"  name="phone" value="{$data.phone}" placeholder="请填写联系人手机号"  datatype="m|*5-12" nullmsg="联系人电话不能为空" errormsg="请填写正确的联系人手机号码">
 							
 						</div>
 					</div>
@@ -248,7 +248,7 @@ laydate.render({
 								<a class="btn" id="btn">上传附件</a> <font style="font-size:12px">限制<span style="color:red">10M</span>,支持doc,docx,xls, xlsx,ppt,pdf格式。支持上传5个文件</font> 
 								<ul id="ul_pics" class="ul_pics clearfix">
 									<volist name="row['downfileArr']" id="vo">
-										<li class="li_image" ><div class="img"><a href="{$vo}"><?php echo substr($vo,37)?></a><span class="span_del"></span></div></li>
+										<li class="li_image" ><div class="img"><a href="{$vo}"><?php echo substr($vo,34)?></a><span class="span_del"></span></div></li>
 									</volist>
 								</ul>
 								<input type='hidden' value="{$row['downfile']}" name="downfile" id="multimage" />
@@ -260,7 +260,7 @@ laydate.render({
 					<div class="form-group">
 						<label class="col-md-3 control-label">会议规模</label>
 						<div class="col-md-5">
-							<input type="text" class="form-control"  name="scale" placeholder="请输入最多会议人数" datatype="n" nullmsg="请输入最多会议人数,必须为数字" errormsg="请填写最多会议人数数字" value="{$data.scale}">
+							<input type="text" class="form-control"  name="scale" placeholder="请输入最多会议人数" value="{$data.scale}">
 						</div>	
 						
 					</div>

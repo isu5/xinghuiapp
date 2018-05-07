@@ -27,7 +27,7 @@ class CertifyModel extends BaseModel{
 		
 		$data['certtime'] = time();
 		$data['uid'] = I('post.uid');
-		$data['is_cert'] = 3;  // 状态为3时，为审核中 1为个人认证，2为企业认证
+		$data['is_cert'] = 5;  // 状态为3时，为审核中 1为个人认证，2为企业认证
 		
 		
 		//上传图片个人认证
@@ -150,8 +150,7 @@ class CertifyModel extends BaseModel{
 			}
 		}
 		$oldLogo = $this->field('front,back')->find($id);
-			deleteImage($oldLogo);
-		
+		deleteImage($oldLogo);
 		
 		
 		if (isset($_FILES['certificateimg']) && $_FILES['certificateimg']['error'] == 0) {

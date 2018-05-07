@@ -472,6 +472,33 @@ function jgpushInside($tag,$conf_id,$title,$content){
 	
 }
 
+//当有人认证时，审核端提醒
+function manageJgpush($tag){
+	$client = new JPushClient(C('BJPUSH.BPP_KEY'), C('BJPUSH.BMASTER_SECRET'));
+	try{
+		$client->push()
+		->setPlatform('all')
+		->addAlias($tag)
+		->setNotificationAlert('有用户提交的认证审核，请及时处理!')
+		->send();
+	}catch (\JPush\Exceptions\APIConnectionException $e) {
+		// try something here
+		//如果存在异常，则说明用户可能不在线
+		if($e){
+			
+			return ['code'=>201,'message'=>'该用户没有登录app，不能推送'];
+		}
+	} catch (\JPush\Exceptions\APIRequestException $e) {
+		// try something hereif($e){
+			//如果存在异常，则说明用户可能不在线
+		if($e){
+			
+			return ['code'=>201,'message'=>'该用户没有登录app客户端，不能推送'];
+		}
+	}
+	
+}
+
 //审核通过提醒
 function jgpushAgreed($tag){
 	$client = new JPushClient(C('JPUSH.APP_KEY'), C('JPUSH.MASTER_SECRET'));
@@ -507,6 +534,32 @@ function jgpushRefused($tag){
 		->setPlatform('all')
 		->addAlias($tag)
 		->setNotificationAlert('您还没有资质参加会议，如有疑问请联系客服!')
+		->send();
+	}catch (\JPush\Exceptions\APIConnectionException $e) {
+		// try something here
+		//如果存在异常，则说明用户可能不在线
+		if($e){
+			
+			return ['code'=>201,'message'=>'该用户没有登录app，不能推送'];
+		}
+	} catch (\JPush\Exceptions\APIRequestException $e) {
+		// try something hereif($e){
+			//如果存在异常，则说明用户可能不在线
+		if($e){
+			
+			return ['code'=>201,'message'=>'该用户没有登录app客户端，不能推送'];
+		}
+	}
+	
+}
+//后台审核拒绝提醒
+function backjgpushRefused($tag){
+	$client = new JPushClient(C('JPUSH.APP_KEY'), C('JPUSH.MASTER_SECRET'));
+	try{
+		$client->push()
+		->setPlatform('all')
+		->addAlias($tag)
+		->setNotificationAlert('您提交的信息不符合要求，请重新上传，如有疑问请联系客服!')
 		->send();
 	}catch (\JPush\Exceptions\APIConnectionException $e) {
 		// try something here
@@ -830,7 +883,7 @@ function app_upload_image($path,$maxSize=524288000){
         'savePath'  =>'./'.$path.'/',   
         'exts'      => array('jpg', 'gif', 'png', 'jpeg','bmp'),
 		'maxSize'   => $maxSize,
-		'saveName'  =>  '',     // 上传文件的保存规则，支持数组和字符串方式定义
+		'saveName'  =>  array('uniqid', mt_rand(1,999999).'_'.md5(uniqid())),     // 上传文件的保存规则，支持数组和字符串方式定义
         'autoSub'   => true,
 		'subName'	=> 	array('date','Ymd/'.time()),  //生成保存的子目录
         );
@@ -863,12 +916,12 @@ function app_upload_bull($path,$maxSize=524288000){
 		'subName'	=> 	array('date','Ymd/'.time()),  //生成保存的子目录
         );
     $upload = new \Think\Upload($config);// 实例化上传类
-    $info = $upload->upload();
-    if($info) {
-        foreach ($info as $k => $v) {
-            $data[]=trim($v['savepath'],'.').$v['savename'];
+    $map = $upload->upload();
+    if($map) {
+        foreach ($map as $k => $v) {
+            $mmp[]=trim($v['savepath'],'.').$v['savename'];
         }
-        return $data;
+        return $mmp;
     }
 }
 /**

@@ -12,7 +12,11 @@ class UserpartnersModel extends BaseModel{
 	//列表
 	public function searchUser(){
 		$where = [];
-		$where['conf_id'] = I('post.conf_id');
+		$where['b.conf_id'] = I('post.conf_id');
+		$part_id = M('Conference')->where(array('id'=>I('post.conf_id')))->getField('part_id');
+		if($part_id){
+			$where['a.id'] = array('in' , $part_id);
+		}
 		
 		
 		//翻页
@@ -20,22 +24,27 @@ class UserpartnersModel extends BaseModel{
 		
 		$curpage = I('post.page',1);; //当前的页,还应该处理非数字的情况
 
-
-		$total = $this->where($where)->count();	
-
+		$total = $this->alias('a')->join('
+			left join __USER_PART__ b on b.user_id = a.conf_user_id
+			LEFT JOIN __USER__ c on c.id=a.user_id
+			')->where($where)->count();
 
 		$page = new AppPage($total, $showrow);
 		if ($total > $showrow) {
 			$data['page'] =  $page->myde_write();
 		 }
-
-		$data['data'] = $this
-		->field('id,companyname,phone,email,address,logo,area,website,profile,type')
+			
+		$data['data'] = $this->alias('a')
+		->field('a.*,c.companyname as company,c.phone as iphone,c.address as dizhi,c.area as xxdizhi,c.email,c.logo as userlogo,c.website,c.profile,c.type')
+		->join('
+			left join __USER_PART__ b on b.user_id = a.conf_user_id
+			LEFT JOIN __USER__ c on c.id=a.user_id
+			')
 		->where($where)
 		->limit(($curpage - 1) * $showrow.','.$showrow)
 		->order('id desc')
 		->select();
-
+		//print_r($this->_Sql());
 		return $data;	
 	}
 	
