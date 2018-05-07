@@ -38,7 +38,7 @@ return array(
 	
 	'TAGLIB_BUILD_IN'        => 'Cx,Common\Tag\My',              // 加载自定义标签
 	//允许访问的模块
-	'MODULE_ALLOW_LIST'=>array('Admin','Home','Api','App'),
+	'MODULE_ALLOW_LIST'=>array('Admin','Home','Api','App','Bpp'),
 	//默认
 	'DEFAULT_MODULE'=>'Home',
 	
@@ -68,10 +68,15 @@ return array(
     'RONGLIAN_APPID'         => '', //容联云通讯 应用Id appid
     'RONGLIAN_TEMPLATE_ID'   => '', //容联云通讯 模板Id
 	
-	//**********************************极光推送api 设置**************
+	//*********************************幸会app极光推送api 设置**************
 	 'JPUSH' => array(
         'APP_KEY' => '',
         'MASTER_SECRET' => ''
+    ),
+	//*********************************幸会审核端极光推送api 设置**************
+	 'BJPUSH' => array(
+        'BPP_KEY' => '',
+        'BMASTER_SECRET' => ''
     ),
 	//**********************************网易云短信 设置未接入**************
 	'SMS' => array(
@@ -90,8 +95,8 @@ return array(
 
 	
 	/************* 微博微信登录配置**************/
-	'SINA_API_KEY' => 4209897208,
-	'SINA_SECRET'  => 'e1affa67778a89d0c85f45625397f850',
+	'SINA_API_KEY' => ,
+	'SINA_SECRET'  => '',
 	
 	
 	

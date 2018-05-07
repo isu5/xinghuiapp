@@ -8,7 +8,7 @@ return array(
 	'DB_USER'   => '', // 用户名
 	'DB_PWD'    => '', // 密码
 	'DB_PORT'   => 3306, // 端口
-	'DB_PREFIX' => '', // 数据库表前缀
+	'DB_PREFIX' => 'tzht_', // 数据库表前缀
 	'DB_CHARSET'=>  'utf8',      // 数据库编码默认采用utf8
 	
 );
