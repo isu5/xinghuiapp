@@ -35,7 +35,7 @@ class UserpartnersModel extends BaseModel{
 		 }
 			
 		$data['data'] = $this->alias('a')
-		->field('a.*,c.companyname as company,c.phone as iphone,c.address as dizhi,c.area as xxdizhi,c.email,c.logo as userlogo,c.website,c.profile,c.type')
+		->field('a.*,b.conf_id,c.companyname as company,c.phone as iphone,c.address as dizhi,c.area as xxdizhi,c.email,c.logo as userlogo,c.website,c.profile,c.type')
 		->join('
 			left join __USER_PART__ b on b.user_id = a.conf_user_id
 			LEFT JOIN __USER__ c on c.id=a.user_id
