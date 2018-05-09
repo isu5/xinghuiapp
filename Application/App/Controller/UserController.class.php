@@ -20,8 +20,6 @@ class UserController extends PublicController{
 	*/
 	public function index(){
 		
-		
-		
 	}
 	//传登录后是个人还是企业认证
 	public function iscerfity(){

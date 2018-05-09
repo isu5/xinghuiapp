@@ -32,6 +32,9 @@ $id = I('get.id');
 				<table class="table table-striped  table-bordered table-hover"  >
 					<thead>
 					<tr>
+					<th>
+						<input id="selecteAll" type="checkbox" class="styled"/>全选/反选  
+					</th>
 						<th >id</th>
 						<th>logo</th>
 						<th>公司名称/昵称</th>
@@ -47,6 +50,9 @@ $id = I('get.id');
 						<else/>
 							<volist name="data" id="v" >
 							<tr>
+								<td>
+									<input type="checkbox" name="items" id="chkbox_{$v.id}" value="{$v.id}" />
+								</td>
 								<td>{$v.id}</td>
 								<td class="center">{:showImg($v['logo'],50)}</td>
 								<td class="center">{$v.companyname} / {$v.username}</td>
@@ -100,12 +106,89 @@ $id = I('get.id');
 								</td>
 							</tr>
 							</volist>
+							
+							
+							
 						</empty> 
 					</tbody>
 				</table>
+				<div>
+					
+					<button type="button" id="button" class="btn btn-danger">批量推送</button>
+					<button type="button" id="button_qd" class="btn btn-danger">批量签到推送</button>
+					
+				</div>
 				{$page}
 			</div>
 	</div>
 
 </div>
+<script>  
+$(function () {
+	//全选或全不选
+	$("#selecteAll").click(function(){  
+        if(this.checked){  
+            var products = $("input[name='items']"); 
+				
+            products.each(function(){  
+                $(this).attr('checked',true);  
+                $(this).parent().attr("class",'checked');  
+            });  
+        }else{  
+            var products = $("input[name='items']");  
+            products.each(function(){  
+                $(this).attr('checked',false);  
+                $(this).parent().removeClass('checked');  
+            });  
+        }  
+    });  
+	
+	$("#button").click(function(){
+		var conf_id = <?php echo I('get.id');?>;
+		
+		var checkID = [];//定义一个空数组
+		var len = $("input[name='items']:checked").length;
+		//把所有被选中的复选框的值存入数组
+		$("input[name='items']:checked").each(function(i){
+			checkID[i] =$(this).val();
+		//alert($(this).length);
+
+		});
+		if(len < 1){
+				layer.msg('至少需要选择一个用户', { icon: 2, time: 2000 ,shade: 0.5});
+			}else{
+			/*$.post("{:U('Jgpushperson/batchjgpush')}",{checkID:checkID},function(){
+				OpenApp('批量推送',"/Jgpushperson/batchjgpush/checkID/"+checkID);
+			})*/
+				OpenApp('批量推送',"/Jgpushperson/batchjgpush/checkID/"+checkID+"/conf_id/"+conf_id);
+				
+			}
+
+    });
+	$("#button_qd").click(function(){
+		var conf_id = <?php echo I('get.id');?>;
+		
+		var checkID = [];//定义一个空数组
+		var len = $("input[name='items']:checked").length;
+		//把所有被选中的复选框的值存入数组
+		$("input[name='items']:checked").each(function(i){
+			checkID[i] =$(this).val();
+		});
+		if(len < 1){
+				layer.msg('至少需要选择一个用户', { icon: 2, time: 2000 ,shade: 0.5});
+			}else{
+			/*$.post("{:U('Jgpushperson/batchjgpush')}",{checkID:checkID},function(){
+				OpenApp('批量推送',"/Jgpushperson/batchjgpush/checkID/"+checkID);
+			})*/
+				OpenApp('批量签到推送',"/Signjgpush/batchjgpush/checkID/"+checkID+"/conf_id/"+conf_id);
+			}
+
+    });
+	
+	
+}); 
+
+</script>
+
+
 <include file="Public/footer" />

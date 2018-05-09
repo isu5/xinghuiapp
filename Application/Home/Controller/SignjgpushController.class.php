@@ -13,7 +13,7 @@ class SignjgpushController extends PublicController{
 		$this->jgpush = D('Signjgpush');
 		
 	}
-	//推送单个信息
+	//签到推送单个信息
 	public function signts(){
 		if(IS_POST){
 			if($this->jgpush->create(I('post.',1))){
@@ -88,5 +88,32 @@ class SignjgpushController extends PublicController{
 		));
 		$this->display();
 	}
+	
+	//批量签到推送
+	public function batchjgpush(){
+		//p(I('get.'));die;
+		$data['jpushid'] = explode(',' , I('post.jpushid'));
+		$data['title'] = I('post.title') ;
+		$data['content'] = I('post.content');
+		$data['conf_id'] = I('get.conf_id');
+		$data['addtime'] = time();
+		if(IS_POST){
+			foreach($data['jpushid'] as $v){
+				$data['user_id'] = $v;
+				$jpush = M('User')->where(['id'=>$v])->getField('jpush');
+				//dump($jpush);
+				if(M('Signjgpush')->add($data)){
+					$this->error('保存成功');
+				}
+			}
+		}
+		
+		
+		$this->display();
+		
+		
+		
+	}
+	
 
 }

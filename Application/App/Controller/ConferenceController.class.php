@@ -971,10 +971,57 @@ class ConferenceController extends PublicController{
 			}
 		}
 		
+	}
+	//企业资料下载统计
+	public function downStats(){
+		$m = M('Download_stats');
+		$data['user_id'] = I('post.user_id');
+		$data['down_id'] = I('post.down_id');
+		$data['statstime'] = time();
 		
+		if(IS_POST){
+			if($m->add($data)){
+				Response::show(200,'添加成功!');
+			}else{
+				Response::show(401,'添加失败!');
+			}
+		}
+		
+	}
+	//会议产品点击统计表
+	public function confStats(){
+		$m = M('Conference_stats');
+		$data['user_id'] = I('post.user_id');
+		$data['conf_user_id'] = I('post.conf_user_id');
+		$data['pro_id'] = I('post.pro_id');
+		$data['statstime'] = time();
+		
+		if(IS_POST){
+			if($m->add($data)){
+				Response::show(200,'添加成功!');
+			}else{
+				Response::show(401,'添加失败!');
+			}
+		}
 		
 	}
 	
+	//公告，用户分享点击统计表
+	public function bullStats(){
+		$m = M('Companybull_stats');
+		$data['user_id'] = I('post.user_id');
+		$data['bull_id'] = I('post.bull_id');
+		$data['statstime'] = time();
+		
+		if(IS_POST){
+			if($m->add($data)){
+				Response::show(200,'添加成功!');
+			}else{
+				Response::show(401,'添加失败!');
+			}
+		}
+		
+	}
 	//个性推送
 	public function jgpushperson(){
 		if(IS_POST){

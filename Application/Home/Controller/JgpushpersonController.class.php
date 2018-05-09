@@ -59,5 +59,34 @@ class JgpushpersonController extends PublicController{
 		$this->ajaxReturn($code);
 	}
 	
+	//批量推送消息
+	public function batchjgpush(){
+		$data['jpushid'] = explode(',' , I('post.jpushid'));
+		$data['title'] = I('post.title') ;
+		$data['content'] = I('post.content');
+		$data['conf_id'] = I('get.conf_id');
+		$data['addtime'] = time();
+		if(IS_POST){
+			
+			foreach($data['jpushid'] as $v){
+				$data['user_id'] = $v;
+				$jpush = M('User')->where(['id'=>$v])->getField('jpush');
+				//dump($jpush);
+				if(M('Jgpushperson')->add($data)){
+					$res = batchjpush($jpush , $data['title'] , $data['content']);
+					if($res == NULL){
+						$this->success('推送成功');
+					}else{
+						$this->success('推送失败');
+					}
+				}
+				
+				
+			}
+		}else{
+			$this->display();	
+		}
+	}
+	
 
 }
