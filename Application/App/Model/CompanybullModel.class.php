@@ -11,11 +11,10 @@ class CompanybullModel extends BaseModel{
 	
 	public function search(){
 		$where = array();
-		$title = I('get.title');
-		if ($title) {
-			$where['title'] = array('like',"%$title%");
-		}
+		
+			
 		$where['a.user_id'] = I('post.user_id');
+		
 		//翻页
 		$showrow = 15; //一页显示的行数
 		
@@ -28,6 +27,7 @@ class CompanybullModel extends BaseModel{
 		if ($total > $showrow) {
 			$data['page'] =  $page->myde_write();
 		}
+		
 		$data['data'] = $this->alias('a')
 		->field(array("count(b.bull_id)"=>"countstats",'a.*'))
 		->join('left join __COMPANYBULL_STATS__ b on b.bull_id = a.id')

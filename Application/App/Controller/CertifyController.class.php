@@ -35,7 +35,7 @@ class CertifyController extends PublicController{
 				if ($id = $this->model->add()) {
 					if($id){
 						manageJgpush($jg['jpush']);
-						Response::show(200,'提交成功，请等待审核!');
+						Response::show(200,'提交成功，审核需要1-2个工作日，请等待审核!');
 					}
 					
 				}else{
@@ -66,7 +66,7 @@ class CertifyController extends PublicController{
 				if ($id = $this->model->add()) {
 					if($id){
 						manageJgpush($jg['jpush']);
-						Response::show(200,'提交成功，请等待审核!');
+						Response::show(200,'提交成功，审核需要1-2个工作日，请等待审核!');
 					}
 				}else{
 					Response::show(401,'认证失败',$this->model->getError());
@@ -94,7 +94,7 @@ class CertifyController extends PublicController{
 				if ($id = $this->model->add()) {
 					if($id){
 						manageJgpush($jg['jpush']);
-						Response::show(200,'提交成功，请等待审核!');
+						Response::show(200,'提交成功，审核需要1-2个工作日，请等待审核!');
 					}
 				}else{
 					Response::show(401,$this->model->getError());

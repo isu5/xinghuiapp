@@ -15,16 +15,16 @@ class CompanybullController extends PublicController{
 	//公告列表
 	public function index(){
 		$data =$this->model->search();
-		
-    	/* p($this->model->getlastsql());
-    	
-    	p($_COOKIE);die; */
+		/*
+		p($data);die; 
+		p($this->model->getlastsql());
+    	 */
 		$data = array(
 			'result' => $data['data'],
 			//'page' => $data['page']
 			);
-			//p($data);die;
-		if(!empty($data['result'])){
+			
+		if($data['result'][0]['id'] != null){
 			
 			Response::show(200,'数据返回成功',$data);
 		}else{
