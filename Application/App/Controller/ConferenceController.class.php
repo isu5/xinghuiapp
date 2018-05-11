@@ -13,6 +13,7 @@ class ConferenceController extends PublicController{
 	private $im = null;
 	private $jgpush = null;
 	private $signjgpush = null;
+	private $part = null;
 	public function _initialize(){
 		parent::_initialize();
 		$this->model = D('Conference'); 
@@ -22,6 +23,7 @@ class ConferenceController extends PublicController{
 		$this->im = D('Rongcloudim');
 		$this->jgpush = D('Jgpushperson');
 		$this->signjgpush = D('Signjgpush');
+		$this->part = D('Userpartners');
 	}
 
 	
@@ -73,10 +75,8 @@ class ConferenceController extends PublicController{
 	
 	//新建会议
 	public function add(){
-		
-		
+		$user_part = M('User_part');
 		if (IS_POST) {
-			
 			//p($_POST);die;
 			if($this->model->create(I('post.',1))){
 				if($id = $this->model->add()){
@@ -89,6 +89,19 @@ class ConferenceController extends PublicController{
 							//推送二级账户消息
 							jgpushInside($v['jpush'],$id,$data['title'],$data['brief']);
 						}
+					}
+					if($id){
+						$part = $this->model->field('part_id')->where(array('id'=>$id))->find();
+						//添加成功把当前用户，合作伙伴id，会议id，添加到中间表
+						if($part){
+							$pro = array(
+								'user_id'=>I('post.uid'),
+								'conf_id'=>$id,
+								'part_id'=>$part['part_id']
+								);
+							$user_part->add($pro);
+						}
+						
 					}
 					Response::show(200,'添加成功!',$id);
 				}else{
@@ -1119,6 +1132,24 @@ class ConferenceController extends PublicController{
 				}
 			}
 		
+		}
+	}
+	
+	//企业合作伙伴
+	public function companyfpart(){
+		$data = $this->part->search();
+		
+		if(IS_POST){
+			
+			$data = array('result' => $data['data']);
+		
+			if($data['result'] == null ){
+				Response::show(401,'获取失败!');
+				
+			}else{
+				Response::show(200,'获取成功',$data);
+			}
+			
 		}
 	}
 	

@@ -156,6 +156,9 @@ class UserController extends PublicController{
 		}
 	}
 	
+	
+	
+	
 	//合作伙伴列表
 	public function userpartners(){
 		if( IS_POST ){

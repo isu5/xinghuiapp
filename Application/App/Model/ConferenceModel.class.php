@@ -507,14 +507,14 @@ WHERE uid='.$where['uid'].' and is_private =1 and  a.conf_id not in ('.$sql.') g
 	
 	//返回下载文件的公司名称
 	public function getDownListCompany(){
-		
+		$where = [];
 		$where['user_id'] = I('post.user_id');
 		
 		$showrow = 10; //一页显示的行数
 		
 		$curpage = I('post.page',1);; //当前的页,还应该处理非数字的情况
 	
-		$total = $this->where($where)->count();	
+		$total = $this->alias('a')->join('LEFT JOIN __CONFERENCE_DOWN__ b on b.conf_id=a.id')->where($where)->count();	
 		
 		
 		$page = new AppPage($total, $showrow);

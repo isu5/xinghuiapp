@@ -390,16 +390,34 @@ class UserModel extends BaseModel{
 		return $data;
 		
 	}
-	//企业文档资料
+	//企业文档资料 限制了3条
 	public function downfile(){
 		$pic = D('Download');
 		$where = array();
-		$where['user_id'] = I('post.user_id');
-		$data['data'] = $pic
+		$where['a.user_id'] = I('post.user_id');
+		
+		//翻页
+		$showrow = 15; //一页显示的行数
+		
+		$curpage = I('post.page',1); //当前的页,还应该处理非数字的情况
+
+		$total =  $pic->alias('a')->join('left join __DOWNLOAD_STATS__ b on b.down_id = a.id')->where($where)->count();	
+
+		$page = new AppPage($total, $showrow);
+		if ($total > $showrow) {
+			$data['page'] =  $page->myde_write();
+		}
+		
+		$data['data'] = $pic->alias('a')
+		->field('a.*,b.*,c.companyname')
+		->join('left join __DOWNLOAD_STATS__ b on b.down_id = a.id
+			left join __USER__  c on c.id = a.user_id
+		')
 		->where($where)
-		->order('id desc')
+		->order('addtime desc')
 		->limit('0,3')
 		->select();
+		
 		return $data;
 	}
 	

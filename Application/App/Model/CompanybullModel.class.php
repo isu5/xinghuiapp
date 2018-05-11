@@ -19,7 +19,7 @@ class CompanybullModel extends BaseModel{
 		$showrow = 15; //一页显示的行数
 		
 		$curpage = I('post.page',1); //当前的页,还应该处理非数字的情况
-
+		
 		$total = $this->alias('a')->join('left join __COMPANYBULL_STATS__ b on b.bull_id = a.id')
 		->where($where)->count();	
 		

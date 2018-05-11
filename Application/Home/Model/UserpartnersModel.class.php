@@ -37,7 +37,7 @@ class UserpartnersModel extends BaseModel{
 		
 		//查询该会议id的，插入到表
 		$where['conf_user_id'] = cookie(userid);
-		$title = $this->field('id,conf_id')->where(array('conf_user_id'=>$where['conf_user_id']))->select();
+		
 		
 		//翻页
 		$count = $this->where($where)->count();

@@ -61,6 +61,7 @@ class ProductController extends PublicController{
 		$this->ajaxReturn($code);
 	}
 
+	
 
 	
 
