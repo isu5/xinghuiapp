@@ -385,42 +385,79 @@ class UserModel extends BaseModel{
 		$data['data'] = $pic
 		->where($where)
 		->order('id desc')
-		->limit('0,3')
+		->limit(($curpage - 1) * $showrow.','.$showrow)
 		->select();
 		return $data;
 		
 	}
-	//企业文档资料 限制了3条
+	//企业文档资料
 	public function downfile(){
 		$pic = D('Download');
 		$where = array();
-		$where['a.user_id'] = I('post.user_id');
+		$where['user_id'] = I('post.user_id');
 		
 		//翻页
 		$showrow = 15; //一页显示的行数
 		
 		$curpage = I('post.page',1); //当前的页,还应该处理非数字的情况
 
-		$total =  $pic->alias('a')->join('left join __DOWNLOAD_STATS__ b on b.down_id = a.id')->where($where)->count();	
+		$total =  $pic->where($where)->count();	
 
 		$page = new AppPage($total, $showrow);
 		if ($total > $showrow) {
 			$data['page'] =  $page->myde_write();
 		}
 		
-		$data['data'] = $pic->alias('a')
-		->field('a.*,b.*,c.companyname')
-		->join('left join __DOWNLOAD_STATS__ b on b.down_id = a.id
-			left join __USER__  c on c.id = a.user_id
-		')
+		$data['data'] = $pic
 		->where($where)
-		->order('addtime desc')
+		->order('id desc')
 		->limit('0,3')
 		->select();
 		
 		return $data;
 	}
 	
+	//企业资料下载返回企业名称
+	public function companydownload(){
+		$where = array();
+		$where['b.user_id'] = I('post.user_id');
+		//翻页
+		$showrow = 15; //一页显示的行数
+		
+		$curpage = I('post.page',1); //当前的页,还应该处理非数字的情况
+
+		$total =  $this->alias('a')->join('
+			LEFT JOIN __DOWNLOAD__ c on c.user_id=a.id 
+			LEFT JOIN __DOWNLOAD_STATS__ b on b.down_id=c.id
+			
+		')->where($where)->count();	
+
+		$page = new AppPage($total, $showrow);
+		if ($total > $showrow) {
+			$data['page'] =  $page->myde_write();
+		}
+		
+		$data['data'] = $this->alias('a')
+		->field('a.companyname,c.*')
+		->join('
+			LEFT JOIN __DOWNLOAD__ c on c.user_id=a.id 
+			LEFT JOIN __DOWNLOAD_STATS__ b on b.down_id=c.id
+			
+		')
+		->where($where)
+		->order('addtime desc')
+		->limit(($curpage - 1) * $showrow.','.$showrow)
+		->group('b.down_id')
+		->select();
+		//dump($this->_Sql());
+		return $data;
+		
+		
+		
+	}
+		
+		
+		
 	////未拉取的群组列表
 	public function nogrouplists(){
 		$where = [];

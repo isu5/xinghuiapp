@@ -156,6 +156,23 @@ class UserController extends PublicController{
 		}
 	}
 	
+	//企业资料下载返回企业名称
+	public function companydownload(){
+		if( IS_POST ){
+			$res = $this->model->companydownload();
+			$data = array(
+				'result' => $res['data'],
+			);
+			if($data['result'] == null ){
+				Response::show(401,'没有数据!');
+			}else{
+				Response::show(200,'数据获取成功!',$data );
+			}
+		}else{
+			Response::show(402,'参数不合法!');
+		}
+		
+	}
 	
 	
 	

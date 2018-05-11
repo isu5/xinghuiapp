@@ -523,7 +523,7 @@ WHERE uid='.$where['uid'].' and is_private =1 and  a.conf_id not in ('.$sql.') g
 		}
 		
 		$data['data'] = $this->alias('a')
-		->field('a.companyname,b.filename')
+		->field('a.companyname,a.title,b.filename')
 		->join('LEFT JOIN __CONFERENCE_DOWN__ b on b.conf_id=a.id')
 		->where($where)
 		->limit(($curpage - 1) * $showrow.','.$showrow)
