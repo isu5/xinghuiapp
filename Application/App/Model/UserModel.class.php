@@ -562,7 +562,36 @@ class UserModel extends BaseModel{
 	}
 	
 	
-	
+	//二级账户关注列表
+
+	public function focusList(){
+		$where = [];
+		$where['user_id'] = I('post.user_id');
+		
+		//翻页
+		
+		$showrow = 15; //一页显示的行数
+		
+		$curpage = I('post.page',1); //当前的页,还应该处理非数字的情况
+
+		$total =  $this->alias('a')->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.conf_user_id=a.id
+		')->where($where)->count();	
+
+		$page = new AppPage($total, $showrow);
+		if ($total > $showrow) {
+			$data['page'] =  $page->myde_write();
+		}
+		$data['data'] = $this->alias('a')
+		->field('a.id,a.username,a.logo,a.companyname,a.dimecode,a.remark,a.phone,a.ctime')
+		->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.conf_user_id=a.id
+		')
+		->where($where)
+		->limit($page->firstRow.','.$page->listRows)
+		->order('id desc')
+		->select();
+		return $data;
+		
+	}
 	
 	
 

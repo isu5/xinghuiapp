@@ -332,7 +332,7 @@ class ConferenceModel extends RelationModel{
 			') */
 		->limit(($curpage - 1) * $showrow.','.$showrow)
 		->where($where)
-		->order('ctime asc')
+		->order('addtime desc')
 		->select();
 		
 		//p($this->getLastSql());die;

@@ -128,6 +128,8 @@ class UserController extends PublicController{
 				//判断是否为已经注册过的企业手机号
 				}elseif($acc1['type'] == 2){
 					$code = array('status'=>5,'info'=>'对不起，您填写的手机号为企业账户手机号，无法绑定！');
+				}elseif($acc1['phone'] == $data['phone'] && $acc1['type'] == 1 && $acc1['level'] ==2){
+					$code = array('status'=>5,'info'=>'对不起，您填写的手机号为二级账户手机号，无法绑定！');
 				}elseif($acc1['phone'] == $data['phone'] && $acc1['type'] == 1){
 					//判断手机号是否存在, 把原来的个人账号itype设为1（不允许登录）并保存到新字段值中
 					
@@ -376,7 +378,7 @@ class UserController extends PublicController{
 		if($pack){
 			$code = array('status'=>'y','info'=>'二级账户停用成功');
 		}else{
-			$code = array('status'=>'n','info'=>'二级账户停用成功');
+			$code = array('status'=>'n','info'=>'二级账户停用失败');
 		}
 		$this->ajaxReturn($code);
 	}
@@ -390,7 +392,7 @@ class UserController extends PublicController{
 		if($pack){
 			$code = array('status'=>'y','info'=>'二级账户启用成功');
 		}else{
-			$code = array('status'=>'n','info'=>'二级账户启用成功');
+			$code = array('status'=>'n','info'=>'二级账户启用失败');
 		}
 		$this->ajaxReturn($code);
 	}
