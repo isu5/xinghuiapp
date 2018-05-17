@@ -104,26 +104,26 @@ class UserModel extends BaseModel{
 	} 
 	//修改后  catename:所属行业 address:公司地址 area:详细地址   把以上数据保存到二级账户中
 	protected function _after_update($data,$option) {  
-		/* $mmp = $this->field('id,pid,logo,username,type,level')->where(array('id'=> $option['where']['id']))->select();
-		if($mmp['level'] ==0 ){
-			$this->error = '您查看的用户没有二级账户';
-		}else{
-			
-		}
-		$level = findson($mmp,$option['where']['id']);
+		$mmp = $this->field('id,pid,logo,username,nickname,remark,type,level')->where()->select();
+		$level = findson($mmp,$option['where']['id']); 
 		//p($level);
-		if($level){
-			$sunid = array_column($level,'id');
-			
-			}
+		if(I('post.catename')){
 			$map['catename'] = I('post.catename');
+		}
+		if(I('post.address')){
 			$map['address'] = I('post.address');
+		}
+		if(I('post.area')){
 			$map['area'] = I('post.area');
-			//p($sunid);
-			$mm['id'] = array('in',$sunid);
-			//$this->where($mm)->save($map);
-			
-		//p($sunid);die; */
+		}
+		
+		
+		if($level){
+			foreach($level as $v){
+				$this->where(array('id'=>$v['id']))->save($map);
+			}
+		}
+		//p($sunid);die; 
 		
 		
     }  
@@ -547,6 +547,7 @@ class UserModel extends BaseModel{
 		if($type==0){
 			$user = $this->field('id,pid,logo,username,nickname,remark,type,level')->where()->select();
 			$level = findson($user,$uid);  //查找所有pid下的子id
+		
 		}else{
 			$user = $this->field('pid')->where(array('id'=>$uid))->find();
 			$where['id'] = array('neq',$uid);

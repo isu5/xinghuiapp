@@ -250,10 +250,11 @@ class ConferenceModel extends RelationModel{
 	//编辑会议接口里上传文件
 	public function editDownfiles(){
 		$id = I('post.id');
+		$file = $this->where(array('id'=>$id))->find();
 		$down = json_encode(app_upload_bull('/Uploads/file'),JSON_UNESCAPED_UNICODE);
-		$data['downfile']  = str_replace("\\/","/",trim($down,'[""]')).'###'; 
+		$data['downfile'] = str_replace(',','###', str_replace('"','',str_replace('\\','',str_replace('"]','',str_replace('["','',$down)))))."###";
 		
-		return $this->where(array('id'=>$id))->save($data);
+		return $this->where(array('id'=>$id))->save($data.$file['downfile']);
 	}
 	
 	//编辑会议接口里上传图片

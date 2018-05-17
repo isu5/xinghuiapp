@@ -106,7 +106,8 @@ class UserController extends PublicController{
 		die;  */
 		$id = I('post.id');
 		
-		$data = $this->model->alias('a')->field('a.*,b.note')->join('left join tzht_conference_focus b on b.user_id=a.id')->where(array('id' => $id))->find();
+		$data = $this->model->alias('a')->field('a.*,b.note')->
+		join('left join tzht_conference_focus b on b.user_id=a.id')->where(array('id' => $id))->find();
 		if(IS_POST){
 			if($data){
 				Response::show(200,'获取数据成功',$data);
@@ -347,7 +348,7 @@ class UserController extends PublicController{
 		$data['username'] = I('post.username');
 		$data['remark'] = I('post.remark');
 		$data['phone'] = I('post.phone');
-		$data['password'] = strtoupper(sha1(I('post.password')));
+		$data['password'] = I('post.password');
 		$data['pid'] = I('post.pid');  //上级账户（主账户）
 		$data['ctime'] = time();
 		$data['level'] = I('post.level');
@@ -369,53 +370,55 @@ class UserController extends PublicController{
 		if (IS_POST) {
 			//判断用户名是否存在
 				if($acc['username'] == $data['username']){
-					Response::show(401,'对不起，您填写的用户名已存在' );
+					Response::show(201,'对不起，您填写的用户名已存在' );
 				
 				//判断是否为已经注册过的企业手机号
 				}elseif($acc1['type'] == 2){
-					Response::show(401,'对不起，您填写的手机号为企业账户手机号，无法绑定！' );
+					Response::show(202,'对不起，您填写的手机号为企业账户手机号，无法绑定！' );
 					
 				}elseif($acc1['phone'] == $data['phone'] && $acc1['type'] == 1 && $acc1['level'] ==2){
-					Response::show(401,'对不起，您填写的手机号为二级账户手机号，无法绑定！' );
+					Response::show(203,'对不起，您填写的手机号为二级账户手机号，无法绑定！' );
 				}elseif($acc1['phone'] == $data['phone'] && $acc1['type'] == 1){
-					//判断手机号是否存在, 把原来的个人账号itype设为1（不允许登录）并保存到新字段值中
-					$map = array('itype'=>1);
-					$user-> where('id='.$acc1['id'])->setField($map);
-					
-					$result = $user->add($data);
-					if ($result) {
-						$id = $result;
-					
-						//将个人账户id，及添加的二级账户id保存到中间表
-						$por = array(
-							'user_id'=>$acc1['id'],
-							'acc_id'=>$id
-						);
-						$z->add($por);
-						//创建的二级账户同时关注企业主账户
-						$accountR = array(
-							'conf_user_id' => $data['pid'],
-							'user_id' => $id,
-						);
-						$focus->add($accountR);
-						//融云token值
-						getRongcloudToken($id);
+					$code = I('post.codetype');
+					if( $code == 0){ //传入标识，以判断已注册手机号绑定时，弹框确认
+						Response::show(205,'对不起，您填写的手机号为个人账户手机号，确定要绑定吗！' );
+					}else{
+						//判断手机号是否存在, 把原来的个人账号itype设为1（不允许登录）并保存到新字段值中
+						$map = array('itype'=>1);
+						$user-> where('id='.$acc1['id'])->setField($map);
 						
-						//生产二维码链接
-						$dimecode = U('/Home/Index/usercode',array('id'=>$id));
-						//$dimecode = scQRcode($id);
-						//极光推送别名
-						$jpush = $id . '_' . 'xinghuiapp';
+						$result = $user->add($data);
+						if ($result) {
+							$id = $result;
 						
-						//p($dimecode);die;
-						//更新别名，及二维码链接到数据库字段
-						$this->model->where(array('id'=>$id))->setField('dimecode',$dimecode);
-						$this->model->where(array('id'=>$id))->setField('jpush',$jpush);
-						}else{
+							//将个人账户id，及添加的二级账户id保存到中间表
+							$por = array(
+								'user_id'=>$acc1['id'],
+								'acc_id'=>$id
+							);
+							$z->add($por);
+							//创建的二级账户同时关注企业主账户
+							$accountR = array(
+								'conf_user_id' => $data['pid'],
+								'user_id' => $id,
+							);
+							$focus->add($accountR);
+							//融云token值
+							getRongcloudToken($id);
 							
-							Response::show(401,'二级账户添加失败！' );
-						}
-					Response::show(200,'您填写的手机号已是个人注册账号,确定要绑定吗!' );
+							//生产二维码链接
+							$dimecode = U('/Home/Index/usercode',array('id'=>$id));
+							//$dimecode = scQRcode($id);
+							//极光推送别名
+							$jpush = $id . '_' . 'xinghuiapp';
+							
+							//p($dimecode);die;
+							//更新别名，及二维码链接到数据库字段
+							$this->model->where(array('id'=>$id))->setField('dimecode',$dimecode);
+							$this->model->where(array('id'=>$id))->setField('jpush',$jpush);
+							Response::show(200,'二级账户添加成功！' );
+					
+					
 				}else{
 					if (C('ACCOUNT_NUM') > $count) {
 						$result = $user->add($data);
@@ -455,14 +458,17 @@ class UserController extends PublicController{
 							
 						}
 					}else{
-						Response::show(401,'您添加的二级账户已达限额了，如需再添加账户请联系平台！客服电话：010-63942568' );
+						Response::show(204,'您添加的二级账户已达限额了，如需再添加账户请联系平台！客服电话：010-63942568' );
 						
 					}
 					
 				}
-		}
+			}
 		
+		}
 	}
+}
+	
 	
 	
 	//二级账户修改绑定（密码）
@@ -470,7 +476,7 @@ class UserController extends PublicController{
 		
 		$id = I('post.id');
 		$user = M('User');
-		$data['password'] = strtoupper(sha1($_POST['password']));
+		$data['password'] = I('post.password');
 		$data['remark'] = I('post.remark');
 		$data['phone'] = I('post.phone');
 		$pid = I('post.pid');

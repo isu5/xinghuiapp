@@ -106,4 +106,31 @@ class ConferenceController extends CommonController{
 		}
 	}
 	
+	
+	// 会议资料下载统计
+	public function countdown(){
+		
+		$data = $this->model->downstats();
+		$this->assign(array(
+			'data' => $data['data'],
+			'page' => $data['page']
+		));
+        $this->display();
+	}
+	
+	//会议产品点击统计
+	public function countstats(){
+		$data = $this->model->countstats();
+		$this->assign(array(
+			'data' => $data['data'],
+			'page' => $data['page']
+		));
+        $this->display();
+		
+	}
+	
+	
+	
+	
+	
 }

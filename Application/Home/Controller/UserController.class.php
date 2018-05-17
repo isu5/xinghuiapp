@@ -133,14 +133,10 @@ class UserController extends PublicController{
 				}elseif($acc1['phone'] == $data['phone'] && $acc1['type'] == 1){
 					//判断手机号是否存在, 把原来的个人账号itype设为1（不允许登录）并保存到新字段值中
 					
-					
 					$map = array('itype'=>1);
 					$user-> where('id='.$acc1['id'])->setField($map);
 					
-					$result = $user->add($data);
-					if ($result) {
-						$id = $result;
-					
+					if ($id = $user->add($data)) {
 						//将个人账户id，及添加的二级账户id保存到中间表
 						$por = array(
 							'user_id'=>$acc1['id'],
@@ -166,11 +162,12 @@ class UserController extends PublicController{
 						//更新别名，及二维码链接到数据库字段
 						$this->model->where(array('id'=>$id))->setField('dimecode',$dimecode);
 						$this->model->where(array('id'=>$id))->setField('jpush',$jpush);
+						$code = array('status'=>4,'info'=>'您填写的手机号已是个人注册账号,确定要绑定吗!');
 						}else{
 							$code = array('status'=>0,'info'=>'二级账户添加失败！');
 							
 						}
-					$code = array('status'=>4,'info'=>'您填写的手机号已是个人注册账号,确定要绑定吗!');
+					
 				}else{
 						
 					if (C('ACCOUNT_NUM') > $count) {
