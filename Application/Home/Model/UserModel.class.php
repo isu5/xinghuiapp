@@ -110,7 +110,16 @@ class UserModel extends BaseModel{
 			'position'=>$position,
 			'id'=>$id
 			));
+		$mmp = $this->field('id,pid,logo,username,nickname,remark,type,level')->where()->select();
+		$level = findson($mmp,$id); 
+		$map['address'] = $address;
+		$map['area'] = $area;
 		
+		if($level){
+			foreach($level as $v){
+				$this->where(array('id'=>$v['id']))->save($map);
+			}
+		}
 		return true;
 		
 	}
