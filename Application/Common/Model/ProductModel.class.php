@@ -31,7 +31,7 @@ class ProductModel extends BaseModel{
 		->group('b.user_id')->buildSql();
 		
 		$data['data'] = M('User')->alias('c')
-		->field(array('d.username','d.id','c.title',"sum(c.countstats)"=>"counts"))
+		->field(array('d.username','d.id','c.title',"count(c.countstats)"=>"counts"))
 		->table($arr)
 		->join('left join __USER__ d on d.id=c.uid')
 		->group('c.uid')

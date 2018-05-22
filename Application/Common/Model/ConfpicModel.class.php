@@ -20,6 +20,7 @@ class ConfpicModel extends BaseModel{
 			$where['title'] = array('like',"%$title%");
 		}
 		$where['user_id'] = cookie(userid);
+		$where['conf_id'] = I('get.id');
 		//翻页
 		$count = $this->where($where)->count();
 		$page = new \Think\Page($count,$pagesize);

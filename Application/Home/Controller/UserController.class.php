@@ -126,8 +126,10 @@ class UserController extends PublicController{
 				if($acc['username'] == $data['username']){
 					$code = array('status'=>3,'info'=>'对不起，您填写的用户名已存在');
 				//判断是否为已经注册过的企业手机号
-				}elseif($acc1['type'] == 2){
+				}elseif($acc1['phone'] == $data['phone'] && $acc1['type'] == 2){
 					$code = array('status'=>5,'info'=>'对不起，您填写的手机号为企业账户手机号，无法绑定！');
+				}elseif($acc1['phone'] == $data['phone'] && $acc1['type'] == 3){
+					$code = array('status'=>5,'info'=>'对不起，您填写的手机号为会议发布账户手机号，无法绑定！');
 				}elseif($acc1['phone'] == $data['phone'] && $acc1['type'] == 1 && $acc1['level'] ==2){
 					$code = array('status'=>5,'info'=>'对不起，您填写的手机号为二级账户手机号，无法绑定！');
 				}elseif($acc1['phone'] == $data['phone'] && $acc1['type'] == 1){
@@ -285,6 +287,8 @@ class UserController extends PublicController{
 				//p($data);die;
 				if($accph['phone'] == $data['phone'] && $accph['type'] == 2){
 					$code = array('status'=>5,'info'=>'对不起，您填写的手机号为企业账户手机号，无法绑定！');
+				}elseif($accph['phone'] == $data['phone'] && $accph['type'] == 3){
+					$code = array('status'=>5,'info'=>'对不起，您填写的手机号为会议发布账户手机号，无法绑定！');
 				}elseif( $accph['phone'] == $data['phone'] && $acc1['type'] == 1 && $accph['level'] ==0){
 					/* //如果个人手机号存在，把该手机号的id保存在对应的中间表中*/
 					
