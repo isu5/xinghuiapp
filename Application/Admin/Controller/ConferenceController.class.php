@@ -10,6 +10,8 @@ class ConferenceController extends CommonController{
 		parent::_initialize();
 		$this->model = D('Conference');
 		$this->cate = D('Conferencecate');
+		$this->stats = D('Conferencestats');
+		$this->down = D('Conferencedown');
 
 	}
 	//所有会议列表
@@ -109,8 +111,18 @@ class ConferenceController extends CommonController{
 	
 	// 会议资料下载统计
 	public function countdown(){
+		$data = $this->down->downstats();
+		//p($data);
+		$this->assign(array(
+			'data' => $data['data'],
+			'page' => $data['page']
+		));
+        $this->display();
+	}
+	// 会议资料下载统计
+	public function countdownwho(){
+		$data = $this->down->downstatswho();
 		
-		$data = $this->model->downstats();
 		$this->assign(array(
 			'data' => $data['data'],
 			'page' => $data['page']
@@ -118,15 +130,31 @@ class ConferenceController extends CommonController{
         $this->display();
 	}
 	
+	
+	
 	//会议产品点击统计
 	public function countstats(){
-		$data = $this->model->countstats();
+		$data = $this->stats->countstats();
+		//p($data['data']);
+		//p($data);
 		$this->assign(array(
 			'data' => $data['data'],
 			'page' => $data['page']
 		));
         $this->display();
+	}
+	//会议产品谁点击统计
+	
+	public function countstatswho(){
 		
+		$data = $this->stats->countstatswho();
+		//p($data['data']);
+		//p($data);
+		$this->assign(array(
+			'data' => $data['data'],
+			'page' => $data['page']
+		));
+        $this->display();
 	}
 	
 	

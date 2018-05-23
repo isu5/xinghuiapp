@@ -467,9 +467,10 @@ class ConferenceController extends PublicController{
 	//会议修改上传文件接口
 	public function editDownfile(){
 		$data = $this->model->editDownfiles();
+		
 		if(IS_POST){
 			if($data){
-				Response::show(200,'修改成功');
+				Response::show(200,'修改成功',$data);
 			}else{
 				Response::show(401,'修改失败');
 			}

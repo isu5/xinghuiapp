@@ -24,15 +24,17 @@ class LoginController extends Controller{
 			$password = I('post.password');
 			$log = M('Log');
 			
-			$user = $m->where("username='{$username}' OR phone='{$username}' OR email='{$username}'")->find();
+			$user = $m->where("username='{$username}' OR phone='{$username}'")->find();
+			$acc1 = $m->alias('a')->field('a.id,a.pid,a.username,a.phone,a.type,a.itype,a.level,a.token,b.user_id,b.acc_id')
+						->join('LEFT JOIN tzht_user_account b on b.user_id=a.id')->where("username='{$username}' OR a.phone='{$username}'")->find();
+			//p($acc1);
 			if($user['itype'] == 1){
 				Response::show(403,'您登录的账号已禁用，请联系您所在公司的客服!');
 			}
 			if($user){
 				//判断是否可以登录(根据手机号查出对应id 在中间表中的对应二级账号id)
-				if($user['phone']== $username && $user['itype'] == 1){
-						$acc1 = $m->alias('a')->field('a.id,a.pid,a.username,a.phone,a.type,a.itype,a.level,a.token,b.user_id,b.acc_id')
-						->join('LEFT JOIN tzht_user_account b on b.user_id=a.id')->where(array('a.phone'=>$user['phone']))->find();
+				if($user['phone']== $username && $user['itype'] == 1 ){
+						
 						$login = $m->where('id='.$acc1['acc_id'])->find();
 						//dump($acc1);die;
 					if($login){

@@ -48,12 +48,12 @@ class UserController extends PublicController{
 		$cert = D('Certify');
 		$iscert=$cert->where(array('uid'=>$data['uid']))->find();
 		//企业
-		$comiscert = $cert->field('company,certificate,certificateimg,certtime,type,is_cert')->where(array('uid'=>$data['uid']))->find();
+		$comiscert = $cert->field('company,certificate,certificateimg,certtime,type,is_cert,refusednote')->where(array('uid'=>$data['uid']))->find();
 		
 		//个人
-		$personcert = $cert->field('uid,realname,idcard,front,back,certtime,type,is_cert,is_image')->where(array('uid'=>$data['uid']))->find();
+		$personcert = $cert->field('uid,realname,idcard,front,back,certtime,type,is_cert,is_image,refusednote')->where(array('uid'=>$data['uid']))->find();
 		//个人发布
-		$publishcert = $cert->field('uid,realname,idcard,front,back,zhicard,certtime,type,is_cert,is_image')->where(array('uid'=>$data['uid']))->find();
+		$publishcert = $cert->field('uid,realname,idcard,front,back,zhicard,certtime,type,is_cert,is_image,refusednote')->where(array('uid'=>$data['uid']))->find();
 		
 		//审核中数据
 		$auditdata = $cert->where(array('uid'=>$data['uid']))->find();
@@ -172,6 +172,31 @@ class UserController extends PublicController{
 		}else{
 			Response::show(402,'参数不合法!');
 		}
+		
+	}
+	
+	//新增合作伙伴
+	public function addPart(){
+		$data['user_id'] = I('post.user_id');
+		$data['conf_user_id'] = I('post.conf_user_id');
+		$partid = $this->part->where(array('user_id'=>$data['user_id'],'conf_user_id'=>$data['conf_user_id']))->find();
+		
+		$mm = M('User')->field('id,type')->where(array('id'=>$data['user_id']))->find();
+		
+		//print_r($mm);die;
+		if(IS_POST){
+			if($partid)
+				Response::show(401,'您添加的合作伙伴已存在，请勿重复添加!');
+			
+			if($mm['type'] != 2)
+				Response::show(402,'您选择的用户为个人或二级账户，不能添加!');
+			
+			
+			$this->part->add($data);
+			Response::show(200,'添加成功!');
+			
+		}
+		
 		
 	}
 	
@@ -376,6 +401,9 @@ class UserController extends PublicController{
 				}elseif($acc1['type'] == 2){
 					Response::show(202,'对不起，您填写的手机号为企业账户手机号，无法绑定！' );
 					
+				}elseif($acc1['type'] == 3){
+					Response::show(202,'对不起，您填写的手机号为会议发布账户手机号，无法绑定！' );
+					
 				}elseif($acc1['phone'] == $data['phone'] && $acc1['type'] == 1 && $acc1['level'] ==2){
 					Response::show(203,'对不起，您填写的手机号为二级账户手机号，无法绑定！' );
 				}elseif($acc1['phone'] == $data['phone'] && $acc1['type'] == 1){
@@ -489,12 +517,19 @@ class UserController extends PublicController{
 		$z = M('User_account');
 		if(IS_POST){
 			if($accph['phone'] == $data['phone'] && $accph['type'] == 2){
-					Response::show(404,'对不起，您填写的手机号为企业账户手机号，无法绑定！' );
+					Response::show(204,'对不起，您填写的手机号为企业账户手机号，无法绑定！' );
 					//$code = array('status'=>5,'info'=>'对不起，您填写的手机号为企业账户手机号，无法绑定！');
-				}elseif( $accph['phone'] == $data['phone'] && $acc1['type'] == 1 && $accph['level'] ==0){
+			}elseif($accph['phone'] == $data['phone'] && $accph['type'] == 3){
+					Response::show(202,'对不起，您填写的手机号为会议发布账户手机号，无法绑定！' );
+					
+			}elseif( $accph['phone'] == $data['phone'] && $acc1['type'] == 1 && $accph['level'] ==0){
+				$code = I('post.codetype');
+				if( $code == 0){ //传入标识，以判断已注册手机号绑定时，弹框确认
+					Response::show(205,'对不起，您填写的手机号为个人账户手机号，确定要绑定吗！' );
+				}else{
 					$map = array(
-						'user_id'=>$accph['id'],
-						'acc_id'=>$id
+					'user_id'=>$accph['id'],
+					'acc_id'=>$id
 					);
 					$z->where('acc_id='.$acc1['id'])->setField($map); 
 					if($acc1['user_id']){
@@ -509,20 +544,23 @@ class UserController extends PublicController{
 					
 					//3 更新当前绑定的二级账户信息
 					$user->where('id='.$acc1['id'])->data($data)->save();
-					Response::show(403,'您填写的手机号已是个人注册账号,确定要绑定吗!' );
-				}elseif($accph['phone'] == $data['phone'] && $acc1['type'] == 1 && $accph['level']==2 ){
-					Response::show(402,'对不起，您填写的手机号为二级账户手机号，无法绑定!' );
-				}else{
-					if($user->where(array('id'=>$id))->data($data)->save()){
-						$map3 = array('itype'=>0);
-						$user-> where('id='.$acc1['user_id'])->setField($map3);
-						Response::show(200,'绑定修改成功!' );
-						
-					}else{
-						Response::show(401,'绑定修改失败!' );
-						
-					}
+					Response::show(200,'绑定修改成功!' );
 				}
+				
+				
+			}elseif($accph['phone'] == $data['phone'] && $acc1['type'] == 1 && $accph['level']==2 ){
+				Response::show(201,'对不起，您填写的手机号为二级账户手机号，无法绑定!' );
+			}else{
+				if($user->where(array('id'=>$id))->data($data)->save()){
+					$map3 = array('itype'=>0);
+					$user-> where('id='.$acc1['user_id'])->setField($map3);
+					Response::show(200,'绑定修改成功!' );
+					
+				}else{
+					Response::show(401,'绑定修改失败!' );
+					
+				}
+			}
 		}
 		
 		

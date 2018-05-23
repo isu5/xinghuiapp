@@ -229,6 +229,7 @@ class ConferenceModel extends RelationModel{
 		
 		$data['uid'] = I('post.uid');
 		$data['addtime'] = time();
+		$data['part_id'] = I('post.part_id');
 		//app 上传图片
 		$data['companypic'] = json_encode(app_upload_image("/Uploads/Conference"));
 		$down = json_encode(app_upload_bull('/Uploads/file'),JSON_UNESCAPED_UNICODE);
@@ -236,15 +237,10 @@ class ConferenceModel extends RelationModel{
 		
 	}
 	
-	/* //修改之前
+	
 	public function _before_update(&$data, $option){
-		//app 修改上传图片
-		$data['companypic'] = json_encode(app_upload_image("/Uploads/Conference"));
-		$down = json_encode(app_upload_bull('/Uploads/file'),JSON_UNESCAPED_UNICODE);
-		$data['downfile'] = str_replace("\\/","/",trim($down,'[""]')).'###';
-		
-		//p($data);
-	} */
+		$data['part_id'] = I('post.part_id');
+	} 
 	
 
 	//编辑会议接口里上传文件
@@ -252,9 +248,10 @@ class ConferenceModel extends RelationModel{
 		$id = I('post.id');
 		$file = $this->where(array('id'=>$id))->find();
 		$down = json_encode(app_upload_bull('/Uploads/file'),JSON_UNESCAPED_UNICODE);
-		$data['downfile'] = str_replace(',','###', str_replace('"','',str_replace('\\','',str_replace('"]','',str_replace('["','',$down)))))."###";
-		
-		return $this->where(array('id'=>$id))->save($data.$file['downfile']);
+		$datafile = str_replace(',','###', str_replace('"','',str_replace('\\','',str_replace('"]','',str_replace('["','',$down)))))."###";
+		$data['downfile'] = $file['downfile'].$datafile;
+		$this->where(array('id'=>$id))->save($data);
+		return $data;
 	}
 	
 	//编辑会议接口里上传图片

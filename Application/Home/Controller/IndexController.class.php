@@ -35,6 +35,24 @@ class IndexController extends Controller {
 		//scQRcode($id);
 		
 	}
+	//测试页面
+	public function test(){
+		echo rongyunrand();
+		
+	}
+	public function sendmember(){
+		
+		$appkey = C('RONG_PRO_APP_KEY'); // 开发者平台分配的 App Secret。
+		$nonce = rand(); // 获取随机数。
+		$timestamp = time()*1000; // 获取时间戳（毫秒）
+		header('App-Key:'.$appkey);  
+		header('Nonce:'.$nonce);  
+		header('Timestamp:'.$timestamp); 
+		header('Signature:'.rongyunrand()); 
+		//header('Content-Type: Application/x-www-form-urlencoded'); 
+		
+		
+	}
 	
 	public function sms(){
 		$ol = yunsendSMS('1236','13552832050');

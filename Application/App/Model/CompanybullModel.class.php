@@ -20,7 +20,7 @@ class CompanybullModel extends BaseModel{
 		
 		$curpage = I('post.page',1); //当前的页,还应该处理非数字的情况
 		
-		$total = $this->alias('a')->join('left join __COMPANYBULL_STATS__ b on b.bull_id = a.id')
+		$total = $this->alias('a')->field(array("count(b.bull_id)"=>"countstats",'a.*'))->join('left join __COMPANYBULL_STATS__ b on b.bull_id = a.id')
 		->where($where)->count();	
 		
 		$page = new AppPage($total, $showrow);
@@ -31,11 +31,12 @@ class CompanybullModel extends BaseModel{
 		$data['data'] = $this->alias('a')
 		->field(array("count(b.bull_id)"=>"countstats",'a.*'))
 		->join('left join __COMPANYBULL_STATS__ b on b.bull_id = a.id')
-		->where($where)
-		->limit(($curpage - 1) * $showrow.','.$showrow)
-		->order('id desc')
+		->where($where)		
+		->group('a.title')//user_id
+		->order('a.addtime desc')//a.id
+		->limit(($curpage - 1) * $showrow.','.$showrow)		
 		->select();
-		//p($this->_Sql());
+		//print_r($this->_Sql());
 		return $data;
 	}
 	

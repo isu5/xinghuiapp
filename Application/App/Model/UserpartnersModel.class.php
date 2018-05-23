@@ -19,6 +19,8 @@ class UserpartnersModel extends BaseModel{
 		}
 		
 		
+		
+		
 		//翻页
 		$showrow = 15; //一页显示的行数
 		
@@ -43,6 +45,7 @@ class UserpartnersModel extends BaseModel{
 		->where($where)
 		->limit(($curpage - 1) * $showrow.','.$showrow)
 		->order('id desc')
+		->group('id')
 		->select();
 		//print_r($this->_Sql());
 		return $data;	
@@ -57,6 +60,9 @@ class UserpartnersModel extends BaseModel{
 		//翻页
 		$showrow = 15; //一页显示的行数
 		
+		//只有企业可以成为合作伙伴
+		$where['c.type'] = 2;
+		
 		$curpage = I('post.page',1);; //当前的页,还应该处理非数字的情况
 
 		$count = $this->alias('a')->join('
@@ -70,7 +76,7 @@ class UserpartnersModel extends BaseModel{
 			$data['page'] =  $page->myde_write();
 		 }
 		$data['data'] = $this->alias('a')
-		->field('a.*,b.title,c.companyname as company,c.phone as iphone,c.address as dizhi,c.area as xxdizhi,c.email')
+		->field('a.*,b.title,c.companyname as company,c.nickname,c.phone as iphone,c.address as dizhi,c.area as xxdizhi,c.email')
 		->join('
 			LEFT JOIN __CONFERENCE__ b on b.id=a.conf_id
 			LEFT JOIN __USER__ c on c.id=a.user_id

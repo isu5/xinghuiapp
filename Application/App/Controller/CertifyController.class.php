@@ -113,7 +113,7 @@ class CertifyController extends PublicController{
 		if(IS_POST){
 			
 			if(!$this->model->editp()){
-				Response::show(401,'修改失败',$this->model->getError());
+				Response::show(401,$this->model->getError());
 			}else{
 				manageJgpush($jg['jpush']);
 				Response::show(200,'修改成功');
@@ -126,7 +126,7 @@ class CertifyController extends PublicController{
 		$jg = $this->pushTest();
 		if(IS_POST){
 			if(!$this->model->editcom()){
-				Response::show(401,'修改失败',$this->model->getError());
+				Response::show(401,$this->model->getError());
 			}else{
 				manageJgpush($jg['jpush']);
 				Response::show(200,'修改成功');
@@ -138,7 +138,7 @@ class CertifyController extends PublicController{
 		$jg = $this->pushTest();
 		if(IS_POST){
 			if(!$this->model->editpublish()){
-				Response::show(401,'修改失败',$this->model->getError());
+				Response::show(401,$this->model->getError());
 			}else{
 				manageJgpush($jg['jpush']);
 				Response::show(200,'修改成功');

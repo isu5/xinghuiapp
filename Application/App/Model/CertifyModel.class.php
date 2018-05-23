@@ -121,6 +121,7 @@ class CertifyModel extends BaseModel{
 	public function _before_update(&$data, $option){
 		$id = $option['where']['id'];
 		//修改
+		
 		if (isset($_FILES['front']) && $_FILES['front']['error'] == 0) {
 			$ret = uploadOne('front','Idcard',array());
 			if($ret['ok'] == 1){
