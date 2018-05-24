@@ -17,7 +17,9 @@ class ProductModel extends BaseModel{
 		}
 		
 		//翻页
-		$count = $this->alias('a')->join('left join __PRODUCT_STATS__ b on b.pro_id = a.id')->where($where)->count();
+		$count = $this->alias('a')->join('left join __PRODUCT_STATS__ b on b.pro_id = a.id')
+		->where($where)->group('b.pro_id')->count();
+		//p($count);
 		$page = new \Think\Page($count,$pagesize);
 		//配置分页
 		$page->setConfig('prev', '上一页');
@@ -44,7 +46,8 @@ class ProductModel extends BaseModel{
 		$where['pro_id'] = I('get.pro_id');
 		$m = M('Product_stats');
 		//翻页
-		$count = $m->alias('a')->join('left join __USER__ b on b.id=a.user_id')->where($where)->count();
+		$count = $m->alias('a')->join('left join __USER__ b on b.id=a.user_id')
+		->where($where)->group('a.user_id')->count();
 		$page = new \Think\Page($count,$pagesize);
 		//配置分页
 		$page->setConfig('prev', '上一页');

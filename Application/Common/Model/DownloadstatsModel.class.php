@@ -18,7 +18,8 @@ class DownloadstatsModel extends BaseModel{
 			$where['title'] = array('like',"%$title%");
 		}
 		//翻页
-		$count = $this->alias('a')->join('left join __DOWNLOAD__ b on b.id = a.down_id')->where($where)->count();
+		$count = $this->alias('a')->join('left join __DOWNLOAD__ b on b.id = a.down_id')
+		->where($where)->group('a.down_id')->count();
 		$page = new \Think\Page($count,$pagesize);
 		$page->setConfig('prev', '上一页');
 		$page->setConfig('next', '下一页');
@@ -43,7 +44,8 @@ class DownloadstatsModel extends BaseModel{
 		$where = [];
 		$where['down_id'] = I('get.down_id');
 		//翻页
-		$count = $this->alias('a')->join('left join __USER__ b on b.id=a.user_id')->where($where)->count();
+		$count = $this->alias('a')->join('left join __USER__ b on b.id=a.user_id')
+		->where($where)->group('a.user_id')->count();
 		$page = new \Think\Page($count,$pagesize);
 		$page->setConfig('prev', '上一页');
 		$page->setConfig('next', '下一页');

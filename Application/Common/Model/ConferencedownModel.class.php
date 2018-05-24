@@ -18,7 +18,8 @@ class ConferencedownModel extends BaseModel{
 			$where['_string'] = " ( b.title like '%$title%') ";
 		}
 		//翻页
-		$count = $this->alias('a')->join('left join __CONFERENCE__ b on b.id = a.conf_id')->where($where)->count();
+		$count = $this->alias('a')->join('left join __CONFERENCE__ b on b.id = a.conf_id')
+		->where($where)->group('b.title')->count();
 		$page = new \Think\Page($count,$pagesize);
 		//配置分页
 		$page->setConfig('prev', '上一页');
@@ -54,7 +55,8 @@ class ConferencedownModel extends BaseModel{
 		$where['conf_id'] = I('get.conf_id');
 		
 		//翻页
-		$count = $this->alias('a')->join('left join __USER__ b on b.id = a.user_id')->where($where)->count();
+		$count = $this->alias('a')->join('left join __USER__ b on b.id = a.user_id')
+		->group('a.conf_id')->where($where)->count();
 		$page = new \Think\Page($count,$pagesize);
 		//配置分页
 		$page->setConfig('prev', '上一页');

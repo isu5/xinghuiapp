@@ -17,7 +17,7 @@ class ConferencestatsModel extends BaseModel{
 		left join tzht_conference c on c.id = a.conf_id group by a.pro_id;
 		*/
 		//翻页
-		$count = $this->alias('a')->join('left join __CONFERENCE_DOWN__ b on b.conf_id = a.id')->where($where)->count();
+		$count = $this->alias('a')->join('left join __CONFERENCE_DOWN__ b on b.conf_id = a.id')->where($where)->group('b.user_id')->count();
 		$page = new \Think\Page($count,$pagesize);
 		//配置分页
 		$page->setConfig('prev', '上一页');
@@ -28,7 +28,8 @@ class ConferencestatsModel extends BaseModel{
 		->field(array("count(a.id)"=>"countstats",'a.title','b.filename','b.user_id'=>'uid'))
 		->join('left join __CONFERENCE_DOWN__ b on b.conf_id = a.id')	
 		->where($where)->limit($page->firstRow.','.$page->listRows)->order('id desc')->order('a.addtime desc')
-		->group('b.user_id')->select();
+		->group('b.user_id')
+		->select();
 		
 		
 		return $data;
@@ -54,7 +55,7 @@ class ConferencestatsModel extends BaseModel{
 		$count = $this->alias('a')->join('
 			left join __CONFERENCE_PIC__ b on b.id = a.pro_id
 			left join __CONFERENCE__ c on c.id = a.conf_id
-		')->where($where)->count();
+		')->where($where)->group('a.pro_id')->count();
 		$page = new \Think\Page($count,$pagesize);
 		//配置分页
 		$page->setConfig('prev', '上一页');
@@ -90,7 +91,7 @@ class ConferencestatsModel extends BaseModel{
 		
 		$where = [];
 		$where['a.pro_id'] = I('get.pro_id');
-		$count = $this->alias('a')->join ('LEFT JOIN __USER__ b on b.id = a.user_id')->where($where)->count();
+		$count = $this->alias('a')->join ('LEFT JOIN __USER__ b on b.id = a.user_id')->where($where)->group('a.user_id')->count();
 		$page = new \Think\Page($count,$pagesize);
 		//翻页
 		
