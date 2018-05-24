@@ -1,0 +1,124 @@
+<layout name="layout" />
+<nav class="breadcrumb">
+<i class="Hui-iconfont">&#xe67f;</i> 首页 
+<span class="c-gray en">&gt;</span> 统计管理 
+<span class="c-gray en">&gt;</span> 企业产品统计
+<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+</nav>
+
+<script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+<script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+<script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+<div class="page-container">
+	<!-- <div class="text-c"> 
+	<form class="Huiform layui-form" method="get" action="__ACTION__" >
+	 <span class="select-box inline">
+		 <select name="utype" class="select">
+			<option value="" >请选择产品</option>
+			<volist name="data" id="c">
+				<option value="{$c.id}" <?php $utype=I('get.utype'); if($utype==$c['id']){ ?> selected="selected" <?php }?>>{$c.title}</option>
+			</volist>
+		</select>
+	</span>
+	
+		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜会议</button>
+	</form>
+	</div> -->
+	<table class="table table-border table-bordered table-bg">
+		<thead>
+			<tr>
+				<th colspan="7" scope="col">企业产品统计</th>
+			</tr>
+			<tr class="text-c">
+				<th>用户名</th>
+				<th>点击量</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<volist name="data" id="p">
+			<tr class="text-c">
+				
+				<td>{$p.username}</td>
+				<td>{$p.links}</td>
+				
+			</tr>
+			</volist>
+			
+		</tbody>
+	</table>
+
+
+
+
+
+
+	<div id="container" style="min-width:700px;height:400px"></div>
+</div>
+<!-- <script type="text/javascript">
+$(function () {
+	$('#container').highcharts({
+		 chart: {
+        type: 'column'
+    },
+    title: {
+        text: '企业产品统计'
+    },
+    subtitle: {
+        text: '数据提供：幸会'
+    },
+    xAxis: {
+        type: 'category',
+        labels: {
+            rotation: -45  // 设置轴标签旋转角度
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: '点击 (次数)'
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    tooltip: {
+        pointFormat: '点击量: <b>{point.y:.1f} 次数</b>'
+    },
+    series: [{
+        name: '总人口',
+        data: [
+            ['上海', 24.25],
+            ['卡拉奇', 23.50],
+            ['北京', 21.51],
+            ['德里', 16.78],
+            ['拉各斯', 16.06],
+            ['天津', 15.20],
+            ['伊斯坦布尔', 14.16],
+            ['东京', 13.51],
+            ['广州', 13.08],
+            ['孟买', 12.44],
+            ['莫斯科', 12.19],
+            ['圣保罗', 12.03],
+            ['深圳', 10.46],
+            ['雅加达', 10.07],
+            ['拉合尔', 10.05],
+            ['首尔', 9.99],
+            ['武汉', 9.78],
+            ['金沙萨', 9.73],
+            ['开罗', 9.27],
+            ['墨西哥', 8.87]
+        ],
+        dataLabels: {
+            enabled: true,
+            rotation: -90,
+            color: '#FFFFFF',
+            align: 'right',
+            format: '{point.y:.1f}', // :.1f 为保留 1 位小数
+            y: 10
+        }
+    }]
+
+	});
+})
+</script> -->
