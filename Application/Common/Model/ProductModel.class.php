@@ -68,6 +68,21 @@ class ProductModel extends BaseModel{
 		
 		
 	}
+	
+	//前端数据
+	public function searchFront(){
+		$where = [];
+		$where['uid'] = cookie(userid);
+		$count = $this->where($where)->count();
+		$page = new \Think\Page($count,$pagesize);
+		//配置分页
+		$page->setConfig('prev', '上一页');
+		$page->setConfig('next', '下一页');
+		$data['page'] = $page->show();
+		
+		$data['data'] = $this->where($where)->select();
+		return $data;
+	}
 
 	public function _before_insert(&$data,$option){
 		
