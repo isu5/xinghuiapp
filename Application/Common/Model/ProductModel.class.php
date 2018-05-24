@@ -17,26 +17,53 @@ class ProductModel extends BaseModel{
 		}
 		
 		//翻页
-		$count = $this->where($where)->count();
+		$count = $this->alias('a')->join('left join __PRODUCT_STATS__ b on b.pro_id = a.id')->where($where)->count();
 		$page = new \Think\Page($count,$pagesize);
 		//配置分页
 		$page->setConfig('prev', '上一页');
 		$page->setConfig('next', '下一页');
 		$data['page'] = $page->show();
 	
-		$arr = $this->alias('a')
-		->field(array("count(b.pro_id)"=>"countstats",'a.title','b.user_id'=>'uid'))
+		$data['data'] = $this->alias('a')
+		->field(array("count(b.pro_id)"=>"countstats",'a.title','b.pro_id'))
 		->join('left join __PRODUCT_STATS__ b on b.pro_id = a.id')	
-		->where($where)->limit($page->firstRow.','.$page->listRows)->order('id desc')->order('a.addtime desc')
-		->group('b.user_id')->buildSql();
-		
-		$data['data'] = M('User')->alias('c')
-		->field(array('d.username','d.id','c.title',"count(c.countstats)"=>"counts"))
-		->table($arr)
-		->join('left join __USER__ d on d.id=c.uid')
-		->group('c.uid')
+		->where($where)
+		->limit($page->firstRow.','.$page->listRows)
+		->order('a.id desc')
+		->group('b.pro_id')
 		->select();
+		//p($this->_Sql());
+		
 		return $data;
+	}
+	
+	//谁点击的统计
+	public function countwho($pagesize=15){
+		
+		$where = [];
+		$where['pro_id'] = I('get.pro_id');
+		$m = M('Product_stats');
+		//翻页
+		$count = $m->alias('a')->join('left join __USER__ b on b.id=a.user_id')->where($where)->count();
+		$page = new \Think\Page($count,$pagesize);
+		//配置分页
+		$page->setConfig('prev', '上一页');
+		$page->setConfig('next', '下一页');
+		$data['page'] = $page->show();
+		
+		
+		$data['data'] = $m->alias('a')
+		->field(array('count(a.pro_id)'=>'links','b.username'))
+		->join('left join __USER__ b on b.id=a.user_id')
+		->where($where)
+		->group('a.user_id')
+		->limit($page->firstRow.','.$page->listRows)
+		->select();
+		//p($this->_Sql());
+		return $data;
+		
+		
+		
 	}
 
 	public function _before_insert(&$data,$option){
