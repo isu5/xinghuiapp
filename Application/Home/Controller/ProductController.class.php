@@ -16,7 +16,7 @@ class ProductController extends PublicController{
 	* 企业产品列表
 	*/
 	public function index(){
-		$data = $this->model->search();
+		$data = $this->model->searchFront();
 		/* p($data);
     	p($this->model->getlastsql());
     	

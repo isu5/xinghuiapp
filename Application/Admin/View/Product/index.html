@@ -26,6 +26,7 @@
 				<th colspan="7" scope="col">企业产品统计</th>
 			</tr>
 			<tr class="text-c">
+				<th>公司名称</th>
 				<th>企业产品标题</th>
 				<th>点击量</th>
 				<th>具体统计</th>
@@ -35,6 +36,7 @@
 		<tbody>
 			<volist name="data" id="p">
 			<tr class="text-c">
+				<td>{$p.companyname}</td>
 				<td>{$p.title}</td>
 				<td>{$p.countstats}</td>
 				<td><a href="{:U('Product/countwho',array('pro_id'=>$p['pro_id']))}" class="label label-primary radius">详情</a></td>

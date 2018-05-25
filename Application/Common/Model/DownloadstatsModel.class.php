@@ -26,13 +26,16 @@ class DownloadstatsModel extends BaseModel{
 		$data['page'] = $page->show();
 		
 		$data['data'] = $this->alias('a')
-		->field(array("count(a.down_id)"=>"countstats",'b.title','a.down_id'))
-		->join('left join __DOWNLOAD__ b on b.id = a.down_id')
+		->field(array("count(a.down_id)"=>"countstats",'b.title','a.down_id','c.companyname'))
+		->join('left join __DOWNLOAD__ b on b.id = a.down_id
+			left join __USER__ c on c.id = b.user_id
+		')
 		->where($where)
 		->limit($page->firstRow.','.$page->listRows)
 		->order('b.addtime desc')
 		->group('a.down_id')
 		->select();
+		//p($data);
 		//p($this->_Sql());
 		
 		

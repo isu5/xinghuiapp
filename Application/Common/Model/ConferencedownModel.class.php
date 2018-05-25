@@ -56,7 +56,7 @@ class ConferencedownModel extends BaseModel{
 		
 		//翻页
 		$count = $this->alias('a')->join('left join __USER__ b on b.id = a.user_id')
-		->group('a.conf_id')->where($where)->count();
+		->group('a.user_id')->where($where)->count();
 		$page = new \Think\Page($count,$pagesize);
 		//配置分页
 		$page->setConfig('prev', '上一页');
@@ -66,9 +66,9 @@ class ConferencedownModel extends BaseModel{
 		->field(array('count(a.filename)'=>'links','b.username'))
 		->join('left join __USER__ b on b.id = a.user_id')
 		->where($where)
-		->group('a.conf_id')
+		->group('a.user_id')
 		->select();
-		
+		//p($data);
 		//print_r($this->_Sql());
 		return $data;
 	}

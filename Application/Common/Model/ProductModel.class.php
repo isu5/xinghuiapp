@@ -17,7 +17,7 @@ class ProductModel extends BaseModel{
 		}
 		
 		//翻页
-		$count = $this->alias('a')->join('left join __PRODUCT_STATS__ b on b.pro_id = a.id')
+		$count = $this->alias('a')->join('left join __PRODUCT_STATS__ b on b.pro_id = a.id left join __USER__ c on c.id = a.uid')
 		->where($where)->group('b.pro_id')->count();
 		//p($count);
 		$page = new \Think\Page($count,$pagesize);
@@ -27,8 +27,10 @@ class ProductModel extends BaseModel{
 		$data['page'] = $page->show();
 	
 		$data['data'] = $this->alias('a')
-		->field(array("count(b.pro_id)"=>"countstats",'a.title','b.pro_id'))
-		->join('left join __PRODUCT_STATS__ b on b.pro_id = a.id')	
+		->field(array("count(b.pro_id)"=>"countstats",'a.title','b.pro_id','c.companyname'))
+		->join('left join __PRODUCT_STATS__ b on b.pro_id = a.id
+			left join __USER__ c on c.id = a.uid
+		')	
 		->where($where)
 		->limit($page->firstRow.','.$page->listRows)
 		->order('a.id desc')
