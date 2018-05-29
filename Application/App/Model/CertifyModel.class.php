@@ -75,19 +75,39 @@ class CertifyModel extends BaseModel{
 	
 	//个人认证修改
 	public function editp(){
+		
 		$uid = I('post.uid');
 		$data = $this->field('back,front,is_image')->where('uid='.$uid)->find();
 		//身份证
 		if($data['is_image'] == 1){
-			$front = I('post.front');
+			
+			if (isset($_FILES['front']) && $_FILES['front']['error'] == 0) {
+				$ret = uploadOne('front','Idcard',array());
+				if($ret['ok'] == 1){
+					$data['front'] = $ret['images'][0];
+				}else{
+					$this->error = $ret['error'];
+					return FALSE;
+				}
+			}
+			
+		
 		}
 		//名片
 		if($data['is_image'] == 2){
-			$back = I('post.back');
+			if (isset($_FILES['back']) && $_FILES['back']['error'] == 0) {
+				$ret = uploadOne('back','Idcard',array());
+				if($ret['ok'] == 1){
+					$data['back'] = $ret['images'][0];
+				}else{
+					$this->error = $ret['error'];
+					return FALSE;
+				}
+			}
 		}
 		$realname = I('post.realname');
 		$iscert = 5;
-		$this->where(array('uid'=>$uid))->save(array('realname'=>$realname,'front'=>$front,'back'=>$back,'is_cert'=>$iscert));
+		$this->where(array('uid'=>$uid))->save(array('realname'=>$realname,'front'=>$data['front'],'back'=>$data['back'],'is_cert'=>$iscert));
 		
 		return true;
 	}
@@ -95,11 +115,22 @@ class CertifyModel extends BaseModel{
 	//企业认证修改
 	public function editcom(){
 		$uid = I('post.uid');
-		$certificateimg = I('post.certificateimg');
 		$certificate = I('post.certificate');
 		$company = I('post.company');
 		$iscert = 5;
-		$this->where(array('uid'=>$uid))->save(array('certificateimg'=>$certificateimg,'certificate'=>$certificate,'company'=>$company,'is_cert'=>$iscert));
+		//图片上传
+		if (isset($_FILES['certificateimg']) && $_FILES['certificateimg']['error'] == 0) {
+				$ret = uploadOne('certificateimg','Idcard',array());
+				if($ret['ok'] == 1){
+					$data['certificateimg'] = $ret['images'][0];
+				}else{
+					$this->error = $ret['error'];
+					return FALSE;
+				}
+			}
+		
+		
+		$this->where(array('uid'=>$uid))->save(array('certificateimg'=>$data['certificateimg'],'certificate'=>$certificate,'company'=>$company,'is_cert'=>$iscert));
 		
 		return true;
 	}
@@ -107,21 +138,10 @@ class CertifyModel extends BaseModel{
 	//个人发布认证修改
 	public function editpublish(){
 		$uid = I('post.uid');	
-		$front = I('post.front');
 		$idcard = I('post.idcard');
-		$back = I('post.back');
-		$zhicard = I('post.zhicard');
 		$realname = I('post.realname');
 		$iscert = 5;
-		$this->where(array('uid'=>$uid))->save(array('idcard'=>$idcard,'realname'=>$realname,'zhicard'=>$zhicard,'front'=>$front,'back'=>$back,'is_cert'=>$iscert));
-		
-		return true;
-	}
-	
-	public function _before_update(&$data, $option){
-		$id = $option['where']['id'];
-		//修改
-		
+		//上传图片
 		if (isset($_FILES['front']) && $_FILES['front']['error'] == 0) {
 			$ret = uploadOne('front','Idcard',array());
 			if($ret['ok'] == 1){
@@ -130,8 +150,45 @@ class CertifyModel extends BaseModel{
 				$this->error = $ret['error'];
 				return FALSE;
 			}
-			
 		}
+		if (isset($_FILES['back']) && $_FILES['back']['error'] == 0) {
+			$ret = uploadOne('back','Idcard',array());
+			if($ret['ok'] == 1){
+				$data['back'] = $ret['images'][0];
+			}else{
+				$this->error = $ret['error'];
+				return FALSE;
+			}
+		}
+		if (isset($_FILES['zhicard']) && $_FILES['zhicard']['error'] == 0) {
+			$ret = uploadOne('zhicard','Idcard',array());
+			if($ret['ok'] == 1){
+				$data['zhicard'] = $ret['images'][0];
+			}else{
+				$this->error = $ret['error'];
+				return FALSE;
+			}
+		}
+		$this->where(array('uid'=>$uid))->save(array('idcard'=>$idcard,'realname'=>$realname,'zhicard'=>$data['zhicard'],'front'=>$data['front'],'back'=>$data['back'],'is_cert'=>$iscert));
+		
+		return true;
+	}
+	
+	/* public function _before_update(&$data, $option){
+		$id = $option['where']['id'];
+		//修改
+		
+			if (isset($_FILES['front']) && $_FILES['front']['error'] == 0) {
+				$ret = uploadOne('front','Idcard',array());
+				if($ret['ok'] == 1){
+					$data['front'] = $ret['images'][0];
+				}else{
+					$this->error = $ret['error'];
+					return FALSE;
+				}
+			
+			}
+		
 		if (isset($_FILES['back']) && $_FILES['back']['error'] == 0) {
 			$ret = uploadOne('back','Idcard',array());
 			if($ret['ok'] == 1){
@@ -168,7 +225,7 @@ class CertifyModel extends BaseModel{
 		
 		
 	}
-	
+	 */
 	
 
 
