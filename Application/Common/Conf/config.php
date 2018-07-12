@@ -28,17 +28,18 @@ return array(
 		
 		'__XHAPP__'				=>  __ROOT__.'/Public/Home/xhapp',   //xhapp前台页面
 		'__HDJS__'				=>  __ROOT__.'/Public/Home/hdjs_modules',   //hdjs
-		'__LAYDATE__'				=>  __ROOT__.'/Public/Home/js/layer/laydate',   //laydate 日期时间插件
+		'__LAYDATE__'			=>  __ROOT__.'/Public/Home/js/layer/laydate',   //laydate 日期时间插件
 		'__LAYER__'				=>  __ROOT__.'/Public/Home/js/layer',   //laydate 日期时间插件
 	
 		'__PLUPLOAD__'			=>  __ROOT__.'/Public/plupload',   //上传插件plupload
+		'__WAP__'			=>  __ROOT__.'/Public/Wap',   //手机版css
 		
 	
 	),
 	
 	'TAGLIB_BUILD_IN'        => 'Cx,Common\Tag\My',              // 加载自定义标签
 	//允许访问的模块
-	'MODULE_ALLOW_LIST'=>array('Admin','Home','Api','App','Bpp'),
+	'MODULE_ALLOW_LIST'=>array('Admin','Home','Api','App','Bpp','Wap'),
 	//默认
 	'DEFAULT_MODULE'=>'Home',
 	
@@ -51,14 +52,14 @@ return array(
     	'saveName' => '',   // 保存原来的文件名称
     ),
 	//***********************************其他设置**********************************
-    'RONG_IS_DEV'            => true,//是否是在开发中
-    'RONG_DEV_APP_KEY'       => '', //融云开发环境下的key       仅供测试使用
-    'RONG_DEV_APP_SECRET'    => '', //融云开发环境下的SECRET     仅供测试使用
-    'RONG_PRO_APP_KEY'       => '', //融云生产环境下的key
-    'RONG_PRO_APP_SECRET'    => '', //融云生产环境下的SECRET
+    'RONG_IS_DEV'            => false,//是否是在开发中
+    'RONG_DEV_APP_KEY'       => '82hegw5u83l8x', //融云开发环境下的key       仅供测试使用
+    'RONG_DEV_APP_SECRET'    => '3NHUMv9zRPrdA5', //融云开发环境下的SECRET     仅供测试使用
+    'RONG_PRO_APP_KEY'       => 'e0x9wycfehqeq', //融云生产环境下的key
+    'RONG_PRO_APP_SECRET'    => 'hUwjXsBLM0', //融云生产环境下的SECRET
 	
-    'GEETEST_ID'             => '',//极验id  仅供测试使用
-    'GEETEST_KEY'            => '',//极验key 仅供测试使用
+    'GEETEST_ID'             => '034b9cc862456adf05398821cefc94eb',//极验id  仅供测试使用
+    'GEETEST_KEY'            => 'b7f064b9ae813699de794303f0b0e76f',//极验key 仅供测试使用
     'UMENG_IOS_APP_KEY'      => '', //友盟ios AppKey
     'UMENG_IOS_SECRET'       => '', //友盟ios App Master Secret
     'UMENG_ANDROID_APP_KEY'  => '', //友盟android AppKey
@@ -70,33 +71,33 @@ return array(
 	
 	//*********************************幸会app极光推送api 设置**************
 	 'JPUSH' => array(
-        'APP_KEY' => '',
-        'MASTER_SECRET' => ''
+        'APP_KEY' => '3712b3258b73d7823f868165',
+        'MASTER_SECRET' => 'ea74160088aabd9a3d583807'
     ),
 	//*********************************幸会审核端极光推送api 设置**************
 	 'BJPUSH' => array(
-        'BPP_KEY' => '',
-        'BMASTER_SECRET' => ''
+        'BPP_KEY' => 'b09a119b500e99af64d19c9c',
+        'BMASTER_SECRET' => '7ee03f3b88b73caead73893d'
     ),
 	//**********************************网易云短信 设置未接入**************
 	'SMS' => array(
-		'AppKey'	=> '',
-		'AppSecret'	=> '',
-		'TemplateId'=> ''
+		'AppKey'	=> 'd5275854a775369121a2e80536a5884b',
+		'AppSecret'	=> 'a3a5477f8b97',
+		'TemplateId'=> '3992639'
 	),
 	//**********************************云之讯短信 设置**************
 	'YUNSMS' => array(
-		'Accountsid'	=> '',
-		'Token'	=> '',
-		'Appid' => '',
-		'Templateid'=> ''
+		'Accountsid'	=> 'f105a32dcd8bc368fffb4b2501c9c4ac',
+		'Token'	=> '102ad7bc0b93cc89963ad5ff0c87077a',
+		'Appid' => 'e540b654b48145249b36cd5cf715e6de',
+		'Templateid'=> '310246'
 	),
 	
 
 	
 	/************* 微博微信登录配置**************/
-	'SINA_API_KEY' => ,
-	'SINA_SECRET'  => '',
+	'SINA_API_KEY' => 4209897208,
+	'SINA_SECRET'  => 'e1affa67778a89d0c85f45625397f850',
 	
 	
 	

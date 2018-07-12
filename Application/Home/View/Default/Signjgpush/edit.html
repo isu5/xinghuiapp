@@ -1,0 +1,79 @@
+<layout name="layout" />
+
+<?php 
+	$uid = I('get.user_id');
+	$id = I('get.conf_id');
+?>
+<div class="page-content">
+		
+		<!--中间部分-->
+		<!-- BEGIN PAGE CONTENT-->
+		 <div class="tabbable-custom tabbable-full-width">
+				<ul class="nav nav-tabs">
+					
+					<li class="active">
+						<a href="JavaScript:;"><i class="fa fa-tags"></i>签到推送编辑</a>
+						
+					</li>
+				</ul>
+					 
+				<div class="portlet-body form" >
+				 
+					<form class="form-horizontal"   action="__SELF__" method="post" id="myform1" enctype='multipart/form-data'>
+					<notempty name="sign">
+					<div class="col-md-12 text-center alert alert-danger">注：该用户已扫码签到，不允许修改!
+					</div>
+					<else />
+						<input type="hidden" name="id" value="{$data.id}" />
+						<div class="form-body">
+							<div class="form-group">
+								<label class="col-md-3 control-label">标题</label>
+								<div class="col-md-8">
+									<input type="text" class="form-control"  name="title" value="{$data.title}" datatype="*" nullmsg="请输入推送标题" errormsg="请输入推送标题">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">内容</label>
+								<div class="col-md-8">
+									<textarea class="form-control" type="text" style="height:260px" name="content" datatype="*" nullmsg="请输入推送内容" errormsg="请输入推送内容">{$data.content}</textarea>
+									
+								</div>
+							</div>
+						
+						</div>	
+						<div class="form-actions">
+							<div class="row">
+								<div class="col-md-offset-3 col-md-9">
+									<button type="submit" class="btn green btn-lg" id="save">提交</button>
+								<button type="reset" class="btn default btn-lg">重置</button>
+								</div>
+							</div>
+						</div>
+					</notempty>
+					</form>
+				</div>
+			
+		<!-- END PAGE CONTENT-->
+		<!--中间部分-->
+	  
+	</div>
+</div>
+	<!-- END CONTENT -->
+	
+</div>
+<script type="text/javascript">
+$(function() {     
+
+	$("#myform1").Validform({
+		tiptype:4,
+	});
+	
+})		
+</script>
+<include file="Public/footer" />
+<!-- -->
+
+	
+	
+	
+	

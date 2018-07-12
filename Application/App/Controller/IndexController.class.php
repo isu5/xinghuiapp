@@ -275,6 +275,12 @@ class IndexController extends Controller {
 		
 	}
 	
+	//小程序接口 获取首页的所有会议列表
+	public function xcxconflist(){
+		$data = $this->conf->xcxconflist();
+		echo json_encode($data);
+	}
+	
 	
 	
 	

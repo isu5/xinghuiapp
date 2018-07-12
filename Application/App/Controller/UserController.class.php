@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
 use Org\Nx\Response;
+use Common\Third\RongCloud;
+
 class UserController extends PublicController{
 
 	
@@ -282,21 +284,17 @@ class UserController extends PublicController{
 	public function resetPwd(){
 		$data['id'] = I('post.id');
 		$map['password'] = I('post.password');
+		$m = M('User');
 		if(IS_POST){
 			$user = $this->model->where(array('id'=>$data['id']))->find();
 			if(!$user){
 				Response::show(403,'没有该用户，请注册！');
 			}else{
-				if($this->model->create()){
-					if($this->model->where(array('id'=>$data['id']))->save($map)){
-						Response::show(200,'密码修改成功!' );
-					}else{
-						Response::show(401,'输入的密码不能与原密码相同!' );
-					}
+				if($m->where(array('id'=>$data['id']))->save($map)){
+					Response::show(200,'密码修改成功!' );
 				}else{
-					Response::show(402,'修改失败!' );
+					Response::show(401,'输入的密码不能与原密码相同!' );
 				}
-				
 			}
 		}
 	}
@@ -637,6 +635,48 @@ class UserController extends PublicController{
 		}
 	}
 	
+	
+	//分享名片
+	public function enjoymember(){
+		//发送用户id
+		$fromUserId = I('post.fromUserId');
+		$toUserId = I('post.toUserId');
+		$objectName = "RC:ImgTextMsg";
+		$shareid = I('post.shareid');
+		//分享用户到多人 
+		$toUserId = explode(',',$toUserId);
+		
+		$user = $this->model->field('id,companyname,username,logo')->where(array('id'=>$shareid))->find();
+		
+			$conf = array(
+				'title' => '分享名片',
+				'content'=>PHP_EOL .($user['companyname']?$user['companyname']:'') . PHP_EOL . ($user['username']?$user['username']:''),
+				'imageUri' => 'https://xh.2188.com.cn'.$user['logo'],
+				'user'=> array(
+					'id'=> $user['id'],
+					'name'=> $user['username'],
+					'icon'=> 'https://xh.2188.com.cn'.$user['logo'],
+				)
+			);
+		
+		$content = json_encode($conf,JSON_UNESCAPED_UNICODE);
+		//p($content);
+		$key_secret=get_rong_key_secret();
+		$rong = new RongCloud($key_secret['key'],$key_secret['secret']);
+		foreach($toUserId as $v){
+			$token = $rong->curl('/message/publish',array(
+				'fromUserId'=>$fromUserId,
+				'toUserId'=>$v,
+				'objectName'=>$objectName,
+				'content' => $content
+			));
+		}
+		
+		
+		echo $token;
+		
+		
+	}
 	
 	
 	

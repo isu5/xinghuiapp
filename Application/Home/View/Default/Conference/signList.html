@@ -1,0 +1,62 @@
+<layout name="layout" />
+<?php 
+$type = I('get.type');
+$sign = I('get.sign');
+$id = I('get.id');
+?>
+<div class="page-content">
+	<div class="tabbable-custom tabbable-full-width">
+		<ul class="nav nav-tabs">
+			<?php if($sign==1){?>
+				<li>
+					<!-- <a href="{:U('Conference/auditlist',array(id=>$id,type=>1))}" ><i class="fa fa-tags"></i>参会人员审核</a> -->
+					<a href="{:U('Conference/auditlist',array(id=>$id,type=>1,sign=>1))}" ><i class="fa fa-tags"></i>参会人员审核</a>
+				</li>
+				<li class="active">
+				<!-- <a href="{:U('Conference/signList',array(sign=>0))}" ><i class="fa fa-tags"></i>签到人员列表</a> -->
+				<a href="{:U('Conference/signList',array(id=>$id,sign=>1))}" ><i class="fa fa-tags"></i>签到人员列表</a>
+				</li>
+			<?php }else{ ?>
+			<li class="active">
+				<a href="javascript:;" ><i class="fa fa-tags"></i>个性推送</a>
+				<?php } ?>
+			</li>
+		</ul>
+		<div  class="portlet-body">
+				<table class="table table-striped  table-bordered table-hover"  >
+					<thead>
+					<tr>
+						<th>id</th>
+						<th>logo</th>
+						<th>公司名称/昵称</th>
+						<th>联系电话</th>
+						<th  style="width:200px;">操作</th>
+					</tr>
+					</thead>
+					<tbody id="checked"> 
+					<div></div>
+						<empty name="data">
+							<tr class=" alert alert-danger">
+								<td colspan="5">暂没有数据</td>
+							</tr>
+						<else/>
+							<volist name="data" id="v" >
+								<tr>
+									<td>{$v.id}</td>
+									<td class="center">{:showImg($v['logo'],50)}</td>
+									<td class="center">{$v.companyname} / {$v.username}</td>
+									<td class="center">{$v.phone}</td>
+									<td>
+										<button type="button" class="btn btn-danger">已扫码签到</button>
+									</td>
+								</tr>
+							</volist>
+						</empty> 
+					</tbody>
+				</table>
+				{$page}
+			</div>
+	</div>
+
+</div>
+<include file="Public/footer" />

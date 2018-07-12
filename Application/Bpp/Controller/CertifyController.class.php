@@ -42,7 +42,12 @@ class CertifyController extends Controller{
 		$id = I('post.id');
 		$type = I('post.type');
 		$stat = I('post.stat');
+		$refusednote = I('post.refusednote');
+		
 		$cert = $this->model->field('id,uid,company')->where('id='.$id)->find();
+		if(!$cert['id']){
+			Response::show(401,'没有该用户!');
+		}
 		$jpush = $this->user->where('id='.$cert['uid'])->find();
 		//把is_cert的值更新 1为个人，2为企业，3个人发布
 		if($stat == 1){
@@ -101,7 +106,9 @@ class CertifyController extends Controller{
 					
 					backjgpushRefused($jpush['jpush']);
 				}
-			Response::show(200,'操作成功!');
+				//拒绝信息入库
+				$this->model->where('id='.$id)->setField('refusednote',$refusednote);
+				Response::show(200,'操作成功!');
 		}
 		
 		

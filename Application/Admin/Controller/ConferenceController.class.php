@@ -119,10 +119,9 @@ class ConferenceController extends CommonController{
 		));
         $this->display();
 	}
-	// 会议资料下载统计
+	// 会议资料谁点击统计
 	public function countdownwho(){
 		$data = $this->down->downstatswho();
-		
 		$this->assign(array(
 			'data' => $data['data'],
 			'page' => $data['page']
@@ -143,6 +142,7 @@ class ConferenceController extends CommonController{
 		));
         $this->display();
 	}
+	
 	//会议产品谁点击统计
 	
 	public function countstatswho(){

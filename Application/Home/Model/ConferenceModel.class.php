@@ -2,7 +2,7 @@
 /**
 *	会议
 */
-namespace Common\Model;
+namespace Home\Model;
 use Common\Model\BaseModel;
 
 class ConferenceModel extends BaseModel{

@@ -27,6 +27,12 @@ class AdvertController extends PublicController{
 		Response::show(200,'数据返回成功',$data);
 	}
 	
+	//小程序接口 广告
+	public function xcxcs(){
+		$data = $this->model->search();
+		echo json_encode($data['data']);
+	}
+	
 	
 
 

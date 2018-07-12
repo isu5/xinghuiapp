@@ -1,0 +1,372 @@
+<layout name="layout" />	
+<div class="page-content">
+			
+			
+		<h3 class="page-title">
+		认证管理
+		</h3>
+		<div class="page-bar">
+			<ul class="page-breadcrumb">
+				<li>
+					<i class="fa fa-home"></i>
+					<a href="#">首页</a>
+					<i class="fa fa-angle-right"></i>
+				</li>
+				<li>
+					认证管理
+				
+				</li>
+				
+			</ul>
+			
+		</div>
+		
+		<!--中间部分-->
+		<!-- BEGIN PAGE CONTENT-->
+		 <div class="tabbable-custom tabbable-full-width">
+			<switch name="info[0]['is_cert']">
+				<case value="3">
+				<ul class="nav nav-tabs">
+					<li class="active">
+						<a href="{:U('Certify/publishcert')}" ><i class="fa fa-tags"></i>个人会议发布认证</a>
+					</li>
+				</ul>
+			</case>
+			<case value="5">
+				<ul class="nav nav-tabs">
+					<li class="active">
+						<a href="{:U('Certify/publishcert')}" ><i class="fa fa-tags"></i>个人会议发布认证审核中</a>
+					</li>
+				
+				</ul>
+			</case>
+			<default />
+				<ul class="nav nav-tabs">
+					<li class="">
+						<a href="{:U('Certify/person')}" ><i class="fa fa-tags"></i>个人认证</a>
+					</li>
+					<li class="active">
+						<a href="{:U('Certify/publishcert')}" ><i class="fa fa-tags"></i>个人会议发布认证</a>
+					</li>
+					<li  class=" ">
+						<a href="{:U('Certify/index')}"><i class="fa fa-tag"></i> 企业认证 </a>
+					</li>
+					
+				</ul>
+			</switch>
+			
+			
+                  
+            	<div class="portlet-body form" >
+                <switch name="info[0]['is_cert']">
+				<case value="5">
+				   <p class="col-md-12 text-center alert alert-danger">已提交审核，需等待1-2个工作日！</p>
+				</case>
+				 <case value="3">
+					<form class="form-horizontal ">
+					  <p class="col-md-12 text-center alert alert-success"><i class="fa glyphicon glyphicon-ok"></i> 已会议发布认证！</p>
+						 <div class="form-body">
+							<div class="form-group">
+								<label class="col-md-3 control-label">姓名</label>
+								<div class="col-md-9">
+									<p class="form-control-static">{$cert.realname}</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">身份证号</label>
+								<div class="col-md-9">
+									<p class="form-control-static">
+									<?php 
+										$data = substr_replace($cert['idcard'],'****',4,10);
+										echo $data;
+										
+										?>
+									</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">身份证正面</label>
+								<div class="col-md-9">
+									<p class="form-control-static">
+									<img src="{$cert.front}" width="100" id="idCardFront" /> 
+									<a onclick="f_img_preview('idCardFront',this.src)"><i class="glyphicon glyphicon-picture"></i>点击查看</a>
+									</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">身份证反面</label>
+								<div class="col-md-9">
+									<p class="form-control-static">
+									<img src="{$cert.back}" width="100" id="idCardBack" /> 
+									<a onclick="f_img_preview('idCardBack',this.src)"><i class="glyphicon glyphicon-picture"></i>点击查看</a>
+									</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">手执身份证</label>
+								<div class="col-md-9">
+									<p class="form-control-static">
+									<img src="{$cert.zhicard}" width="100" id="idCardpublishcert" /> 
+									<a onclick="f_img_preview('idCardpublishcert',this.src)"><i class="glyphicon glyphicon-picture"></i>点击查看</a>
+									</p>
+								</div>
+							</div>
+						 
+						 </div>
+					</form>
+					
+				 
+				 </case>
+				 <default />
+				 <p class="col-md-12 text-center alert alert-danger">完成个人会议发布认证或者企业认证即可发布会议，请慎重填写！</p>
+					<form class="form-horizontal "   action="__SELF__" method="post" id="registerform" enctype='multipart/form-data'>
+						<div class="form-body">
+							<div class="form-group">
+								<input type="hidden" name="type" value="3" />
+								<label class="col-md-3 control-label">姓名</label>
+								<div class="col-md-9">
+									<input type="text" class="form-control"  name="realname" placeholder="请输入您的真实姓名" datatype="z2-4" nullmsg="请输入真实姓名" errormsg="请填写2到4个中文字符"  value="">
+									
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">身份证号</label>
+								<div class="col-md-9">
+									<input type="text" class="form-control"  name="idcard" placeholder="请输入您的真实身份证号" datatype="idcard" nullmsg="请填写身份证号码！" errormsg="您填写的身份证号码不对！" value="">
+									
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">身份证正面</label>
+								<div class="col-md-9">
+									<div id="preview">
+				                        <img id="imghead" border="0" src="__HOME_IMG__/photo_icon.png" width="160" height="100" onclick="$('#previewImg').click();">
+				                     </div>  
+									<a href="javascript:;" class="fileUploadImage" style="position:absolute; margin-left:200px; margin-top:-65px;">上传图片
+										<input type="file" name="front" class="btn btn-danger" onchange="previewImage(this)" id="previewImg"  datatype="*" nullmsg="请上传身份证正面图片" errormsg="请上传身份证正面图片" >
+									</a>									 
+				                    
+									
+								</div>
+								
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">身份证反面</label>
+								<div class="col-md-9">
+									 <div id="fileUpload">
+				                        <img id="fileUploadView" border="0" src="__HOME_IMG__/photo_icon.png" width="160" height="100" onclick="$('#fileUploadImg').click();">
+				                     </div> 
+									 <a href="javascript:;" class="fileUploadImage" style="position:absolute; margin-left:200px; margin-top:-65px;">上传图片
+										<input type="file" name="back" onchange="fileUploadImage(this)"  id="fileUploadImg" datatype="*" nullmsg="请上传身份证反面图片" errormsg="请上传身份证反面图片" >
+									</a>									 
+				                    
+								</div>
+								
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">手执身份证</label>
+								<div class="col-md-9">
+									 <div id="cardUpload">
+				                        <img id="cardUploadView" border="0" src="__HOME_IMG__/photo_icon.png" width="160" height="100" onclick="$('#cardUploadImg').click();">
+				                     </div> 
+									 <a href="javascript:;" class="fileUploadImage" style="position:absolute; margin-left:200px; margin-top:-65px;">上传图片
+										<input type="file" name="zhicard" onchange="cardUploadImage(this)"  id="cardUploadImg" datatype="*" nullmsg="请上传手执身份证图片" errormsg="请上传手执身份证图片" >
+									</a>									 
+				                    
+								</div>
+								
+							</div>
+							
+						<div class="form-actions">
+							<div class="row">
+								<div class="col-md-offset-3 col-md-9">
+									<button type="submit" class="btn green btn-lg" id="save">提交</button>
+									<button type="reset" class="btn default btn-lg">重置</button>
+								</div>
+							</div>
+						</div>
+					</form>
+					</switch>
+				</div>
+			
+			<!-- END PAGE CONTENT-->
+	        <!--中间部分-->
+	      
+		</div>
+	</div>
+<!-- END CONTENT -->
+
+</div>
+
+<script type="text/javascript" src="__HOME_JS__/yanzheng.js"></script>
+<script src="__COMMON_JS__/app_common.js"></script>
+<include file="Public/footer" />
+	
+
+
+<script>
+      //图片上传预览    IE是用了滤镜。
+        function previewImage(file)
+        {
+          var MAXWIDTH  = 200; 
+          var MAXHEIGHT = 100;
+          var div = document.getElementById('preview');
+          if (file.files && file.files[0])
+          {
+              div.innerHTML ='<img id=imghead onclick=$("#previewImg").click()>';
+              var img = document.getElementById('imghead');
+              img.onload = function(){
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width  =  rect.width;
+                img.height =  rect.height;
+//                 img.style.marginLeft = rect.left+'px';
+                img.style.marginTop = rect.top+'px';
+              }
+              var reader = new FileReader();
+              reader.onload = function(evt){img.src = evt.target.result;}
+              reader.readAsDataURL(file.files[0]);
+          }
+          else //兼容IE
+          {
+            var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+            file.select();
+            var src = document.selection.createRange().text;
+            div.innerHTML = '<img id=imghead>';
+            var img = document.getElementById('imghead');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+            div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+          }
+        }
+        function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+            var param = {top:0, left:0, width:width, height:height};
+            if( width>maxWidth || height>maxHeight ){
+                rateWidth = width / maxWidth;
+                rateHeight = height / maxHeight;
+                
+                if( rateWidth > rateHeight ){
+                    param.width =  maxWidth;
+                    param.height = Math.round(height / rateWidth);
+                }else{
+                    param.width = Math.round(width / rateHeight);
+                    param.height = maxHeight;
+                }
+            }
+            param.left = Math.round((maxWidth - param.width) / 2);
+            param.top = Math.round((maxHeight - param.height) / 2);
+            return param;
+        }
+
+
+        //图片上传预览    IE是用了滤镜。
+        function fileUploadImage(files)
+        {
+          var MAXWIDTH  = 200; 
+          var MAXHEIGHT = 100;
+          var div = document.getElementById('fileUpload');
+          if (files.files && files.files[0])
+          {
+              div.innerHTML ='<img id=fileUploadView onclick=$("#fileUploadImg").click()>';
+              var img = document.getElementById('fileUploadView');
+              img.onload = function(){
+                var rect = clacImgZoomParamFile(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width  =  rect.width;
+                img.height =  rect.height;
+//                 img.style.marginLeft = rect.left+'px';
+                img.style.marginTop = rect.top+'px';
+              }
+              var reader = new FileReader();
+              reader.onload = function(evt){img.src = evt.target.result;}
+              reader.readAsDataURL(files.files[0]);
+          }
+          else //兼容IE
+          {
+            var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+            files.select();
+            var src = document.selection.createRange().text;
+            div.innerHTML = '<img id=fileUploadView>';
+            var img = document.getElementById('fileUploadView');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+            var rect = clacImgZoomParamFile(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+            div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+          }
+        }
+        function clacImgZoomParamFile( maxWidth, maxHeight, width, height ){
+            var param = {top:0, left:0, width:width, height:height};
+            if( width>maxWidth || height>maxHeight ){
+                rateWidth = width / maxWidth;
+                rateHeight = height / maxHeight;
+                
+                if( rateWidth > rateHeight ){
+                    param.width =  maxWidth;
+                    param.height = Math.round(height / rateWidth);
+                }else{
+                    param.width = Math.round(width / rateHeight);
+                    param.height = maxHeight;
+                }
+            }
+            param.left = Math.round((maxWidth - param.width) / 2);
+            param.top = Math.round((maxHeight - param.height) / 2);
+            return param;
+        }
+		
+		
+		
+        //图片上传预览    IE是用了滤镜。
+        function cardUploadImage(files)
+        {
+          var MAXWIDTH  = 200; 
+          var MAXHEIGHT = 100;
+          var div = document.getElementById('cardUpload');
+          if (files.files && files.files[0])
+          {
+              div.innerHTML ='<img id=cardUploadView onclick=$("#cardUploadImg").click()>';
+              var img = document.getElementById('cardUploadView');
+              img.onload = function(){
+                var rect = clacImgZoomParamCard(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width  =  rect.width;
+                img.height =  rect.height;
+//                 img.style.marginLeft = rect.left+'px';
+                img.style.marginTop = rect.top+'px';
+              }
+              var reader = new FileReader();
+              reader.onload = function(evt){img.src = evt.target.result;}
+              reader.readAsDataURL(files.files[0]);
+          }
+          else //兼容IE
+          {
+            var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+            files.select();
+            var src = document.selection.createRange().text;
+            div.innerHTML = '<img id=cardUploadView>';
+            var img = document.getElementById('cardUploadView');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+            var rect = clacImgZoomParamCard(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+            div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+          }
+        }
+        function clacImgZoomParamCard( maxWidth, maxHeight, width, height ){
+            var param = {top:0, left:0, width:width, height:height};
+            if( width>maxWidth || height>maxHeight ){
+                rateWidth = width / maxWidth;
+                rateHeight = height / maxHeight;
+                
+                if( rateWidth > rateHeight ){
+                    param.width =  maxWidth;
+                    param.height = Math.round(height / rateWidth);
+                }else{
+                    param.width = Math.round(width / rateHeight);
+                    param.height = maxHeight;
+                }
+            }
+            param.left = Math.round((maxWidth - param.width) / 2);
+            param.top = Math.round((maxHeight - param.height) / 2);
+            return param;
+        }
+    </script>
+
+	
+	

@@ -1,0 +1,126 @@
+<layout name="layout" />
+
+
+<div class="page-content">
+			
+	<h3 class="page-title">会议合作伙伴</h3>
+	<div class="page-bar">
+		<ul class="page-breadcrumb">
+			<li>
+				<i class="fa fa-home"></i>
+				<a href="#">首页</a>
+				<i class="fa fa-angle-right"></i>
+			</li>
+			<li>
+				会议合作伙伴					
+			</li>
+			
+		</ul>
+		
+	</div>
+			<!--table-->
+    <div class="tabbable-custom tabbable-full-width">
+		<ul class="nav nav-tabs">
+				
+				<li class="active">
+					<a href="{:U('Userpartners/index',array('id'=>I('get.id')))}" ><i class="fa fa-tags"></i>合作伙伴列表</a>
+				</li>
+			</ul>
+  		<div class="tab-content" >
+			
+            <!--table-->
+          	<table width="100%" border="0" style="margin-bottom:20px;">
+			  <tr>
+			    <td>
+					<div class="topbtn"  style="margin-top:10px; clear:both">
+						<div  style="float:left" >
+							<!-- <a href="{:U('Conference/add')}" class="btn green ">
+							<i class="fa fa-plus"></i> 新建会议
+							</a>   -->
+						</div> 
+					</div>
+				</td>
+			  </tr>
+			</table> 
+            <div  class="portlet-body">
+				<table class="table table-striped  table-bordered table-hover"  >
+					<thead>
+					<tr>
+						<th >id</th>
+						<th>公司名称</th>
+						
+						<th>邮箱</th>
+						<th>电话</th>
+						<th>公司地址</th>
+						<th>添加时间</th>
+						<th  style="width:150px;">操作</th>
+					</tr>
+					</thead>
+					<tbody id="checked"> 
+						<empty name="data">
+						<div class="col-md-12 alert alert-danger">
+							暂没有数据
+						</div>
+						<else/>
+						<volist name="data" id="v" >
+						<tr>
+							<td>{$v.id}</td>
+							<td>
+								<empty name="$v['companyname']">
+								{$v.company}
+								<else />
+								{$v.companyname}
+								</empty>
+								
+							</td>
+							
+							<td>
+								{$v.email}
+							</td>
+							<td>
+								<empty name="$v['phone']">
+								{$v.iphone}
+								<else />
+								{$v.phone}
+								</empty>
+								
+							</td>
+							
+							
+							<td>
+								<empty name="$v.['address']">
+								{$v.dizhi}
+								<else />
+								{$v.address}
+								</empty>
+								<empty name="$v.['area']">
+								{$v.xxdizhi}
+								<else />
+								{$v.area}
+								</empty>
+							
+							</td>
+							
+                            <td class="center">{$v.ctime|date="Y-m-d H:i",###}</td>
+							
+							<td>
+								
+                                <button type="button" class="btn btn-danger" onClick="showalert('询问','您确定要删除 <strong></strong> 吗?','{:U('Userpartners/delete',array('id'=>$v['id']))}')" >删除</button>
+                            </td>
+						</tr>
+						</volist>
+						</empty> 
+					</tbody>
+				</table>
+			</div>
+			<div class="page">
+				{$page}
+			</div>
+		</div>
+	<!-- END CONTENT -->
+	
+	</div>
+</div>
+
+
+<include file="Public/footer" />

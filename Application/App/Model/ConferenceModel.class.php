@@ -108,7 +108,7 @@ class ConferenceModel extends RelationModel{
 		$curpage = I('post.page',1);; //当前的页,还应该处理非数字的情况
 
 
-		$total = $this->alias('a')->where($where)->count();	
+		$total = $this->where($where)->count();	
 
 
 		$page = new AppPage($total, $showrow);
@@ -531,6 +531,35 @@ WHERE uid='.$where['uid'].' and is_private =1 and  a.conf_id not in ('.$sql.') g
 		
 		
 	}
+	
+	//小程序接口，首页会议列表
+	public function xcxconflist(){
+		$where['statuses'] = 0;
+		$where['is_private'] = 0;
+		
+		$showrow = 100; //一页显示的行数
+		
+		$curpage = I('post.page',1);; //当前的页,还应该处理非数字的情况
+
+
+		$total = $this->where($where)->count();	
+
+
+		$page = new AppPage($total, $showrow);
+		if ($total > $showrow) {
+			$data['page'] =  $page->myde_write();
+		 }
+		
+		$data['data'] = $this
+		->field('id,title,ctime,companypic,address')
+		->where($where)
+		->limit(($curpage - 1) * $showrow.','.$showrow)
+		->order('ctime asc')
+		->select();
+		//p($this->_Sql());
+		return $data;
+	}
+	
 	
 	
 

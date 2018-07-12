@@ -5,22 +5,6 @@ use Common\Third\Jpush;
 use Common\Third\Ucpaas;
 
 
-//融云分享名片 重置随机数种子。
-function rongyunrand(){
-	srand((double)microtime()*1000000);
-
-	$appSecret =  C("RONG_PRO_APP_SECRET"); // 开发者平台分配的 App Secret。
-	$nonce = rand(); // 获取随机数。
-	$timestamp = time()*1000; // 获取时间戳（毫秒）。
-
-	$signature = sha1($appSecret.$nonce.$timestamp);
-	return $signature;
-}
-
-
-
-
-
 /*
 	云之讯短信
 */

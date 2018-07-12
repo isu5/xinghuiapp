@@ -373,7 +373,8 @@ class UserController extends PublicController{
 	public function stopacc(){
 		$id = I('get.id', 0);
 		$map = array(
-			'itype' => 1
+			'itype' => 1,
+			'phone'=>''
 		);
 		$pack = $this->model->where(array('id'=>$id))->setField($map);
 		if($pack){

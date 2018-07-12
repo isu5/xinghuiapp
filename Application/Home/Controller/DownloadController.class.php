@@ -13,6 +13,7 @@ class DownloadController extends PublicController{
 	public function __construct(){
 		parent::__construct();
 		$this->model = D('Download');
+		$this->stats = D('Downloadstats');
 	}
 	
 	/**
@@ -68,7 +69,28 @@ class DownloadController extends PublicController{
 	}
 
 	
+	//企业资料统计
+	public function dstats(){
+		$data = $this->stats->search();
+		//p($data);
+		$this->assign(array(
+			'data' => $data['data'],
+			'page' => $data['page']
+			));
+		$this->display();
+	}
+	//谁下载的
+	public function downwho(){
+		$data = $this->stats->downwho();
+		$this->assign(array(
+			'data' => $data['data'],
+			'page' => $data['page']
+			));
 
+		$this->display();
+	}
+	
+	
 	
 	
 

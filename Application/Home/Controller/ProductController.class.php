@@ -60,8 +60,31 @@ class ProductController extends PublicController{
 		}
 		$this->ajaxReturn($code);
 	}
-
 	
+	//企业产品统计
+	public function pstats(){
+		
+		$data = $this->model->search();
+		
+		$this->assign(array(
+			'data' => $data['data'],
+			'page' => $data['page']
+		));
+		
+		
+		$this->display();
+	}
+	
+	//企业产品谁点击的统计
+	public function countwho(){
+		$data = $this->model->countwho();
+		$this->assign(array(
+			'data' => $data['data'],
+			'page' => $data['page']
+		));
+        $this->display();
+		
+	}
 
 	
 

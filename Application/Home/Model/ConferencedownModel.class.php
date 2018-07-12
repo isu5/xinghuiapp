@@ -2,7 +2,7 @@
 /**
 *	会议
 */
-namespace Common\Model;
+namespace Home\Model;
 use Common\Model\BaseModel;
 
 class ConferencedownModel extends BaseModel{
@@ -17,6 +17,7 @@ class ConferencedownModel extends BaseModel{
 			//按标题，公司主体搜索
 			$where['_string'] = " ( b.title like '%$title%') ";
 		}
+		$where['b.uid'] = cookie(userid);
 		//翻页
 		$count = $this->alias('a')->join('left join __CONFERENCE__ b on b.id = a.conf_id')
 		->where($where)->group('b.title')->count();
@@ -34,13 +35,12 @@ class ConferencedownModel extends BaseModel{
 		->order('b.id desc')
 		->group('b.title')
 		->select();
-		
+		//p($this->_Sql());
 		//p($data);
 		return $data;
 		
 		
 	}
-	
 	//会议资料谁点击统计
 	public function downstatswho($pagesize=15){
 		
@@ -72,9 +72,6 @@ class ConferencedownModel extends BaseModel{
 		//print_r($this->_Sql());
 		return $data;
 	}
-
-
-
 
 
 

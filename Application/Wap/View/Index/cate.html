@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{$Think.CONFIG.WEB_NAME}</title>
+	<meta name="description" content="{$Think.CONFIG.WEB_DESCRIPTION}" />
+	<meta name="keywords" content="{$Think.CONFIG.WEB_KEYWORDS}" />
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="applicable-device" content="mobile">
+    <meta content="no-cache" http-equiv="Pragma">
+    <meta content="no-cache" http-equiv="Cache-Control">
+    <meta content="0" http-equiv="Expires">
+    <meta name="applicable-device" content="mobile">
+    <meta name="copyright" content="本页版权归幸会（xh.2188.com.cn）所有。All Rights Reserved">
+   
+    <link rel="stylesheet" href="__WAP__/css/wapbase.css">
+   
+</head>
+
+<style>
+    .head td:first-child{width: 70px;}
+    .time:before{
+        content: "";
+        width: 1px;
+        height: 15px;
+        position: absolute;
+        left: 0;
+        top: 10px;
+        background: #D9D9D9;
+    }
+    .time:after{
+        content: "";
+        width: 1px;
+        height: 15px;
+        position: absolute;
+        right: 0;
+        top: 10px;
+        background: #D9D9D9;
+    }
+    .head{
+        max-width: 768px;
+    }
+    .filter{
+        max-width: 768px;
+    }
+    .events{
+        margin-bottom: 0;
+    }
+    .filter td{width: 33%;}
+</style>
+
+ <style>
+
+</style>
+<body>
+
+<!-- <table class="head">
+    <tr>
+        <td><a href="/"><img class="home" width="55" src="images/logo.png" alt="活动家"></a></td>
+        <td class="search"><form action="/search/"><input type="text" name="keyword" placeholder="搜索会议"><img width="20" src="images/sousuo.png" alt="搜索"></form></td>
+        <td>
+            <img class="menue" width="28" src="images/daohang.png" alt="菜单">
+            <ul class="drop_menue">
+                <li><a href="/business/"><img width="20" src="images/shangwuhuiyi.png" alt="商务会议">商务会议</a></li>
+                <li class="line_before"><a href="/guest/"><img width="20" src="images/huiyijiabin.png" alt="会议嘉宾">会议嘉宾</a></li>
+                <li class="line_before"><a href="/listsponsor/"><img width="20" src="images/zhubanfang.png" alt="会议主办方">会议主办方</a></li>
+                <li class="line_before"><a href="/listvenue/"><img width="20" src="images/changdi.png" alt="会议场地">会议场地</a></li>
+                <li class="line_before"><a href="https://doc.huodongjia.com/"><img width="20" src="images/ppt.png" alt="会议场地">会议PPT</a></li>
+                <li class="line_before"><a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.dahuodong.veryevent" rel="nofollow"><img width="20" src="images/app.png" alt="APP参会">APP参会</a></li>
+                <li class="line_before"><a href="/searchorder/"><img width="20" src="images/dingdan.png" alt="订单查询">订单查询</a></li>
+                <li class="line_before"><a href="/wapvip/"><img width="20" src="images/icon_vip.png" alt="开通会员">开通会员</a></li>
+            </ul>
+        </td>
+    </tr>
+</table> -->
+<table class="head">
+    <tr>
+        <td><a href="#"><!-- <img class="back"  width="13" src="__WAP__/images/fanhui.png" alt=""> --></a></td>
+        <td class="tag nowrap">首页</td>
+        <td>
+            <img class="menue" width="25" src="__WAP__/images/daohang.png" alt="菜单">
+            <!-- <ul class="drop_menue">
+                <li><a href="/business/"><img width="20" src="images/shangwuhuiyi.png" alt="商务会议">商务会议</a></li>
+                <li class="line_before"><a href="/guest/"><img width="20" src="images/huiyijiabin.png" alt="会议嘉宾">会议嘉宾</a></li>
+                <li class="line_before"><a href="/listsponsor/"><img width="20" src="images/zhubanfang.png" alt="会议主办方">会议主办方</a></li>
+                <li class="line_before"><a href="/listvenue/"><img width="20" src="images/changdi.png" alt="会议场地">会议场地</a></li>
+                <li class="line_before"><a href="https://doc.huodongjia.com/"><img width="20" src="images/ppt.png" alt="会议场地">会议PPT</a></li>
+                <li class="line_before"><a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.dahuodong.veryevent" rel="nofollow"><img width="20" src="images/app.png" alt="APP参会">APP参会</a></li>
+                <li class="line_before"><a href="/searchorder/"><img width="20" src="images/dingdan.png" alt="订单查询">订单查询</a></li>
+                <li class="line_before"><a href="/wapvip/"><img width="20" src="images/icon_vip.png" alt="开通会员">开通会员</a></li>
+            </ul> -->
+        </td>
+    </tr>
+</table>
+<table class="filter line_after">
+    <tr>
+        <td data-type="0">全部分类<font class="arrow-bottom"></font></td>
+        <td data-type="1" class="time">时间<font class="arrow-bottom"></font></td>
+      
+    </tr>
+</table>
+<div class="filter_menues">
+    <!--行业-->
+    <ul></ul>
+    <!--时间-->
+    <ul></ul>
+    
+</div>
+<input type="hidden" id="listType" value="event">
+<!--<input type="hidden" id="next" value="/it/page-2/">-->
+<div class="events">
+    
+    <ul>
+		<empty name="conf">
+		没有数据
+		<else/>
+        <volist name="conf" id="c">
+		
+        <li class="line_before">
+            <div>
+			<a href="{:U('Index/getOne',array('id'=>$c['id']))}">
+			
+			<img class="lazy"  width="97%" src="<?php $pic = json_decode($c['companypic']);echo implode('',$pic)?>" data-original="<?php $pic = json_decode($c['companypic']);echo implode('',$pic)?>" alt="{$c.title}">
+			
+			</a>
+			</div>
+            <div>
+                <h3 class="event_name nowrap"><a href="{:U('Index/getOne',array('id'=>$c['id']))}">{$c.title}</a></h3>
+                  <p class="tags">
+                    <a href="#">{$c.click}</a>
+                </p>
+				<p class="info">
+					<span>{$c.address}</span>
+					<span class="info" >{$c.ctime|strtotime|date="Y-m-d",###}</span>
+                </p>
+              
+            </div>
+        </li>
+		</volist>
+		</empty>
+        
+        
+    </ul>
+    
+    
+    <p class="load">
+        <img class="loading" width="45" height="45" src="__WAP__/images/2222023l0-8.gif!hdj123" alt="">
+        <span class="loaded">已加载完成！</span>
+       <!--  <span class="loadError">加载失败！</span> -->
+    </p>
+    
+</div>
+
+
+<img class="back_top" width="35" src="__WAP__/images/top.png" alt="">
+
+<include file="Public/footer">
+
+
+<script>
+        if(top.location !== self.location){
+            top.location=self.location
+        }
+</script>
+   
+<script src="__WAP__/js/jquery-1.8.3.min.js"></script>
+<script src="__WAP__/js/jquery.lazyload.min.js"></script>
+<script src="__WAP__/js/wapbase.js"></script>
+
+<script src="__WAP__/js/waplist.js"></script>
+<script>
+    var month='',cat='<li class="line_before act"><a href="__SELF__">全部分类</a></li>';
+	
+    month+='<li class="line_before "><a href="/it/13/">最近一周</a></li>'
+    
+    month+='<li class="line_before "><a href="/it/14/">最近一月</a></li>'
+    
+    month+='<li class="line_before "><a href="/it/15/">最近三月</a></li>'
+    
+    '<volist name="cate" id="v">'
+		'<if condition="$v['id'] neq 1">'
+		cat+='<li class="line_before"><a href="{:U('Index/cate',array('cid'=>$v['id']))}">{$v.catename}</a></li>'
+		'</if>'
+    '</volist>'
+   
+    $('.filter_menues ul').eq(0).html(cat);
+    $('.filter_menues ul').eq(1).html(month);
+	var cid= "<?php echo I('get.cid')?>";
+	$(function(){
+		//$(".act").replaceWith("<li class="line_before act"><a href="__SELF__">全部分类</a></li>");
+		//alert(cid)
+	})
+</script>
+
+</body>
+</html>

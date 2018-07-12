@@ -1,0 +1,75 @@
+<include file="Public/header" />
+<?php
+	$conf_id = I('get.conf_id');
+	//echo $conf_id;
+?>
+<div class="page-content">
+		
+	<!--中间部分-->
+	<!-- BEGIN PAGE CONTENT-->
+	 <div class="tabbable-custom tabbable-full-width">
+			<ul class="nav nav-tabs">
+				<li class="active">
+					<a href="JavaScript:;" ><i class="fa fa-tags"></i>批量推送</a>
+				</li>
+				<!-- <li class="">
+					<a href="{:U('Jgpushperson/personlist',array('conf_id'=>$id,'user_id'=>$uid))}" ><i class="fa fa-tags"></i>个性推送历史消息</a>
+				</li> -->
+			</ul>
+				 
+			<div class="portlet-body form" >
+			 
+				<form class="form-horizontal"   action="__SELF__" method="post" id="myform1" enctype='multipart/form-data'>
+					<div class="form-body">
+						<input type="hidden" name="jpushid" value="{$Think.get.checkID}" />
+						
+						<div class="form-group">
+							<label class="col-md-3 control-label">标题</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control"  name="title" value="" datatype="*" nullmsg="请输入推送标题" errormsg="请输入推送标题">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">内容</label>
+							<div class="col-md-8">
+								<textarea class="form-control" type="text" style="height:260px" name="content" datatype="*" nullmsg="请输入推送内容" errormsg="请输入推送内容"></textarea>
+								
+							</div>
+						</div>
+					
+					</div>	
+					<div class="form-actions">
+						<div class="row">
+							<div class="col-md-offset-3 col-md-9">
+								<button type="submit" class="btn green btn-lg" id="save">推送</button>
+								
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		
+	<!-- END PAGE CONTENT-->
+	<!--中间部分-->
+  
+	</div>
+</div>
+	<!-- END CONTENT -->
+	
+</div>
+<script type="text/javascript">
+$(function() {     
+
+	$("#myform1").Validform({
+		tiptype:4,
+	});
+	
+})		
+</script>
+<include file="Public/footer" />
+<!-- -->
+
+	
+	
+	
+	

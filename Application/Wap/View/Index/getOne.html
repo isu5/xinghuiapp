@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{$data.title}</title>
+	<meta name="description" content="{$Think.CONFIG.WEB_DESCRIPTION}" />
+	<meta name="keywords" content="{$Think.CONFIG.WEB_KEYWORDS}" />    
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="applicable-device" content="mobile">
+    <meta content="no-cache" http-equiv="Pragma">
+    <meta content="no-cache" http-equiv="Cache-Control">
+    <meta content="0" http-equiv="Expires">
+    <meta name="applicable-device" content="mobile">
+	
+	<meta property="og:type" content="product"/>
+	<meta property="og:image" content="https://pic.huodongjia.com/event/2018-03-29/1522319534.33.png"/>
+	<meta property="og:title" content="全球机器学习技术大会（ML-Summit 2018）_门票优惠_活动家官网报名"/>
+	<meta property="og:description" content="活动家提供全球机器学习技术大会（ML-Summit 2018）官网最新门票优惠(更新于:2018年07月04日)。全球机器学习技术大会（ML-Summit 2018）将于2018年07月27日在上海召开，优惠票在线报名截止2018年07月20日。一键查询全球机器学习技术大会（ML-Summit 2018）会议通知及邀请函下载，包含开会时间地点、嘉宾演讲主题、日程、价格等会议信息，报名全球机器学习技术大会（ML-Summit 2018），轻松快捷。"/>
+	<meta name="copyright" content="本页版权归幸会（xh.2188.com.cn）所有。All Rights Reserved">
+    <link rel="stylesheet" href="__WAP__/css/wapbase.css">
+   
+</head>
+
+<style>
+    .tag{text-align: center;}
+    .events .title{
+        padding-left: 25px;
+    }
+    .events .title:before{
+        content: "";
+        width: 4px;
+        height: 17px;
+        background: #4BA8EE;
+        position: absolute;
+        top: 12px;
+        left: 10px;
+    }
+
+    .event_info,.invoice{
+        background: #fff;
+        margin-bottom: 10px;
+        padding:1px 10px;
+    }
+    .ev_name{
+        font-size: 18px;
+        margin: 10px 0;
+    }
+    .event_info p{
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 10px;
+    }
+    .event_info p a{
+        color: #666;
+        margin-right: 5px;
+    }
+    .event_info p img{
+        margin-right: 10px;
+        position: relative;
+        top: 1px;
+    }
+    .event_img{display: block;}
+    .invoice{padding: 5px 10px;}
+    .invoice p{
+        color: #999;
+        line-height: 25px;
+        font-size: 12px;
+    }
+
+    .footer_bar{
+        width: 100%;
+        height: 45px;
+        background: #fff;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 999;
+        text-align: center;
+        box-shadow:1px 0 8px 2px rgb(238, 238, 238);
+    }
+    .footer_bar td{
+        width: 25%;
+        font-size: 16px;
+        color: #999;
+        vertical-align: baseline;
+    }
+    .footer_bar .post{
+        width: 100%;
+    }
+    .footer_bar td img{
+        position: relative;
+        margin-right: 5px;
+        top:6px;
+    }
+    .post a{
+        width: 70%;
+        display: block;
+        color: #fff;
+        line-height: 40px;
+        background: #4BA8EE;
+        font-size: 18px;
+        text-align: center;
+        margin:10px auto;
+    }
+    /*内容*/
+    .nav-tabs{
+        background: #fff;
+        padding:0 10px;
+        display: flex;
+        /* justify-content: space-between; */
+        position: relative;
+        z-index: 999;
+        width: 100%;
+        overflow: auto;
+        width: 100%;
+        border-bottom: 1px solid #F5F5F5;
+    }
+    .line{
+        width: 24%;
+        height: 3px;
+        background: #4BA8EE;
+        position: absolute;
+        left: 10px;
+        bottom:0;
+        transition: all .3s ease-out;
+    }
+    .nav-tabs li{
+        color: #999;
+        font-size: 16px;
+        line-height: 45px;
+        width: 25%;
+        text-align: center;
+        display: inline-table;
+    }
+    .nav-tabs .active{
+        color: #4BA8EE;
+        border-bottom: 3px solid #4BA8EE;
+    }
+    .tab-content{
+        width: 100%;
+        position: relative;
+        background: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .tab-pane{
+        width: 100%;
+        display: none;
+        word-break: break-word;
+    }
+    .tab-content .active{
+        display: block;
+    }
+    .tab-pane table,.tab-content div,.tab-content p{width: 100% !important;}
+    .tab-pane table td{width: auto!important;word-break: break-word;}
+    .tab-pane p,.tab-pane p span{
+        color: #666;
+        font-size: 14px !important;
+        line-height: 24px;
+        margin: 0 !important;
+    }
+    .tab-pane h3{font-size: 18px}
+    .tab-pane img{
+        max-width: 100% !important;
+        height: auto !important;
+        display: block;
+        margin: auto;
+    }
+    .first_title{
+        text-align: center;
+        font-size: 16px !important;
+        color: #333;
+        margin-bottom: 10px;
+    }
+    .tab-pane .gues_mes{
+        width: 49% !important;
+        display: inline-block;
+        text-align: center;
+    }
+    .gues_mes .gues_pic{
+        width: 80px !important;height: 80px;border-radius: 100%;overflow: hidden;margin: 0 auto;
+    }
+    .map>div {
+        width: 100%;
+        height: 250px;
+    }
+    .map p{text-align: center;}
+    .tag_per li{
+        display: inline-block;
+        width: 24%;
+    }
+    .tag_per li div {
+        width: 70px;
+        height: 70px;
+        border-radius: 100%;
+        background: rgba(255, 153, 0, 0.78);
+        margin: 10px auto;
+        color: #fff;
+        font-size: 14px;
+        text-align: center;
+        padding: 10px 0;
+    }
+    .tag_per li div span {
+        display: block;
+        font-size: 16px;
+    }
+   .tab-content .tags{
+       height: auto;
+       padding: 10px 0 0;
+   }
+   .tags p{
+       display: inline-block;
+       width: 70% !important;
+       vertical-align: top;
+   }
+    .companys{
+        background: #fff;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+    .companys div{
+        display: inline-block;
+        color: #999;
+        font-size: 12px;
+        width: 85px;
+        vertical-align: top;
+    }
+    .companys div .more_com{
+        display: none;
+    }
+    .companys .get_com{
+        color: #4BA8EE;
+        margin-top: 10px;
+    }
+    .companys>div:last-child{
+        width: 65%;
+    }
+    .back_top{bottom: 50px}
+    .bdsharebuttonbox {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: #FFF;
+        z-index: 9999;
+        padding-bottom: 20px;
+        /*display: none;*/
+    }
+    .close_share {
+        position: absolute;
+        right: 5px;
+        top:0;
+        color: #333;
+        font-size: 24px;
+    }
+    .bdshare-button-style1-16 a {
+        background-image: none !important;
+        margin: 0 !important;
+        height: 67px !important;
+        line-height: 25px !important;
+        padding: 0 !important;
+        width: 20%;
+        text-align: center;
+        color: #000;
+        font-size: 16px;
+        position: relative;
+        background-position: center top !important;
+        background-size: 40px;
+        float: none !important;
+        display: inline-block;
+    }
+    .bdsharebuttonbox p {
+        font-size: 16px;
+        margin: 0;
+        padding: 10px 0;
+        color: #989898;
+        text-align: center;
+    }
+    .bdshare-button-style1-16 .bds_tqq {
+        padding: 40px 0 0 !important;
+        background-image: url(images/qq@2x.png) !important;
+    }
+    .bdshare-button-style1-16 .bds_tsina {
+        padding: 40px 0 0 !important;
+        background-image: url(images/weibo@2x.png) !important;
+    }
+    .bdshare-button-style1-16 .bds_qzone {
+        padding: 40px 0 0 !important;
+        background-image: url(images/qqkongjian@2x.png) !important;
+    }
+    .bdshare-button-style1-16 .bds_copy {
+        padding: 40px 0 0 !important;
+        background-image: url(images/fuzhilianjie@2x.png) !important;
+    }
+    .share{
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.61);
+        z-index: 9999;
+        top:0;
+        left: 0;
+        display: none;
+    }
+    .rel{
+        color: red;
+        font-size: 14px;
+        margin: 0;
+        line-height: 25px;
+        padding:0 10px 10px;
+    }
+    .rel a{
+        text-decoration: none;
+        color: #333;
+        display: inline-block;
+        width: 75%;
+        vertical-align: top;
+    }
+    .youhui{
+        padding:10px;
+        font-size: 12px;
+        color: #999;
+        background: #fff;
+        margin-bottom: 10px;
+    }
+    .youhui div{
+        /*max-height: 125px;*/
+        /*overflow: hidden;*/
+    }
+    .youhui a{
+        margin-top: 10px;
+        color: #999;
+        display: block;
+    }
+    .get_more{
+        display: block;
+        text-align: center;
+        color: #4BA8EE;
+    }
+    .events li div{
+        width: 59%;
+    }
+    .events li div:first-child{
+        width: 39%;
+    }
+</style>
+
+ <style>
+
+</style>
+<body>
+
+
+
+
+<table class="head">
+    <tr>
+        <td><a href="javascript:history.back(-1)"><img class="back"  width="13" src="__WAP__/images/fanhui.png" alt=""></a></td>
+        <td class="tag nowrap">会议详情</td>
+         <td>
+           <!-- <img class="menue" width="25" src="images/daohang.png" alt="菜单">
+            <ul class="drop_menue">
+                <li><a href="/business/"><img width="20" src="images/shangwuhuiyi.png" alt="商务会议">商务会议</a></li>
+                <li class="line_before"><a href="/guest/"><img width="20" src="images/huiyijiabin.png" alt="会议嘉宾">会议嘉宾</a></li>
+                <li class="line_before"><a href="/listsponsor/"><img width="20" src="images/zhubanfang.png" alt="会议主办方">会议主办方</a></li>
+                <li class="line_before"><a href="/listvenue/"><img width="20" src="images/changdi.png" alt="会议场地">会议场地</a></li>
+                <li class="line_before"><a href="https://doc.huodongjia.com/"><img width="20" src="images/ppt.png" alt="会议场地">会议PPT</a></li>
+                <li class="line_before"><a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.dahuodong.veryevent" rel="nofollow"><img width="20" src="images/app.png" alt="APP参会">APP参会</a></li>
+                <li class="line_before"><a href="/searchorder/"><img width="20" src="images/dingdan.png" alt="订单查询">订单查询</a></li>
+                <li class="line_before"><a href="/wapvip/"><img width="20" src="images/icon_vip.png" alt="开通会员">开通会员</a></li>
+            </ul> -->
+        </td>
+    </tr>
+</table>
+
+
+<img class="event_img" width="100%" src="<?php $pic = json_decode($data['companypic']);echo implode('',$pic)?>" alt="{$data.title}"/>
+
+<div class="event_info">
+    <h1 class="ev_name">{$data.title}</h1>
+    <p><img width="12" src="__WAP__/images/shijian@2x.png" alt="">会议时间&nbsp;&nbsp;{$data.ctime} 至  {$data.etime}</p>
+    <p><img width="12" src="__WAP__/images/dizhi@2x.png" alt=""><a href="#">会议地址&nbsp;&nbsp;{$data.address} </a> &nbsp;
+        <a href="">{$data.xxaddress}</a></p>
+    <p><img width="12" src="__WAP__/images/company.png" alt="">举办单位&nbsp;&nbsp; {$data.companyname}&nbsp;&nbsp;</p>
+    <p><img width="12" src="__WAP__/images/zhubanfang@2x.png" alt="">联系人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$data.contact}&nbsp;&nbsp;</p>
+    <p><img width="12" src="__WAP__/images/phone.png" alt="">企业电话&nbsp;&nbsp;{$data.phone}&nbsp;&nbsp;</p>
+    <p><a href="" ><img width="12" src="__WAP__/images/zhubanfang@2x.png" alt="">合作伙伴&nbsp;&nbsp;&nbsp;&nbsp;</a></p>
+    <p><a href="" ><img width="12" src="__WAP__/images/zhubanfang@2x.png" alt="">参会人员&nbsp;&nbsp;&nbsp;&nbsp;</a></p>
+    <p><a href="" ><img width="12" src="__WAP__/images/file.png" alt="">会议资料&nbsp;&nbsp;&nbsp;&nbsp;</a></p>
+    <div class="post">
+
+        <a rel="nofollow" href="" id="signup">立即报名</a>
+        
+        
+    </div>
+</div>
+
+
+<ul class="nav-tabs">
+    <li class="active">会议介绍</li>
+    <li class="">会议日程</li>
+    <li class="">会议嘉宾</li>
+    <li class="">参会指南</li>
+    <!-- <p class="line"></p> --> 
+</ul>
+<div class="tab-content">
+        <div class="tab-pane active">
+            <div style="padding: 10px">
+                {$data.brief}
+            </div>
+        </div>
+        <div  class="tab-pane">
+			{$data.agenda}
+        </div>
+        <div class="tab-pane ">
+            {$data.guests}
+        </div>
+        
+        <div class="tab-pane ">
+            {$data.guide}
+        </div>
+        
+        
+        
+    
+</div>
+
+<img class="back_top" width="35" src="__WAP__/images/top.png" alt="">
+
+<include file="Public/footer">
+
+<script>
+        if(top.location !== self.location){
+            top.location=self.location
+        }
+</script>
+
+<script src="__WAP__/js/jquery-1.8.3.min.js"></script>
+<script src="__WAP__/js/jquery.lazyload.min.js"></script>
+<script src="__WAP__/js/wapbase.js"></script>
+<script src="__WAP__/js/jweixin-1.2.0.js"></script>
+<script class="wx_js"></script>
+<script>
+	
+
+    var _top=$(".nav-tabs").offset().top;
+    if($('.youhui div').height()==0){
+        $('.youhui').hide()
+    }
+    if($('.youhui div a').length <= 3){
+        $('.get_more').hide()
+    }
+    var browser = {
+        versions: function() {
+            var u = navigator.userAgent, app = navigator.appVersion;
+            return {//移动终端浏览器版本信息
+                trident: u.indexOf('Trident') > -1, //IE内核
+                presto: u.indexOf('Presto') > -1, //opera内核
+                webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/), //是否为移动终端
+                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+                iPad: u.indexOf('iPad') > -1, //是否iPad
+                webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部
+                weixing: u.indexOf("MicroMessenger") > -1
+            };
+        }(),
+        language: (navigator.browserLanguage || navigator.language).toLowerCase()
+    }
+	
+	//标签切换
+	$(function(){
+		$('.line').css({width:$('.nav-tabs li').width()+"px"});
+		$('.nav-tabs li').click(function () {
+			var left=$(this).offset().left,_index=$(this).index();
+			$('.line').css({left:left+'px'});
+			$('.nav-tabs li').eq(_index).addClass('active').siblings().removeClass('active');
+			$('.tab-content .tab-pane').eq(_index).addClass('active').siblings().removeClass('active');
+			//$("html,body").animate({scrollTop: _top+"px"},300)
+		});
+		$.event.add(window, "scroll", function() {
+        var sTop = document.documentElement.scrollTop + document.body.scrollTop;
+        if (sTop >= _top) {
+            $(".nav-tabs").css({position: "fixed", top: "0", left: "0"});
+            $('.tab-content').css({paddingTop:'50px'})
+        } else {
+            $(".nav-tabs").css({position: "relative"});
+            $('.tab-content').css({paddingTop:'10px'})
+        }
+		});
+		
+		//点击下载app
+		$("#signup").click(function(){
+			alert('')
+		})
+		
+		
+	})
+    if(browser.versions.weixing){
+        $('.wx_js').attr('src','https://pic.huodongjia.com/static/js/wx.js');
+        $('.post p').hide();
+    }
+
+    
+    $('.get_com').click(function () {
+        if($(this).text() == "查看全部"){
+            $(this).text("收起");
+            $('.companys .more_com').show();
+        }else{
+            $(this).text("查看全部");
+            $('.companys .more_com').hide();
+        }
+
+    })
+    $('.get_more').click(function () {
+        if($(this).text() == "查看更多优惠信息"){
+            $(this).text("收起");
+            $('.youhui div').css({maxHeight:'none'});
+        }else{
+            $(this).text("查看更多优惠信息");
+            $('.youhui div').css({maxHeight:'125px'});
+        }
+
+    })
+    $('.ly').click(function () {
+        $('.share').fadeIn();
+        $('.back_top').hide();
+    })
+    $('.share').click(function () {
+        $('.share').fadeOut();
+        $('.back_top').show();
+    })
+    map();
+    function map() {
+        var Data=[],txt=[],chart=[],id=[]
+        $('.map>div').each(function () {
+            chart.push('chart_'+$(this).attr('id'))
+            id.push($(this).attr('id'))
+            txt.push($(this).attr('data-name'))
+            var dt=[]
+            $(this).find('span').each(function () {
+                dt.push({
+                    name:$(this).attr('data-name'),value:$(this).attr('data-val')
+                })
+            })
+            Data.push(dt)
+        })
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: 'https://pic.huodongjia.com/build/dist/'
+                // echarts: './static/echarts-2.2.7/build/dist/'
+            }
+        });
+        // 使用
+        require(
+            [
+                'echarts',
+                'echarts/theme/macarons',
+                'echarts/chart/pie',
+            ],
+            function (ec,theme) {
+                // 基于准备好的dom，初始化echarts图表)
+                for(i in id){
+                    chart[i] = ec.init(document.getElementById(id[i]),theme);;
+                    var option = {
+                        calculable : true,
+                        series : [
+                            {
+                                name:'访问来源',
+                                type:'pie',
+                                radius : '50%',
+                                center: ['50%', '50%'],
+                                itemStyle : {
+                                    normal : {
+                                        label : {
+                                            textStyle: {
+                                                fontSize: '16'
+                                                // color: '#235894'
+                                            }
+                                        },
+                                    },
+                                },
+                                data:Data[i]
+                            }
+                        ]
+                    };
+
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    chart[i].setOption(option);
+                }
+            }
+        );
+
+    }
+</script>
+
+</body>
+</html>

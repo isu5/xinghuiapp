@@ -90,7 +90,6 @@ class CertifyModel extends BaseModel{
 					return FALSE;
 				}
 			}
-			
 		
 		}
 		//名片
@@ -118,8 +117,10 @@ class CertifyModel extends BaseModel{
 		$certificate = I('post.certificate');
 		$company = I('post.company');
 		$iscert = 5;
+		$data = $this->field('certificateimg,is_image')->where('uid='.$uid)->find();
 		//图片上传
-		if (isset($_FILES['certificateimg']) && $_FILES['certificateimg']['error'] == 0) {
+		if($data['is_image']==0){
+			if (isset($_FILES['certificateimg']) && $_FILES['certificateimg']['error'] == 0) {
 				$ret = uploadOne('certificateimg','Idcard',array());
 				if($ret['ok'] == 1){
 					$data['certificateimg'] = $ret['images'][0];
@@ -128,9 +129,14 @@ class CertifyModel extends BaseModel{
 					return FALSE;
 				}
 			}
+		}
 		
-		
-		$this->where(array('uid'=>$uid))->save(array('certificateimg'=>$data['certificateimg'],'certificate'=>$certificate,'company'=>$company,'is_cert'=>$iscert));
+		$this->where(array('uid'=>$uid))->save(array(
+			'certificate'=>$certificate,
+			'company'=>$company,
+			'is_cert'=>$iscert,
+			'certificateimg'=>$data['certificateimg'],
+		));
 		
 		return true;
 	}
@@ -141,35 +147,51 @@ class CertifyModel extends BaseModel{
 		$idcard = I('post.idcard');
 		$realname = I('post.realname');
 		$iscert = 5;
+		$data = $this->field('back,front,zhicard,is_image')->where('uid='.$uid)->find();
 		//上传图片
-		if (isset($_FILES['front']) && $_FILES['front']['error'] == 0) {
-			$ret = uploadOne('front','Idcard',array());
-			if($ret['ok'] == 1){
-				$data['front'] = $ret['images'][0];
-			}else{
-				$this->error = $ret['error'];
-				return FALSE;
+		if($data['is_image'] == 0){
+			if (isset($_FILES['front']) && $_FILES['front']['error'] == 0) {
+				$ret = uploadOne('front','Idcard',array());
+				if($ret['ok'] == 1){
+					$data['front'] = $ret['images'][0];
+				}else{
+					$this->error = $ret['error'];
+					return FALSE;
+				}
 			}
 		}
-		if (isset($_FILES['back']) && $_FILES['back']['error'] == 0) {
-			$ret = uploadOne('back','Idcard',array());
-			if($ret['ok'] == 1){
-				$data['back'] = $ret['images'][0];
-			}else{
-				$this->error = $ret['error'];
-				return FALSE;
+		if($data['is_image'] == 0){
+			if (isset($_FILES['back']) && $_FILES['back']['error'] == 0) {
+				$ret = uploadOne('back','Idcard',array());
+				if($ret['ok'] == 1){
+					$data['back'] = $ret['images'][0];
+				}else{
+					$this->error = $ret['error'];
+					return FALSE;
+				}
 			}
 		}
-		if (isset($_FILES['zhicard']) && $_FILES['zhicard']['error'] == 0) {
-			$ret = uploadOne('zhicard','Idcard',array());
-			if($ret['ok'] == 1){
-				$data['zhicard'] = $ret['images'][0];
-			}else{
-				$this->error = $ret['error'];
-				return FALSE;
+		if($data['is_image'] == 0){
+			if (isset($_FILES['zhicard']) && $_FILES['zhicard']['error'] == 0) {
+				$ret = uploadOne('zhicard','Idcard',array());
+				if($ret['ok'] == 1){
+					$data['zhicard'] = $ret['images'][0];
+				}else{
+					$this->error = $ret['error'];
+					return FALSE;
+				}
 			}
+		
 		}
-		$this->where(array('uid'=>$uid))->save(array('idcard'=>$idcard,'realname'=>$realname,'zhicard'=>$data['zhicard'],'front'=>$data['front'],'back'=>$data['back'],'is_cert'=>$iscert));
+		
+		$this->where(array('uid'=>$uid))->save(array(
+			'idcard'=>$idcard,
+			'realname'=>$realname,
+			'zhicard'=>$data['zhicard'],
+			'front'=>$data['front'],
+			'back'=>$data['back'],
+			'is_cert'=>$iscert
+		));
 		
 		return true;
 	}
