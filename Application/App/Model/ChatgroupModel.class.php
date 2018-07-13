@@ -123,7 +123,7 @@ class ChatgroupModel extends BaseModel{
 		$sids = array_column($s_id, 's_id');
 		$sid = implode(',',$sids);
 		$total = M('User')->where(array('id'=>array('in',$sid)))->count();	
-		//print_r($total);
+		//print_r($total);    
 		//p($this->_Sql());
 		return $total;
 	}

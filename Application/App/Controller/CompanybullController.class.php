@@ -10,6 +10,7 @@ class CompanybullController extends PublicController{
 	public function _initialize(){
 		parent::_initialize();
 		$this->model = D('Companybull'); 
+		$this->zan = D('Companybullzan'); 
 		
 	}
 	//公告列表
@@ -67,6 +68,37 @@ class CompanybullController extends PublicController{
 		
 	}
 	
+	//公告点赞
+	public function bullzan(){
+		if (IS_POST) {
+			
+			if($this->zan->create(I('post.',1))){
+				if($this->zan->add()){
+					//p($_FILES);die;
+					Response::show(200,'添加成功!');
+					
+				}else{
+					Response::show(401,'添加失败!');
+				}
+			}else{
+				Response::show(402,'添加数据不合法!',$this->zan->getError());
+			}
+
+		}
+	}
+	
+	//点赞统计
+	public function zanstats(){
+		$data = $this->model->zanstats();
+		if(IS_POST){
+			if($data !== null){
+				Response::show(200,'获取数据成功!',$data);
+			}else{
+				Response::show(401,'没有公告!');
+			}
+			
+		}
+	}
 	
 	
 

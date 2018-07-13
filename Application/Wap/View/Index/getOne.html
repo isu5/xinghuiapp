@@ -384,12 +384,12 @@
     <p><img width="12" src="__WAP__/images/company.png" alt="">举办单位&nbsp;&nbsp; {$data.companyname}&nbsp;&nbsp;</p>
     <p><img width="12" src="__WAP__/images/zhubanfang@2x.png" alt="">联系人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$data.contact}&nbsp;&nbsp;</p>
     <p><img width="12" src="__WAP__/images/phone.png" alt="">企业电话&nbsp;&nbsp;{$data.phone}&nbsp;&nbsp;</p>
-    <p><a href="" ><img width="12" src="__WAP__/images/zhubanfang@2x.png" alt="">合作伙伴&nbsp;&nbsp;&nbsp;&nbsp;</a></p>
-    <p><a href="" ><img width="12" src="__WAP__/images/zhubanfang@2x.png" alt="">参会人员&nbsp;&nbsp;&nbsp;&nbsp;</a></p>
-    <p><a href="" ><img width="12" src="__WAP__/images/file.png" alt="">会议资料&nbsp;&nbsp;&nbsp;&nbsp;</a></p>
+    <p><a href="javascript:;" class="signup"><img width="12" src="__WAP__/images/zhubanfang@2x.png" alt="">合作伙伴&nbsp;&nbsp;&nbsp;&nbsp;</a></p>
+    <p><a href="javascript:;" class="signup"><img width="12" src="__WAP__/images/zhubanfang@2x.png" alt="">参会人员&nbsp;&nbsp;&nbsp;&nbsp;</a></p>
+    <p><a href="javascript:;" class="signup"><img width="12" src="__WAP__/images/file.png" alt="">会议资料&nbsp;&nbsp;&nbsp;&nbsp;</a></p>
     <div class="post">
 
-        <a rel="nofollow" href="" id="signup">立即报名</a>
+        <a rel="nofollow"  href="javascript:;" class="signup">立即报名</a>
         
         
     </div>
@@ -492,8 +492,8 @@
 		});
 		
 		//点击下载app
-		$("#signup").click(function(){
-			alert('')
+		$(".signup").click(function(){
+			window.location.assign("http://sj.qq.com/myapp/detail.htm?apkName=com.tzht.qixiu")
 		})
 		
 		

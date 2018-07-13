@@ -52,13 +52,19 @@ class CompanybullModel extends BaseModel{
 		
 	}
 	
-	//
-	public function _after_insert($data,$option){
+	
+	//点赞数统计
+	public function zanstats(){
+		
+		$where = [];
+		$m = M('Companybull_zan');
+		$where['bull_id']=I('post.bull_id');
+		
+		$zan = $m->where($where)->count();
+		return $zan;
 		
 		
 	}
-	
-	
 	
 	
 	
