@@ -131,6 +131,10 @@
 											<a href="{:U('Conference/auditlist',array(id=>$v['id'],type=>0))}">
 											个性推送 </a>
 										</li>
+										<li>
+											<a href="{:U('Conferencereport/add',array(id=>$v['id'],type=>0))}">
+											调查报告</a>
+										</li>
 									</ul>
 								</div>
                                 <button type="button" class="btn btn-danger" onClick="showalert('询问','您确定要删除 <strong></strong> 吗?','{:U('Conference/delete',array(id=>$v['id']))}')" >删除</button>

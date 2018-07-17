@@ -400,19 +400,6 @@ class UserController extends PublicController{
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-
-	
-
-
-
-
-
 
 
 	

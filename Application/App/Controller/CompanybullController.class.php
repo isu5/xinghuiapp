@@ -86,18 +86,49 @@ class CompanybullController extends PublicController{
 
 		}
 	}
-	
-	//点赞统计
-	public function zanstats(){
-		$data = $this->model->zanstats();
+	//公告点赞取消
+	public function zancancel(){
+		$data['user_id'] = I('post.user_id');
+		$data['bull_id'] = I('post.bull_id');
 		if(IS_POST){
-			if($data !== null){
-				Response::show(200,'获取数据成功!',$data);
+			if($this->zan->create()){
+				$user = $this->zan->where(array('user_id'=>$data['user_id'],'bull_id'=>$data['bull_id']))->delete();
+				if($user){
+					return Response::show(200,'取消收藏成功!');
+					
+				}else{
+					
+					Response::show(401,'取消收藏失败!');
+				}
 			}else{
-				Response::show(401,'没有公告!');
+					
+				Response::show(402,$this->zan->getError()); 
 			}
-			
 		}
+	}
+	
+	//返回点赞状态
+	public function zanStatus(){
+		$data['user_id'] = I('post.user_id');
+		$data['bull_id'] = I('post.bull_id');
+		
+		$user = $this->zan->where(array('user_id'=>$data['user_id'],'bull_id'=>$data['bull_id']))->find();
+		$count = $this->zan->field(array("count(bull_id)"=>"zan"))->where(['bull_id'=>$data['bull_id']])->select();
+		
+		if(IS_POST){
+			if($user){
+				$rest['is_att'] = 1;
+				$rest['count'] = $count;
+				return Response::show(401,'您已点赞了该会议，请勿重复点赞!',$rest);
+				
+			}else{
+				$rest['is_att'] = 0;
+				$rest['count'] = $count;
+				return Response::show(200,'您未点赞该会议',$rest);
+			}
+		}
+			
+		
 	}
 	
 	

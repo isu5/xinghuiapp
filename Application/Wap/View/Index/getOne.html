@@ -440,6 +440,7 @@
 <script src="__WAP__/js/wapbase.js"></script>
 <script src="__WAP__/js/jweixin-1.2.0.js"></script>
 <script class="wx_js"></script>
+<script type="text/javascript" src="https://static.mlinks.cc/scripts/dist/mlink.min.js"></script>
 <script>
 	
 
@@ -470,6 +471,22 @@
         language: (navigator.browserLanguage || navigator.language).toLowerCase()
     }
 	
+	  var options = [{
+		mlink: 'https://al3hwm.mlinks.cc/Ab7j',//短链地址,
+		button: document.getElementsByClassName('signup'),  //唤醒App的按钮
+		autoLaunchApp : false,
+		autoRedirectToDownloadUrl: true,
+		downloadWhenUniversalLinkFailed: false,
+		inapp : false,
+		params: {
+		  //打开App后带给App的参数,这个需要在配置短链接时添加参数占位符，比如，唤醒App后跳到指定页面；不要像魔窗官方demo那样写，吧参数直接写在短链接后面
+		  id:{:I('get.id')}
+		},
+		cparams:{
+		  //这里面也可以带参数给App，但不需要加占位符
+		}
+	  }];
+	new Mlink(options);
 	//标签切换
 	$(function(){
 		$('.line').css({width:$('.nav-tabs li').width()+"px"});
@@ -491,10 +508,6 @@
         }
 		});
 		
-		//点击下载app
-		$(".signup").click(function(){
-			window.location.assign("http://sj.qq.com/myapp/detail.htm?apkName=com.tzht.qixiu")
-		})
 		
 		
 	})

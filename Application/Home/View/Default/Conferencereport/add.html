@@ -1,0 +1,256 @@
+<layout name="layout" />
+
+
+	<div class="page-content">
+			
+		<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+		
+		<!-- END STYLE CUSTOMIZER -->
+		<!-- BEGIN PAGE HEADER-->
+		<h3 class="page-title">
+		会议调查报告
+		</h3>
+		<div class="page-bar">
+			<ul class="page-breadcrumb">
+				<li>
+					<i class="fa fa-home"></i>
+					<a href="#">首页</a>
+					<i class="fa fa-angle-right"></i>
+				</li>
+				<li>
+					会议调查报告
+				
+				</li>
+				
+			</ul>
+			
+		</div>
+		
+		<!--中间部分-->
+		<!-- BEGIN PAGE CONTENT-->
+		 <div class="tabbable-custom tabbable-full-width">
+					<ul class="nav nav-tabs">
+						<li class="active">
+							<a href="JavaScript:;" ><i class="fa fa-tags"></i>添加调查报告</a>
+						</li>
+						<li class="">
+							<a href="{:U('Conferencereport/index',array('id'=>I('get.id')))}" ><i class="fa fa-tags"></i>会议调查报告</a>
+						</li>
+						
+					</ul>
+				<div class="portlet-body form" >
+				 
+					<form class="form-horizontal"   action="" method="post" id="myform" enctype='multipart/form-data'>
+						<div class="form-body">
+							<div class="form-group">
+								<input  type="hidden" name="conf_id" value="{:I('get.id')}" />
+								<input  type="hidden" name="conf_user_id" value="{:cookie(userid)}" />
+								<label class="col-md-3 control-label">标题1</label>
+								<div class="col-md-9">
+									<input type="text" class="form-control"  name="title1" placeholder="请填写您对本次会议的调查问题"  value="" datatype="*"  nullmsg="标题1不能为空" errormsg="请正确输入标题1">
+									<span style="color:red"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">选项</label>
+								<div class="col-md-8">
+									<input type="radio" value="0" name="issatisfied" checked />非常满意
+									<input type="radio" value="1" name="issatisfied" />满意
+									<input type="radio" value="2" name="issatisfied" />一般
+									<input type="radio" value="3" name="issatisfied" />不满意
+									<input type="radio" value="4" name="issatisfied" />非常不满意
+									<span style="color:red"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">标题2</label>
+								<div class="col-md-9">
+									<input type="text" class="form-control"  name="title2" placeholder="请填写您对本次会议的调查问题" >
+									<span style="color:red"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">选项</label>
+								<div class="col-md-8">
+									<input type="radio" value="0" name="isarrange" checked />非常满意
+									<input type="radio" value="1" name="isarrange" />满意
+									<input type="radio" value="2" name="isarrange" />一般
+									<input type="radio" value="3" name="isarrange" />不满意
+									<input type="radio" value="4" name="isarrange" />非常不满意
+									<span style="color:red"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">标题3</label>
+								<div class="col-md-9">
+									<input type="text" class="form-control"  name="title3" placeholder="请填写您对本次会议的调查问题" >
+									<span style="color:red"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">选项</label>
+								<div class="col-md-8">
+									<input type="radio" value="0" name="isservice" checked />非常满意
+									<input type="radio" value="1" name="isservice" />满意
+									<input type="radio" value="2" name="isservice" />一般
+									<input type="radio" value="3" name="isservice" />不满意
+									<input type="radio" value="4" name="isservice" />非常不满意
+									<span style="color:red"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">标题4</label>
+								<div class="col-md-9">
+									<input type="text" class="form-control"  name="title4" placeholder="请填写您对本次会议的调查问题" >
+									<span style="color:red"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">选项</label>
+								<div class="col-md-8">
+									<input type="radio" value="0" name="ishelp" checked />非常满意
+									<input type="radio" value="1" name="ishelp" />满意
+									<input type="radio" value="2" name="ishelp" />一般
+									<input type="radio" value="3" name="ishelp" />不满意
+									<input type="radio" value="4" name="ishelp" />非常不满意
+									<span style="color:red"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">标题5</label>
+								<div class="col-md-9">
+									<input type="text" class="form-control"  name="title5" placeholder="请填写您对本次会议的调查问题" >
+									<span style="color:red"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">选项</label>
+								<div class="col-md-8">
+									<input type="radio" value="0" name="isppt" checked />非常满意
+									<input type="radio" value="1" name="isppt" />满意
+									<input type="radio" value="2" name="isppt" />一般
+									<input type="radio" value="3" name="isppt" />不满意
+									<input type="radio" value="4" name="isppt" />非常不满意
+									<span style="color:red"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">标题6</label>
+								<div class="col-md-9">
+									<input type="text" class="form-control"  name="title6" placeholder="请填写您对本次会议的调查问题" >
+									<span style="color:red"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">选项</label>
+								<div class="col-md-8">
+									<input type="radio" value="0" name="isrefine" checked />非常满意
+									<input type="radio" value="1" name="isrefine" />满意
+									<input type="radio" value="2" name="isrefine" />一般
+									<input type="radio" value="3" name="isrefine" />不满意
+									<input type="radio" value="4" name="isrefine" />非常不满意
+									<span style="color:red"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">标题7</label>
+								<div class="col-md-9">
+									<input type="text" class="form-control"  name="title7" placeholder="请填写您对本次会议的调查问题" >
+									<span style="color:red"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">选项</label>
+								<div class="col-md-8">
+									<input type="radio" value="0" name="isfeel" checked />非常满意
+									<input type="radio" value="1" name="isfeel" />满意
+									<input type="radio" value="2" name="isfeel" />一般
+									<input type="radio" value="3" name="isfeel" />不满意
+									<input type="radio" value="4" name="isfeel" />非常不满意
+									<span style="color:red"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">标题8</label>
+								<div class="col-md-9">
+									<input type="text" class="form-control"  name="title8" placeholder="请填写您对本次会议的调查问题" >
+									<span style="color:red"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">选项</label>
+								<div class="col-md-8">
+									<input type="radio" value="0" name="isdata" checked />非常满意
+									<input type="radio" value="1" name="isdata" />满意
+									<input type="radio" value="2" name="isdata" />一般
+									<input type="radio" value="3" name="isdata" />不满意
+									<input type="radio" value="4" name="isdata" />非常不满意
+									<span style="color:red"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">建议意见</label>
+								<div class="col-md-8">
+									<input type="text" class="form-control"  name="info" placeholder="请填写您对本次会议的调查问题" >
+									<span style="color:red"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">反馈信息</label>
+								<div class="col-md-8">
+									<input type="text" class="form-control"  name="descp" placeholder="请填写您对本次会议的调查问题" >
+									
+								</div>
+							</div>
+						</div>	
+						<div class="form-actions">
+							<div class="row">
+								<div class="col-md-offset-3 col-md-9">
+									<button type="submit" class="btn green btn-lg" id="save">提交</button>
+							<button type="reset" class="btn default btn-lg">重置</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			
+		<!-- END PAGE CONTENT-->
+		<!--中间部分-->
+	  
+		</div>
+	</div>
+	<!-- END CONTENT -->
+	
+</div>
+<script type="text/javascript">
+$(function() {     
+	$("#myform").Validform({
+		tiptype:4,
+		showAllError:true,
+		ajaxPost:true,
+		callback:function(data){ 
+			if(data.status == 1){
+			
+				layer.msg(data.info, { icon: 1, time: 3000 ,shade: 0.5},function(){
+					window.location.href= "{:U('Conferencereport/index',array('id'=>I('get.id')))}";
+						
+				});
+			} else{
+				
+				layer.msg(data.info, {icon: 2, time: 300000,shade: 0.5 },function(){
+					window.location.reload();
+					});
+			}
+		} 
+	});
+	
+})		
+</script>
+
+<include file="Public/footer" />
+
+
+	
+	
+	
+	

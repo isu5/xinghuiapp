@@ -13,6 +13,7 @@ class DownloadController extends PublicController{
 	public function __construct(){
 		parent::__construct();
 		$this->model = D('Download');
+		$this->stats = D('Downloadstats');
 	}
 	
 	/**
@@ -32,13 +33,7 @@ class DownloadController extends PublicController{
 		$this->display();
 	} 
 	
-
 	
-
-
-
-
-
 	
 }
 

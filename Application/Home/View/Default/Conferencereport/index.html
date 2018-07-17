@@ -1,0 +1,89 @@
+<layout name="layout" />
+
+
+	<div class="page-content">
+			
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			
+			<!-- END STYLE CUSTOMIZER -->
+			<!-- BEGIN PAGE HEADER-->
+			<h3 class="page-title">
+			会议调查报告
+			</h3>
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li>
+						<i class="fa fa-home"></i>
+						<a href="#">首页</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						会议调查报告
+					
+					</li>
+					
+				</ul>
+				
+			</div>
+			
+			<!--中间部分-->
+			<!-- BEGIN PAGE CONTENT-->
+			<div class="tabbable-custom tabbable-full-width">
+			 
+				<ul class="nav nav-tabs">
+					
+					<li class="">
+						<a href="{:U('Conferencereport/add',array('id'=>I('get.id')))}" ><i class="fa fa-tags"></i>添加调查报告</a>
+					</li>
+					<li class="active">
+						<a href="javascript:;" ><i class="fa fa-tags"></i>会议调查报告</a>
+					</li>
+				</ul>
+						
+	                 
+                	<div class="portlet-body form" >
+                     <p class="col-md-12 text-center "></p>  
+					<table class="table table-striped  table-bordered table-hover"  >
+					<thead>
+					<tr>
+						<th style="width:25px;">id</th>
+						<th  style="width:120px;">标题1</th>
+						<th  style="width:80px;">添加时间</th>
+						<th  style="width:150px;">操作</th>
+					</tr>
+					</thead>
+					<tbody id="checked"> 	
+						<volist name="data" id="v" >
+						<tr>
+							<td>{$v.id}</td>
+							<td>{$v.title1}</td>
+							<td>{$v.addtime|date='Y-m-d H:i',###}</td>
+							
+							<td>
+								
+                                 <button type="button" class="btn btn-danger" onClick="showalert('询问','您确定要 <strong>删除</strong> 吗?','{:U('Conferencereport/delete',array(id=>$v['id']))}')" >删除</button> 
+                                
+							</td>
+						</tr>
+						</volist>
+					</tbody>
+				</table>
+						
+					</div>
+				
+			<!-- END PAGE CONTENT-->
+            <!--中间部分-->
+          
+		</div>
+	</div>
+	<!-- END CONTENT -->
+	
+</div>
+
+<include file='Public/footer' />
+
+
+	
+	
+	
+	

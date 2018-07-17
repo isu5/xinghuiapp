@@ -25,6 +25,7 @@ class ConferenceController extends PublicController{
 		//p($info);	
 		$this->down = D('Conferencedown');
 		$this->stats = D('Conferencestats');
+		$this->report = D('Conferencereport');
 		
 	}
 
@@ -351,6 +352,10 @@ class ConferenceController extends PublicController{
         $this->display();
 	}
 	
+	//会议调查报告
+	public function confreport(){
+		 $this->display();
+	}
 	
 
 

@@ -45,7 +45,7 @@ class LoginController extends Controller{
 			
 			if ($user) {
 				if($user['itype'] ==1){
-					$code = ['code'=>4];
+					$code = ['code'=>5];
 				}else{
 					if(!empty($user['email_check_code'])) {
 				//必须验证邮箱才可登录

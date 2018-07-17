@@ -158,7 +158,7 @@ bull_id int unsigned not null default 0 comment '公告id'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT="个人（企业）公告点赞表";
 
 ----调查报告
-create table tzht_conference_report(
+create table tzht_conference_userreport(
 id int(11) unsigned not null primary key auto_increment,
 user_id int unsigned not null default 0 comment '用户id',
 conf_id int unsigned not null default 0 comment '会议id',

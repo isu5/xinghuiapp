@@ -394,16 +394,19 @@ class UserController extends PublicController{
 			//判断用户名是否存在
 				if($acc['username'] == $data['username']){
 					Response::show(201,'对不起，您填写的用户名已存在' );
-				
+					exit;
 				//判断是否为已经注册过的企业手机号
 				}elseif($acc1['type'] == 2){
 					Response::show(202,'对不起，您填写的手机号为企业账户手机号，无法绑定！' );
+					exit;
 					
 				}elseif($acc1['type'] == 3){
 					Response::show(202,'对不起，您填写的手机号为会议发布账户手机号，无法绑定！' );
+					exit;
 					
 				}elseif($acc1['phone'] == $data['phone'] && $acc1['type'] == 1 && $acc1['level'] ==2){
 					Response::show(203,'对不起，您填写的手机号为二级账户手机号，无法绑定！' );
+					exit;
 				}elseif($acc1['phone'] == $data['phone'] && $acc1['type'] == 1){
 					$code = I('post.codetype');
 					if( $code == 0){ //传入标识，以判断已注册手机号绑定时，弹框确认
@@ -606,11 +609,22 @@ class UserController extends PublicController{
 	//停用二级账户
 	public function stopacc(){
 		$id = I('post.id', 0);
+		
+		$user = $this->model->field('phone')->where('id='.$id)->find();
+		$where['phone'] = $user['phone'];
+		$where['id'] = array('neq',$id);
+		$phone = $this->model->where($where)->find();
+		
 		$map = array(
-			'itype' => 1
+			'itype' => 1,
+			'phone' => ''
 		);
+		$users = M('User');
 		$pack = $this->model->where(array('id'=>$id))->setField($map);
-		if($pack){
+		$phone['type']=0;
+		$pack1 = $users->field('itype')->where(array('phone'=>$phone['phone']))->save($phone);
+		
+		if($pack && $pack1){
 			Response::show(401,'二级账户停用成功!');
 		
 		}else{

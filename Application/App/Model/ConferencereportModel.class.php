@@ -12,7 +12,15 @@ class ConferencereportModel extends BaseModel{
 	protected $tableName = 'conference_report';
 	
 	
-
+	
+	//单条
+	public function getone(){
+		$where =[];
+		$where['conf_id'] = I('conf_id');
+		
+		$data['data'] = $this->where($where)->find();
+		return $data;
+	}
 	
 	
 }

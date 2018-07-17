@@ -8,7 +8,7 @@ use Common\Third\AppPage;
 class CompanybullModel extends BaseModel{
 	
 	protected $tableName = 'company_bull';
-	
+	//浏览量，点赞统计数
 	public function search(){
 		$where = array();
 		
@@ -20,7 +20,9 @@ class CompanybullModel extends BaseModel{
 		
 		$curpage = I('post.page',1); //当前的页,还应该处理非数字的情况
 		
-		$total = $this->alias('a')->field(array("count(b.bull_id)"=>"countstats",'a.*'))->join('left join __COMPANYBULL_STATS__ b on b.bull_id = a.id')
+		$total = $this->alias('a')->field(array("count(b.bull_id)"=>"countstats",'a.*'))
+		->join('left join __COMPANYBULL_STATS__ b on b.bull_id = a.id 
+		')
 		->where($where)->count();	
 		
 		$page = new AppPage($total, $showrow);
@@ -30,7 +32,8 @@ class CompanybullModel extends BaseModel{
 		
 		$data['data'] = $this->alias('a')
 		->field(array("count(b.bull_id)"=>"countstats",'a.*'))
-		->join('left join __COMPANYBULL_STATS__ b on b.bull_id = a.id')
+		->join('left join __COMPANYBULL_STATS__ b on b.bull_id = a.id
+		')
 		->where($where)		
 		->group('a.title')//user_id
 		->order('a.addtime desc')//a.id
@@ -52,19 +55,7 @@ class CompanybullModel extends BaseModel{
 		
 	}
 	
-	
-	//点赞数统计
-	public function zanstats(){
-		
-		$where = [];
-		$m = M('Companybull_zan');
-		$where['bull_id']=I('post.bull_id');
-		
-		$zan = $m->where($where)->count();
-		return $zan;
-		
-		
-	}
+
 	
 	
 	
