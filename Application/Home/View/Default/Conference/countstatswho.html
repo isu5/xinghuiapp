@@ -9,7 +9,7 @@
 			<!-- BEGIN PAGE HEADER-->
 			<h3 class="page-title">
 			
-			企业资料下载详情
+			会议宣传图详情
 			</h3>
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
@@ -19,7 +19,7 @@
 						<i class="fa fa-angle-right"></i>
 					</li>
 					<li>
-						企业资料下载详情
+						会议宣传图详情
 					
 					</li>
 					
@@ -33,7 +33,7 @@
 			 
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="JavaScript:;" ><i class="fa fa-tags"></i>企业资料下载详情</a>
+							<a href="JavaScript:;" ><i class="fa fa-tags"></i>会议宣传图详情</a>
 						</li>
 						
 					</ul>
@@ -47,18 +47,14 @@
 						<thead>
 						<tr>
 							<th>用户名</th>
-							<th>手机号</th>
 							<th>下载量</th>
-							
 						</tr>
 						</thead>
 						<tbody id="checked"> 	
-							<volist name="data" id="p" >
-							<tr>
+							<volist name="data" id="p">
+							<tr class="text-c">
 								<td>{$p.username}</td>
-								<td>{$p.phone}</td>
 								<td>{$p.links}</td>
-								
 							</tr>
 							</volist>
 						</tbody>

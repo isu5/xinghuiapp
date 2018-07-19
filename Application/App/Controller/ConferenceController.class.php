@@ -26,6 +26,8 @@ class ConferenceController extends PublicController{
 		$this->part = D('Userpartners');
 		$this->ureport = M('Conference_userreport');
 		$this->report = D('Conferencereport');
+		$this->down = D('Conferencedown');
+		$this->stats = D('Conferencestats');
 	}
 
 	
@@ -1247,7 +1249,109 @@ class ConferenceController extends PublicController{
 	}
 	
 	
+	//会议资料下载统计
 	
+	public function countdown(){
+		if( IS_POST ){
+			$res = $this->down->downstats();
+		
+			$data = array(
+				'result' => $res['data'],
+				//'page' => $res['page'],
+				
+			);
+			//p($data['result']);die;
+			if($data['result'] == null ){
+				Response::show(401,'没有更多数据!');
+				
+			}else{
+				Response::show(200,'数据获取成功!',$data);
+				
+			}
+		}else{
+			Response::show(402,'参数不合法!');
+			
+		}
+	}
+	// 会议资料谁点击统计
+	public function countdownwho(){
+		
+		if( IS_POST ){
+			$res = $this->down->downstatswho();
+		
+			$data = array(
+				'result' => $res['data'],
+				//'page' => $res['page'],
+				
+			);
+			//p($data['result']);die;
+			if($data['result'] == null ){
+				Response::show(401,'没有更多数据!');
+				
+			}else{
+				Response::show(200,'数据获取成功!',$data);
+				
+			}
+		}else{
+			Response::show(402,'参数不合法!');
+			
+		}
+       
+	}
+	
+	//会议产品统计统计
+	
+	public function countstats(){
+		
+		if( IS_POST ){
+			$res = $this->stats->countstats();
+		
+			$data = array(
+				'result' => $res['data'],
+				//'page' => $res['page'],
+				
+			);
+			//p($data['result']);die;
+			if($data['result'] == null ){
+				Response::show(401,'没有更多数据!');
+				
+			}else{
+				Response::show(200,'数据获取成功!',$data);
+				
+			}
+		}else{
+			Response::show(402,'参数不合法!');
+			
+		}
+       
+		
+	}
+	//会议产品谁点击统计
+	
+	public function countstatswho(){
+				
+		if( IS_POST ){
+			$res = $this->stats->countstatswho();
+		
+			$data = array(
+				'result' => $res['data'],
+				//'page' => $res['page'],
+				
+			);
+			//p($data['result']);die;
+			if($data['result'] == null ){
+				Response::show(401,'没有更多数据!');
+				
+			}else{
+				Response::show(200,'数据获取成功!',$data);
+				
+			}
+		}else{
+			Response::show(402,'参数不合法!');
+			
+		}
+       
+	}
 	
 	
 	

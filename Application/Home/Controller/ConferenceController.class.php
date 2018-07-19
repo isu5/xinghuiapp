@@ -320,6 +320,7 @@ class ConferenceController extends PublicController{
 	// 会议资料谁点击统计
 	public function countdownwho(){
 		$data = $this->down->downstatswho();
+		//p($data);
 		$this->assign(array(
 			'data' => $data['data'],
 			'page' => $data['page']
@@ -331,7 +332,6 @@ class ConferenceController extends PublicController{
 	
 	public function countstats(){
 		$data = $this->stats->countstats();
-		
 		$this->assign(array(
 			'data' => $data['data'],
 			'page' => $data['page']
@@ -352,10 +352,6 @@ class ConferenceController extends PublicController{
         $this->display();
 	}
 	
-	//会议调查报告
-	public function confreport(){
-		 $this->display();
-	}
 	
 
 

@@ -602,7 +602,7 @@ class UserModel extends BaseModel{
 	public function youbull(){
 		$where = [];
 		$where['b.user_id'] = I('post.user_id');
-		
+		$where['a.type'] = I('post.type');
 		//翻页
 		$showrow = 15; //一页显示的行数
 		$curpage = I('post.page',1);; //当前的页,还应该处理非数字的情况
@@ -611,7 +611,7 @@ class UserModel extends BaseModel{
 		LEFT JOIN __CERTIFY__ c on c.uid=a.id
 		left join __COMPANY_BULL__ d on d.user_id=a.id
 		')->count();	
-
+		
 
 		$page = new AppPage($total, $showrow);
 		if ($total > $showrow) {
@@ -619,7 +619,7 @@ class UserModel extends BaseModel{
 		 }
 		
 		$data['data'] = $this->alias('a')
-		->field('d.id,d.title,d.pic,d.file,d.content,d.user_id,d.addtime')
+		->field('d.id,d.title,d.pic,d.file,d.content,d.user_id,d.addtime,a.nickname,a.companyname')
 		->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.conf_user_id=a.id
 			LEFT JOIN __CERTIFY__ c on c.uid=a.id
 			left join __COMPANY_BULL__ d on d.user_id=a.id
