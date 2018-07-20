@@ -598,7 +598,7 @@ class UserController extends PublicController{
 			Response::show(200,'二级账户删除成功!');
 		
 		}else{
-			Response::show(401,'$this->model->getError()!',$data );
+			Response::show(401,$this->model->getError(),$data );
 			
 		}
 
@@ -610,19 +610,24 @@ class UserController extends PublicController{
 	public function stopacc(){
 		$id = I('post.id', 0);
 		
-		$user = $this->model->field('phone')->where('id='.$id)->find();
-		$where['phone'] = $user['phone'];
-		$where['id'] = array('neq',$id);
-		$phone = $this->model->where($where)->find();
 		
 		$map = array(
 			'itype' => 1,
 			'phone' => ''
 		);
 		$users = M('User');
+		$user = $this->model->field('phone')->where('id='.$id)->find();
+		$where['phone'] = $user['phone'];
+		$where['id'] = array('neq',$id);
+		$phone = $this->model->field('phone')->where($where)->find();
+		
+		//改变之前绑定的手机号的标志位
+		$pi = ['itype'=>0];
+		if($phone['phone']){
+			$pack1 = $users->field('itype')->where(array('phone'=>$phone['phone']))->setField($pi);
+		
+		}
 		$pack = $this->model->where(array('id'=>$id))->setField($map);
-		$phone['type']=0;
-		$pack1 = $users->field('itype')->where(array('phone'=>$phone['phone']))->save($phone);
 		
 		if($pack && $pack1){
 			Response::show(401,'二级账户停用成功!');

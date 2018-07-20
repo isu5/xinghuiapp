@@ -231,7 +231,7 @@ class UserController extends PublicController{
 		if(IS_POST){
 			 /* print_r($_POST);
 			print_r($data);die;  */
-			if(yunsendSMS($data['check_code'],$data['phone'])){
+			if(yunsendSMS($data['check_code'].',15',$data['phone'])){
 				session('check_code',$data['check_code']);
 				$this->ajaxReturn(1);  //发送成功
 			}else{
@@ -376,7 +376,21 @@ class UserController extends PublicController{
 			'itype' => 1,
 			'phone'=>''
 		);
+		$users=M('User');
+		$user = $this->model->field('phone')->where('id='.$id)->find();
+		$where['phone'] = $user['phone'];
+		$where['id'] = array('neq',$id);
+		$phone = $this->model->field('phone')->where($where)->find();
+		
+		//改变之前绑定的手机号的标志位
+		$pi = ['itype'=>0];
+		if($phone['phone']){
+			$pack1 = $users->field('itype')->where(array('phone'=>$phone['phone']))->setField($pi);
+		
+		}
 		$pack = $this->model->where(array('id'=>$id))->setField($map);
+		
+		
 		if($pack){
 			$code = array('status'=>'y','info'=>'二级账户停用成功');
 		}else{

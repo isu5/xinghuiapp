@@ -55,7 +55,9 @@ class IndexController extends Controller {
 	}
 	
 	public function sms(){
-		$ol = yunsendSMS('1236','13552832050');
+		$data['dcode'] = rand('1000,9999');
+		
+		$ol = yunsendSMS($data['dcode'].',15','13717563627');
 		if($ol){
 			echo 'ok';
 		}else{
