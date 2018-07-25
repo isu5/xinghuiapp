@@ -78,7 +78,7 @@ class ConferencestatsModel extends BaseModel{
 		}
 		
 		$data['data'] = $this->alias('a')
-		->field(array('count(a.user_id)'=>'links','b.username'))
+		->field(array('count(a.user_id)'=>'links','b.username,b.id,b.phone,b.nickname,b.companyname,b.logo'))
 		->join ('LEFT JOIN __USER__ b on b.id = a.user_id')
 		->where($where)
 		->limit(($curpage - 1) * $showrow.','.$showrow)

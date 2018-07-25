@@ -158,23 +158,35 @@ bull_id int unsigned not null default 0 comment '公告id'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT="个人（企业）公告点赞表";
 
 ----调查报告
-create table tzht_conference_userreport(
+create table tzht_conference_report(
 id int(11) unsigned not null primary key auto_increment,
 user_id int unsigned not null default 0 comment '用户id',
 conf_id int unsigned not null default 0 comment '会议id',
-issatisfied tinyint(1) unsigned not null default 0 comment '0非常满意，1满意，2一般，3不满意，4非常不满意',
-isarrange tinyint(1) unsigned not null default 0 comment '0非常满意，1满意，2一般，3不满意，4非常不满意',
-isservice tinyint(1) unsigned not null default 0 comment '0非常满意，1满意，2一般，3不满意，4非常不满意',
-ishelp tinyint(1) unsigned not null default 0 comment '0有很大帮助，1有帮助，2没有帮助',
-isppt tinyint(1) unsigned not null default 0 comment '0全部理解，1部分不能理解，2很多不能理解',
-isrefine tinyint(1) unsigned not null default 0 comment '0内容逻辑，1形式设计，2演讲能力，3趣味性',
-isfeel tinyint(1) unsigned not null default 0 comment '0很好，1一般，2需改进',
-isdata varchar(10) not null default '' comment '最新了解的内容',
-info varchar(255) not null default '' comment '改进建议',
-descp varchar(255) not null default '' comment '反馈信息',
-addtime int unsigned not null default 0 comment '添加时间'
+title varchar(100) NOT NULL default '' comment '标题',
+description varchar(500) NOT NULL default '' comment '描述',
+create_date date NOT NULL,
+expire_date date NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT="会议调查报告";
 
+----会议调查报告问题表
+create table tzht_conference_reportques(
+id int(11) unsigned not null primary key auto_increment,
+user_id int unsigned not null default 0 comment '用户id',
+conf_id int unsigned not null default 0 comment '会议id',
+port_id int unsigned not null default 0 comment '调查报告id',
+title varchar(100) NOT NULL default '' comment '标题',
+options varchar(800) NOT NULL default '' comment '选项',
+standard varchar(100) DEFAULT NULL,
+sort tinyint(3) unsigned NOT NULL DEFAULT '0'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT="会议调查报告问题表";
+
+create table tzht_conference_reply(
+id int(11) unsigned not null primary key auto_increment,
+user_id int unsigned not null default 0 comment '用户id',
+conf_id int unsigned not null default 0 comment '会议id',
+port_id int unsigned not null default 0 comment '调查报告id',
+reply varchar(8000) NOT NULL default '' comment '回复内容'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT="会议调查报告问题表";
 
 
 

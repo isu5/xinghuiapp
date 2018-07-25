@@ -8,7 +8,7 @@
 			<!-- END STYLE CUSTOMIZER -->
 			<!-- BEGIN PAGE HEADER-->
 			<h3 class="page-title">
-			会议调查报告
+			会议调查问卷
 			</h3>
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
@@ -18,7 +18,7 @@
 						<i class="fa fa-angle-right"></i>
 					</li>
 					<li>
-						会议调查报告
+						会议调查问卷
 					
 					</li>
 					
@@ -33,10 +33,10 @@
 				<ul class="nav nav-tabs">
 					
 					<li class="">
-						<a href="{:U('Conferencereport/add',array('id'=>I('get.id')))}" ><i class="fa fa-tags"></i>添加调查报告</a>
+						<a href="{:U('Conferencereport/add',array('id'=>I('get.id')))}" ><i class="fa fa-tags"></i>添加调查问卷</a>
 					</li>
 					<li class="active">
-						<a href="javascript:;" ><i class="fa fa-tags"></i>会议调查报告</a>
+						<a href="javascript:;" ><i class="fa fa-tags"></i>会议调查问卷</a>
 					</li>
 				</ul>
 						
@@ -47,7 +47,8 @@
 					<thead>
 					<tr>
 						<th style="width:25px;">id</th>
-						<th  style="width:120px;">标题1</th>
+						<th  style="width:120px;">标题</th>
+						<th  style="width:220px;">描述</th>
 						<th  style="width:80px;">添加时间</th>
 						<th  style="width:150px;">操作</th>
 					</tr>
@@ -56,12 +57,14 @@
 						<volist name="data" id="v" >
 						<tr>
 							<td>{$v.id}</td>
-							<td>{$v.title1}</td>
-							<td>{$v.addtime|date='Y-m-d H:i',###}</td>
+							<td>{$v.title}</td>
+							<td>{$v.description}</td>
+							<td>{$v.create_date}</td>
 							
 							<td>
-								
+								<a type="button" class="btn btn-primary" href="{:U('Conferencereportques/index',array('rid'=>$v['id'],'id'=>I('get.id')))}" >问卷配题</a>
                                  <button type="button" class="btn btn-danger" onClick="showalert('询问','您确定要 <strong>删除</strong> 吗?','{:U('Conferencereport/delete',array(id=>$v['id']))}')" >删除</button> 
+                                
                                 
 							</td>
 						</tr>

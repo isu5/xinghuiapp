@@ -63,7 +63,7 @@ class ProductModel extends BaseModel{
 		}
 		
 		$data['data'] = $m->alias('a')
-		->field(array('count(a.pro_id)'=>'links','b.username,b.phone'))
+		->field(array('count(a.pro_id)'=>'links','b.username,b.id,b.phone,b.nickname,b.companyname,b.logo'))
 		->join('left join __USER__ b on b.id=a.user_id')
 		->where($where)
 		->group('a.user_id')

@@ -629,11 +629,11 @@ class UserController extends PublicController{
 		}
 		$pack = $this->model->where(array('id'=>$id))->setField($map);
 		
-		if($pack && $pack1){
-			Response::show(401,'二级账户停用成功!');
+		if($pack){
+			Response::show(200,'二级账户停用成功!');
 		
 		}else{
-			Response::show(200,'二级账户停用失败!');
+			Response::show(401,'二级账户停用失败!');
 			
 		}
 		
@@ -646,12 +646,29 @@ class UserController extends PublicController{
 		);
 		$pack = $this->model->where(array('id'=>$id))->setField($map);
 		if($pack){
-			Response::show(401,'二级账户停用成功!');
+			Response::show(200,'二级账户启用成功!');
 		
 		}else{
-			Response::show(200,'二级账户停用失败!');
+			Response::show(401,'二级账户启用失败!');
 			
 		}
+	}
+	//二级账户状态
+	public function accstatus(){
+		$id = I('post.id');
+		$acc = $this->model->where(array('id'=>$id))->find();
+		if($acc['itype'] == 1){
+			$data = ['accstatus' => 1];
+			Response::show(200,'二级账户已停用!',$data);
+		
+		}else{
+			$data = ['accstatus' => 0];
+			Response::show(401,'二级账户未停用!',$data);
+			
+		}
+		
+		
+		
 	}
 	
 	
@@ -697,6 +714,28 @@ class UserController extends PublicController{
 		
 	}
 	
+	//查询已安装客户端检测接口
+	public function setupClient(){
+		$phone = I('post.phone');
+		$where = []; 
+		if(IS_POST){
+			
+			$where['phone'] = array('in',$phone);
+			$data['num'] = $this->model->field('phone')->where($where)->count();
+			
+			if($data){
+				Response::show(200,'检测成功!',$data);
+			}else{
+				Response::show(401,'检测失败!');
+			}
+		}
+	
+		
+		
+		
+		
+		
+	}
 	
 	
 	

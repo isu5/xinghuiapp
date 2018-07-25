@@ -18,7 +18,7 @@ class ConferencereportController extends PublicController{
     public function index(){
         
     	$data = $this->report->search();
-		//p($data);
+		//p($data);die;
     	/* p($this->model->getlastsql());
     	p($_COOKIE);die; */
 		$this->assign(array(
@@ -58,7 +58,7 @@ class ConferencereportController extends PublicController{
 		$id = I('get.id');
 		if($this->report->delete($id) !== FALSE){
 			
-			$code = array('status'=>'y','info'=>'二级账户删除成功');
+			$code = array('status'=>'y','info'=>'删除成功');
 		}else{
 			
 			$code = array('status'=>'n','info'=>$this->model->getError());

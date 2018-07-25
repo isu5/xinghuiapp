@@ -67,8 +67,10 @@ class ConferencedownModel extends BaseModel{
 		}
 		
 		$data['data'] = $this->alias('a')
-		->field(array('count(a.filename)'=>'links','b.username'))
-		->join('left join __USER__ b on b.id = a.user_id')
+		->field(array('count(a.filename)'=>'links','b.username,b.id,b.phone,b.nickname,b.companyname,b.logo,c.is_cert'))
+		->join('left join __USER__ b on b.id = a.user_id
+			left join __CERTIFY__ c on c.uid = b.id
+		')
 		->where($where)
 		->limit(($curpage - 1) * $showrow.','.$showrow)
 		->group('a.user_id')

@@ -24,7 +24,7 @@ class ConferenceController extends PublicController{
 		$this->jgpush = D('Jgpushperson');
 		$this->signjgpush = D('Signjgpush');
 		$this->part = D('Userpartners');
-		$this->ureport = M('Conference_userreport');
+		
 		$this->report = D('Conferencereport');
 		$this->down = D('Conferencedown');
 		$this->stats = D('Conferencestats');
@@ -1158,23 +1158,7 @@ class ConferenceController extends PublicController{
 		}
 	}
 	
-	//会议调查报告添加
-	public function confreport(){
-		if (IS_POST) {
-			//p($_POST);die;
-			if($this->ureport->create(I('post.',1))){
-				if($id = $this->ureport->add()){
-					
-					Response::show(200,'添加成功!',$id);
-				}else{
-					Response::show(401,'添加失败!');
-				}
-			}else{
-				Response::show(402,$this->ureport->getError());
-			}
-
-		}
-	}
+	
 	
 	//会议调查报告
 	public function reportone(){

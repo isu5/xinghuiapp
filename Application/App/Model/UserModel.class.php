@@ -619,7 +619,7 @@ class UserModel extends BaseModel{
 		 }
 		
 		$data['data'] = $this->alias('a')
-		->field('d.id,d.title,d.pic,d.file,d.content,d.user_id,d.addtime,a.nickname,a.companyname')
+		->field('d.id,d.title,d.pic,d.file,d.content,d.user_id,d.addtime,a.id,a.username,a.logo,a.phone,a.nickname,a.companyname')
 		->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.conf_user_id=a.id
 			LEFT JOIN __CERTIFY__ c on c.uid=a.id
 			left join __COMPANY_BULL__ d on d.user_id=a.id
@@ -627,7 +627,7 @@ class UserModel extends BaseModel{
 		->where($where)
 		->limit(($curpage - 1) * $showrow.','.$showrow)
 		->group('d.id')
-		->order('id desc')
+		->order('d.id desc')
 		->select();
 		//p($this->_Sql());die;
 		

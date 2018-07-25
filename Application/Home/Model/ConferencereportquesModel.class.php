@@ -5,19 +5,11 @@
 namespace Home\Model;
 use Common\Model\BaseModel;
 
-class ConferencereportModel extends BaseModel{
+class ConferencereportquesModel extends BaseModel{
 	
-	protected $tableName = 'conference_report';
+	protected $tableName = 'conference_reportques';
 	
-	protected $_auto = array ( 
-		 array('create_date','c_date','','callback'),
-	);
 	
-	public function c_date(){
-		$time=time();
-		$date = date('Y-m-d',$time);
-		return $date;
-	}
 	
 	public function search($pagesize=15){
 		$where = array();
