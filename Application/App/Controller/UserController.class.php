@@ -720,8 +720,14 @@ class UserController extends PublicController{
 		$where = []; 
 		if(IS_POST){
 			
-			$where['phone'] = array('in',$phone);
-			$data['num'] = $this->model->field('phone')->where($where)->count();
+			$where['a.phone'] = array('in',$phone);
+			$data = $this->model->alias('a')
+			->field('a.id,a.phone,a.logo,a.username,a.companyname,a.nickname,a.type,a.level,b.state,b.note,c.is_cert')
+			->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.user_id=a.id
+		LEFT JOIN __CERTIFY__ c on c.uid=a.id')
+			->where($where)
+			->group('a.id')
+			->select();
 			
 			if($data){
 				Response::show(200,'检测成功!',$data);

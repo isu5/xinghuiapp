@@ -48,16 +48,16 @@
 					<thead>
 					<tr>
 						<th >id</th>
-						<th>会议标题</th>
-						<th width="80">会议类型</th>
-						<th>举办公司</th>
-						<th width="180">起始时间</th>
-						<th>报名截止</th>
+						<th width="20%">会议标题</th>
+						<th  >操作</th>
+						<th >会议类型</th>
+						<th>起始时间</th>
+						<th>签到截止时间</th>
 						<th>举办地址</th>
-						<th width="80">会议状态</th>
-						<th width="80">是否公开</th>
-						<th width="80">审核权限</th>
-						<th  style="width:150px;">操作</th>
+						<th >会议状态</th>
+						<th >是否公开</th>
+						<th >审核权限</th>
+						
 					</tr>
 					</thead>
 					<tbody id="checked"> 
@@ -71,32 +71,8 @@
 							<td>{$v.id}</td>
 							<td>
 								<u>
-								<a href="{:U('Conference/show',array('id'=>$v['id']))}" title="{$v.title}">{$v.title|msubstr=0,10}</a>
+								<a href="{:U('Conference/show',array('id'=>$v['id']))}" title="{$v.title}">{$v.title|msubstr=0,20}</a>
 								</u>
-							</td>
-							<td class="center">{$v.catename}	</td>
-                            <td class="center">{$v.companyname}</td>
-                            <td class="center" style="color:red">{$v.ctime|strtotime|date="Y-m-d H:i",###}至<br/>{$v.etime|strtotime|date="Y-m-d H:i",###}</td>
-                            <td class="center" style="color:red">{$v.qtime|strtotime|date="Y-m-d H:i",###}</td>
-                            <td class="center">{$v.address}{$v.xxaddress}</td>
-							<td>
-								<eq name="v.statuses" value="1">
-                                <span class="badge badge-roundless badge-primary">已结束</span>   <else/>
-								<span class="badge badge-roundless badge-danger">进行中</span>	
-								</eq>
-							</td>
-							<td>
-								<eq name="v.is_private" value="1">
-                                <span class="badge badge-roundless badge-primary">内部</span>   <else/>
-								<span class="badge badge-roundless badge-danger">公开</span>	
-								</eq>
-							</td>
-							<td>
-								<eq name="v.is_user" value="1">
-									<span class="badge badge-roundless badge-primary">是</span>   
-								<else/>
-									<span class="badge badge-roundless badge-danger">否</span>	
-								</eq>
 							</td>
 							<td>
 								<div class="btn-group">
@@ -139,6 +115,30 @@
 								</div>
                                 <button type="button" class="btn btn-danger" onClick="showalert('询问','您确定要删除 <strong></strong> 吗?','{:U('Conference/delete',array(id=>$v['id']))}')" >删除</button>
                             </td>
+							<td class="center">{$v.catename}</td>
+                            <td class="center" style="color:red">{$v.ctime|strtotime|date="Y-m-d",###}至<br/>{$v.etime|strtotime|date="Y-m-d",###}</td>
+                            <td class="center" style="color:red">{$v.qtime|strtotime|date="Y-m-d",###}</td>
+                            <td class="center">{$v.address}{$v.xxaddress}</td>
+							<td>
+								<eq name="v.statuses" value="1">
+                                <span class="badge badge-roundless badge-primary">已结束</span>   <else/>
+								<span class="badge badge-roundless badge-danger">进行中</span>	
+								</eq>
+							</td>
+							<td>
+								<eq name="v.is_private" value="1">
+                                <span class="badge badge-roundless badge-primary">内部</span>   <else/>
+								<span class="badge badge-roundless badge-danger">公开</span>	
+								</eq>
+							</td>
+							<td>
+								<eq name="v.is_user" value="1">
+									<span class="badge badge-roundless badge-primary">是</span>   
+								<else/>
+									<span class="badge badge-roundless badge-danger">否</span>	
+								</eq>
+							</td>
+							
 						</tr>
 						</volist>
 						</empty> 

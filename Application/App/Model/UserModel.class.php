@@ -210,15 +210,14 @@ class UserModel extends BaseModel{
 
 
 		$total = $this->alias('a')->where($where)->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.conf_user_id=a.id
+		LEFT JOIN __CERTIFY__ c on c.uid=a.id
 		')->count();	
 
 
 		$page = new AppPage($total, $showrow);
 		if ($total > $showrow) {
 			$data['page'] =  $page->myde_write();
-		 }
-		
-		
+		}
 		$data['data'] = $this->alias('a')
 		->field('a.id,a.username,a.logo,a.companyname,a.dimecode,a.type,a.nickname,a.level,b.state,b.note,c.is_cert')
 		->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.conf_user_id=a.id

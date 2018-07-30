@@ -41,6 +41,15 @@ class ProductModel extends BaseModel{
 		return $data;
 	}
 	
+	//前端搜索
+	public function searchFront(){
+		
+	}
+	
+	
+	
+	
+	
 	//谁点击的统计
 	public function countwho($pagesize=15){
 		

@@ -20,7 +20,7 @@ class RegisterController extends Controller{
 		$arr = $this->model->field('id,username,remark,phone,level')->where(array('phone'=>$data['phone']))->find();
 		if(IS_POST){
 			if($arr){
-				Response::show(403,'您的账号已存在！请登录');
+				Response::show(404,'您的账号已存在！请登录');
 			}
 			if ($arr['level'] == 2) {
 				Response::show(403,'您的手机号是二级账户！请解绑后注册');

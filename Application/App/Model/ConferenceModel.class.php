@@ -145,7 +145,7 @@ class ConferenceModel extends RelationModel{
 			//$data['page'] =  $page->myde_write();
 		 }
 		$data['data'] = $this->alias('a')
-		->field('a.id,a.title,a.ctime,a.etime,a.qtime,a.address,a.xxaddress,a.companypic,a.is_user,a.is_private,a.click,c.catename,d.pic,d.bullurl')
+		->field('a.id,a.title,a.cid,a.ctime,a.etime,a.qtime,a.address,a.xxaddress,a.companypic,a.is_user,a.is_private,a.click,c.catename,d.pic,d.bullurl')
 		->join('LEFT JOIN __CONFERENCE_CATE__ c on c.id=a.cid
 			LEFT JOIN __CONFERENCE_PIC__ d on d.conf_id=a.id
 			')
@@ -323,7 +323,7 @@ class ConferenceModel extends RelationModel{
 		
 		
 		$data['data'] = $this
-		->field('id,title,ctime,etime,qtime,address,xxaddress,is_user,is_private,companypic,click')
+		->field('id,title,ctime,etime,cid,qtime,address,xxaddress,is_user,is_private,companypic,click')
 		/*
 		->join('LEFT JOIN __CERTIFY__ b ON a.uid=b.uid 
 				LEFT JOIN __CONFERENCE_CATE__ c ON c.id=a.cid 
@@ -377,7 +377,7 @@ class ConferenceModel extends RelationModel{
 		}
 		
 		$data['data'] = $this->alias('a')
-		->field('a.id,a.title,a.ctime,a.etime,a.qtime,a.companypic,a.address,a.xxaddress,a.is_user,a.is_private,a.click,e.status')
+		->field('a.id,a.title,a.ctime,a.etime,a.cid,a.qtime,a.companypic,a.address,a.xxaddress,a.is_user,a.is_private,a.click,e.status')
 		->join('LEFT JOIN __CONFERENCE_CATE__ c on c.id=a.cid
 			LEFT JOIN __CONFERENCE_PIC__ d on d.conf_id=a.id
 			LEFT JOIN __CONFERENCE_AUDITLIST__ e on e.conf_id=a.id
@@ -554,10 +554,20 @@ WHERE uid='.$where['uid'].' and is_private =1 and  a.conf_id not in ('.$sql.') g
 		->field('id,title,ctime,companypic,address')
 		->where($where)
 		->limit(($curpage - 1) * $showrow.','.$showrow)
-		->order('ctime asc')
+		->order('addtime desc')
 		->select();
 		//p($this->_Sql());
 		return $data;
+	}
+	
+	
+	//小程序接口，会议详情
+	public function meetlist(){
+		$where['id'] = I('post.id');
+		$data = $this->where($where)->find();
+		
+		return $data;
+		
 	}
 	
 	

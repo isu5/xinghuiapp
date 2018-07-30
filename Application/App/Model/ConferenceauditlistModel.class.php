@@ -69,7 +69,7 @@ class ConferenceauditlistModel extends BaseModel{
 		*/
 		$sql = 'SELECT conf_id FROM tzht_conference_del WHERE user_id = '.$where['user_id'];
 		$limit = ($curpage - 1) * $showrow.','.$showrow;
-		$data['data'] = $this->query('SELECT a.status,b.id,b.title,b.ctime,b.etime,b.qtime,b.address,b.xxaddress,b.is_user,b.is_private,b.companypic,b.click FROM tzht_conference_auditlist a
+		$data['data'] = $this->query('SELECT a.status,b.id,b.title,b.cid,b.ctime,b.etime,b.qtime,b.address,b.xxaddress,b.is_user,b.is_private,b.companypic,b.click FROM tzht_conference_auditlist a
  LEFT JOIN tzht_conference b on b.id=a.conf_id 
 WHERE user_id='.$where['user_id'].' and is_private ='.$where['is_private'].' and  a.conf_id not in ('.$sql.') ORDER BY ctime asc LIMIT '.$limit);
 		
@@ -117,7 +117,7 @@ WHERE user_id='.$where['user_id'].' and is_private ='.$where['is_private'].' and
 		$sql = 'SELECT conf_id FROM tzht_conference_del WHERE user_id = '.$data['uid'];
 		$limit = ($curpage - 1) * $showrow.','.$showrow;
 			
-		$data['data'] = $this->query('SELECT a.status,b.id,b.title,b.ctime,b.etime,b.qtime,b.address,b.xxaddress,b.is_user,b.is_private,b.companypic,b.click FROM tzht_conference_auditlist a
+		$data['data'] = $this->query('SELECT a.status,b.id,b.title,b.cid,b.ctime,b.etime,b.qtime,b.address,b.xxaddress,b.is_user,b.is_private,b.companypic,b.click FROM tzht_conference_auditlist a
  LEFT JOIN tzht_conference b on b.id=a.conf_id 
 WHERE uid='.$where['uid'].' and a.user_id='.$data['uid'].' and is_private =1 and  a.conf_id not in ('.$sql.') group by b.id ORDER BY ctime asc LIMIT '.$limit);
 			
@@ -134,21 +134,52 @@ WHERE uid='.$where['uid'].' and a.user_id='.$data['uid'].' and is_private =1 and
 		$where['is_private'] = 0;
 		
 		$showrow = 15; //一页显示的行数
-		
+		$addId = I('post.addId');
+		$t = time();
+		$three = $t-3600*24*3; //三天
+		$mouth = $t-3600*24*30; //一个月
+		$mouth3 = $t-3600*24*30*3; //三个月
+		switch ( $addId ) {
+			case 1:
+			$where['addtime'] =  array(array('elt' , $t ),array('egt' , $three ));
+			break;  
+			case 2:
+			$where['addtime'] =  array(array('elt' , $t ),array('egt' , $mouth ));
+			break;
+			case 3:
+			$where['addtime'] =  array(array('elt' , $t ),array('egt' , $mouth3 ));
+			break;
+			default:
+			
+			}
+		$address = I('post.address');
+		if($address ){
+			$where['address'] =  array('like',"%$address%");
+		}
 		$curpage = I('post.page',1); //当前的页,还应该处理非数字的情况
 
-		$total = $this->alias('a')->where($where)->count();	
+		$total = $this->alias('a')->join('LEFT JOIN tzht_conference b on b.id=a.conf_id')->where($where)->count();	
 
 		$page = new AppPage($total, $showrow);
 		if ($total > $showrow) {
 			//$data['page'] =  $page->myde_write();
 		}
 		$sql = 'SELECT conf_id FROM tzht_conference_del WHERE user_id = '.$where['user_id'];
+		$where['a.conf_id'] = ['not in',$sql];
 		$limit = ($curpage - 1) * $showrow.','.$showrow;
-		$data['data'] = $this->query('SELECT a.status,b.id,b.cid,b.title,b.ctime,b.etime,b.qtime,b.address,b.xxaddress,b.is_user,b.is_private,b.companypic,b.click FROM tzht_conference_auditlist a
+		/* $data['data'] = $this->query('SELECT a.status,b.id,b.cid,b.title,b.ctime,b.etime,b.qtime,b.address,b.xxaddress,b.is_user,b.is_private,b.companypic,b.click FROM tzht_conference_auditlist a
  LEFT JOIN tzht_conference b on b.id=a.conf_id 
 WHERE user_id='.$where['user_id'].' and is_private ='.$where['is_private'].' and b.cid=14 and  a.conf_id not in ('.$sql.') ORDER BY ctime asc LIMIT '.$limit);
-		
+		 */
+		 
+		 $data['data'] = $this->alias('a')
+		 ->field('a.status,b.id,b.cid,b.title,b.ctime,b.etime,b.qtime,b.address,b.xxaddress,b.is_user,b.is_private,b.companypic,b.click')
+		 ->join('LEFT JOIN tzht_conference b on b.id=a.conf_id')
+		 ->where($where)
+		 ->limit($limit)
+		 ->order('ctime asc')
+		 ->select();
+		 
 		//p($this->_Sql());die;
 		return $data;
 	}

@@ -1337,6 +1337,11 @@ class ConferenceController extends PublicController{
        
 	}
 	
+	//小程序会议详情
+	public function meetone(){
+		$data = $this->model->meetlist();
+		echo json_encode($data);
+	}
 	
 	
 	
