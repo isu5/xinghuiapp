@@ -7,7 +7,7 @@ use Common\Model\BaseModel;
 
 use Common\Third\AppPage;
 
-class  extends BaseModel{
+class ConferenceuserreportModel extends BaseModel{
 	//protected $tableName = 'conference_auditlist';
 	protected $tableName = 'conference_userreport';
 	

@@ -589,7 +589,7 @@ class UserModel extends BaseModel{
 		->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.conf_user_id=a.id
 		')
 		->where($where)
-		->limit($page->firstRow.','.$page->listRows)
+		->limit(($curpage - 1) * $showrow.','.$showrow)
 		->order('id desc')
 		->select();
 		return $data;
@@ -600,16 +600,13 @@ class UserModel extends BaseModel{
 	//好友公告
 	public function youbull(){
 		$where = [];
-		$where['b.user_id'] = I('post.user_id');
-		$where['a.type'] = I('post.type');
+		$where['user_id'] = I('post.user_id');
+		$where['type'] = I('post.type');
 		//翻页
 		$showrow = 15; //一页显示的行数
 		$curpage = I('post.page',1);; //当前的页,还应该处理非数字的情况
 
-		$total = $this->alias('a')->where($where)->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.conf_user_id=a.id
-		LEFT JOIN __CERTIFY__ c on c.uid=a.id
-		left join __COMPANY_BULL__ d on d.user_id=a.id
-		')->count();	
+		$total = $this->where($where)->count();	
 		
 
 		$page = new AppPage($total, $showrow);
@@ -617,7 +614,7 @@ class UserModel extends BaseModel{
 			$data['page'] =  $page->myde_write();
 		 }
 		
-		$data['data'] = $this->alias('a')
+		/* $data['data'] = $this->alias('a')
 		->field('d.id,d.title,d.pic,d.file,d.content,d.user_id,d.addtime,a.id,a.username,a.logo,a.phone,a.nickname,a.companyname')
 		->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.conf_user_id=a.id
 			LEFT JOIN __CERTIFY__ c on c.uid=a.id
@@ -627,7 +624,21 @@ class UserModel extends BaseModel{
 		->limit(($curpage - 1) * $showrow.','.$showrow)
 		->group('d.id')
 		->order('d.id desc')
-		->select();
+		->select(); */
+		$first = ($curpage - 1) * $showrow;
+		$data['data']= $this->query('SELECT b.*,u.logo,u.nickname,u.companyname from tzht_company_bull b 
+		left join tzht_user u on u.id=b.user_id 
+		where b.user_id group by b.id in(
+SELECT conf_user_id from tzht_conference_focus where user_id='.$where['user_id'].' and conf_user_id!=0
+)
+union
+SELECT b.*,u.logo,u.nickname,u.companyname from tzht_company_bull b 
+left join tzht_user u on u.id=b.user_id
+ where b.user_id='.$where['user_id'].' limit '.$first.','.$showrow );
+		
+		
+		
+		
 		//p($this->_Sql());die;
 		
 		

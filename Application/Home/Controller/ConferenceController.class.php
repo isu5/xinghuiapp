@@ -6,6 +6,7 @@
 
 namespace Home\Controller;
 use Org\Nx\Response;
+use Common\Third\RongCloud;
 class ConferenceController extends PublicController{
 	private $cert = null;
 	private $cate = null;
@@ -65,11 +66,12 @@ class ConferenceController extends PublicController{
 		
 		$uid = cookie(userid);
 		$user_part = M('User_part');
+		$groupchat = M('Conference_groupchat');
 		if (IS_POST) {
 			//p($_POST);die;
 			if($this->model->create(I('post.',1))){
 				if($id = $this->model->add()){
-					$data = $this->model->field('title,ctime,qtime,brief,uid,is_private')->where(array('id'=>$id))->find();
+					$data = $this->model->field('id,title,ctime,qtime,brief,uid,is_private')->where(array('id'=>$id))->find();
 					if($data['is_private'] == 1){
 						//查找所有pid下的子id
 						$user = $this->user->field('id,pid,jpush')->where('pid='.$data['uid'])->select();
@@ -89,6 +91,21 @@ class ConferenceController extends PublicController{
 							'part_id'=>$part['part_id']
 							);
 							$user_part->add($pro);
+						}
+						//创建群组
+						$key_secret=get_rong_key_secret();
+						$rong = new RongCloud($key_secret['key'],$key_secret['secret']);
+						$chat = $rong->groupCreate($data['uid'],$data['id'],$data['title']);
+						if($chat){
+							$group = [
+								'group_master'=>$data['uid'],
+								'group_id'=>$data['id'],
+								'title'=>$data['title'],
+								'user_id'=>$data['uid'],
+								'addtime'=>time()
+								
+							];
+							$groupchat->add($group);
 						}
 						
 					}

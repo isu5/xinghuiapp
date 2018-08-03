@@ -164,6 +164,8 @@ WHERE uid='.$where['uid'].' and a.user_id='.$data['uid'].' and is_private =1 and
 		if ($total > $showrow) {
 			//$data['page'] =  $page->myde_write();
 		}
+		//¾Û»áÀ¸Ä¿
+		$where['b.cid'] = 14;
 		$sql = 'SELECT conf_id FROM tzht_conference_del WHERE user_id = '.$where['user_id'];
 		$where['a.conf_id'] = ['not in',$sql];
 		$limit = ($curpage - 1) * $showrow.','.$showrow;

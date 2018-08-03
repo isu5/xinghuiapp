@@ -51,7 +51,8 @@ laydate.render({
 				<div class="portlet-body form" >
 				 
 					<form class="form-horizontal"   action="" method="post" id="myform">
-					
+					<input type="hidden" name="prot_id" value="{$questionnaire.id}">
+						<input type="hidden" id="questionnaire_type" value="{$questionnaire.type}">
 						<input  type="hidden" name="conf_id" value="{:I('get.id')}" />
 						<input  type="hidden" name="user_id" value="{:cookie(userid)}" />
 						<div class="form-body">
@@ -64,7 +65,8 @@ laydate.render({
 							</div>
 							<div class="form-group">
 								<label class="col-md-3 control-label">问题选项</label>
-								<div class="col-md-8">
+								<div class="col-md-8  option-list"></div>
+								
 									<volist name="optionsList" id="item">
 									<switch name="item.type">
 										<case  value="radio">
@@ -72,7 +74,7 @@ laydate.render({
 												<input name="-" type="radio" <?php if(isset($standardList[$i-1]))echo 'checked' ?> />
 												<div>
 													<input type="text" value="{$item.text}" class="form-control" placeholder="请输入选项文本" />
-													<img class="option-del" src="__PUBLIC__/Images/btn-del.png" title="删除该选项">
+													<img class="option-del" src="__HOME_IMG__/btn-del.png" title="删除该选项">
 												</div>
 											</div>
 										</case>
@@ -82,7 +84,7 @@ laydate.render({
 												<input type="checkbox" <?php if(isset($standardList[$i-1]))echo 'checked' ?> />
 												<div>
 													<input type="text" value="{$item.text}" class="form-control" placeholder="请输入选项文本" />
-													<img class="option-del" src="__PUBLIC__/Images/btn-del.png" title="删除该选项">
+													<img class="option-del" src="__HOME_IMG__/btn-del.png" title="删除该选项">
 												</div>
 											</div>
 										</case>
@@ -90,7 +92,7 @@ laydate.render({
 										<case  value="text">
 											<div class="option-item text_option">
 												<textarea class="form-control">{$standardList}</textarea>
-												<img class="option-del" src="__PUBLIC__/Images/btn-del.png" title="删除该选项">
+												<img class="option-del" src="__HOME_IMG__/btn-del.png" title="删除该选项">
 											</div>
 										</case>
 
@@ -100,7 +102,7 @@ laydate.render({
 												<div>
 													<strong style="position: absolute;line-height: 25px;">其他：</strong>
 													<input style="margin-left:40px;opacity: <?php if($questionnaire['type']=='exam')echo '1';else echo '0.3'; ?>;" type="text" class="form-control" value="<?php if(isset($standardList[$i-1]))echo $standardList[$i-1]  ?>" <?php if($questionnaire['type']!='exam')echo 'disabled'; ?> />
-													<img class="option-del" src="__PUBLIC__/Images/btn-del.png" title="删除该选项">
+													<img class="option-del" src="__HOME_IMG__/btn-del.png" title="删除该选项">
 												</div>
 											</div>
 										</case>
@@ -111,13 +113,13 @@ laydate.render({
 												<div>
 													<strong style="position: absolute;line-height: 25px;">其他：</strong>
 													<input style="margin-left:40px;opacity: <?php if($questionnaire['type']=='exam')echo '1';else echo '0.3'; ?>;" type="text" class="form-control" value="<?php if(isset($standardList[$i-1]))echo $standardList[$i-1]  ?>" <?php if($questionnaire['type']!='exam')echo 'disabled'; ?> />
-													<img class="option-del" src="__PUBLIC__/Images/btn-del.png" title="删除该选项">
+													<img class="option-del" src="__HOME_IMG__" title="删除该选项">
 												</div>
 											</div>
 										</case>
 									</switch>
 								</volist>
-								</div>
+								
 							</div>
 							<div class="form-group">
 							<label class="col-md-1 col-xs-12 control-label"></label>
@@ -165,7 +167,8 @@ laydate.render({
 	
 </div>
 <script type="text/javascript">
-$(function() {     
+$(function() {
+	
 	$("#myform").Validform({
 		tiptype:4,
 		showAllError:true,
@@ -186,9 +189,12 @@ $(function() {
 		} 
 	});
 	
-})		
+})	
+
+	
 </script>
-<script type="text/javascript" src="__HOME_JS__/questions-optionManager.js"></script>
+<script type="text/javascript" src="__HOME_JS__/questions-optionManager.js" charset="utf-8"></script>
+
 <include file="Public/footer" />
 
 

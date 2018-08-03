@@ -6,6 +6,7 @@
 
 namespace App\Controller;
 use Org\Nx\Response;
+use Common\Third\RongCloud;
 class ConferenceController extends PublicController{
 	private $cert = null;
 	private $cate = null;
@@ -80,6 +81,7 @@ class ConferenceController extends PublicController{
 	//新建会议
 	public function add(){
 		$user_part = M('User_part');
+		$groupchat = M('Conference_groupchat');
 		if (IS_POST) {
 			//p($_POST);die;
 			if($this->model->create(I('post.',1))){
@@ -104,6 +106,21 @@ class ConferenceController extends PublicController{
 								'part_id'=>$part['part_id']
 								);
 							$user_part->add($pro);
+						}
+						//创建群组
+						$key_secret=get_rong_key_secret();
+						$rong = new RongCloud($key_secret['key'],$key_secret['secret']);
+						$chat = $rong->groupCreate($data['uid'],$id,$data['title']);
+						if($chat){
+							$group = [
+								'group_master'=>$data['uid'],
+								'group_id'=>$id,
+								'title'=>$data['title'],
+								'user_id'=>$data['uid'],
+								'addtime'=>time()
+								
+							];
+							$groupchat->add($group);
 						}
 						
 					}

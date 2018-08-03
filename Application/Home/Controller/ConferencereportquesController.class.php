@@ -49,9 +49,14 @@ class ConferencereportquesController extends PublicController{
 		}
 
 		$uid = cookie(userid);
-		$cert = $this->model->where(array('uid'=>$uid))->find();
+		$mprot = $this->model->where(array('uid'=>$uid))->find();
+		$questionnaire = $this->report->field('id,title,description')->find(I('get.rid'));
+		$this->assign([
+			'questionnaire'=>$questionnaire,
+			'mprot'=>$mprot
+		]);
+		p($questionnaire);
 		
-		$this->assign('cert',$cert);
 		$this->display();
 	}
 
