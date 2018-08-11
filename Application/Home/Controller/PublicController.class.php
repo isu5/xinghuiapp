@@ -12,7 +12,7 @@ class PublicController extends Controller{
 		
 		//判断当前登录会员是否已认证
 		$cert = D('Certify');
-		$uid = cookie(userid);
+		$uid = cookie('userid');
 		$info = $cert->field('is_cert,uid,type')->where(array('uid'=>$uid))->select();
 		//p($info);
 		$this->assign('info',$info);

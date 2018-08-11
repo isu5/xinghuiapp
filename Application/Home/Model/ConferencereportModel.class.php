@@ -3,14 +3,19 @@
 *  企业资料
 */
 namespace Home\Model;
-use Common\Model\BaseModel;
+use Think\Model\RelationModel;
 
-class ConferencereportModel extends BaseModel{
+class ConferencereportModel extends RelationModel{
 	
 	protected $tableName = 'conference_report';
 	
-	protected $_auto = array ( 
-		 array('create_date','c_date','','callback'),
+	protected $_auto = array (
+		array('type','survey'), 	
+		array('create_date','c_date','','callback'),
+		 
+	);
+	protected $_link = array(
+		'Conferencere_portques'	=>	self::HAS_MANY,
 	);
 	
 	public function c_date(){
@@ -23,6 +28,7 @@ class ConferencereportModel extends BaseModel{
 		$where = array();
 		
 		$where['user_id'] = cookie(userid);
+		$where['conf_id'] = I('get.id');
 		//翻页
 		$count = $this->where($where)->count();
 		$page = new \Think\Page($count,$pagesize);

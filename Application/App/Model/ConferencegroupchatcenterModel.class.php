@@ -5,6 +5,7 @@
 namespace App\Model;
 use Common\Model\BaseModel;
 use Common\Third\AppPage;
+use Common\Third\RongCloud;
 class ConferencegroupchatcenterModel extends BaseModel{
 
 	protected $tableName = "Conference_groupchat_center";
@@ -39,11 +40,10 @@ class ConferencegroupchatcenterModel extends BaseModel{
 		->limit(($curpage - 1) * $showrow.','.$showrow)
 		->select();
 		//print_r($this->_Sql());
+		$data['totalsize']=$total;
 		return $data;
 		
 	}
-	
-	
 	
 	
 	public function _before_insert(&$data,$option){

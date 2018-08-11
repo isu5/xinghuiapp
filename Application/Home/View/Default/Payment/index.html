@@ -1,0 +1,110 @@
+<layout name="layout" />
+
+<style>
+<!--
+
+.form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline{
+	padding-top:2px
+}
+-->
+</style>
+<div class="page-content">
+			
+	<h3 class="page-title">支付管理</h3>
+	<div class="page-bar">
+		<ul class="page-breadcrumb">
+			<li>
+				<i class="fa fa-home"></i>
+				<a href="index.php?r=manage/index/index">首页</a>
+				<i class="fa fa-angle-right"></i>
+			</li>
+			<li>
+				支付管理					
+			</li>
+			
+		</ul>
+		
+	</div>
+			<!--table-->
+    <div class="tabbable-custom tabbable-full-width">
+		<div class="tabbable-custom tabbable-full-width">
+		
+			<ul class="nav nav-tabs">
+				<li class="active">
+					<a href="" ><i class="fa fa-tags"></i>支付管理</a>
+				</li>
+			</ul>
+			
+		<div class="portlet-body form" >	
+			<p class="col-md-12 text-center alert alert-success"><i class="fa glyphicon glyphicon-ok"></i> 已完成支付！</p>
+			<form class="form-horizontal " name="form1" id="form1" action="{:U('Payment/alipay')}" method="post">
+				 <div class="form-body">
+					<div class="form-group">
+						<label class="col-md-3 control-label">支付通道</label>
+						<div class="col-md-8">
+							<div class="form-group">
+								<label class="radio-inline">
+									<input type="radio" name="payment" id="alipay" checked value="1"> 支付宝
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="payment" id="wechatpay" value="2"> 微信
+								</label>
+							</div>
+							<!-- <div><img src="https://img.alicdn.com/tps/TB17ghmIFXXXXXAXFXXXXXXXXXX.png"  class="img-rounded"></div> -->
+							
+							
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">支付金额</label>
+						<div class="col-md-9">
+							<div class="input-group">
+								<span class="input-group-addon">￥</span>
+								<input type="text" class="form-control" value="0.01">
+								<span class="input-group-addon">元</span>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">支付说明</label>
+						<div class="col-md-9">
+							<p class="form-control-static">幸会年费-调查问卷，团队管理，数据分析</p>
+						</div>
+					</div>
+					<div class="form-actions">
+						<div class="row">
+							<div class="col-md-offset-3 col-md-9">
+								<!-- <button type="submit" class="btn green btn-lg" id="save">确认支付</button> -->
+								<button type="submit" class="btn green btn-lg" id="save" >确认支付</button>
+							</div>
+						</div>
+					</div>
+					
+				 </div>
+			</form>		
+		</div>
+	
+	<!-- END PAGE CONTENT-->
+	<!--中间部分-->
+
+	</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	$('#alipay').click(function(){
+		$('form[id=form1]').attr('action',"{:U('Payment/alipay')}");
+	})	
+	$('#wechatpay').click(function(){
+		$('form[id=form1]').attr('action',"{:U('Payment/wechatpay')}");
+	})	
+})
+
+</script>
+						
+  	
+	<!-- END CONTENT -->
+	
+	</div>
+</div>
+
+<include file="Public/footer" />

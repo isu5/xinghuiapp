@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>微信扫码支付</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <script type="text/javascript" src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+        <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <style>
+            .container{width: 100%; max-width: 600px;}
+            .mtm{margin-top: 10px;}
+            #QRcode .pay-top{padding: 15px 0px;background: #FAFAFA;border: 2px #009900 dashed;margin: 20px 0px;font-family: 微软雅黑;}
+        </style>
+    </head>
+    <body>
+    <div id="QRcode" class="container mtm">
+        <div class="text-center pay-top"><p class="text-danger">使用微信“扫一扫”下方二维码，完成付款</p></div>
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <span class="pull-left">订单号：{$outTradeNo}</span>
+                <span class="pull-right">总金额：{$payAmount}元</span>
+            </div>
+            <div class="panel-body text-center"><img src="<?=$url?>" style="" /></div>
+            <div class="panel-footer text-success text-center">请使用微信扫描 二维码以完成支付</div>
+        </div>
+        <div class="progress" style="display: none;">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="10" aria-valuemin="10" aria-valuemax="100" style="width: 1%"></div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $(".progress").show();
+            var i = 0;
+            setInterval(function () {
+                i++;
+                $(".progress .progress-bar").attr("aria-valuenow", i * 10);
+                $(".progress .progress-bar").css("width", (i * 10) + "%");
+                if (i >= 10) {
+                    i = 1;
+                }
+            }, 2000);
+
+            setInterval(function () {
+                var url = "{:U('Payment/wechatpay')}?action=queryorder&outTradeNo={$outTradeNo}";
+                $.getJSON(url, function (result) {
+                    if (result.code == 0) {
+                        window.location.href = '<?=$returnUrl?>';
+                    }
+                });
+            }, 3000);
+
+        });
+    </script>
+    </body>
+    </html>

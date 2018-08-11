@@ -26,7 +26,8 @@ class ConferenceController extends PublicController{
 		$this->signjgpush = D('Signjgpush');
 		$this->part = D('Userpartners');
 		
-		$this->report = D('Conferencereport');
+		$this->report = D('Conferencereport'); //调查问卷
+		$this->reportques = D('Conferencereportques'); //问卷问题
 		$this->down = D('Conferencedown');
 		$this->stats = D('Conferencestats');
 	}
@@ -1229,7 +1230,7 @@ class ConferenceController extends PublicController{
 	public function youbull(){
 		if( IS_POST ){
 			$res = $this->user->youbull();
-		
+			//p($res);
 			$data = array(
 				'result' => $res['data'],
 				//'page' => $res['page'],
@@ -1353,6 +1354,28 @@ class ConferenceController extends PublicController{
 		}
        
 	}
+	
+	//调查问卷
+	public function report(){
+		$where['conf_id'] = I('post.conf_id');
+		$where['port_id'] = I('post.port_id');
+		
+		if(IS_POST){
+			$data = $this->reportques->where($where)->select();
+			if($data){
+				Response::show(200,'数据获取成功!',$data);
+			}else{
+				Response::show(401,'没有数据!');
+			}
+		}
+		
+		
+		
+		
+	}
+	
+	
+	
 	
 	//小程序会议详情
 	public function meetone(){

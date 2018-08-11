@@ -188,6 +188,21 @@ port_id int unsigned not null default 0 comment '调查报告id',
 reply varchar(8000) NOT NULL default '' comment '回复内容'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT="会议调查报告问题表";
 
+create table tzht_user_alipay(
+id int(11) unsigned not null primary key auto_increment,
+user_id int unsigned not null default 0 comment '用户id',
+total_amount float(10,2) not null default 0 comment '支付金额',
+seller_email varchar(60) not null default '' comment '商户邮箱',
+subject varchar(60) not null default '' comment '商品说明:支付测试',
+trade_no varchar(60) not null default '' comment '支付宝交易号',
+out_trade_no varchar(60) not null default '' comment '商户交易号',
+gmt_create date comment '创建时间',
+gmt_payment date comment '交易时间',
+notify_time date comment '通知时间',
+buyer_logon_id varchar(100) not null default '' comment '支付宝支付人',
+trade_status VARCHAR(60) not null default '' comment '交易状态'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT="支付宝支付表";
+
 
 
 

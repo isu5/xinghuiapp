@@ -7,9 +7,6 @@ use Org\Nx\Response;
 use Common\Third\RongCloud;
 
 class ConferencegroupchatController extends PublicController{
-	private $chat = null;
-	
-	
 	//继承父类
 	public function __construct(){
 		parent::__construct();
@@ -93,7 +90,7 @@ class ConferencegroupchatController extends PublicController{
 		$data = $this->chat->where($where)->find();
 		//p($this->chat->getLastSql());
 		if($data){
-			Response::show(200,'该群组已存在');
+			Response::show(200,'该群组已存在',$data);
 		}else{
 			Response::show(401,'该群组不存在');
 		}
@@ -106,6 +103,7 @@ class ConferencegroupchatController extends PublicController{
 		
 		$data = array(
 			'result' => $data['data'],
+			'totalsize' => $data['totalsize'],
 			//'page' => $data['page']
 			);
 			
@@ -118,6 +116,50 @@ class ConferencegroupchatController extends PublicController{
 	}
 	
 	
+	//企业会议群组列表
+	public function grouplist(){
+		$data = $this->chat->grouplist();
+		
+		$data = array(
+			'result'=> $data['data'],
+			//'page'=> $data['page'],
+		);
+		
+		if($data['result'] != null){
+			
+			Response::show(200,'数据返回成功',$data);
+		}else{
+			Response::show(401,'没有数据');
+		}
+	}
+	
+	//解散群组
+	public function dissolvedgroup(){
+		$where = [];
+		$data['user_id'] = I('post.user_id');
+		$data['group_id'] = I('post.group_id');
+		
+		$key_secret=get_rong_key_secret();
+		$rong = new RongCloud($key_secret['key'],$key_secret['secret']);
+		//解散群组
+		$chat = $rong->groupDismiss($data['user_id'],$data['group_id']);
+		
+		//更新群组列表，即删除，群组表中相对应的数据
+		if($chat){
+			$res = $this->chat->where($data)->delete(); //主表
+			
+			if($res){
+				$res2 = $this->center->where(['group_id'=>$data['group_id']])->delete(); //附表
+				if($res2)
+				Response::show(200,'解散成功');
+			}else{
+				Response::show(401,'解散失败');
+			}
+		}
+		
+	}
+	
+	//
 	
 	
 	

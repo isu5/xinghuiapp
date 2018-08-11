@@ -39,7 +39,7 @@
 					</ul>
 				 
                 	<div class="portlet-body form" >
-                     <p class="col-md-12 text-center alert alert-danger"> 该功能需要收费才能查看</p>  
+                     <p class="col-md-12 text-center alert alert-danger"> 该功能需要收费才能<b><a href="{:U('Payment/index')}">查看</a></b></p>  
 					<empty name="data">
 						<p class="col-md-12 text-center alert alert-default">您查询的统计为空！</p> 
 					<else/>
@@ -57,6 +57,7 @@
 							<volist name="data" id="p" >
 							<tr>
 								<td>{$p.title}</td>
+								<td>{$p.ctitle}</td>
 								<td>{$p.countstats}</td>
 								<td><a href="{:U('Conference/countstatswho',array('pro_id'=>$p['pro_id']))}" class="label label-primary radius">详情</a></td>
 						
