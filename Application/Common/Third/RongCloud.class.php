@@ -217,7 +217,83 @@ class RongCloud{
         return $ret;
     }
 	
+	/**
+     * 创建群组，并将用户加入该群组，用户将可以收到该群的消息。注：其实本方法是加入群组方法 /group/join 的别名。
+     * @param $userId       要加入群的用户 Id。（必传）
+     * @param $groupId      要加入的群 Id。（必传）
+     * @param $groupName    要加入的群 Id 对应的名称。（可选）
+     * @return json|xml
+     */
+    public function groupCreate($userId, $groupId, $groupName) {
+        try{
+            if(empty($userId))
+                throw new \Exception('要加入群的用户 Id 不能为空');
+            if(empty($groupId))
+                throw new \Exception('要加入的群 Id 不能为空');
+            if(empty($groupName))
+                throw new \Exception('要加入的群 Id 对应的名称 不能为空');
+            $ret = $this->curl('/group/create',
+                array('userId' => $userId, 'groupId' => $groupId,'groupName' => $groupName)
+            );
+            if(empty($ret))
+                throw new \Exception('请求失败');
+            return $ret;
+        }catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
+	/**
+     * 将用户加入指定群组，用户将可以收到该群的消息。
+     * @param $userId           要加入群的用户 Id。（必传）
+     * @param $groupId          要加入的群 Id。（必传）
+     * @param $groupName        要加入的群 Id 对应的名称。（可选）
+     * @return json|xml
+     */
+    public function groupJoin($userId, $groupId, $groupName) {
+        try{
+            if(empty($userId))
+                throw new \Exception('被同步群信息的用户 Id 不能为空');
+            if(empty($groupId))
+                throw new \Exception('加入的群 Id 不能为空');
+            if(empty($groupName))
+                throw new \Exception('加入的群 Id 对应的名称不能为空');
+            $ret = $this->curl('/group/join',
+                array(
+                    'userId' => $userId,
+                    'groupId' => $groupId,
+                    'groupName' => $groupName
+                )
+            );
+            if(empty($ret))
+                throw new \Exception('请求失败');
+            return $ret;
+        }catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
 	
+	/**
+     * 解散群组方法  将该群解散，所有用户都无法再接收该群的消息。
+     * @param $userId           操作解散群的用户 Id。（必传）
+     * @param $groupId          要解散的群 Id。（必传）
+     * @return mixed
+     */
+    public function groupDismiss($userId, $groupId) {
+        try{
+            if(empty($userId))
+                throw new \Exception('操作解散群的用户 Id 不能为空');
+            if(empty($groupId))
+                throw new \Exception('要解散的群 Id 不能为空');
+            $ret = $this->curl('/group/dismiss',
+                array('userId' => $userId, "groupId" => $groupId));
+            if(empty($ret))
+                throw new \Exception('请求失败');
+            return $ret;
+        }catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
+
 	
 	
 	

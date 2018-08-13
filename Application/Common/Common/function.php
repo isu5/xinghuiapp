@@ -8,7 +8,7 @@ use Common\Third\Ucpaas;
 /*
 	云之讯短信
 */
-function yunsendSMS($param='',$mobile='',$uid=''){
+function yunsendSMS($param='',$mobile='',$uid='',$time=15){
 	//初始化必填
 	//填写在开发者控制台首页上的Account Sid
 	$options['accountsid']= C("YUNSMS.Accountsid");
@@ -19,8 +19,9 @@ function yunsendSMS($param='',$mobile='',$uid=''){
 	$ucpass = new Ucpaas($options);
 	$appid =  C("YUNSMS.Appid");	//应用的ID，可在开发者控制台内的短信产品下查看
 	$templateid = C("YUNSMS.Templateid");    //可在后台短信产品→选择接入的应用→短信模板-模板ID，查看该模板ID
-	/* $param = ''; //多个参数使用英文逗号隔开（如：param=“a,b,c”），如为参数则留空
-	$mobile = '';
+	
+	// $param = "$number,$time"; //多个参数使用英文逗号隔开（如：param=“a,b,c”），如为参数则留空
+	/*$mobile = '';
 	$uid = ""; */
 	return $ucpass->SendSms($appid,$templateid,$param,$mobile,$uid);
 }
@@ -248,6 +249,12 @@ function getRongcloudToken($uid){
         return false;
     }
 }
+
+//创建会议群组
+function create_conf_group(){
+	
+}
+
 
 //极光推送所有用户
 /**

@@ -12,7 +12,6 @@ class Ucpaas
 {
     //API请求地址
     const BaseUrl = "https://open.ucpaas.com/ol/sms/";
-	
     //开发者账号ID。由32个英文字母和阿拉伯数字组成的开发者账号唯一标识符。
     private $accountSid;
 
