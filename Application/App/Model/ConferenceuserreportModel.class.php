@@ -19,14 +19,7 @@ class ConferenceuserreportModel extends BaseModel{
 		array('addtime','time',1,'function'),
 		
 	);
-	//单条
-	public function getone(){
-		$where =[];
-		$where['conf_id'] = I('conf_id');
-		
-		$data['data'] = $this->where($where)->find();
-		return $data;
-	}
+	
 	
 	
 }

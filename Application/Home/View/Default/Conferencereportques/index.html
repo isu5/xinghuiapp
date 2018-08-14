@@ -65,7 +65,7 @@
 							<td>{$v.title}</td>
 							
 							<td>
-								<a type="button" class="btn btn-primary" href="{:U('Conferencereportques/index',array('rid'=>$v['id'],'id'=>I('get.id')))}" >修改</a>
+								<a type="button" class="btn btn-primary" href="{:U('Conferencereportques/edit',array('quest'=>$v['id'],'rid'=>I('get.rid'),'id'=>I('get.id')))}" >修改</a>
                                 <button type="button" class="btn btn-danger" onClick="showalert('询问','您确定要 <strong>删除</strong> 吗?','{:U('Conferencereportques/delete',array(id=>$v['id']))}')" >删除</button> 
                                    
 							</td>

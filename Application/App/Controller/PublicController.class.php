@@ -2,22 +2,17 @@
 
 namespace App\Controller;
 use Think\Controller;
-class PublicController extends Controller{
+use Think\Controller\RestController;
+class PublicController extends RestController{
 
-	public function _initialize(){
-		/* 
-		if(!$_COOKIE['userid']){
-			$this->error("非法访问！正在跳转登录页面",U('Login/index'));
-		}
-		
-		//判断当前登录会员是否已认证
-		$cert = D('Certify');
-		$uid = cookie(userid); 
-		$info = $cert->field('is_cert,uid,type')->where(array('uid'=>$uid))->select();
-		
-		$this->assign('info',$info);*/
+	
+	/**
+	 * 处理未被路由的App模块下的Rest请求
+	 */
+	Public function rest()
+	{
+		exit('非法地址Rest请求');
 	}
-
 	
 
 }

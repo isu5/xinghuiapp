@@ -96,7 +96,7 @@ laydate.render({
 							</div>
 							<div class="form-group">
 								<label class="col-md-3 control-label">问题选项</label>
-								<div class="col-md-8  option-list"></div>
+								<div class="col-md-8  option-list">
 								
 									<volist name="optionsList" id="item">
 									<switch name="item.type">
@@ -150,7 +150,7 @@ laydate.render({
 										</case>
 									</switch>
 								</volist>
-								
+								</div>
 							</div>
 							<div class="form-group">
 							<label class="col-md-1 col-xs-12 control-label"></label>
@@ -217,7 +217,7 @@ $(function() {
 				});
 			} else{
 				
-				layer.msg(data.info, {icon: 2, time: 300000,shade: 0.5 },function(){
+				layer.msg(data.info, {icon: 2, time: 3000,shade: 0.5 },function(){
 					window.location.reload();
 				});
 			}

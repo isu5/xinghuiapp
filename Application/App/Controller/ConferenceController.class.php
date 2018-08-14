@@ -1178,31 +1178,7 @@ class ConferenceController extends PublicController{
 	
 	
 	
-	//会议调查报告
-	public function reportone(){
-		
-		if( IS_POST ){
-			$res = $this->report->getone();
-		
-			$data = array(
-				'result' => $res['data'],
-				//'page' => $res['page'],
-				
-			);
-			//p($data['result']);die;
-			if($data['result'] == null ){
-				Response::show(401,'没有更多数据!');
-				
-			}else{
-				Response::show(200,'数据获取成功!',$data);
-				
-			}
-		}else{
-			Response::show(402,'参数不合法!');
-			
-		}
-		
-	}
+	
 	
 	//我参加的聚会列表
 	public function partylist(){
@@ -1355,25 +1331,64 @@ class ConferenceController extends PublicController{
        
 	}
 	
-	//调查问卷
-	public function report(){
-		$where['conf_id'] = I('post.conf_id');
-		$where['port_id'] = I('post.port_id');
+	//会议调查报告
+	public function reportone(){
 		
-		if(IS_POST){
-			$data = $this->reportques->where($where)->select();
-			if($data){
-				Response::show(200,'数据获取成功!',$data);
+		if( IS_POST ){
+			$res = $this->reportques->getTques();
+			
+			$data = array(
+				'meet' => $res['meet'],
+				'result' => $res['data'],
+				//'page' => $res['page'],
+				
+			);
+			//p($data['result']);die;
+			if($data['result'] == null ){
+				Response::show(401,'没有更多数据!');
+				
 			}else{
-				Response::show(401,'没有数据!');
+				Response::show(200,'数据获取成功!',$data);
+				//echo json_encode($data,true);
 			}
+		}else{
+			Response::show(402,'参数不合法!');
+			
 		}
-		
-		
-		
 		
 	}
 	
+	//提交问卷答案
+	
+	public function reply(){
+		$port_id = I('post.port_id');
+		$user_id = I('post.user_id');
+		$replyJson = I('post.options', '', '');;
+		/* 将用户作答记录入库 */
+		$data = array(
+			'port_id'	=>	$port_id,
+			'user_id'	=>	$user_id,
+			'reply'		=>	$replyJson,
+		);
+		
+		if(IS_POST){
+			$status = M('Conference_reply')->add($data);
+			if( $status === false ){ //入库失败
+			/* $msg = array(
+				'errorMsg'	=>	"问卷入库失败，详情：" + M('Conference_reply')->getDbError()
+			); */
+			Response::show(200,'添加失败!');
+
+			
+			}else{ //入库成功
+				/* $msg = array(
+					'errorMsg'	=>	null,
+				); */
+				Response::show(200,'添加成功!');
+			}
+		}
+		
+	}
 	
 	
 	

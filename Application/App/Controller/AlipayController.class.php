@@ -74,7 +74,12 @@ class AlipayController extends PublicController{
 			//——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
 			
 			//获取支付宝的通知返回参数，可参考技术文档中服务器异步通知参数列表
-			
+			$data['gmt_create'] = $result['gmt_create'];
+			$data['gmt_payment'] = $result['gmt_payment'];
+			$data['notify_time'] = $result['notify_time'];
+			$data['out_trade_no'] = $result['out_trade_no'];
+			$data['trade_no'] = $result['trade_no'];
+			$data['total_amount'] = $result['total_amount'];
 			
 			if($_POST['trade_status'] == 'TRADE_FINISHED') {
 

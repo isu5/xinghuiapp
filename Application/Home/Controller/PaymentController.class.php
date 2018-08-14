@@ -40,60 +40,89 @@ class PaymentController extends PublicController{
 	}
 	
 	//支付宝付款成功后的同步回调地址
-	public function returnUrl(){
-		header('Content-type:text/html; Charset=utf-8');
-		//支付宝公钥，账户中心->密钥管理->开放平台密钥，找到添加了支付功能的应用，根据你的加密类型，查看支付宝公钥
-		$alipayPublicKey = C('ALIPAY.publickey');
+	public function return_url(){
+		require_once './alipay/pcpay/config.php';
+		require_once './alipay/pcpay/pagepay/service/AlipayTradeService.php';
 
-		$aliPay = new AlipayReturn($alipayPublicKey);
-		
-		//验证签名
-		$result = $aliPay->rsaCheck($_GET,$_GET['sign_type']);
-		
-		if($result){
-            // 下面写验证通过的逻辑 比如说更改订单状态等等 $_GET['out_trade_no'] 为订单号；
+		$arr=$_GET;
+		$alipaySevice = new \AlipayTradeService($config); 
+		$result = $alipaySevice->check($arr);
+		if($result) {//验证成功
+			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			//请在这里加上商户的业务逻辑程序代码
+			
+			//——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
+			//获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表
+			//商户订单号
+			$out_trade_no = htmlspecialchars($_GET['out_trade_no']);
 
-            $this->success('支付成功',U('Payment/orderlist'));
-        }else{
-            $this->success('支付失败',U('Payment/orderlist'));
-        }
+			//支付宝交易号
+			$trade_no = htmlspecialchars($_GET['trade_no']);
+				
+			echo "验证成功<br />支付宝交易号：".$trade_no;
+
+			//——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
+			
+			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		}
+		else {
+			//验证失败
+			echo "验证失败";
+		}
 	}
 	
 	//支付宝付款成功后的异步回调地址
-	public function notify(){
-		
-		require_once("./alipay/config.php");
-		require_once './alipay/wappay/service/AlipayTradeService.php';
+	public function nofiy_url(){
+		require_once './alipay/pcpay/config.php';
+		require_once './alipay/pcpay/pagepay/service/AlipayTradeService.php';
+
 		$arr=$_POST;
-		$alipaySevice = new \AlipayTradeService($config); 
+		$alipaySevice = new \AlipayTradeService($config);
+		
 		$alipaySevice->writeLog(var_export($_POST,true));
 		$result = $alipaySevice->check($arr);
+		if($result) {//验证成功
+			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			//请在这里加上商户的业务逻辑程序代
+			//——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
+			//获取支付宝的通知返回参数，可参考技术文档中服务器异步通知参数列表
 		
-		if($result===true){
-			echo 'success';
-			//处理你的逻辑，例如获取订单号$_POST['out_trade_no']，订单金额$_POST['total_amount']等
-			//程序执行完后必须打印输出“success”（不包含引号）。如果商户反馈给支付宝的字符不是success这7个字符，支付宝服务器会不断重发通知，直到超过24小时22分钟。一般情况下，25小时以内完成8次通知（通知的间隔频率一般是：4m,10m,10m,1h,2h,6h,15h）；
-			//商户订单号
-			$data['out_trade_no'] = $_POST['out_trade_no'];
-			//支付宝交易号
-			$data['trade_no'] = $_POST['trade_no'];
-			//交易状态
-			$data['trade_status'] = $_POST['trade_status'];
-			
-			$data['subject'] = $_POST['subject'];
 			$data['gmt_create'] = $_POST['gmt_create'];
-			$data['seller_email'] = $_POST['seller_email'];
 			$data['gmt_payment'] = $_POST['gmt_payment'];
 			$data['notify_time'] = $_POST['notify_time'];
+			$data['out_trade_no'] = $_POST['out_trade_no'];
+			$data['trade_no'] = $_POST['trade_no'];
 			$data['total_amount'] = $_POST['total_amount'];
-			$data['buyer_logon_id'] = $_POST['buyer_logon_id'];
+			$data['trade_status'] = $_POST['trade_status'];
 			
-			$ualipay = M('User_alipay');
-			$ualipay->add($data);
-			
-			exit();
+			if($_POST['trade_status'] == 'TRADE_FINISHED') {
+				
+				//判断该笔订单是否在商户网站中已经做过处理
+					//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
+					//请务必判断请求时的total_amount与通知时获取的total_fee为一致的
+					//如果有做过处理，不执行商户的业务程序
+						
+				//注意：
+				//退款日期超过可退款期限后（如三个月可退款），支付宝系统发送该交易状态通知
+			}
+			else if ($_POST['trade_status'] == 'TRADE_SUCCESS') {
+				//判断该笔订单是否在商户网站中已经做过处理
+					//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
+					//请务必判断请求时的total_amount与通知时获取的total_fee为一致的
+					//如果有做过处理，不执行商户的业务程序			
+				//注意：
+				//付款完成后，支付宝系统发送该交易状态通知
+				$alipay = M('User_alipay');
+				$alipay->add($data);
+			}
+			//——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
+			echo "success";	//请不要修改或删除
+		}else {
+			//验证失败
+			echo "fail";
+
 		}
-		echo 'fail';exit();
+		
 				
 	}
 	
@@ -148,13 +177,19 @@ class PaymentController extends PublicController{
 		$apiKey = C("WXPAY.apiKey");   //https://pay.weixin.qq.com 帐户设置-安全设置-API安全-API密钥-设置API密钥
 		$wxPay = new WxpayService($mchid,$appid,$apiKey);
 		$result = $wxPay->notify();
+		$data['total_amount'] = $_POST['cash_fee'];
+		$data['out_trade_no'] = $_POST['out_trade_no'];
+		$data['trade_status'] =	$result["result_code"];
+		$pay = M('User_alipay');
+		$pay->add($data);
 		if($result){
 			//完成你的逻辑
-			//例如连接数据库，获取付款金额$result['cash_fee']，获取订单号$result['out_trade_no']，修改数据库中的订单状态等;
-			$data['total_amount'] = $result['cash_fee'];
-			$data['out_trade_no'] = $result['out_trade_no'];
+			//例如连接数据库，获取付款金额$_POST['cash_fee']，获取订单号$_POST['out_trade_no']，修改数据库中的订单状态等;
+			$data['total_amount'] = $_POST['cash_fee'];
+			$data['out_trade_no'] = $_POST['out_trade_no'];
 			$data['trade_status'] =	$result["result_code"];
-			
+			$pay = M('User_alipay');
+				$pay->add($data);
 			if(array_key_exists("return_code", $result)&& array_key_exists("result_code", $result)&& $result["return_code"] == "SUCCESS"&& $result["result_code"] == "SUCCESS"){
 				$file = './log.txt';//要写入文件的文件名（可以是任意文件名），如果文件不存在，将会创建一个
 				$content = "支付成功".$result."\n"; //要写入的内容

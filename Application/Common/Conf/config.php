@@ -91,6 +91,7 @@ return array(
 		'Token'	=> '102ad7bc0b93cc89963ad5ff0c87077a',
 		'Appid' => 'e540b654b48145249b36cd5cf715e6de',
 		'Templateid'=> '310246'
+		
 	),
 	
 
@@ -98,6 +99,32 @@ return array(
 	/************* 微博微信登录配置**************/
 	'SINA_API_KEY' => 4209897208,
 	'SINA_SECRET'  => 'e1affa67778a89d0c85f45625397f850',
+	
+	/************* 支付宝支付配置**************/
+	
+	'ALIPAY' => array(
+		'appid' => '2018072560761320',
+		'privatekey' => 'MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCZjDhp+Y7lR1e6jE2rDDJ2o/3U73u++waGgXuuXet2IQMh29ojKcWsT06NGUdZsV+zlPzqkQm/ZRXN0OD/SciAht+l4jHwY63srx2hs3dJLzP/oS+hnqsOOvZANz4nARUqcK8ufrM+Q6/eyh11UoZvrYSSm4LPfPlCwrWvMZZRsJYEZ7ltXTufGgoPj1GbYdW7djY8CL1irzPIrYUpQtSM5UBX7nPsw6xNBp+TqbMXGj2OgHWh4uqXvw0CwJtH1ACob7osE6t9UubZDYQRYq3a94FzheuDv537Gvz8/BwHlfX9fs1HjhVxyrnZ5uKqTEdH2f7hVWWXVJnnCzzsiOGJAgMBAAECggEAFnMn9Game+NYck/9MxsPbcVAYZe6MgwlwhjAapgUyyq8eIDaffWnjy/xPjQJ+JU0dt87s1gNYsx2yabWnry88f3GSUyvHISWc1qPLIs+z5Z1NdTtT+YRAH2ib3UkQzOnUpMzKcsgjeP7nMlUUUkFmuJ11bGjCI8vKpGpWroXTk4XBoL/kVaja86/xndHq88UT70RQhVqwN5LhK2m6CoBXjIQxjt6g/40TlRAMPGvOL11jIqmnon3sq+aD6arh2zxF/tVaaVCzh0/cO1weuqNSXnZJX5kIyFWZUwLsg6MVxtk/cr+iEj7PS4rQT+ufgpGmCNHjh4QOSZtCzaNNteOmQKBgQDZpvdlqsGVAwCxp7ye6OzqvgFeXKCfgnrUC0sEGE1uBktPbqNDZ3WZPLhRUzpOv0IUfjO+BsDXFq/gQF9IGi3/XJ9M1dkKIrhjKgYvxh5n3o/e6D7XHV0R1q7yJUJPRPqnPV1d9qsHAvyIy4dKB/EAjk13RhCvlAtQYs7Z5bNL9wKBgQC0md8Xvs8ImEz5J5FYXYfiNIJxMjXrllTZ6o7rIv6oMLIDf4rBZKNK/o0TfxACOlS0ytSsrHu7NumJpY9aY6g8QxfUmQC/70EUHB3JhIUVM03dBJWHqzirEDZeW0XI+cHUn4latbqesvLxN/keHlrwT86wSRkL9HfE53kFv3refwKBgH9aRgoT9v9E6YQJ/MES04WrNcvL8SRESbCHBxbXTX8iabCJsTgAcnv+Xm8ffs+S84xgJ9B5zR5NpQ1XPSlIQD/aJ0/jFQLsO+2yKjqL90CZpp8sT5C5GrsUXftLt9gAKZXvvxD7AymwIqm8RWYY7XiAy20N7zd9LX2UwyoWUGoTAoGAP6jhb6BNoAz3TPf6jrhhVoYF2NrHEOTrweihOhcaxrRrezow8dyEhsHVfqLSRMbE5vl8H+Wos6Q2i9N1BXqNabiIpOLN1doDCZCjm04ADyoHbznXb3wWPI45a+cmYSJQhZ86rmPShXA0nHyLbmdqzLyE8bTChGlG8nxZN4J4UAcCgYBzGmMgL25RfdlpuAcJ6cCbB6/fk6J+69fK3V6VKel3SP0tI8ym6YCqHyFq+9bozes2hckboYbnAXRSJmCKp9G88JtRnAdNtx5FOE7y45UJNLTO0/iLUylhWRHq8d0IsrT4YrXpItaZ0HGfylOgZqxlTtLfBlTu3fggQF4so5zd3w==',
+		'publickey' => 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmYw4afmO5UdXuoxNqwwydqP91O97vvsGhoF7rl3rdiEDIdvaIynFrE9OjRlHWbFfs5T86pEJv2UVzdDg/0nIgIbfpeIx8GOt7K8dobN3SS8z/6EvoZ6rDjr2QDc+JwEVKnCvLn6zPkOv3soddVKGb62EkpuCz3z5QsK1rzGWUbCWBGe5bV07nxoKD49Rm2HVu3Y2PAi9Yq8zyK2FKULUjOVAV+5z7MOsTQafk6mzFxo9joB1oeLql78NAsCbR9QAqG+6LBOrfVLm2Q2EEWKt2veBc4Xrg7+d+xr8/PwcB5X1/X7NR44Vccq52ebiqkxHR9n+4VVll1SZ5ws87IjhiQIDAQAB',
+	
+	
+	
+	),
+	/************* 微信支付配置**************/
+	
+	'WXPAY' => array(
+		//商户号
+		'mchid' => '1510645881',
+		//APPID
+		'appid' => 'wx2aae4e4904eac1d7',
+		//APP_SECRET
+		'appKey' => '520752020a8730165b7dceff27c8e3a5',
+		//密钥
+		'apiKey' => 'TZHT0184joagaJHFAG092424HFOk0978',
+		
+	
+	),
+	
 	
 	
 	
