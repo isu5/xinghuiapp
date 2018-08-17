@@ -1363,7 +1363,7 @@ class ConferenceController extends PublicController{
 	public function reply(){
 		$port_id = I('post.port_id');
 		$user_id = I('post.user_id');
-		$replyJson = I('post.options', '', '');;
+		$replyJson = I('post.reply', '', '');;
 		/* 将用户作答记录入库 */
 		$data = array(
 			'port_id'	=>	$port_id,

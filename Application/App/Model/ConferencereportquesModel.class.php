@@ -21,4 +21,6 @@ class ConferencereportquesModel extends BaseModel{
 		return $data;
 	}
 	
+	
+	
 }

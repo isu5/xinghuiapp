@@ -3,7 +3,7 @@
  * 会议调查报告管理
  *
  */
-namespace Home\Controller;
+namespace App\Controller;
 use Org\Nx\Response;
 class ConferencereportController extends PublicController{
 	private $model = null;
@@ -39,39 +39,25 @@ class ConferencereportController extends PublicController{
 					$info = $this->report->where(['id'=>$id])->find();
 					if($info['conf_id']){
 						$this->report->delete($id);
-						$this->ajaxReturn( ['status'=>3,'info'=>'该会议已存在调查问卷，不允许添加了!']);
-						exit;
+						Response::show(403,'该会议已存在调查问卷，不允许添加了');
+						exit();
 					}else{
-						$this->ajaxReturn( ['status'=>1,'info'=>'添加成功！']);
-						exit;
+						Response::show(200,'添加成功！');
 					}
+					//$this->ajaxReturn( ['status'=>1,'info'=>'添加成功！']);
+					//exit;
 					
 				}else{
-					$this->ajaxReturn( ['status'=>0,'info'=>'添加失败！']);
-				
+					//$this->ajaxReturn( ['status'=>0,'info'=>'添加失败！']);
+					Response::show(401,'添加失败！');
 				}
 			}else{
-				$this->ajaxReturn( ['status'=>2,'info'=>$this->report->getError()]);
-				
+				//$this->ajaxReturn( ['status'=>2,'info'=>$this->report->getError()]);
+				Response::show(402,$this->report->getError());
 			}
-			
-			
 		}
 		
-		$this->display();
-	}
-	
-	//删除
-	public function delete(){
-		$id = I('get.id');
-		if($this->report->delete($id) !== FALSE){
-			
-			$code = array('status'=>'y','info'=>'删除成功');
-		}else{
-			
-			$code = array('status'=>'n','info'=>$this->model->getError());
-		}
-		$this->ajaxReturn($code);
+		
 	}
 	
 	

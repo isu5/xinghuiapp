@@ -13,15 +13,6 @@ class ReplyController extends PublicController{
 		$this->model = D('Reply'); 
 	}
 	
-	//提交用户回复
-	public function add(){
-		
-		
-		
-	}
 	
-	
-	
-
 
 }

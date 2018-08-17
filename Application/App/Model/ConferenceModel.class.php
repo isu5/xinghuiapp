@@ -551,12 +551,13 @@ WHERE uid='.$where['uid'].' and is_private =1 and  a.conf_id not in ('.$sql.') g
 		 }
 		
 		$data['data'] = $this
-		->field('id,title,ctime,companypic,address,companyname,contact,phone,brief')
+		->field('id,title,ctime,companypic,address,companyname')
 		->where($where)
 		->limit(($curpage - 1) * $showrow.','.$showrow)
 		->order('addtime desc')
 		->select();
 		//p($this->_Sql());
+		
 		return $data;
 	}
 	
