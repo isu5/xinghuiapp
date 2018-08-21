@@ -204,7 +204,14 @@ trade_status VARCHAR(60) not null default '' comment '交易状态'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT="支付宝支付表";
 
 
-
-
+---- 支付发票表
+create table tzht_payment_invoice(
+id int(11) unsigned not null primary key auto_increment,
+user_id int unsigned not null default 0 comment '当前用户id',
+total_amount FLOAT(10,2) not null default 0 comment '支付金额',
+invoice_address varchar (60) not null default '' comment '发票地址',
+out_trade_no varchar(60) not null default '' comment '商户交易号',
+addtime datetime comment '提交时间'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT="支付发票表";
 
 

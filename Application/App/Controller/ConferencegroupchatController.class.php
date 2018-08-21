@@ -159,7 +159,13 @@ class ConferencegroupchatController extends PublicController{
 		
 	}
 	
-	//
+	//刷新用户群组信息
+	public function refreshgroup(){
+		$where = [];
+		$data['user_id'] = I('post.user_id');
+		
+		
+	}
 	
 	
 	

@@ -35,15 +35,11 @@ class ConferencereportController extends PublicController{
 			//p($_POST);die;
 			
 			if($this->report->create(I('post.',1))){
-				if($id = $this->report->add()){
-					$info = $this->report->where(['id'=>$id])->find();
-					if($info['conf_id']){
-						$this->report->delete($id);
-						Response::show(403,'该会议已存在调查问卷，不允许添加了');
-						exit();
-					}else{
-						Response::show(200,'添加成功！');
-					}
+				
+				if($id= $this->report->add()){
+					$data = $this->report->where(['id'=>$id])->find();
+					Response::show(200,'添加成功!',$data);
+					
 					//$this->ajaxReturn( ['status'=>1,'info'=>'添加成功！']);
 					//exit;
 					
@@ -58,6 +54,18 @@ class ConferencereportController extends PublicController{
 		}
 		
 		
+	}
+	//检测是否发布了调查报告
+	public function checkadd(){
+		$conf_id = I('post.conf_id');
+		$info = $this->report->where(['conf_id'=>$conf_id])->find();
+		if(IS_POST){
+			if($info){
+				Response::show(200,'该会议已发布调查报告，不允许发布!');
+			}else{
+				Response::show(401,'该会议还没有发布调查报告!');
+			}
+		}
 	}
 	
 	

@@ -3,7 +3,7 @@
 
 <div class="page-content">
 			
-	<h3 class="page-title">公告管理</h3>
+	<h3 class="page-title">支付管理</h3>
 	<div class="page-bar">
 		<ul class="page-breadcrumb">
 			<li>
@@ -12,7 +12,7 @@
 				<i class="fa fa-angle-right"></i>
 			</li>
 			<li>
-				公告管理					
+				支付管理					
 			</li>
 			
 		</ul>
@@ -21,11 +21,11 @@
 			<!--table-->
     <div class="tabbable-custom tabbable-full-width">
 		<ul class="nav nav-tabs">
-				<li class="">
+				<!-- <li class="">
 					<a href="{:U('Confbull/add',array('id'=>I('get.id')))}" ><i class="fa fa-tags"></i>新建会议公告</a>
-				</li>
+				</li> -->
 				<li class="active">
-					<a href="{:U('Confbull/index',array('id'=>I('get.id')))}" ><i class="fa fa-tags"></i>会议公告列表</a>
+					<a href="#" ><i class="fa fa-tags"></i>支付订单</a>
 				</li>
 			</ul>
 						
@@ -61,19 +61,34 @@
 					<thead>
 					<tr>
 						<th >id</th>
-						<th>公告标题</th>
-						<th>所属会议</th>
-					
+						<th>平台支付账户</th>
+						<th>支付金额</th>
+						<th>商户订单号</th>
+						<th>支付宝交易订单号</th>
 						<th>添加时间</th>
 						<th  style="width:150px;">操作</th>
 					</tr>
 					</thead>
 					<tbody id="checked"> 
-						<volist name="data" id="v">
+						<empty name="data">
+						<div class="col-md-12 alert alert-danger">
+							暂没有数据
+						</div>
+						<else/>
+						<volist name="data" id="v" >
 						<tr>
 							<td>{$v.id}</td>
+							<td>{$v.username}</td>
+							<td>{$v.total_amount}</td>
+							<td>{$v.out_trade_no}</td>
+							<td>{$v.trade_no}</td>
+							<td>{$v.gmt_create}</td>
+							<td>
+                                <button type="button" class="btn btn-danger" onClick="showalert('询问','您确定要删除 <strong></strong> 吗?','{:U('Confbull/delete',array(id=>$v['id']))}')" >删除</button>
+                            </td>
 						</tr>
 						</volist>
+						</empty> 
 					</tbody>
 				</table>
 			</div>

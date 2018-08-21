@@ -5,6 +5,13 @@
 namespace App\Controller;
 use Org\Nx\Response;
 class AlipayController extends PublicController{
+	public function _initialize(){
+		parent::_initialize(); 
+		$this->payment = D('User_alipay'); 
+		$this->invoice = M('Payment_invoice'); 
+		//p($info);	
+	}
+	
 	
 	//支付宝支付
 	public function index(){
@@ -48,7 +55,13 @@ class AlipayController extends PublicController{
 		
 		//htmlspecialchars是为了输出到页面时防止被浏览器将关键参数html转义，实际打印到日志以及http传输不会有这个问题
 		echo $response;//就是orderString 可以直接给客户端请求，无需再做处理。
-		
+		$data['user_id'] = I('post.user_id');
+		$data['total_amount'] = $total;
+		$data['invoice_address'] = I('post.invoice_address');
+		$data['out_trade_no'] = $out_trade_no;
+		$data['addtime'] = date('Y-m-d H:i:s', time());
+		$m = M('Payment_invoice');
+		$m->add($data);
 	}
 	
 	public function nofiy_url(){
@@ -74,15 +87,17 @@ class AlipayController extends PublicController{
 			//——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
 			
 			//获取支付宝的通知返回参数，可参考技术文档中服务器异步通知参数列表
-			$data['gmt_create'] = $result['gmt_create'];
-			$data['gmt_payment'] = $result['gmt_payment'];
-			$data['notify_time'] = $result['notify_time'];
-			$data['out_trade_no'] = $result['out_trade_no'];
-			$data['trade_no'] = $result['trade_no'];
-			$data['total_amount'] = $result['total_amount'];
-			
+			$data['gmt_create'] = $_POST['gmt_create'];
+			$data['gmt_payment'] = $_POST['gmt_payment'];
+			$data['notify_time'] = $_POST['notify_time'];
+			$data['out_trade_no'] = $_POST['out_trade_no'];
+			$data['trade_no'] = $_POST['trade_no'];
+			$data['total_amount'] = $_POST['total_amount'];
+			$data['trade_status'] = $_POST['trade_status'];
+			$alipay = M('User_alipay');
 			if($_POST['trade_status'] == 'TRADE_FINISHED') {
-
+				
+				$alipay->where(['out_trade_no'=>$data['out_trade_no']])->save($data['trade_status']);
 				//判断该笔订单是否在商户网站中已经做过处理
 				//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
 				//请务必判断请求时的total_amount与通知时获取的total_fee为一致的
@@ -98,12 +113,12 @@ class AlipayController extends PublicController{
 				//如果有做过处理，不执行商户的业务程序			
 				//注意：
 				//付款完成后，支付宝系统发送该交易状态通知
-				$alipay = M('User_alipay');
+				
 				$alipay->add($data);
+			
 				
 			}
 			//——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
-			
 			
 			
 			echo "success";		//请不要修改或删除
@@ -115,6 +130,37 @@ class AlipayController extends PublicController{
 
 		}
 	}
+	
+	//用户支付检测
+	public function checkpay(){
+		$user_id = I('post.user_id');
+		
+		//查询下发订单
+		$order = $this->invoice->where(['user_id'=>$user_id])->find();
+		
+		//查询是否支付
+		$pay = $this->payment->where(['out_trade_no'=>$order['out_trade_no']])->find();
+		
+		$endtime = 60*60*24*365;
+		$starttime = strtotime($pay['gmt_create']);
+		
+		if( time() - $starttime > $endtime){
+			
+			Response::show(401,'您的年费到期了，请及时续费');
+			
+		}else{
+			if($pay['out_trade_no']){
+				$data['user_id'] = $user_id;
+				$this->payment->where(['id'=>$pay['id']])->save($data);
+				Response::show(200,'您已支付!');
+			}else{
+				Response::show(201,'您未支付');
+			}
+			
+		}
+	}
+	
+	
 	
 	
 	

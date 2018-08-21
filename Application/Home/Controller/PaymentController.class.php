@@ -11,6 +11,7 @@ class PaymentController extends PublicController{
 	protected $user_id;
 	public function __construct(){
 		parent::__construct();
+		$this->order = D('Useralipay');
 		$this->user_id =  cookie('userid');
 	}
 	
@@ -56,14 +57,14 @@ class PaymentController extends PublicController{
 			$result = $aliPay->rsaCheck($_GET,$_GET['sign_type']);
 			if($result===true){
 				//同步回调一般不处理业务逻辑，显示一个付款成功的页面，或者跳转到用户的财务记录页面即可。
-				/* $data['user_id'] = $this->user_id;
+				$data['user_id'] = $this->user_id;
 				$data['gmt_create'] = htmlspecialchars($_GET['timestamp']); //完成时间
 				$data['out_trade_no'] = htmlspecialchars($_GET['out_trade_no']);
 				$data['trade_no'] = htmlspecialchars($_GET['trade_no']);
 				$data['total_amount'] = htmlspecialchars($_GET['total_amount']);
 				$alipay = M('User_alipay');
-				$alipay->add($data );*/
-				echo '验证成功';
+				$alipay->add($data );
+				$this->success('支付成功',U('Payment/orderlist'));
 			}else{
 				echo '不合法的请求';exit();
 			}
@@ -299,8 +300,10 @@ class PaymentController extends PublicController{
 	//支付订单
 	public function orderlist(){
 		
+		$data = $this->order->orderlist();
 		
-		
+		$this->assign(['data'=>$data['data'],'page'=>$data['page']]);
+		//p($data);
 		$this->display();
 	}
 	

@@ -1,0 +1,236 @@
+<layout name="layout" />
+<style>
+<!-- 
+
+#question-form {position: relative;}
+#question-form .tip {color: red;position: relative;right: -40px;font-weight: bold;}
+#question-form .option-list {padding: 10px;border: 3px dashed #eee;min-height: 100px;}
+#question-form .option-item {margin-bottom: 10px;}
+#question-form .option-item > input {display: inline-block;margin-right:-145px;position: relative;z-index: 9;}
+#question-form .option-item > div {display: inline-block;width:100%;padding-left:150px;box-sizing:border-box;position: relative;}
+#question-form .option-item > .edit {display: inline-block;width:90%;padding-left:30px;box-sizing:border-box;position: relative;}
+#question-form .option-item > div > input {display: inline-block;}
+#question-form .option-item .option-del {position: absolute;top: 7px;right: -30px;cursor: pointer;width:20px}
+#question-form .option-item.radio_othertext_option .option-del,
+#question-form .option-item.checkbox_othertext_option .option-del {right: -65px;}
+#question-form .option-item.text_option {margin-right: 30px;}
+#question-form .option-item.text_option .option-del {top: 23px;right: 10px;}
+#question-form .alter-option-list li a {font-family: "微软雅黑";}
+#question-form #add-tip {font-size: 14px;font-family: "楷体";line-height: 30px;color: #ff9933;}
+#question-form #question-extendinfo {position: absolute;top:80px;right: 100px;}
+#question-form #question-extendinfo .extend-row {width:150px;height:39px;margin-bottom: 15px;padding-top:4px;background: url(../Images/niuzai.jpg) no-repeat;} 
+#question-form #question-extendinfo .extend-row label {margin:0 0 0 8px;font-size:14px;color:#663300;} 
+#question-form #question-extendinfo .extend-row input {width:100px;display:inline-block;padding: 2px 12px;font-size: 18px;}
+#question-form input.question-name {font-family: "华文新魏";font-size: 15px;}
+#question-form .option-item .radio {width:20px;float:left}
+#question-form .option-item input {font-family: "宋体";font-size: 14px;color:#666;}
+
+#questions-table .sort-input {width: 35px;line-height: 22px;font-size: 14px;text-align: center;}
+#questions-table td.question-name {text-overflow:ellipsis;font-family: "华文新魏";font-size: 14px;}
+
+
+
+ -->
+</style>
+<!-- 日期时间插件 -->
+<script src="__LAYDATE__/laydate.js"></script> 
+<script>
+//执行一个laydate实例
+laydate.render({
+  elem: '.form-datetime',
+  type: 'datetime',
+  format: 'yyyy-MM-dd HH:mm:ss'
+});
+
+</script>
+	<div class="page-content">
+			
+		<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+		
+		<!-- END STYLE CUSTOMIZER -->
+		<!-- BEGIN PAGE HEADER-->
+		<h3 class="page-title">
+		会议调查问卷
+		</h3>
+		<div class="page-bar">
+			<ul class="page-breadcrumb">
+				<li>
+					<i class="fa fa-home"></i>
+					<a href="#">首页</a>
+					<i class="fa fa-angle-right"></i>
+				</li>
+				<li>
+					会议调查问卷
+				
+				</li>
+				
+			</ul>
+			
+		</div>
+		
+		<!--中间部分-->
+		<!-- BEGIN PAGE CONTENT-->
+		 <div class="tabbable-custom tabbable-full-width">
+					<ul class="nav nav-tabs">
+						<li class="active">
+							<a href="JavaScript:;" ><i class="fa fa-tags"></i>修改问题</a>
+						</li>
+						<li class="">
+							<a href="{:U('Conferencereport/index',array('rid'=>I('get.rid'),'id'=>I('get.id')))}" ><i class="fa fa-tags"></i>会议调查报告</a>
+						</li>
+						
+					</ul>
+				<div class="portlet-body form" >
+				 
+					<form class="form-horizontal"   action="{:U('Conferencereportques/edit', array('rid'=>$questionnaire['id'],'id'=>I('get.id')))}" method="post" id="question-form" >
+					<input type="hidden" name="port_id" value="{$questionnaire.id}">
+						<input type="hidden" id="questionnaire_type" value="{$questionnaire.type}">
+						<input  type="hidden" name="conf_id" value="{:I('get.id')}" />
+						<input  type="hidden" name="user_id" value="{:cookie(userid)}" />
+						<input  type="hidden" name="id" value="{$question.id}" />
+						
+						<div class="form-body">
+							<div class="form-group">
+								<label class="col-md-3 control-label">问题名称</label>
+								<div class="col-md-8">
+									<input type="text" class="form-control"  name="title" placeholder="请填写您对本次会议的调查问题"  value="{$question.title}" datatype="*"  nullmsg="问题名称不能为空" errormsg="请正确输入问题名称">
+									<span style="color:red"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">问题选项</label>
+								<div class="col-md-8  option-list">
+									<volist name="optionsList" id="item">
+									<switch name="item.type">
+										<case  value="radio">
+											<div class="option-item radio_option">
+												<!-- <input name="-" type="radio" <?php if(isset($standardList[$i-1]))echo 'checked' ?>  />-->
+												<div class="edit">
+													<input type="text" value="{$item.text}" class="form-control" placeholder="请输入选项文本" />
+													<img class="option-del" src="/Public/home/images/btn-del.png" title="删除该选项">
+												</div>
+											</div>
+										</case>
+
+										<case  value="checkbox">
+											<div class="option-item checkbox_option">
+												<input type="checkbox" <?php if(isset($standardList[$i-1]))echo 'checked' ?> />
+												<div class="edit">
+													<input type="text" value="{$item.text}" class="form-control" placeholder="请输入选项文本" />
+													<img class="option-del" src="/Public/Home/images/btn-del.png" title="删除该选项">
+												</div>
+											</div>
+										</case>
+
+										<case  value="text">
+											<div class="option-item text_option">
+												<textarea class="form-control">{$standardList}</textarea>
+												<img class="option-del" src="/Public/home/images/btn-del.png" title="删除该选项">
+											</div>
+										</case>
+
+										<case  value="radio_othertext">
+											<div class="option-item radio_othertext_option">
+												<input name="-" type="radio" <?php if(isset($standardList[$i-1]))echo 'checked' ?> />
+												<div class="edit">
+													<strong style="position: absolute;line-height: 25px;">其他：</strong>
+													<input style="margin-left:40px;opacity: <?php if($questionnaire['type']=='exam')echo '1';else echo '0.3'; ?>;" type="text" class="form-control" value="<?php if(isset($standardList[$i-1]))echo $standardList[$i-1]  ?>" <?php if($questionnaire['type']!='exam')echo 'disabled'; ?> />
+													<img class="option-del" src="/Public/home/images/btn-del.png" title="删除该选项">
+												</div>
+											</div>
+										</case>
+
+										<case  value="checkbox_othertext">
+											<div class="option-item checkbox_othertext_option">
+												<input type="checkbox" <?php if(isset($standardList[$i-1]))echo 'checked' ?> />
+												<div class="edit">
+													<strong style="position: absolute;line-height: 25px;">其他：</strong>
+													<input style="margin-left:40px;opacity: <?php if($questionnaire['type']=='exam')echo '1';else echo '0.3'; ?>;" type="text" class="form-control" value="<?php if(isset($standardList[$i-1]))echo $standardList[$i-1]  ?>" <?php if($questionnaire['type']!='exam')echo 'disabled'; ?> />
+													<img class="option-del" src="/Public/home/images/btn-del.png" title="删除该选项">
+												</div>
+											</div>
+										</case>
+									</switch>
+								</volist>
+								</div>
+							</div>
+							<div class="form-group"></div>
+							<div class="form-group">
+							<label class="col-md-1 col-xs-12 control-label"></label>
+							<div class="col-md-2 col-xs-12">                                            
+								<div class="btn-group">
+								  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+									<span class="glyphicon glyphicon-plus"></span>
+									添 加 选 项 
+								  </button>				
+								  <ul class="dropdown-menu alter-option-list" role="menu">
+									<li><a type="radio" class="btn" href="#"> 单 选 项 </a></li>
+									<li><a type="checkbox" class="btn" href="#"> 多 选 项 </a></li>
+									<li><a type="text" class="btn" href="#"> 文 本 输 入 </a></li>
+									
+								  </ul>
+								</div>
+							</div>
+							<eq name="questionnaire.type" value="exam">
+								<input id="standard" name="standard" type="hidden" value='{$question.standard}' />
+							</eq>
+							<input id="options" name="options" type="hidden" value='{$question.options}' />
+							<present name="errorNote">
+								<div class="alert alert-danger" role="alert">
+									<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+									<strong>{$errorNote}</strong>
+								</div>                        
+							</present>	    
+						</div>
+												
+						</div>	
+						<div class="form-actions">
+							<div class="row">
+								<div class="col-md-offset-3 col-md-9">
+									<button type="submit" class="btn green btn-lg" id="submit">提交</button>
+							<button type="reset" class="btn default btn-lg">重置</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			
+		<!-- END PAGE CONTENT-->
+		<!--中间部分-->
+		</div>
+	</div>
+	<!-- END CONTENT -->
+</div>
+<script type="text/javascript" src="__HOME_JS__/questions-optionManager.js" charset="utf-8"></script>
+<script type="text/javascript">
+$(function() {
+	$("#question-form").Validform({
+		tiptype:4,
+		showAllError:true,
+		ajaxPost:true,
+		callback:function(data){ 
+			if(data.status == 1){
+			
+				layer.msg(data.info, { icon: 1, time: 3000 ,shade: 0.5},function(){
+					window.location.href= "{:U('Conferencereportques/index',array('id'=>I('get.id/d'),'rid'=>I('get.rid/d')))}";
+						
+				});
+			} else{
+				
+				layer.msg(data.info, {icon: 2, time: 3000,shade: 0.5 },function(){
+					window.location.reload();
+				});
+			}
+		} 
+	});
+	
+}) 	
+
+</script>
+<include file="Public/footer" />
+
+
+	
+	
+	
+	
