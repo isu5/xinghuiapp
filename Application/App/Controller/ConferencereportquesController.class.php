@@ -22,9 +22,7 @@ class ConferencereportquesController extends PublicController{
 	 */
 	public function add(){
 		if (IS_POST) {
-			//p($_POST);die;
-			
-			if($this->model->create(I('post.',1))){
+			if($this->model->create($_POST)){
 				if($this->model->add()){
 					
 					//$this->ajaxReturn( ['status'=>1,'info'=>'添加成功！']);

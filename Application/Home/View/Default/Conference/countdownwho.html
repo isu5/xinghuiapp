@@ -39,7 +39,7 @@
 					</ul>
 				 
                 	<div class="portlet-body form" >
-                     <p class="col-md-12 text-center alert alert-danger"> 该功能需要收费才能查看</p>  
+                     
 					<empty name="data">
 					<p class="col-md-12 text-center alert alert-default"> 您查询的统计为空！</p>  
 					<else />
@@ -47,6 +47,7 @@
 						<thead>
 						<tr>
 							<th>用户名</th>
+							<th>手机号</th>
 							<th>下载量</th>
 						</tr>
 						</thead>
@@ -54,12 +55,14 @@
 							<volist name="data" id="p" >
 							<tr>
 								<td>{$p.username}</td>
+								<td>{$p.phone}</td>
 								<td>{$p.links}</td>
 							</tr>
 							</volist>
 						</tbody>
 					</table>
 					</empty>
+					
 					</div>
 				
 			<!-- END PAGE CONTENT-->

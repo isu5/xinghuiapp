@@ -63,13 +63,16 @@ class ProductController extends PublicController{
 	
 	//企业产品统计
 	public function pstats(){
-		
+		$pay = $this->checkpay();
 		$data = $this->model->search();
+		if($pay==1){
+			$this->assign(array(
+				'data' => $data['data'],
+				'page' => $data['page'],
+				'success' => true
+			));
+		}
 		
-		$this->assign(array(
-			'data' => $data['data'],
-			'page' => $data['page']
-		));
 		
 		
 		$this->display();

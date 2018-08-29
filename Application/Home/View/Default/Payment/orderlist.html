@@ -65,7 +65,8 @@
 						<th>支付金额</th>
 						<th>商户订单号</th>
 						<th>支付宝交易订单号</th>
-						<th>添加时间</th>
+						<th>支付时间</th>
+						<th>到期时间</th>
 						<th  style="width:150px;">操作</th>
 					</tr>
 					</thead>
@@ -83,8 +84,9 @@
 							<td>{$v.out_trade_no}</td>
 							<td>{$v.trade_no}</td>
 							<td>{$v.gmt_create}</td>
+							<td>{$v.endtime}</td>
 							<td>
-                                <button type="button" class="btn btn-danger" onClick="showalert('询问','您确定要删除 <strong></strong> 吗?','{:U('Confbull/delete',array(id=>$v['id']))}')" >删除</button>
+                                <button type="button" class="btn btn-danger" onClick="showalert('询问','您确定要删除 <strong></strong> 吗?','{:U('Payment/delete',array(id=>$v['id']))}')" >删除</button>
                             </td>
 						</tr>
 						</volist>

@@ -88,6 +88,7 @@ class UserController extends PublicController{
 	
 	//添加二级账户
 	public function addAccount(){
+		
 		$user = M('User');
 		$focus = M('Conference_focus');
 		$data['username'] = I('post.username');
@@ -217,7 +218,11 @@ class UserController extends PublicController{
 			$this->ajaxReturn($code);
 			
 		}
-
+		$pay = $this->checkpay();
+		if($pay == 1){
+			
+			$this->assign('success',true);
+		}
 		$this->display();
 	}
 	
@@ -248,10 +253,15 @@ class UserController extends PublicController{
 
 	//二级账户列表
 	public function accountList(){
-
+		$pay = $this->checkpay();
+		
 		$data = $this->model->accountAli();
 		//p($data);
-		$this->assign('data',$data);
+		if($pay == 1){
+			$this->assign('data',$data);
+			$this->assign('success',true);
+		}
+		
 		$this->display();
 	}
 	

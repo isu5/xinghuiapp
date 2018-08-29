@@ -36,7 +36,7 @@
 			</ul>
 			
 		<div class="portlet-body form" >	
-			<p class="col-md-12 text-center alert alert-success"><i class="fa glyphicon glyphicon-ok"></i> 已完成支付！</p>
+			<empty name="success">
 			<form class="form-horizontal " name="form1" id="form1" action="{:U('Payment/alipay')}" method="post">
 				 <div class="form-body">
 					<div class="form-group">
@@ -44,10 +44,29 @@
 						<div class="col-md-8">
 							<div class="form-group">
 								<label class="radio-inline">
-									<input type="radio" name="payment" id="alipay" checked value="1"> 支付宝
+									<input type="radio" name="paychannel" id="alipay" checked value="1"> 支付宝
 								</label>
 								<label class="radio-inline">
-									<input type="radio" name="payment" id="wechatpay" value="2"> 微信
+									<input type="radio" name="paychannel" id="wechatpay" value="2"> 微信
+								</label>
+							</div>
+							<!-- <div><img src="https://img.alicdn.com/tps/TB17ghmIFXXXXXAXFXXXXXXXXXX.png"  class="img-rounded"></div> -->
+							
+							
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">支付时间</label>
+						<div class="col-md-8">
+							<div class="form-group">
+								<!-- <label class="radio-inline">
+									<input type="radio" name="paytype" id="month" checked value="1"> 1个月
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="paytype" id="banyear" value="2"> 半年
+								</label> -->
+								<label class="radio-inline">
+									<input type="radio" name="paytype" id="year" checked  value="3"> 一年
 								</label>
 							</div>
 							<!-- <div><img src="https://img.alicdn.com/tps/TB17ghmIFXXXXXAXFXXXXXXXXXX.png"  class="img-rounded"></div> -->
@@ -60,7 +79,7 @@
 						<div class="col-md-9">
 							<div class="input-group">
 								<span class="input-group-addon">￥</span>
-								<input type="text" class="form-control" value="0.01">
+								<input type="text" class="form-control" name="total_amount" id="amount" value="0.01">
 								<span class="input-group-addon">元</span>
 							</div>
 						</div>
@@ -69,6 +88,21 @@
 						<label class="col-md-3 control-label">支付说明</label>
 						<div class="col-md-9">
 							<p class="form-control-static">幸会年费-调查问卷，团队管理，数据分析</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">发票</label>
+						<div class="col-md-9">
+							<div class="input-group">
+								<label class="radio-inline">
+									<input type="radio" name="invoice" id="invoiceno" checked > 不开发票
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="invoice" id="invoicekai"> 开发票
+									
+								</label>
+								<input type="text" class="form-control" name="invoice_address" style="display:none" id="invoice" placeholder="请填写邮寄地址"> 
+							</div>
 						</div>
 					</div>
 					<div class="form-actions">
@@ -81,7 +115,15 @@
 					</div>
 					
 				 </div>
-			</form>		
+			</form>	
+			
+			
+			<else/>
+				<p class="col-md-12 text-center alert alert-success"><i class="fa glyphicon glyphicon-ok"></i> 
+				已完成支付！<!-- 到期时间为： -->
+				</p>
+			
+			</empty>
 		</div>
 	
 	<!-- END PAGE CONTENT-->
@@ -96,7 +138,23 @@ $(function(){
 	})	
 	$('#wechatpay').click(function(){
 		$('form[id=form1]').attr('action',"{:U('Payment/wechatpay')}");
-	})	
+	})
+	$('#invoicekai').click(function(){
+		$('#invoice').show();
+	})
+	$('#invoiceno').click(function(){
+		$('#invoice').hide();
+	})
+	$('#month').click(function(){
+		$('#amount').val(0.01);
+	})
+	$('#banyear').click(function(){
+		$('#amount').val(0.02);
+	})
+	$('#year').click(function(){
+		$('#amount').val(0.01);
+	})
+	
 })
 
 </script>

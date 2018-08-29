@@ -71,12 +71,17 @@ class DownloadController extends PublicController{
 	
 	//企业资料统计
 	public function dstats(){
+		$pay = $this->checkpay();
 		$data = $this->stats->search();
 		//p($data);
-		$this->assign(array(
+		if($pay==1){
+			$this->assign(array(
 			'data' => $data['data'],
-			'page' => $data['page']
+			'page' => $data['page'],
+			'success' => true
 			));
+		}
+		
 		$this->display();
 	}
 	//谁下载的
