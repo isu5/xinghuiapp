@@ -39,30 +39,37 @@
 					</ul>
 				 
                 	<div class="portlet-body form" >
-                     <p class="col-md-12 text-center alert alert-danger"> 该功能需要收费才能查看</p>  
-					<empty name="data">
-					<p class="col-md-12 text-center alert alert-default"> 您查询的统计为空！</p>  
-					<else />
-					<table class="table table-striped  table-bordered table-hover"  >
-						<thead>
-						<tr>
-							<th>会议标题</th>
-							<th>下载量</th>
-							<th>具体统计</th>
-						</tr>
-						</thead>
-						<tbody id="checked"> 	
-							<volist name="data" id="p" >
+					
+					<switch name="success">
+					
+					<case value="1">
+						<empty name="data">
+						<p class="col-md-12 text-center alert alert-default"> 您查询的统计为空！</p>  
+						<else />
+						<table class="table table-striped  table-bordered table-hover"  >
+							<thead>
 							<tr>
-								<td>{$p.title}</td>
-								<td>{$p.countstats}</td>
-								<td><a href="{:U('Conference/countdownwho',array('conf_id'=>$p['conf_id']))}" class="label label-primary radius">详情</a></td>
-						
+								<th>会议标题</th>
+								<th>下载量</th>
+								<th>具体统计</th>
 							</tr>
-							</volist>
-						</tbody>
-					</table>
-					</empty>
+							</thead>
+							<tbody id="checked"> 	
+								<volist name="data" id="p" >
+								<tr>
+									<td>{$p.title}</td>
+									<td>{$p.countstats}</td>
+									<td><a href="{:U('Conference/countdownwho',array('conf_id'=>$p['conf_id']))}" class="label label-primary radius">详情</a></td>
+							
+								</tr>
+								</volist>
+							</tbody>
+						</table>
+						</empty>
+						</case>
+						<default />
+						<p class="col-md-12 text-center alert alert-danger"> 该功能需要收费才能<a href="{:U('Payment/index')}">查看</a></p> 
+					</switch>
 					</div>
 				
 			<!-- END PAGE CONTENT-->

@@ -8,17 +8,27 @@ use Common\Third\WxpayService;
 
 class PaymentController extends PublicController{
 	
-	protected $user_id;
 	public function __construct(){
 		parent::__construct();
 		$this->order = D('Useralipay');
+		$this->payment = M('Payment_invoice');
 		$this->user_id =  cookie('userid');
 	}
 	
 	
 	public function index(){
+		$data = $this->checkpay();
+		
+		//p($data);
+		if($data==1){
+			$this->assign([
+				'success'=>true,
+				
+			]);
+		}
 		
 		$this->display();
+		
 	}
 	
 
@@ -29,8 +39,8 @@ class PaymentController extends PublicController{
 		$returnUrl = 'https://xh.2188.com.cn/Payment/ali_return_url';     //付款成功后的同步回调地址
 		$notifyUrl = 'https://xh.2188.com.cn/Payment/ali_notify';     //付款成功后的异步回调地址
 		$outTradeNo = date('YmdHis', time());     //你自己的商品订单号，不能重复
-		$payAmount = 0.01;          //付款金额，单位:元
-		$orderName = '支付测试';    //订单标题
+		$payAmount = I('post.total_amount');          //付款金额，单位:元
+		$orderName = '幸会年费';    //订单标题
 		$signType = 'RSA2';			//签名算法类型，支持RSA2和RSA，推荐使用RSA2
 		$rsaPrivateKey=C('ALIPAY.privatekey');		//商户私钥，填写对应签名算法类型的私钥，如何生成密钥参考：https://docs.open.alipay.com/291/105971和https://docs.open.alipay.com/200/105310
 		/*** 配置结束 ***/
@@ -42,9 +52,18 @@ class PaymentController extends PublicController{
 		$aliPay->setTotalFee($payAmount);
 		$aliPay->setOutTradeNo($outTradeNo);
 		$aliPay->setOrderName($orderName);
+		
 		$sHtml = $aliPay->doPay();
+		//p(I('post.'));die;
+		$data['user_id'] = $this->user_id;
+		$data['total_amount'] = $payAmount;
+		$data['invoice_address'] = I('post.invoice_address');
+		$data['out_trade_no'] = $outTradeNo;
+		$data['addtime'] = date('Y-m-d H:i:s', time());
+		$data['paytype'] = I('post.paytype'); //选择付款的期限
+		$this->payment->add($data);
 		echo $sHtml;
-	
+		
 	}
 	
 	//支付宝插件同步
@@ -62,8 +81,14 @@ class PaymentController extends PublicController{
 				$data['out_trade_no'] = htmlspecialchars($_GET['out_trade_no']);
 				$data['trade_no'] = htmlspecialchars($_GET['trade_no']);
 				$data['total_amount'] = htmlspecialchars($_GET['total_amount']);
-				$alipay = M('User_alipay');
-				$alipay->add($data );
+				$data['paychannel'] = 1; //为支付宝支付
+				$data['state'] = 1; //成功说明已支付 0未支付，1为支付
+				
+				//付款日期
+				$payment = $this->payment->where(['out_trade_no'=>$data['out_trade_no']])->find();
+				$data['paytype'] = $payment['paytype'];
+				$data['endtime'] = date('Y-m-d H:i:s',strtotime('+1year'));
+				$this->order->add($data );
 				$this->success('支付成功',U('Payment/orderlist'));
 			}else{
 				echo '不合法的请求';exit();
@@ -103,11 +128,7 @@ class PaymentController extends PublicController{
 				
 				
 			}
-			$data['notify_time'] = $_POST['notify_time'];
-			$data['trade_status'] = $_POST['trade_status'];
-			$ali = M('User_alipay');
-			$info=$ali->where('user_id='.$this->user_id)->find();
-			$ali->where('id='. $info['id'])->save($data);
+			
 			echo 'success';
 		}else{
 			echo 'fail';
@@ -308,7 +329,17 @@ class PaymentController extends PublicController{
 	}
 	
 	
-	
+	//删除订单
+	public function delete(){
+		$id = I('get.id',0);
+		if($this->order->delete($id) !== FALSE){
+			$code = array('status'=>'y','info'=>'删除成功');
+		}else{
+			$this->error($this->order->getError());
+			$code = array('status'=>'n','info'=>'删除失败');
+		}
+		$this->ajaxReturn($code);
+	}
 	
    
 }

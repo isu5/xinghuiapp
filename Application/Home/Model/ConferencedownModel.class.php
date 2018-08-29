@@ -63,7 +63,7 @@ class ConferencedownModel extends BaseModel{
 		$page->setConfig('next', '下一页');
 		$data['page'] = $page->show();
 		$data['data'] = $this->alias('a')
-		->field(array('count(a.filename)'=>'links','b.username'))
+		->field(array('count(a.filename)'=>'links','b.username,b.phone'))
 		->join('left join __USER__ b on b.id = a.user_id')
 		->where($where)
 		->group('a.user_id')

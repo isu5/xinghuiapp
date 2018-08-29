@@ -91,7 +91,7 @@ class ConferencereportquesController extends PublicController{
 			//p($question);
 			$this->assign('question', $question);
 			$this->assign('optionsList', json_decode($question['options'], true)); //选项列表
-			$isText = ( $question['options'] == '{"0":{"type":"text","text":""}}' ) ? true:false; //判断该题是否是文本输入型问题
+			$isText = ( $question['options'] == "[{'0':{'type':'text','text':''}}]" ) ? true:false; //判断该题是否是文本输入型问题
 			$this->assign('standardList', $this->model->getStandardList($question['standard'], $isText)); //标准答案列表
 
 			$this->display();
@@ -146,7 +146,7 @@ class ConferencereportquesController extends PublicController{
 			
 			if( I('post.standard') != '' ){ //已配置好标准答案
 			
-				$isText = ( $options == '{"0":{"type":"text","text":""}}' ) ? true:false; //判断该题是否是文本输入型问题
+				$isText = ( $options == "[{'0':{'type':'text','text':''}}]" )  ? true:false; //判断该题是否是文本输入型问题
 				$this->assign('standardList', $this->model->getStandardList(I('post.standard'), $isText));
 			}
         }

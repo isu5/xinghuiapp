@@ -325,12 +325,18 @@ class ConferenceController extends PublicController{
 	
 	//会议资料统计
 	public function countdown(){
+		$pay = $this->checkpay();
+		
 		$data = $this->down->downstats();
-		//p($data);
-		$this->assign(array(
-			'data' => $data['data'],
-			'page' => $data['page']
-		));
+		
+		if($pay == 1){
+			$this->assign(array(
+				'data' => $data['data'],
+				'page' => $data['page'],
+				'success'=>true
+			));
+		}
+		
         $this->display();
 		
 	}
@@ -338,21 +344,29 @@ class ConferenceController extends PublicController{
 	public function countdownwho(){
 		$data = $this->down->downstatswho();
 		//p($data);
-		$this->assign(array(
-			'data' => $data['data'],
-			'page' => $data['page']
-		));
+		
+			$this->assign(array(
+				'data' => $data['data'],
+				'page' => $data['page'],
+				'success'=>true
+			));
+		
         $this->display();
 	}
 	
 	//会议产品统计
 	
 	public function countstats(){
+		$pay = $this->checkpay();
 		$data = $this->stats->countstats();
-		$this->assign(array(
-			'data' => $data['data'],
-			'page' => $data['page']
-		));
+		if($pay == 1){
+			$this->assign(array(
+				'data' => $data['data'],
+				'page' => $data['page'],
+				'success'=>true
+			));
+		}
+		
 		$this->display();
 	}
 	//会议产品谁点击统计

@@ -247,7 +247,9 @@ class UserModel extends BaseModel{
 		$curpage = I('post.page',1);; //当前的页,还应该处理非数字的情况
 
 
-		$total = $this->alias('a')->where($where)->count();	
+		$total = $this->alias('a')->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.user_id=a.id
+		LEFT JOIN __CERTIFY__ c on c.uid=a.id
+		')->where($where)->count();	
 
 
 		$page = new AppPage($total, $showrow);
@@ -266,6 +268,20 @@ class UserModel extends BaseModel{
 		->select();
 		
 		return $data;	
+		
+		
+	}
+	//被关注人员影响力
+	public  function refocuscount(){
+		
+		$where = [];
+		$where['conf_user_id'] = I('post.user_id');
+		
+		$total = $this->alias('a')->join('LEFT JOIN __CONFERENCE_FOCUS__ b on b.user_id=a.id
+		LEFT JOIN __CERTIFY__ c on c.uid=a.id
+		')->where($where)->count();	
+
+		return $total;	
 		
 		
 	}

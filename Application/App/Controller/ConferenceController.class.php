@@ -360,6 +360,23 @@ class ConferenceController extends PublicController{
 			
 		}
 	}
+	//被关注人员影响力
+	public function refocuscount(){
+		if( IS_POST ){
+			$data = $this->user->refocuscount();
+			
+			if($data == null ){
+				Response::show(401,'没有更多数据!');
+				
+			}else{
+				Response::show(200,'数据获取成功!',$data);
+				
+			}
+		}else{
+			Response::show(402,'参数不合法!');
+			
+		}
+	}
 	
 	//搜索通讯录
 	public function searchFocuslist(){
@@ -1343,13 +1360,15 @@ class ConferenceController extends PublicController{
 				//'page' => $res['page'],
 				
 			);
-			//p($data['result']);die;
+			
 			if($data['result'] == null ){
 				Response::show(401,'没有更多数据!');
-				
 			}else{
 				Response::show(200,'数据获取成功!',$data);
-				//echo json_encode($data,true);
+				/* $str=json_encode($data,JSON_UNESCAPED_UNICODE);
+				$str = str_replace('\\','',$str);
+				
+				echo $str; */
 			}
 		}else{
 			Response::show(402,'参数不合法!');
@@ -1362,12 +1381,14 @@ class ConferenceController extends PublicController{
 	
 	public function reply(){
 		$port_id = I('post.port_id');
+		$conf_id = I('post.conf_id');
 		$user_id = I('post.user_id');
-		$replyJson = I('post.reply', '', '');;
+		$replyJson = I('post.reply', '', ''); //不做过滤
 		/* 将用户作答记录入库 */
 		$data = array(
 			'port_id'	=>	$port_id,
 			'user_id'	=>	$user_id,
+			'conf_id'	=>	$conf_id,
 			'reply'		=>	$replyJson,
 		);
 		

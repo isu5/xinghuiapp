@@ -39,7 +39,10 @@
 					</ul>
 				 
                 	<div class="portlet-body form" >
-                     <p class="col-md-12 text-center alert alert-danger"> 该功能需要收费才能查看</p>  
+					<switch name="success">
+					
+					<case value="1">
+                    
 					<empty name="data">
 					<p class="col-md-12 text-center alert alert-default"> 您查询的统计为空</p>  
 					<else/>
@@ -63,6 +66,10 @@
 						</tbody>
 					</table>
 					</empty>
+					</case>
+						<default />
+						<p class="col-md-12 text-center alert alert-danger"> 该功能需要收费才能<a href="{:U('Payment/index')}">查看</a></p> 
+					</switch>
 					</div>
 				
 			<!-- END PAGE CONTENT-->

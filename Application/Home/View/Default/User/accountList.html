@@ -39,7 +39,10 @@
 						
 	                 
                 	<div class="portlet-body form" >
-                     <p class="col-md-12 text-center "></p>  
+					 <switch name="success">
+					
+					<case value="1">
+                    
 					<table class="table table-striped  table-bordered table-hover"  >
 					<thead>
 					<tr>
@@ -52,6 +55,9 @@
 					</tr>
 					</thead>
 					<tbody id="checked"> 	
+						<empty name="data">
+						<p class="col-md-12 text-center alert alert-default"> 暂时没有数据！</p>  
+						<else />
 						<volist name="data" id="v" >
 						<tr>
 							<td>{$v.id}</td>
@@ -74,8 +80,13 @@
 							</td>
 						</tr>
 						</volist>
+						</empty>
 					</tbody>
 				</table>
+				</case>
+						<default />
+						<p class="col-md-12 text-center alert alert-danger"> 该功能需要收费才能<a href="{:U('Payment/index')}">查看</a></p> 
+					</switch>
 						
 					</div>
 				

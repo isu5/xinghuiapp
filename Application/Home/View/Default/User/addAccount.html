@@ -35,7 +35,9 @@
 							</li>
 						</ul>
                 	<div class="portlet-body form" >
-                     
+                     <switch name="success">
+					
+					<case value="1">
 						<form class="form-horizontal"   action="" method="post" id="myform" enctype='multipart/form-data'>
 							<div class="form-body">
 								
@@ -100,6 +102,10 @@
 								</div>
 							</div>
 						</form>
+						</case>
+						<default />
+						<p class="col-md-12 text-center alert alert-danger"> 该功能需要收费才能<a href="{:U('Payment/index')}">查看</a></p> 
+					</switch>
 					</div>
 				
 			<!-- END PAGE CONTENT-->

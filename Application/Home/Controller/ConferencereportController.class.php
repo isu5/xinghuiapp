@@ -33,27 +33,24 @@ class ConferencereportController extends PublicController{
 		
 		if (IS_POST) {
 			//p($_POST);die;
-			
-			if($this->report->create(I('post.',1))){
-				if($id = $this->report->add()){
-					$info = $this->report->where(['id'=>$id])->find();
-					if($info['conf_id']){
-						$this->report->delete($id);
-						$this->ajaxReturn( ['status'=>3,'info'=>'该会议已存在调查问卷，不允许添加了!']);
-						exit;
-					}else{
-						$this->ajaxReturn( ['status'=>1,'info'=>'添加成功！']);
-						exit;
-					}
-					
-				}else{
-					$this->ajaxReturn( ['status'=>0,'info'=>'添加失败！']);
-				
-				}
+			$conf_id = I('get.id/d');  //会议id
+			$info = $this->report->where(['conf_id'=>$conf_id])->find();
+			if($info){
+				$this->ajaxReturn( ['status'=>3,'info'=>'该会议已存在调查问卷，不允许添加了!']);
+				exit;
 			}else{
-				$this->ajaxReturn( ['status'=>2,'info'=>$this->report->getError()]);
-				
+				if($this->report->create(I('post.',1))){
+					if($this->report->add()){
+						$this->ajaxReturn( ['status'=>1,'info'=>'添加成功！']);
+					}else{
+						$this->ajaxReturn( ['status'=>0,'info'=>'添加失败！']);
+					}
+				}else{
+					$this->ajaxReturn( ['status'=>2,'info'=>$this->report->getError()]);
+					
+				}
 			}
+			
 			
 			
 		}
