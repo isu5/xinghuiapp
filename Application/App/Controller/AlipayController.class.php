@@ -34,6 +34,7 @@ class AlipayController extends PublicController{
         // 订单详情
         $body = '幸会年费-可使用调查问卷，团队管理，数据分析';
         // 价格
+        //$total = I('post.total_amount');
         $total = 0.01;
         // 订单号，示例代码使用时间值作为唯一的订单ID号
         $out_trade_no = date('YmdHis', time());
@@ -101,7 +102,20 @@ class AlipayController extends PublicController{
 			//付款日期
 			$payment = $this->invoice->where(['out_trade_no'=>$data['out_trade_no']])->find();
 			$data['paytype'] = $payment['paytype'];
-			$data['endtime'] = date('Y-m-d H:i:s',strtotime('+1year')); ///到期时间
+			$data['user_id'] = $payment['user_id'];
+			//一个月
+			if($data['paytype'] == 1){
+				$data['endtime'] = date('Y-m-d H:i:s',strtotime('+1month')); ///到期时间
+			}
+			//三个月
+			if($data['paytype'] == 2){
+				$data['endtime'] = date('Y-m-d H:i:s',strtotime('+6month')); ///到期时间
+			}
+			//一年
+			if($data['paytype'] == 3){
+				$data['endtime'] = date('Y-m-d H:i:s',strtotime('+1year')); ///到期时间
+			}
+			
 			if($_POST['trade_status'] == 'TRADE_FINISHED') {
 				
 				$alipay->where(['out_trade_no'=>$data['out_trade_no']])->save($data['trade_status']);
@@ -146,59 +160,64 @@ class AlipayController extends PublicController{
 		$order = $this->invoice->where(['user_id'=>$user_id])->order('addtime desc')->find();
 		
 		//查询是否支付
-		$pay = $this->payment->where(['out_trade_no'=>$order['out_trade_no'],'state'=>1])->find();
+		$pay = $this->payment->where(['out_trade_no'=>$order['out_trade_no']])->order('id desc')->find();
 		
-		$endtime = 60*60*24*365;
-		$starttime = strtotime($pay['gmt_create']);
-		//p($pay);die;
-		/* if( (time() - $starttime) > $endtime){
-			Response::show(401,'您的年费到期了，请及时续费');
+		if($pay != null ){
+			//支付宝支付
+			if($pay['paychannel'] == 1){
+				require_once("./alipay/config.php");
+				require_once('./alipay/pcpay/pagepay/service/AlipayTradeService.php');
+				require_once ('./alipay/pcpay/pagepay/buildermodel/AlipayTradeQueryContentBuilder.php');
+				
+				$RequestBuilder = new \AlipayTradeQueryContentBuilder();
+			
+				if($pay['state']==1){
+					$RequestBuilder->setOutTradeNo($pay['out_trade_no']);
+					$RequestBuilder->setTradeNo($pay['trade_no']);
+					 //支付时间
+					$starttime = strtotime($pay['gmt_create']);
+					$endtime = strtotime($pay['endtime']);
+				}
+				$aop = new \AlipayTradeService($config);
+				/**
+				 * alipay.trade.query (统一收单线下交易查询)
+				 * @param $builder 业务参数，使用buildmodel中的对象生成。
+				 * @return $response 支付宝返回的信息
+				 */
+				$response = $aop->Query($RequestBuilder);
+				//p($response);
+				//p($pay);
+				if( $pay['state']==1 && time() <= $starttime + 3600*24*365){
+					
+					if($response->code == 10000){
+						Response::show(200,'您已支付!',$response);
+					}else{
+						Response::show(201,'您未支付');
+					}
+					
+					
+				/* elseif($pay['id']){
+					$pay['state']=3;//设置为3，为过期
+					$this->payment->where('id='.$pay['id'])->save($pay);
+					Response::show(401,'您的年费到期了，请及时续费');	
+					 */
+				} elseif(time() == $pay['endtime']){
+					if($pay['id']){
+						$pay['state']=3;//设置为3，为过期
+						$this->order->where('id='.$pay['id'])->save($pay);
+						Response::show(401,'您的年费到期了，请及时续费'); //老订单作废
+					}
+				}else{
+					Response::show(402,'没有该用户，请确保信息正确!');
+				}
+			}
+			//微信支付
 			
 		}else{
-			if($pay['out_trade_no']){
-				$data['user_id'] = $user_id;
-				$this->payment->where(['id'=>$pay['id']])->save($data);
-				Response::show(200,'您已支付!');
-			}else{
-				Response::show(201,'您未支付');
-			}
-			
-		} */
-		
-		require_once("./alipay/config.php");
-		require_once('./alipay/pcpay/pagepay/service/AlipayTradeService.php');
-		require_once ('./alipay/pcpay/pagepay/buildermodel/AlipayTradeQueryContentBuilder.php');
-		
-		$RequestBuilder = new \AlipayTradeQueryContentBuilder();
-		if($pay['state']==1){
-			$RequestBuilder->setOutTradeNo($pay['out_trade_no']);
-			$RequestBuilder->setTradeNo($pay['trade_no']);
+			Response::show(403,'该用户还未支付！');
 		}
-		$aop = new \AlipayTradeService($config);
-		/**
-		 * alipay.trade.query (统一收单线下交易查询)
-		 * @param $builder 业务参数，使用buildmodel中的对象生成。
-		 * @return $response 支付宝返回的信息
-		 */
-		$response = $aop->Query($RequestBuilder);
-		//p($response);
-		if(time() <=  $starttime + 3600*24*365){
-			
-			if($response->code == 10000){
-				Response::show(200,'您已支付!',$response);
-			}else{
-				Response::show(201,'您未支付');
-			}
-			
-			
-		}elseif($pay['id']){
-			$pay['state']=3;//设置为3，为过期
-			$this->payment->where('id='.$pay['id'])->save($pay);
-			Response::show(401,'您的年费到期了，请及时续费');	
-			
-		}else{
-			Response::show(402,'没有该用户，请确保信息正确!');
-		}
+		
+		
 		
 	}
 	
