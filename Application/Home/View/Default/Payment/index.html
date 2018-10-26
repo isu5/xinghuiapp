@@ -47,7 +47,7 @@
 									<input type="radio" name="paychannel" id="alipay" checked value="1"> 支付宝
 								</label>
 								<label class="radio-inline">
-									<input type="radio" name="paychannel" id="wechatpay" value="2"> 微信
+									<input type="radio" name="paychannel" id="wechatpay" value="2" target="_blank"> 微信
 								</label>
 							</div>
 							<!-- <div><img src="https://img.alicdn.com/tps/TB17ghmIFXXXXXAXFXXXXXXXXXX.png"  class="img-rounded"></div> -->
@@ -59,18 +59,17 @@
 						<label class="col-md-3 control-label">支付时间</label>
 						<div class="col-md-8">
 							<div class="form-group">
-								<!-- <label class="radio-inline">
+								<label class="radio-inline">
 									<input type="radio" name="paytype" id="month" checked value="1"> 1个月
 								</label>
 								<label class="radio-inline">
-									<input type="radio" name="paytype" id="banyear" value="2"> 半年
-								</label> -->
+									<input type="radio" name="paytype" id="banyear" value="2"> 6个月
+								</label> 
 								<label class="radio-inline">
-									<input type="radio" name="paytype" id="year" checked  value="3"> 一年
+									<input type="radio" name="paytype" id="year" value="3"> 1年
 								</label>
 							</div>
 							<!-- <div><img src="https://img.alicdn.com/tps/TB17ghmIFXXXXXAXFXXXXXXXXXX.png"  class="img-rounded"></div> -->
-							
 							
 						</div>
 					</div>
@@ -79,7 +78,7 @@
 						<div class="col-md-9">
 							<div class="input-group">
 								<span class="input-group-addon">￥</span>
-								<input type="text" class="form-control" name="total_amount" id="amount" value="0.01">
+								<input type="text" class="form-control" name="total_amount" id="amount" value="6.00" disabled>
 								<span class="input-group-addon">元</span>
 							</div>
 						</div>
@@ -146,13 +145,13 @@ $(function(){
 		$('#invoice').hide();
 	})
 	$('#month').click(function(){
-		$('#amount').val(0.01);
+		$('#amount').val('6.00');
 	})
 	$('#banyear').click(function(){
-		$('#amount').val(0.02);
+		$('#amount').val('13.00');
 	})
 	$('#year').click(function(){
-		$('#amount').val(0.01);
+		$('#amount').val('80.00');
 	})
 	
 })

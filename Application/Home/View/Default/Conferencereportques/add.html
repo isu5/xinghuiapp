@@ -122,12 +122,12 @@ laydate.render({
 
 										<case  value="text">
 											<div class="option-item text_option">
-												<textarea class="form-control">{$standardList}</textarea>
+												<textarea class="form-control">{$standardList|unicodeDecode}</textarea>
 												<img class="option-del" src="/Public/home/images/btn-del.png" title="删除该选项">
 											</div>
 										</case>
 
-										<case  value="radio_othertext">
+										<!-- <case  value="radio_othertext">
 											<div class="option-item radio_othertext_option">
 												<input name="-" type="radio" <?php if(isset($standardList[$i-1]))echo 'checked' ?> />
 												<div>
@@ -147,7 +147,7 @@ laydate.render({
 													<img class="option-del" src="/Public/home/images/btn-del.png" title="删除该选项">
 												</div>
 											</div>
-										</case>
+										</case> -->
 									</switch>
 								</volist>
 								</div>

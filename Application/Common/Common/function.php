@@ -57,8 +57,19 @@ function checkSMS($mobile='',$code=''){
     $p = new ServerAPI($AppKey,$AppSecret,$RequestType);
     return $p->checkSMS($mobile,$code);
 }
+/**
+ * 解码被JS中escape函数进行过unicode编码的数据
+ */
+function unicodeDecode($data)
+{  
+	$mapper = function ($match) {
+	  return mb_convert_encoding(pack('H*', $match[1]), 'UTF-8', 'UCS-2BE');
+	};
 
+	$rs = preg_replace_callback('/%u([0-9a-f]{4})/i', $mapper, $data);
 
+	return $rs;
+}
 
 /**
 * 打印函数
@@ -1327,7 +1338,7 @@ function file_upload($path='file',$format='empty',$maxSize='52428800'){
             'photo' => array('jpg', 'jpeg', 'png'),
             'flash' => array('swf', 'flv'),
             'media' => array('swf', 'flv', 'mp3', 'wav', 'wma', 'wmv', 'mid', 'avi', 'mpg', 'asf', 'rm', 'rmvb'),
-            'file' => array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'htm', 'html', 'txt', 'zip', 'rar', 'gz', 'bz2','pdf')
+            'file' => array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'htm', 'html', 'txt', 'zip', 'rar', 'gz', 'bz2','pdf')
         );
     if(!empty($_FILES)){
         // 上传文件配置

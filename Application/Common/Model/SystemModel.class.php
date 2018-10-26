@@ -53,7 +53,13 @@ return array(
 	'ACCOUNT_NUM' => '{$data['ACCOUNT_NUM']}',	
 //***********************************建立合作伙伴数量************************************************
 	'PARTNERS_NUM'=> '{$data['PARTNERS_NUM']}',
+
+//***********************************微信支付宝支付金额设置******************************************
+	'PAY_ONE' => '{$data['PAY_ONE']}',
+	'PAY_TWO' => '{$data['PAY_TWO']}',
+	'PAY_THREE' => '{$data['PAY_THREE']}',
 );
+
 php;
         file_put_contents('./Application/Common/Conf/webconfig.php', $str);
         return true;

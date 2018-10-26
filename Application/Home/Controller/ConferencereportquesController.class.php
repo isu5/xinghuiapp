@@ -148,6 +148,7 @@ class ConferencereportquesController extends PublicController{
 			
 				$isText = ( $options == "[{'0':{'type':'text','text':''}}]" )  ? true:false; //判断该题是否是文本输入型问题
 				$this->assign('standardList', $this->model->getStandardList(I('post.standard'), $isText));
+				
 			}
         }
 	}

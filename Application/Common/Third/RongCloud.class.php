@@ -293,7 +293,35 @@ class RongCloud{
             print_r($e->getMessage());
         }
     }
+	 /**
+     * 向融云服务器提交 userId 对应的用户当前所加入的所有群组。
+     * @param $userId           被同步群信息的用户Id。（必传）
+     * @param array $data       该用户的群信息。（必传）array('key'=>'val')
+     * @return json|xml
+     */
+    public function groupSync($userId, $data = array()) {
+        try{
+            if(empty($userId))
+                throw new \Exception('被同步群信息的用户 Id 不能为空');
+            if(empty($data))
+                throw new \Exception('该用户的群信息 不能为空');
+            $arrKey = array_keys($data);
+            $arrVal = array_values($data);
+            $params = array(
+                'userId' => $userId
+            );
+            foreach ($data as $key => $value) {
+                $params['group[' . $key . ']'] = $value;
+            }
 
+            $ret = $this->curl('/group/sync', $params);
+            if(empty($ret))
+                throw new \Exception('请求失败');
+            return $ret;
+        }catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
 	
 	
 	

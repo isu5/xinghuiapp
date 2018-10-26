@@ -101,54 +101,55 @@
                     <ul class="options">
                         <volist name="question.options" id="option" key="optionIndex">
                             <li>
+							<?php //dump($option)?>
                                 <switch name="option.type">
-                                        <case value="radio">
-                                            <div class="detail"><input type="radio"/> <strong class="option-index">{$optionIndex}</strong> {$option.text}</div>
-                                            <present name="option.count">
-                                                <div class="option-statistic">该项勾选人数: {$option.count}</div>
-                                            </present>
-                                        </case>
-                                        <case value="checkbox">
-                                            <div class="detail"><input type="checkbox"/> <strong class="option-index">{$optionIndex}</strong> {$option.text}</div>
-                                            <present name="option.count">
-                                                <div class="option-statistic">该项勾选人数: {$option.count}</div>
-                                            </present>
-                                        </case>
-                                        <case value="radio_othertext">
-                                            <div class="detail"><input type="radio"/><strong class="option-index">{$optionIndex}</strong> <div>其他<br /> <textarea cols="30" rows="5"></textarea></div></div>
-                                            <present name="option.count">
-                                                <div class="option-statistic">
-                                                    该项勾选人数: {$option.count}
-                                                    <div class="reply-list">
-                                                        回答摘要
-                                                        <textarea cols="30" rows="5"><foreach name="option.replyList" item="reply">{$reply}------------------------------</foreach></textarea>
-                                                    </div>
-                                                </div>
-                                            </present>
-                                        </case>
-                                        <case value="checkbox_othertext">
-                                            <div class="detail"><input type="checkbox"/> <strong class="option-index">{$optionIndex}</strong> <div>其他<br /> <textarea cols="30" rows="5"></textarea></div></div>
-                                            <present name="option.count">
-                                                <div class="option-statistic">
-                                                    该项勾选人数: {$option.count}
-                                                    <div class="reply-list">
-                                                        回答摘要
-                                                        <textarea cols="30" rows="5"><foreach name="option.replyList" item="reply">{$reply}------------------------------</foreach></textarea>
-                                                    </div>
-                                                </div>
-                                            </present>
-                                        </case>
-                                        <case value="text">
-                                            <div class="detail"><textarea cols="30" rows="5"></textarea></div>
-                                            <present name="option.replyList">
-                                                <div class="option-statistic">
-                                                    <div class="reply-list">
-                                                        回答摘要
-                                                        <textarea cols="30" rows="5"><foreach name="option.replyList" item="reply">{$reply}------------------------------</foreach></textarea>
-                                                    </div>
-                                                </div>
-                                            </present>
-                                        </case>
+									<case value="radio">
+										<div class="detail"><input type="radio"/> <strong class="option-index">{$optionIndex}</strong> {$option.text}</div>
+										<present name="option.count">
+											<div class="option-statistic">该项勾选人数: {$option.count}</div>
+										</present>
+									</case>
+									<case value="checkbox">
+										<div class="detail"><input type="checkbox"/> <strong class="option-index">{$optionIndex}</strong> {$option.text}</div>
+										<present name="option.count">
+											<div class="option-statistic">该项勾选人数: {$option.count}</div>
+										</present>
+									</case>
+									<case value="radio_othertext">
+										<div class="detail"><input type="radio"/><strong class="option-index">{$optionIndex}</strong> <div>其他<br /> <textarea cols="30" rows="5"></textarea></div></div>
+										<present name="option.count">
+											<div class="option-statistic">
+												该项勾选人数: {$option.count}
+												<div class="reply-list">
+													回答摘要
+													<textarea cols="30" rows="5"><foreach name="option.replyList" item="reply">{$reply}------------------------------</foreach></textarea>
+												</div>
+											</div>
+										</present>
+									</case>
+									<case value="checkbox_othertext">
+										<div class="detail"><input type="checkbox"/> <strong class="option-index">{$optionIndex}</strong> <div>其他<br /> <textarea cols="30" rows="5"></textarea></div></div>
+										<present name="option.count">
+											<div class="option-statistic">
+												该项勾选人数: {$option.count}
+												<div class="reply-list">
+													回答摘要
+													<textarea cols="30" rows="5"><foreach name="option.replyList" item="reply">{$reply}------------------------------</foreach></textarea>
+												</div>
+											</div>
+										</present>
+									</case>
+									<case value="text">
+										<div class="detail"><textarea cols="30" rows="5"></textarea></div>
+										<present name="option.replyList">
+											<div class="option-statistic">
+												<div class="reply-list">
+													回答摘要
+													<textarea cols="30" rows="5"><foreach name="option.replyList" item="reply">{$reply}------------------------------</foreach></textarea>
+												</div>
+											</div>
+										</present>
+									</case>
                                 </switch>
                             </li>
                         </volist>

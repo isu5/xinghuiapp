@@ -65,6 +65,7 @@ class ReplyController extends PublicController{
 		 /* 问卷概览信息 */
         $qnID = I('get.quest/d');
         $questionnaire = $this->report->field('id,type,title,description')->find($qnID);
+		//dump($questionnaire);
         $type = $questionnaire['type'];
 		 if( $type == 'exam' ){
             $scores = $this->reply->where("port_id=$qnID")->getField('total_score', true);
@@ -83,6 +84,9 @@ class ReplyController extends PublicController{
                                    ->join('left join __CONFERENCE_REPORT__ qn on qt.port_id=qn.id')
                                    ->where("qt.port_id=$qnID")
                                    ->getField('qt.id,qn.type questionnaire_type,qt.title,qt.options,qt.standard');
+		
+		//dump($questions);
+
 
         /* 解析每个问题的选项 */
         $mapper = function ($item) {
@@ -98,9 +102,11 @@ class ReplyController extends PublicController{
             return $item;
         };
         $questions = array_map($mapper, $questions);
+		//dump($questions);
 
         /* 开始计算每道题的准确率和统计每道题的每个选项的勾选情况 */
         $replys = $this->reply->where("port_id=$qnID")->getField('reply', true);
+		//dump($replys);
 
         foreach ($replys as $reply) {
             $reply = json_decode($reply, true); //一套卷子的回答
@@ -115,28 +121,33 @@ class ReplyController extends PublicController{
                     }
                 }
 
-                if( preg_match('/^%u/', $answer) ){ //case: 简答题,  收集回答的前10个宽字符
+				if( preg_match('/^%u/', $answer) ){ //case: 简答题,  收集回答的前10个宽字符
                     $answer = unicodeDecode($answer);
                     $tag = mb_substr($answer, 0, 10, 'UTF-8');
                     $tag .= (mb_strlen($answer, 'UTF-8') > 10)? "...;\n\n" : ";\n\n";
                     $questions[$questionID]['options'][0]['replyList'][] = "\n".$tag; //收集简答题回答的一个摘要, 简答题只有一个选项且键为0
                 }else{ //case: 勾选题, 统计勾选情况
                     $chooseList = explode(',', $answer);
+					//dump($chooseList);
                     foreach ($chooseList as $choose) {
-                        $chooseInfo = explode(':', $choose);
-                        $optionIndex = $chooseInfo[0];
-                        $optionOthertext = isset($chooseInfo[1]) ? $chooseInfo[1] : null;
-
-                        if( !isset($questions[$questionID]['options'][$optionIndex]['count']) ){
-                            $questions[$questionID]['options'][$optionIndex]['count'] = 0;
-                        }
-                        $questions[$questionID]['options'][$optionIndex]['count']++; //累计勾选次数
-                        if( isset($optionOthertext) ){ //case: 勾选题型里面的其它问题,  收集回答的前10个宽字符
-                            $answer = unicodeDecode($optionOthertext);
-                            $tag = mb_substr($answer, 0, 10, 'UTF-8');
-                            $tag .= (mb_strlen($answer, 'UTF-8') > 10)? "...;\n\n" : ";\n\n";
-                            $questions[$questionID]['options'][$optionIndex]['replyList'][] = "\n".$tag; //收集回答摘要
-                        }
+						$chooseInfo = explode(':', $choose);
+						$optionIndex = $chooseInfo[0];
+						$optionOthertext = isset($chooseInfo[1]) ? $chooseInfo[1] : null;
+						if(preg_match("/^\d*$/" , $optionIndex)){
+							if( !isset($questions[$questionID]['options'][$optionIndex]['count']) ){
+								$questions[$questionID]['options'][$optionIndex]['count'] = 0;
+							}
+							$questions[$questionID]['options'][$optionIndex]['count']++; //累计勾选次数
+							if( isset($optionOthertext) ){ //case: 勾选题型里面的其它问题,  收集回答的前10个宽字符
+								$answer = unicodeDecode($optionOthertext);
+								$tag = mb_substr($answer, 0, 10, 'UTF-8');
+								$tag .= (mb_strlen($answer, 'UTF-8') > 10)? "...;\n\n" : ";\n\n";
+								$questions[$questionID]['options'][$optionIndex]['replyList'][] = "\n".$tag; //收集回答摘要
+							}
+						}else{
+							$questions[$questionID]['options'][0]['replyList'][] = $optionIndex;
+						}
+                        
                     }
                 }
 
@@ -163,8 +174,8 @@ class ReplyController extends PublicController{
                 $questions[$index]['standard'] = array_map($standMap, explode(',', $questions[$index]['standard']));
             }
         }
-		/* p($questionnaire); 
-		p($questions);*/
+		/* p($questionnaire); */
+		//p($questions);
         $this->assign('questionnaire', $questionnaire);
         $this->assign('questions', $questions);
 		

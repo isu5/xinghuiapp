@@ -64,10 +64,11 @@
 						<th>平台支付账户</th>
 						<th>支付金额</th>
 						<th>商户订单号</th>
-						<th>支付宝交易订单号</th>
+						<th>支付宝/微信交易订单号</th>
+						<th>支付类型</th>
 						<th>支付时间</th>
 						<th>到期时间</th>
-						<th  style="width:150px;">操作</th>
+						<!-- <th  style="width:150px;">操作</th> -->
 					</tr>
 					</thead>
 					<tbody id="checked"> 
@@ -83,11 +84,18 @@
 							<td>{$v.total_amount}</td>
 							<td>{$v.out_trade_no}</td>
 							<td>{$v.trade_no}</td>
+							<td>
+							<eq name="v.paychannel" value="1">
+								支付宝
+							<else/>
+								微信
+							</eq>
+							</td>
 							<td>{$v.gmt_create}</td>
 							<td>{$v.endtime}</td>
-							<td>
+							<!-- <td>
                                 <button type="button" class="btn btn-danger" onClick="showalert('询问','您确定要删除 <strong></strong> 吗?','{:U('Payment/delete',array(id=>$v['id']))}')" >删除</button>
-                            </td>
+                            </td> -->
 						</tr>
 						</volist>
 						</empty> 

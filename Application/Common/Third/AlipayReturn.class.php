@@ -36,10 +36,10 @@ class AlipayReturn{
         } else {
             $result = (bool)openssl_verify($data, base64_decode($sign), $res);
         }
-//        if(!$this->checkEmpty($this->alipayPublicKey)) {
+        if(!$this->checkEmpty($this->alipayPublicKey)) {
 //            //ÊÍ·Å×ÊÔ´
-//            openssl_free_key($res);
-//        }
+            openssl_free_key($res);
+       }
         return $result;
     }
 

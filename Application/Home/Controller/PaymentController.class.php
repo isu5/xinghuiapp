@@ -18,12 +18,10 @@ class PaymentController extends PublicController{
 	
 	public function index(){
 		$data = $this->checkpay();
-		
 		//p($data);
 		if($data==1){
 			$this->assign([
-				'success'=>true,
-				
+				'success'=>true
 			]);
 		}
 		
@@ -31,7 +29,6 @@ class PaymentController extends PublicController{
 		
 	}
 	
-
 	//支付宝支付
 	public function alipay(){
 		/*** 请填写以下配置信息 ***/
@@ -39,7 +36,15 @@ class PaymentController extends PublicController{
 		$returnUrl = 'https://xh.2188.com.cn/Payment/ali_return_url';     //付款成功后的同步回调地址
 		$notifyUrl = 'https://xh.2188.com.cn/Payment/ali_notify';     //付款成功后的异步回调地址
 		$outTradeNo = date('YmdHis', time());     //你自己的商品订单号，不能重复
-		$payAmount = I('post.total_amount');          //付款金额，单位:元
+		if($_POST['paytype'] ==1){ //付款金额，单位:元
+			$payAmount = C('PAY_ONE'); 
+		}
+		if($_POST['paytype'] ==2){
+			$payAmount = C('PAY_TWO'); 
+		}
+		if($_POST['paytype'] ==3){
+			$payAmount = C('PAY_THREE'); 
+		}        
 		$orderName = '幸会年费';    //订单标题
 		$signType = 'RSA2';			//签名算法类型，支持RSA2和RSA，推荐使用RSA2
 		$rsaPrivateKey=C('ALIPAY.privatekey');		//商户私钥，填写对应签名算法类型的私钥，如何生成密钥参考：https://docs.open.alipay.com/291/105971和https://docs.open.alipay.com/200/105310
@@ -87,7 +92,19 @@ class PaymentController extends PublicController{
 				//付款日期
 				$payment = $this->payment->where(['out_trade_no'=>$data['out_trade_no']])->find();
 				$data['paytype'] = $payment['paytype'];
-				$data['endtime'] = date('Y-m-d H:i:s',strtotime('+1year'));
+				//一个月
+				if($data['paytype'] == 1){
+					$data['endtime'] = date('Y-m-d H:i:s',strtotime('+1month')); ///到期时间
+				}
+				//三个月
+				if($data['paytype'] == 2){
+					$data['endtime'] = date('Y-m-d H:i:s',strtotime('+6month')); ///到期时间
+				}
+				//一年
+				if($data['paytype'] == 3){
+					$data['endtime'] = date('Y-m-d H:i:s',strtotime('+1year')); ///到期时间
+				}
+					
 				$this->order->add($data );
 				$this->success('支付成功',U('Payment/orderlist'));
 			}else{
@@ -137,98 +154,6 @@ class PaymentController extends PublicController{
 	}
 	
 		
-	
-/*	//支付宝付款成功后的同步回调地址
-	public function return_url(){
-		
-		require_once './alipay/pcpay/config.php';
-		require_once './alipay/pcpay/pagepay/service/AlipayTradeService.php';
-
-		$arr=$_GET;
-		$arr['fund_bill_list'] = stripslashes($arr['fund_bill_list']);
-		$alipaySevice = new \AlipayTradeService($config); 
-		$result = $alipaySevice->check($arr);
-		if($result) {//验证成功
-			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			//请在这里加上商户的业务逻辑程序代码
-			
-			//——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
-			//获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表
-			//商户订单号
-			$out_trade_no = htmlspecialchars($_GET['out_trade_no']);
-
-			//支付宝交易号
-			$trade_no = htmlspecialchars($_GET['trade_no']);
-			$data['user_id'] = $this->user_id;
-			$data['gmt_create'] = htmlspecialchars($_GET['timestamp']); //完成时间
-			$data['gmt_payment'] = htmlspecialchars($_GET['gmt_payment']);
-			$data['notify_time'] = htmlspecialchars($_GET['notify_time']);
-			$data['out_trade_no'] = htmlspecialchars($_GET['out_trade_no']);
-			$data['trade_no'] = htmlspecialchars($_GET['trade_no']);
-			$data['total_amount'] = htmlspecialchars($_GET['total_amount']);
-			$data['trade_status'] = htmlspecialchars($_GET['trade_status']);
-			$alipay = M('User_alipay');
-			$alipay->add($data);
-			echo "验证成功<br />支付宝交易号：".$trade_no;
-
-			//——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
-			
-			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		}
-		else {
-			//验证失败
-			echo "验证失败";
-		}
-	}
-	
-	//支付宝付款成功后的异步回调地址
-	public function nofiy_url(){
-		
-		require_once './alipay/pcpay/config.php';
-		require_once './alipay/pcpay/pagepay/service/AlipayTradeService.php';
-
-		$arr=$_POST;
-		$alipaySevice = new \AlipayTradeService($config);
-		
-		$alipaySevice->writeLog(var_export($_POST,true));
-		$result = $alipaySevice->check($arr);
-		if($result) {//验证成功
-			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			//请在这里加上商户的业务逻辑程序代
-			//——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
-			//获取支付宝的通知返回参数，可参考技术文档中服务器异步通知参数列表
-		
-			if($_POST['trade_status'] == 'TRADE_FINISHED') {
-				
-				//判断该笔订单是否在商户网站中已经做过处理
-					//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
-					//请务必判断请求时的total_amount与通知时获取的total_fee为一致的
-					//如果有做过处理，不执行商户的业务程序
-						
-				//注意：
-				//退款日期超过可退款期限后（如三个月可退款），支付宝系统发送该交易状态通知
-			}
-			else if ($_POST['trade_status'] == 'TRADE_SUCCESS') {
-				//判断该笔订单是否在商户网站中已经做过处理
-					//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
-					//请务必判断请求时的total_amount与通知时获取的total_fee为一致的
-					//如果有做过处理，不执行商户的业务程序			
-				//注意：
-				//付款完成后，支付宝系统发送该交易状态通知
-				
-			}
-			
-			//——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
-			echo "success";	//请不要修改或删除
-		}else {
-			//验证失败
-			echo "fail";
-
-		}
-		
-				
-	}
-*/	
 	//微信支付
 	public function wechatpay(){
 		header('Content-type:text/html; Charset=utf-8');
@@ -238,16 +163,28 @@ class PaymentController extends PublicController{
 		$apiKey = C("WXPAY.apiKey");   //https://pay.weixin.qq.com 帐户设置-安全设置-API安全-API密钥-设置API密钥
 		$wxPay = new WxpayService($mchid,$appid,$apiKey);
 		$outTradeNo = date('YmdHis', time());     //你自己的商品订单号
-		$payAmount = 0.01;          //付款金额，单位:元
+		if($_POST['paytype'] ==1){ //付款金额，单位:元
+			$payAmount = C('PAY_ONE'); 
+		}
+		if($_POST['paytype'] ==2){
+			$payAmount = C('PAY_TWO'); 
+		}
+		if($_POST['paytype'] ==3){
+			$payAmount = C('PAY_THREE'); 
+		}      
+			
+		//$payAmount = I('post.total_amount');          //付款金额，单位:元
 		$orderName = '支付测试';    //订单标题
-		$notifyUrl = 'https://xh.2188.com.cn/Payment/wechatnotify';     //付款成功后的异步回调地址(不要有问号)
-		$returnUrl = 'https://xh.2188.com.cn/Payment/wechatreturn';     //付款成功后页面跳转的地址
+		$notifyUrl = 'https://xh.2188.com.cn/Index/weixinnotify';     //付款成功后的异步回调地址(不要有问号)
+		$returnUrl = 'https://xh.2188.com.cn/Payment/orderlist';     //付款成功后页面跳转的地址
 		$payTime = time();      //付款时间
+		//p($_POST);die;
 		if($action=='queryorder'){
 			$outTradeNo = $_GET['outTradeNo'];
 			$result = $wxPay->orderquery($outTradeNo);
 			echo json_encode($result);die;
 		}
+		
 		$wxPay->setReturnUrl($returnUrl);
 		$arr = $wxPay->createJsBizPackage($payAmount,$outTradeNo,$orderName,$notifyUrl,$payTime);
 		$url = 'http://qr.liantu.com/api.php?text='.$arr['code_url'];
@@ -257,66 +194,18 @@ class PaymentController extends PublicController{
 			'payAmount' => $payAmount,
 			'returnUrl' => $returnUrl
 		));
-		
+		$data['user_id'] = $this->user_id;
+		$data['total_amount'] = $payAmount;
+		$data['invoice_address'] = I('post.invoice_address');
+		$data['out_trade_no'] = $outTradeNo;
+		$data['addtime'] = date('Y-m-d H:i:s', time());
+		$data['paytype'] = I('post.paytype'); //选择付款的期限
+		$this->payment->add($data);
 		$this->display();
 		
 		
 	}
-	//微信支付 notifyUrl
-	public function wechatnotify(){
-		
-		// ↓↓↓下面的file_put_contents是用来简单查看异步发过来的数据 测试完可以删除；↓↓↓
-		// 获取xml
-		$xml=file_get_contents('php://input', 'r');
-		//转成php数组 禁止引用外部xml实体
-		libxml_disable_entity_loader(true);
-		$data= json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA));
-		file_put_contents('./data/notify.txt', $data);
-		// ↑↑↑上面的file_put_contents是用来简单查看异步发过来的数据 测试完可以删除；↑↑↑
-		// 导入微信支付sdk
-		
-		$mchid = C("WXPAY.mchid");          //微信支付商户号 PartnerID 通过微信支付商户资料审核后邮件发送
-		$appid = C("WXPAY.appid");  //微信支付申请对应的公众号的APPID
-		$apiKey = C("WXPAY.apiKey");   //https://pay.weixin.qq.com 帐户设置-安全设置-API安全-API密钥-设置API密钥
-		$wxPay = new WxpayService($mchid,$appid,$apiKey);
-		$result = $wxPay->notify();
-		$data['total_amount'] = $_POST['cash_fee'];
-		$data['out_trade_no'] = $_POST['out_trade_no'];
-		$data['trade_status'] =	$result["result_code"];
-		$pay = M('User_alipay');
-		$pay->add($data);
-		if($result){
-			//完成你的逻辑
-			//例如连接数据库，获取付款金额$_POST['cash_fee']，获取订单号$_POST['out_trade_no']，修改数据库中的订单状态等;
-			$data['total_amount'] = $_POST['cash_fee'];
-			$data['out_trade_no'] = $_POST['out_trade_no'];
-			$data['trade_status'] =	$result["result_code"];
-			$pay = M('User_alipay');
-				$pay->add($data);
-			if(array_key_exists("return_code", $result)&& array_key_exists("result_code", $result)&& $result["return_code"] == "SUCCESS"&& $result["result_code"] == "SUCCESS"){
-				$file = './log.txt';//要写入文件的文件名（可以是任意文件名），如果文件不存在，将会创建一个
-				$content = "支付成功".$result."\n"; //要写入的内容
-				file_put_contents($file, $content);
-				$pay = M('User_alipay');
-				$pay->add($data);
-				$file = './log.txt';//要写入文件的文件名（可以是任意文件名），如果文件不存在，将会创建一个
-				$content = "支付成功".$bdata['total_fee']."\n"; //要写入的内容
-			}else{
-				echo 'pay error';
-			}
-		}
-		
-	}
-	//微信同步地址
-	public function wechatreturn(){
-		$outTradeNo = I('get.outTradeNo');
-		$mchid = C("WXPAY.mchid");          //微信支付商户号 PartnerID 通过微信支付商户资料审核后邮件发送
-		$appid = C("WXPAY.appid");  //微信支付申请对应的公众号的APPID
-		$apiKey = C("WXPAY.apiKey");   //https://pay.weixin.qq.com 帐户设置-安全设置-API安全-API密钥-设置API密钥
-		$wxPay = new WxpayService($mchid,$appid,$apiKey);
-		$data = $wxPay->orderquery($outTradeNo);
-		p($data);
-	}
+	//
 	
 	//支付订单
 	public function orderlist(){

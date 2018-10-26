@@ -101,6 +101,7 @@ laydate.render({
 								<label class="col-md-3 control-label">问题选项</label>
 								<div class="col-md-8  option-list">
 									<volist name="optionsList" id="item">
+									
 									<switch name="item.type">
 										<case  value="radio">
 											<div class="option-item radio_option">
@@ -124,7 +125,7 @@ laydate.render({
 
 										<case  value="text">
 											<div class="option-item text_option">
-												<textarea class="form-control">{$standardList}</textarea>
+												<textarea class="form-control"><?php echo $item['text'];?></textarea>
 												<img class="option-del" src="/Public/home/images/btn-del.png" title="删除该选项">
 											</div>
 										</case>

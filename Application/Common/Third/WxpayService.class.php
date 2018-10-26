@@ -75,7 +75,7 @@ class WxpayService
     }
     public function notify()
     {
-        $config = array(
+         $config = array(
             'mch_id' => $this->mchid,
             'appid' => $this->appid,
             'key' => $this->apiKey,

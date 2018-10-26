@@ -18,6 +18,7 @@
 				<span>评论设置</span>
 				<span>APP设置</span>
 				<span>其他设置</span>
+				<span>支付设置</span>
 			</div>
 		
 			<div class="tabCon">
@@ -205,6 +206,28 @@
 					<label class="form-label col-xs-4 col-sm-2">合作伙伴数量</label>
 					<div class="formControls col-xs-8 col-sm-9">
 						<input type="text" class="input-text" name="PARTNERS_NUM" value="{$data['PARTNERS_NUM']}" >
+					</div>
+				</div>
+			</div>
+			<div class="tabCon">
+				<small style="color:red;padding:50px;margin:20px">金额设置说明: 注意保持两个小数点</small>
+				
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">一月支付金额</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" class="input-text" name="PAY_ONE" value="{$data['PAY_ONE']}" >
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">三月支付金额</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" class="input-text" name="PAY_TWO" value="{$data['PAY_TWO']}" >
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">一年支付金额</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" class="input-text" name="PAY_THREE" value="{$data['PAY_THREE']}" >
 					</div>
 				</div>
 			</div>
