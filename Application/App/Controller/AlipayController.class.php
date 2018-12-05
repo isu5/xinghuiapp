@@ -35,7 +35,15 @@ class AlipayController extends PublicController{
         $body = '幸会年费-可使用调查问卷，团队管理，数据分析';
         // 价格
         //$total = I('post.total_amount');
-        $total = 0.01;
+        if($_POST['paytype'] ==1){ //付款金额，单位:元
+			$total = C('PAY_ONE'); 
+		}
+		if($_POST['paytype'] ==2){
+			$total = C('PAY_TWO'); 
+		}
+		if($_POST['paytype'] ==3){
+			$total = C('PAY_THREE'); 
+		}        
         // 订单号，示例代码使用时间值作为唯一的订单ID号
         $out_trade_no = date('YmdHis', time());
 		

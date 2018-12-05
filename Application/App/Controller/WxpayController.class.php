@@ -13,12 +13,22 @@ class WxpayController extends PublicController{
 		$mchid = C("WXPAY.mchid");          //微信支付商户号 PartnerID 通过微信支付商户资料审核后邮件发送
 		$appid = C("WXPAY.appid");  //微信支付申请对应的公众号的APPID
 		$apiKey = C("WXPAY.apiKey");   //https://pay.weixin.qq.com 帐户设置-安全设置-API安全-API密钥-设置API密钥
-		$notify_url = 'https://xh.2188.com.cn/App/Wxpay/notify';
+		$notify_url = 'https://xh.2188.com.cn/Index/weixinnotify';
 		
 		$wechatAppPay = new WxpayApp($appid, $mchid, $notify_url, $apiKey);
 		$params['body'] = '商品描述';                       //商品描述
 		$params['out_trade_no'] = date('YmdHis',time());    //自定义的订单号
-		$params['total_fee'] = 1;                       //订单金额 只能为整数 单位为分
+		//$params['total_fee'] = 1;                       //订单金额 只能为整数 单位为分
+		
+		if($_POST['paytype'] ==1){ //付款金额，单位:元
+			$params['total_fee'] = floor(C('PAY_ONE')); 
+		}
+		if($_POST['paytype'] ==2){
+			$params['total_fee'] = floor(C('PAY_TWO')); 
+		}
+		if($_POST['paytype'] ==3){
+			$params['total_fee'] = floor(C('PAY_THREE')); 
+		}      
 		$params['trade_type'] = 'APP';                      //交易类型 JSAPI | NATIVE | APP | WAP 
 		$result = $wechatAppPay->unifiedOrder( $params );
 		//print_r($result); // result中就是返回的各种信息信息，成功的情况下也包含很重要的prepay_id
@@ -29,10 +39,5 @@ class WxpayController extends PublicController{
 		echo json_encode($data);
 	}
 	
-	//回调地址
-		
-	public function notify(){
-		echo 1;
-	}
 	
 }

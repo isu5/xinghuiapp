@@ -281,6 +281,9 @@ function jgpushAll($title="",$content,$type=1){
 		'build_id' => 2,
 		'extras' => $extras
 	);
+	$ios_Notification = array(
+		'extras' => $extras
+	);
 	$alert= $content;
 	$client = new JPushClient(C('JPUSH.APP_KEY'), C('JPUSH.MASTER_SECRET'));
 	try{
@@ -289,12 +292,16 @@ function jgpushAll($title="",$content,$type=1){
 		->setNotificationAlert('公共信息提示')
 		->addAllAudience()
 		->androidNotification($alert,$android_notification)
+		->iosNotification($alert,$ios_Notification)
 		 ->message('Hello JPush', [
 			  'title' => 'Hello',
 			  'content_type' => 'text',
 			  'extras' => $extras
 			  
 			])
+		->options(array( 
+			'apns_production' => true,
+			))
 		->send();
 		//p($push);
 	}catch (\JPush\Exceptions\APIConnectionException $e) {
@@ -323,6 +330,11 @@ function jgpushPerson($tag,$conf_id){
 		'build_id' => 2,
 		'extras' => $extras
 	);
+	$ios_notification = array(
+		//'title' => '幸会会议',
+		
+		'extras' => $extras
+	);
 	$alert = '恭喜您签到成功!';
 	$client = new JPushClient(C('JPUSH.APP_KEY'), C('JPUSH.MASTER_SECRET'));
 	try{
@@ -331,12 +343,16 @@ function jgpushPerson($tag,$conf_id){
 		->addAlias($tag)
 		->setNotificationAlert($alert)
 		->androidNotification($alert,$android_notification)
+		->iosNotification($alert,$ios_notification)
 		 ->message('Hello JPush', [
 			  'title' => 'Hello',
 			  'content_type' => 'text',
 			  'extras' => $extras
 			  
 			])
+		->options(array( 
+			'apns_production' => true,
+			))
 		->send();
 	}catch (\JPush\Exceptions\APIConnectionException $e) {
 		// try something here
@@ -364,6 +380,9 @@ function signJgpush($tag,$title,$content){
 		'build_id' => 2,
 		'extras' => $extras
 	);
+	$ios_Notification = array(
+		'extras' => $extras
+	);
 	$alert = $title;
 	$client = new JPushClient(C('JPUSH.APP_KEY'), C('JPUSH.MASTER_SECRET'));
 	try{
@@ -371,6 +390,7 @@ function signJgpush($tag,$title,$content){
 		->setPlatform('all')
 		->addAlias($tag)
 		->setNotificationAlert($alert)
+		->iosNotification($alert,$ios_Notification)
 		->androidNotification($alert,$android_notification)
 		 ->message('Hello JPush', [
 			  'title' => 'Hello',
@@ -378,6 +398,9 @@ function signJgpush($tag,$title,$content){
 			  'extras' => $extras
 			  
 			])
+		->options(array( 
+			'apns_production' => true,
+			))
 		->send();
 	} catch (\JPush\Exceptions\APIConnectionException $e) {
 		// try something here
@@ -410,6 +433,11 @@ function jgpushgx($tag,$title,$content){
 		'build_id' => 2,
 		'extras' => $extras
 	);
+	$ios_notification = array(
+		//'title' => '幸会会议',
+		//'build_id' => 2,
+		'extras' => $extras
+	);
 	$alert = $title;
 	$client = new JPushClient(C('JPUSH.APP_KEY'), C('JPUSH.MASTER_SECRET'));
 	try {
@@ -417,6 +445,7 @@ function jgpushgx($tag,$title,$content){
 		->setPlatform('all')
 		->addAlias($tag)
 		->setNotificationAlert($alert)
+		->iosNotification($alert,$ios_notification)
 		->androidNotification($alert,$android_notification)
 		 ->message('Hello JPush', [
 			  'title' => 'Hello',
@@ -424,6 +453,9 @@ function jgpushgx($tag,$title,$content){
 			  'extras' => $extras
 			  
 			])
+		->options(array( 
+			'apns_production' => true,
+			))
 		->send();
 	} catch (\JPush\Exceptions\APIConnectionException $e) {
 		// try something here
@@ -457,6 +489,11 @@ function jgpushInside($tag,$conf_id,$title,$content){
 		'build_id' => 2,
 		'extras' => $extras
 	);
+	$ios_notification = array(
+		//'title' => '幸会会议',
+		//'build_id' => 2,
+		'extras' => $extras
+	);
 	$alert = $title;
 	$client = new JPushClient(C('JPUSH.APP_KEY'), C('JPUSH.MASTER_SECRET'));
 	try {
@@ -464,6 +501,7 @@ function jgpushInside($tag,$conf_id,$title,$content){
 		->setPlatform('all')
 		->addAlias($tag)
 		->setNotificationAlert($alert)
+		->iosNotification($alert,$ios_notification)
 		->androidNotification($alert,$android_notification)
 		 ->message('Hello JPush', [
 			  'title' => 'Hello',
@@ -471,6 +509,9 @@ function jgpushInside($tag,$conf_id,$title,$content){
 			  'extras' => $extras
 			  
 			])
+		->options(array( 
+			'apns_production' => true,
+			))
 		->send();
 	} catch (\JPush\Exceptions\APIConnectionException $e) {
 		// try something here
@@ -499,6 +540,9 @@ function manageJgpush($tag){
 		->setPlatform('all')
 		->addAlias($tag)
 		->setNotificationAlert('有用户提交的认证审核，请及时处理!')
+		->options(array( 
+			'apns_production' => true,
+			))
 		->send();
 	}catch (\JPush\Exceptions\APIConnectionException $e) {
 		// try something here
@@ -526,6 +570,9 @@ function jgpushAgreed($tag){
 		->setPlatform('all')
 		->addAlias($tag)
 		->setNotificationAlert('恭喜您您已通过审核，请及时参加会议!')
+		->options(array( 
+			'apns_production' => true,
+			))
 		->send();
 	}catch (\JPush\Exceptions\APIConnectionException $e) {
 		// try something here
@@ -553,6 +600,9 @@ function jgpushRefused($tag){
 		->setPlatform('all')
 		->addAlias($tag)
 		->setNotificationAlert('您还没有资质参加会议，如有疑问请联系客服!')
+		->options(array( 
+			'apns_production' => true,
+			))
 		->send();
 	}catch (\JPush\Exceptions\APIConnectionException $e) {
 		// try something here
@@ -579,6 +629,9 @@ function backjgpushRefused($tag){
 		->setPlatform('all')
 		->addAlias($tag)
 		->setNotificationAlert('您提交的信息不符合要求，请重新上传，如有疑问请联系客服!')
+		->options(array( 
+			'apns_production' => true,
+			))
 		->send();
 	}catch (\JPush\Exceptions\APIConnectionException $e) {
 		// try something here
@@ -606,6 +659,9 @@ function jgpushAccount($tag){
 		->setPlatform('all')
 		->addAlias($tag)
 		->setNotificationAlert('您的手机号已解绑，可以重新注册了!')
+		->options(array( 
+			'apns_production' => true,
+			))
 		->send();
 	}catch (\JPush\Exceptions\APIConnectionException $e) {
 		// try something here
@@ -633,6 +689,9 @@ function jgpushCert($tag){
 		->setPlatform('all')
 		->addAlias($tag)
 		->setNotificationAlert('恭喜您您的认证已通过审核，您可以发布会议了!')
+		->options(array( 
+			'apns_production' => true,
+			))
 		->send();
 		
 	}catch (\JPush\Exceptions\APIConnectionException $e) {
@@ -666,6 +725,11 @@ function batchjpush($tag,$title,$content){
 		'build_id' => 2,
 		'extras' => $extras
 	);
+	$ios_notification = array(
+		//'title' => '幸会会议',
+		//'build_id' => 2,
+		'extras' => $extras
+	);
 	$alert = $title;
 	$client = new JPushClient(C('JPUSH.APP_KEY'), C('JPUSH.MASTER_SECRET'));
 	try {
@@ -673,12 +737,16 @@ function batchjpush($tag,$title,$content){
 		->setPlatform('all')
 		->addAlias($tag)
 		->setNotificationAlert($alert)
+		->iosNotification($alert,$ios_notification)
 		->androidNotification($alert,$android_notification)
 		 ->message('Hello JPush', [
 			  'title' => 'Hello',
 			  'content_type' => 'text',
 			  'extras' => $extras
 			])
+		->options(array( 
+			'apns_production' => true,
+			))
 		->send();
 	} catch (\JPush\Exceptions\APIConnectionException $e) {
 		// try something here
