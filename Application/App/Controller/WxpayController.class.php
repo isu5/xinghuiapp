@@ -21,13 +21,13 @@ class WxpayController extends PublicController{
 		//$params['total_fee'] = 1;                       //订单金额 只能为整数 单位为分
 		
 		if($_POST['paytype'] ==1){ //付款金额，单位:元
-			$params['total_fee'] = floor(C('PAY_ONE')); 
+			$params['total_fee'] = C('PAY_ONE') * 100; 
 		}
 		if($_POST['paytype'] ==2){
-			$params['total_fee'] = floor(C('PAY_TWO')); 
+			$params['total_fee'] = C('PAY_TWO') * 100; 
 		}
 		if($_POST['paytype'] ==3){
-			$params['total_fee'] = floor(C('PAY_THREE')); 
+			$params['total_fee'] = C('PAY_THREE') * 100; 
 		}      
 		$params['trade_type'] = 'APP';                      //交易类型 JSAPI | NATIVE | APP | WAP 
 		$result = $wechatAppPay->unifiedOrder( $params );
